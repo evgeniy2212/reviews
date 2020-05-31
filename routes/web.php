@@ -11,6 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+        Auth::routes();
+
+        Auth::routes(['verify' => true]);
+
+        Route::get('/home', 'HomeController@index')->name('home');
+//        Route::get('/', 'HomeController@index')->name('home');
+
+        Route::get('/', function () {
+            return view('welcome');
+        });
 });
