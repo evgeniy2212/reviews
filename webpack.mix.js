@@ -13,3 +13,19 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+
+mix.styles([
+    'resources/css/header.css',
+], 'public/css/header.css');
+
+mix.styles([
+    'resources/css/footer.css',
+], 'public/css/footer.css');
+
+mix.styles([
+    'resources/css/main.css',
+], 'public/css/main.css');
+
+mix.styles([
+    'resources/css/preloader.css',
+], 'public/css/preloader.css');
