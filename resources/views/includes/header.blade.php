@@ -1,7 +1,8 @@
 <header id="header">
     <div class="container">
         <div id="logo" class="pull-left">
-            <img src="{{ asset('storage/service/logo.png') }}" height="50px" width="50px"/>
+            {{--<img src="{{ asset('storage/service/logo.png') }}" height="50px" width="50px"/>--}}
+            <img src="{{ asset('images/logo.png') }}" height="50px" width="50px"/>
             <span><a href="" class="scrollto">@lang('service/index.site_name')</a></span>
             <p>
                 Yours reviews makes our live better.
