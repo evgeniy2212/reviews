@@ -29,7 +29,9 @@
 </div>
 @include('includes.header')
 <section class="section">
+        {{--<a class="btn btn-primary" data-toggle="modal" href="#ignismyModal">open Popup</a>--}}
     @yield('content')
+    @include('includes.success')
 </section>
     {{--<div id="app">--}}
         {{--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
@@ -89,6 +91,10 @@
             {{--@yield('content')--}}
         {{--</main>--}}
     {{--</div>--}}
+</body>
+@include('includes.footer')
+@include('includes.scripts')
+@include('includes.alerts')
 <script>
     $(window).on('load', function () {
         $('body').addClass('loaded_hiding');
@@ -98,6 +104,4 @@
         }, 300);
     })
 </script>
-</body>
-@include('includes.footer')
 </html>

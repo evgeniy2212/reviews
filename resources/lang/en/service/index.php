@@ -8,4 +8,5 @@ return [
     'home' => 'Home',
     'head_select' => 'Select category',
     'hello' => 'Hi, :name',
+    'welcome' => 'Welcome, :name!'
 ];
