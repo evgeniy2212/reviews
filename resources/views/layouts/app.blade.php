@@ -27,25 +27,10 @@
         </path>
     </svg>
 </div>
-{{--<svg class="filter" version="1.1">--}}
-    {{--<defs>--}}
-        {{--<filter id="gooeyness">--}}
-            {{--<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />--}}
-            {{--<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="gooeyness" />--}}
-            {{--<feComposite in="SourceGraphic" in2="gooeyness" operator="atop" />--}}
-        {{--</filter>--}}
-    {{--</defs>--}}
-{{--</svg>--}}
-{{--<div class="dots">--}}
-    {{--<div class="dot mainDot"></div>--}}
-    {{--<div class="dot"></div>--}}
-    {{--<div class="dot"></div>--}}
-    {{--<div class="dot"></div>--}}
-    {{--<div class="dot"></div>--}}
-{{--</div>--}}
 @include('includes.header')
-
-@yield('content')
+<section class="section">
+    @yield('content')
+</section>
     {{--<div id="app">--}}
         {{--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
             {{--<div class="container">--}}
@@ -110,7 +95,7 @@
         window.setTimeout(function () {
             $('body').addClass('loaded');
             $('body').removeClass('loaded_hiding');
-        }, 500);
+        }, 300);
     })
 </script>
 </body>

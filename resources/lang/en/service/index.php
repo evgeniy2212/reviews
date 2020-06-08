@@ -6,5 +6,6 @@ return [
     'goods' => 'Goods',
     'vacations' => 'Vocations',
     'home' => 'Home',
-    'head_select' => 'Select category'
+    'head_select' => 'Select category',
+    'hello' => 'Hi, :name',
 ];

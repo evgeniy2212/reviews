@@ -3,12 +3,14 @@
         <div id="logo" class="pull-left">
             {{--<img src="{{ asset('storage/service/logo.png') }}" height="50px" width="50px"/>--}}
             <img src="{{ asset('images/logo.png') }}" height="50px" width="50px"/>
-            <span><a href="" class="scrollto">@lang('service/index.site_name')</a></span>
+            <span><a href="{{ LaravelLocalization::localizeUrl('/') }}" class="scrollto">@lang('service/index.site_name')</a></span>
+            {{--<a class="navbar-brand" href="{{ LaravelLocalization::localizeUrl('/') }}">--}}
+                {{--{{ config('app.name', 'Laravel') }}--}}
+            {{--</a>--}}
             <p>
                 Yours reviews makes our live better.
             </p>
         </div>
-
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li class="menu-active"><a href="">@lang('service/index.home')</a></li>
@@ -16,12 +18,60 @@
                 <li><a href="">@lang('service/index.company')</a></li>
                 <li><a href="">@lang('service/index.goods')</a></li>
                 <li><a href="">@lang('service/index.vacations')</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="fas fa-user"></span> Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="fas fa-sign-in-alt"></span> Login</a>
-                </li>
+                @guest
+                    <li>
+                        <a href="{{ LaravelLocalization::localizeUrl('/login') }}"><span class="fas fa-sign-in-alt"></span> Login</a>
+                    </li>
+                    <li>
+                        <a href="{{ LaravelLocalization::localizeUrl('/register') }}"><span class="fas fa-user"></span> Sign Up</a>
+                    </li>
+                @else
+                    {{--<li>--}}
+                        {{--<a href="{{ LaravelLocalization::localizeUrl('/logout') }}"--}}
+                           {{--onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();">--}}
+                            {{--{{ __('Logout') }}--}}
+                        {{--</a>--}}
+                        {{--<form id="logout-form" action="{{ LaravelLocalization::localizeUrl('/logout') }}" method="POST" style="display: none;">--}}
+                            {{--@csrf--}}
+                        {{--</form>--}}
+                    {{--</li>--}}
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            @lang('service/index.hello', ['name' => Auth::user()->name])<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="">
+                                    Account
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ LaravelLocalization::localizeUrl('/logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ LaravelLocalization::localizeUrl('/logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--<li>--}}
+                        {{--<a href="#">--}}
+                            {{--@lang('service/index.hello', ['name' => Auth::user()->name])<span class="caret"></span>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                    <li>
+                        <a href="#">
+                            <span class="fas fa-envelope fa-2x"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <img src="{{ asset('images/congrats.png') }}" height="21px" width="35px"/>
+                    </li>
+                @endguest
             </ul>
             <nav class="navbar navbar-light bg-white pull-right" id="nav-search-container">
                 <a href="#"><i class="nav-link fas fa-share-alt fa-lg"> Share</i></a>
