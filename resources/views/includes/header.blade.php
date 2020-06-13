@@ -3,7 +3,7 @@
         <div class="row">
             <div id="logo" class="col-md-2">
                 {{--<img src="{{ asset('storage/service/logo.png') }}" height="50px" width="50px"/>--}}
-                <img src="{{ asset('images/logo.jpg') }}" height="175px" width="175px"/>
+                <img src="{{ asset('images/logo_new.jpg') }}" height="175px" width="175px"/>
                 {{--<a class="navbar-brand" href="{{ LaravelLocalization::localizeUrl('/') }}">--}}
                 {{--{{ config('app.name', 'Laravel') }}--}}
                 {{--</a>--}}
