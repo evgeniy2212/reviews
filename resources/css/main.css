@@ -1,17 +1,23 @@
+body {
+    background: url(../images/background.jpg) no-repeat; /* Путь к фоновому изображению */
+    background-color: #ebecf0; /* Цвет фона */
+    background-size: 100%;
+}
+
 .section {
-    padding-top: 200px;
+    padding-top: 20px;
     padding-bottom: 50px;
 }
 
-.gradient {
-    height: 100%;
-    width: 100%;
-    padding: 2%;
-    margin: 0 auto;
-    border: 10px solid transparent;
-    border-image: linear-gradient(to right, transparent 0%, #ADF2F7 100%);
-    border-image-slice: 1;
-}
+/*.gradient {*/
+/*height: 100%;*/
+/*width: 100%;*/
+/*padding: 2%;*/
+/*margin: 0 auto;*/
+/*border: 10px solid transparent;*/
+/*border-image: linear-gradient(to right, transparent 0%, #ADF2F7 100%);*/
+/*border-image-slice: 1;*/
+/*}*/
 
 /*--thank you pop starts here--*/
 .thank-you-pop{
@@ -70,3 +76,14 @@
 }
 /*--thank you pop ends here--*/
 
+.description {
+    height: 100%;
+    width: 100%;
+    padding: 2%;
+    margin: 0 auto;
+    border: 10px solid #2f5496;
+    background: #f2f2f2;
+}
+.left-border {
+    border-left: 1px solid #000;
+}

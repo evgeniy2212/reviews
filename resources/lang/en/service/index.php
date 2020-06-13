@@ -1,10 +1,10 @@
 <?php
 return [
-    'site_name' => 'ReviewsOnTheWeb.com',
-    'person' => 'Person',
-    'company' => 'Company',
-    'goods' => 'Goods',
-    'vacations' => 'Vocations',
+    'site_name' => 'Reviews4info',
+    'person' => 'Review Person',
+    'company' => 'Review Company',
+    'goods' => 'Review Goods',
+    'vacations' => 'Review Vocations',
     'home' => 'Home',
     'head_select' => 'Select category',
     'hello' => 'Hi, :name',

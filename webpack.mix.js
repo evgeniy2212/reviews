@@ -26,8 +26,8 @@ mix.styles([
     'resources/css/main.css',
 ], 'public/css/main.css');
 
-mix.styles([
-    'resources/css/preloader.css',
-], 'public/css/preloader.css');
+// mix.styles([
+//     'resources/css/preloader.css',
+// ], 'public/css/preloader.css');
 
 mix.js('resources/js/main.js', 'public/js');
