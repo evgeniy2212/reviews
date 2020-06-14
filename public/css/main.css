@@ -1,14 +1,15 @@
-body {
+html, body {
     background: url(../images/background.jpg) no-repeat; /* Путь к фоновому изображению */
     background-color: #ebecf0; /* Цвет фона */
     background-size: 100%;
+    height: 100%;
 }
 
 .section {
     padding-top: 10px;
     padding-bottom: 20px;
+    height: calc(100% - 235px);
 }
-
 /*.gradient {*/
 /*height: 100%;*/
 /*width: 100%;*/
@@ -76,14 +77,15 @@ body {
 }
 /*--thank you pop ends here--*/
 
-.description {
-    height: 100%;
+.content-place {
+    height: calc(99vh - 250px);
+    overflow: auto;
     width: 100%;
-    padding: 2%;
+    padding: 1%;
     margin: 0 auto;
     border: 3px solid #2f5496;
     background: #f2f2f2;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
 }
 .left-border {
     /*border-left: 1px solid #000;*/
@@ -93,4 +95,7 @@ body {
     display: inline-block;
     color: #673ab7;
     content: ":";
+}
+.user-info span, img {
+    margin-left: 10px;
 }

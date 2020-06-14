@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row description">
+        <div class="content-place">
             <p>
                 Welcome to the <a href="{{ LaravelLocalization::localizeUrl('/') }}">@lang('service/index.site_name')</a></p>
                 <p>

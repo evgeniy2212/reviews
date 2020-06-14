@@ -30,11 +30,12 @@
                                     <a href="{{ LaravelLocalization::localizeUrl('/register') }}">Sign Up</a>
                                 </li>
                             @else
-                                <li class="left-border">
-                                    <a class="dropdown-item" href="{{ LaravelLocalization::localizeUrl('/logout') }}"
+                                <li>
+                                    <a href="{{ LaravelLocalization::localizeUrl('/logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{--{{ __('Logout') }}--}}
+                                        Sign Out
                                     </a>
                                     <form id="logout-form" action="{{ LaravelLocalization::localizeUrl('/logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -149,10 +150,13 @@
                     {{--<nav class="navbar navbar-light" id="nav-search-container">--}}
                     {{--<a href="#"><i class="nav-link fas fa-share-alt fa-lg"> Share</i></a>--}}
                     {{--<a href="#"><i class="nav-link fas fa-file-download fa-lg"> Save</i></a>--}}
-                    <div class="text-right">
+                    <div class="user-info d-flex flex-row justify-content-end align-items-end">
+                        @auth
                         {{--<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>--}}
-                        <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
-                        <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
+                            <span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span>
+                            <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
+                            <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
+                        @endauth
                     </div>
                     <form class="form-inline" id="searchForm">
                         <input class="form-control mr-sm-2" id="searchCategory" type="search" placeholder="Search" aria-label="Search">
@@ -180,7 +184,7 @@
         <div class="container">
             <div class="nav-gradient">
                 <ul class="nav-menu navigate">
-                    <li class="menu-active"><a href="">@lang('service/index.home')</a></li>
+                    <li class="menu-active"><a href="{{ route('home') }}">@lang('service/index.home')</a></li>
                     <li class=""><a href="">@lang('service/index.person')</a></li>
                     <li ><a href="">@lang('service/index.company')</a></li>
                     <li ><a href="">@lang('service/index.goods')</a></li>
