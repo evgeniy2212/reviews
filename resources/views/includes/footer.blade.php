@@ -11,8 +11,8 @@
             {{--<a href="#">Term of Service</a>--}}
         {{--</div>--}}
         <ul class="footer">
-            <li><a href="#">Contact</a></li>
-            <li class="left-border"><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li class="left-border"><a href="#">Contact</a></li>
             <li class="left-border"><a href="#">Term of Service</a></li>
         </ul>
         {{--<div class="col-md-4 footer-brand">--}}

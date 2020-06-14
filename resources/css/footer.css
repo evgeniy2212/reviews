@@ -60,19 +60,21 @@
 /*}*/
 .footer {
     flex: 1;
-    /*margin: auto !important;*/
+    margin: auto !important;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     padding: 0px 0;
 }
-.footer li, a {
+.footer a{
     text-align: center;
-    flex: 1;
-    list-style-type: none;
+    margin: 0 12px;
     line-height: 1.5;
     font-family: "Garamond";
     font-weight: 600;
     letter-spacing: 3px;
     color: #000;
+}
+.footer li {
+    list-style-type: none;
 }

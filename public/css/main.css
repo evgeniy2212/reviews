@@ -5,8 +5,8 @@ body {
 }
 
 .section {
-    padding-top: 20px;
-    padding-bottom: 50px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 /*.gradient {*/
@@ -81,9 +81,16 @@ body {
     width: 100%;
     padding: 2%;
     margin: 0 auto;
-    border: 10px solid #2f5496;
+    border: 3px solid #2f5496;
     background: #f2f2f2;
+    font-size: 0.75rem;
 }
 .left-border {
-    border-left: 1px solid #000;
+    /*border-left: 1px solid #000;*/
+}
+/* добавление разделителя между элементами хлебных крошек с помощью псевдоэлемента before */
+.left-border::before {
+    display: inline-block;
+    color: #673ab7;
+    content: ":";
 }

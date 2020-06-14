@@ -1,12 +1,12 @@
 <?php
 return [
-    'site_name' => 'Reviews4info',
+    'site_name' => 'Reviews4info.com',
     'person' => 'Review Person',
     'company' => 'Review Company',
     'goods' => 'Review Goods',
     'vacations' => 'Review Vocations',
     'home' => 'Home',
-    'head_select' => 'Select category',
+    'head_select' => 'Select',
     'hello' => 'Hi, :name',
     'welcome' => 'Welcome, :name!'
 ];
