@@ -254,6 +254,7 @@ body.mobile-nav-active #mobile-nav {
     border-color: #a0a3af;
     border-style: dashed;
     border-width: 1px;
+    border-radius: 1px;
     max-height: 25px;
     padding: 0 0;
     text-align: center;
