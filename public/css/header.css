@@ -19,7 +19,7 @@
 /*!*box-shadow: 5px 0px 15px #c3c3c3;*!*/
 /*}*/
 #sitename span {
-    font-size: 35px;
+    font-size: 32px;
     margin: 0;
     padding: 0;
     line-height: 60%;
@@ -52,13 +52,14 @@
     padding-left: 10px;
     margin-bottom: 0rem;
     font-weight: 600;
+    font-size: 13px;
 }
 #sitename ul a {
     font-size: 1.2em;
 }
 #nav-menu-container {
     float: right;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 #nav-search-container {
     padding: 20px 0;
@@ -94,7 +95,7 @@
     text-decoration: none;
     display: inline-block;
     color: #000;
-    line-height: 0.5;
+    line-height: 0.0;
     font-family: "Garamond";
     font-weight: 300;
     letter-spacing: 1px;

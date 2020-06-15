@@ -174,7 +174,7 @@
                     {{--</nav>--}}
                 </div>
                 <div class="advertising">
-                    <img  class="pull-right" src="{{ asset('images/advertising.jpg') }}" height="125px" width="250px"/>
+                    <img  class="pull-right" src="{{ asset('images/advertising.jpg') }}" height="125px" width="300px"/>
                 </div>
             </div>
             {{--</div>--}}

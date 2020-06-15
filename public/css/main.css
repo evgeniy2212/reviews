@@ -4,7 +4,9 @@ html, body {
     background-size: 100%;
     height: 100%;
 }
-
+.container {
+    width: 77%;
+}
 .section {
     padding-top: 10px;
     padding-bottom: 20px;
@@ -83,7 +85,10 @@ html, body {
     width: 100%;
     padding: 1%;
     margin: 0 auto;
-    border: 3px solid #2f5496;
+    /*border: 3px solid #2f5496;*/
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
     background: #f2f2f2;
     font-size: 0.8rem;
 }
