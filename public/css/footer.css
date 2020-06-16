@@ -71,7 +71,7 @@ footer {
 }
 .footer a{
     text-align: center;
-    margin: 0 12px;
+    margin: 0 10px;
     line-height: 1.5;
     font-family: "Garamond";
     font-weight: 600;
@@ -80,4 +80,9 @@ footer {
 }
 .footer li {
     list-style-type: none;
+}
+footer p{
+    font-size: 0.75rem;
+    line-height: 0.9;
+    margin-bottom: 3px;
 }

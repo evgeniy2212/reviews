@@ -18,8 +18,11 @@
 /*!*background-color: #fff;*!*/
 /*!*box-shadow: 5px 0px 15px #c3c3c3;*!*/
 /*}*/
+header {
+    padding-top: 2px;
+}
 #sitename span {
-    font-size: 32px;
+    font-size: 43px;
     margin: 0;
     padding: 0;
     line-height: 60%;
@@ -34,7 +37,7 @@
     /*border-left: 4px solid grey;*/
 }
 #sitename {
-    margin-top: 20px;
+    margin-top: 35px;
     padding: 0 0;
 }
 /*#logo {*/
@@ -42,24 +45,17 @@
 /*padding-right: 0;*/
 /*!*min-width: 170px;*!*/
 /*}*/
-#sitename img {
-    /*display: inline-block;*/
-    /*margin-bottom: 2%;*/
-}
 #sitename p {
-    /*font-style: italic;*/
-    /*font-family: cursive;*/
     padding-left: 10px;
     margin-bottom: 0rem;
     font-weight: 600;
     font-size: 13px;
 }
-#sitename ul a {
-    font-size: 1.2em;
-}
 #nav-menu-container {
     float: right;
-    margin-bottom: 22px;
+    /*margin-bottom: 22px;*/
+    /*font-size: 15px;*/
+    font-size: 1rem;
 }
 #nav-search-container {
     padding: 20px 0;
@@ -271,15 +267,22 @@ body.mobile-nav-active #mobile-nav {
 #searchForm {
     margin-bottom: 25px;
 }
+.middleHeadContainer {
+    padding-right: 20px;
+    flex: 1;
+}
 .container-fluid {
-    width: 95%;
+    /*width: 100%;*/
     max-width: 1300px;
-    padding: 5px 0;
+    /*padding: 5px 0;*/
     margin-right: auto;
     margin-left: auto;
 }
 .advertising {
-    padding-left: 10px;
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
+    /*padding-left: 10px;*/
 }
 
 .nav-gradient {
