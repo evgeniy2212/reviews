@@ -1,14 +1,22 @@
-body {
-    background: url(../images/background.jpg) no-repeat; /* Путь к фоновому изображению */
+html, body {
+    background: no-repeat url(../images/background.jpg); /* Путь к фоновому изображению */
     background-color: #ebecf0; /* Цвет фона */
     background-size: 100%;
+    height: 100%;
 }
-
+.container {
+    /*width: 74%;*/
+    width: calc(100% - 290px);
+    /*padding-right: 0px;*/
+    /*max-width: 1300px;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+}
 .section {
     padding-top: 10px;
     padding-bottom: 20px;
+    height: calc(100% - 235px);
 }
-
 /*.gradient {*/
 /*height: 100%;*/
 /*width: 100%;*/
@@ -76,21 +84,27 @@ body {
 }
 /*--thank you pop ends here--*/
 
-.description {
-    height: 100%;
+.content-place {
+    height: calc(100vh - 230px);
+    overflow: auto;
     width: 100%;
-    padding: 2%;
+    padding: 1%;
     margin: 0 auto;
-    border: 3px solid #2f5496;
+    /*border: 3px solid #2f5496;*/
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
     background: #f2f2f2;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
 }
-.left-border {
-    /*border-left: 1px solid #000;*/
-}
-/* добавление разделителя между элементами хлебных крошек с помощью псевдоэлемента before */
 .left-border::before {
     display: inline-block;
     color: #673ab7;
     content: ":";
+}
+.user-info span, .user-info img {
+    margin-left: 10px;
+}
+.user-info span {
+    font-size: 1rem!important;
 }

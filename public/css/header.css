@@ -1,33 +1,21 @@
-/*#header.header-scrolled {*/
-/*background: #fff;*/
-/*opacity: 1.0;*/
-/*padding: 5px 0;*/
-/*height: 72px;*/
-/*transition: all 0.5s;*/
-/*}*/
-/*header {*/
-/*padding: 0px 0;*/
-/*height: 100px;*/
-/*!*position: fixed;*!*/
-/*left: 0;*/
-/*top: 0;*/
-/*right: 0;*/
-/*transition: all 0.5s;*/
-/*z-index: 997;*/
-/*!*opacity: 0.5;*!*/
-/*!*background-color: #fff;*!*/
-/*!*box-shadow: 5px 0px 15px #c3c3c3;*!*/
-/*}*/
 header {
     padding-top: 2px;
+}
+@font-face {
+    font-family: ImprintMTShadow;
+    src: url('../fonts/ImprintMTShadow.ttf');
+}
+@font-face {
+    font-family: utsaah;
+    src: url('../fonts/utsaah.ttf');
 }
 #sitename span {
     font-size: 43px;
     margin: 0;
     padding: 0;
     line-height: 60%;
-    font-family: "Garamond";
-    font-weight: 700;
+    font-family: "ImprintMTShadow";
+    font-weight: 300;
     letter-spacing: 5px;
 }
 #sitename span a, #sitename span a:hover {
@@ -37,7 +25,7 @@ header {
     /*border-left: 4px solid grey;*/
 }
 #sitename {
-    margin-top: 35px;
+    margin-top: 55px;
     padding: 0 0;
 }
 /*#logo {*/
@@ -48,8 +36,13 @@ header {
 #sitename p {
     padding-left: 10px;
     margin-bottom: 0rem;
-    font-weight: 600;
-    font-size: 13px;
+    font-weight: bolder;
+    font-size: 14px;
+    font-family: "utsaah";
+    letter-spacing: 1px;
+}
+.scrollto span {
+    font-size: 30px!important;
 }
 #nav-menu-container {
     float: right;
@@ -246,26 +239,25 @@ body.mobile-nav-active #mobile-nav {
     }
 }
 
-#searchForm select, #searchForm input, #searchForm button {
+#searchForm button {
     border-color: #a0a3af;
     border-style: dashed;
     border-width: 1px;
     border-radius: 1px;
-    max-height: 25px;
+    max-height: 20px;
     padding: 0 0;
     text-align: center;
     text-align-last: center;
     background: #e7e6e6;
+    width: 45px;
+    color: #1b1e21;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 #searchForm select, #searchForm input {
     width: 170px;
-}
-#searchForm button {
-    width: 45px;
-    color: #1b1e21;
-}
-#searchForm {
-    margin-bottom: 25px;
+    font-size: 0.8rem;
+    color: #78828a;
 }
 .middleHeadContainer {
     padding-right: 20px;
@@ -282,7 +274,7 @@ body.mobile-nav-active #mobile-nav {
     border: 3px double #2f5496;
     outline: 1px solid #2f5496;
     outline-offset: -4px;
-    /*padding-left: 10px;*/
+    background-color: #a0a0a0;
 }
 
 .nav-gradient {

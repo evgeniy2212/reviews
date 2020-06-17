@@ -9,7 +9,7 @@
             <div class="d-flex flex-row justify-content-between align-items-start" >
                 <div class="d-flex flex-column justify-content-start" id="sitename">
                     <span>
-                        <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="scrollto">@lang('service/index.site_name')</a>
+                        <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="scrollto">@lang('service/index.header_site_name')<span>.com</span></a>
                     </span>
                     <p>
                         Yours reviews makes our live better.
@@ -58,9 +58,9 @@
                     </nav>
                 </div>
                 <form class="form-inline" id="searchForm">
-                    <input class="form-control mr-sm-2" id="searchCategory" type="search" placeholder="Search" aria-label="Search">
-                    <select class="form-control mr-sm-2" id="selectCategory">
-                        <option selected>@lang('service/index.head_select')</option>
+                    <input class="form-control mr-sm-2 input" id="searchCategory" type="text" placeholder="Search" aria-label="Search">
+                    <select class="form-control mr-sm-2 select" id="selectCategory">
+                        <option disabled selected>@lang('service/index.head_select')</option>
                         <option value="1">@lang('service/index.person')</option>
                         <option value="2">@lang('service/index.company')</option>
                         <option value="3">@lang('service/index.goods')</option>

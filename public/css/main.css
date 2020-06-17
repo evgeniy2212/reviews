@@ -17,15 +17,6 @@ html, body {
     padding-bottom: 20px;
     height: calc(100% - 235px);
 }
-/*.gradient {*/
-/*height: 100%;*/
-/*width: 100%;*/
-/*padding: 2%;*/
-/*margin: 0 auto;*/
-/*border: 10px solid transparent;*/
-/*border-image: linear-gradient(to right, transparent 0%, #ADF2F7 100%);*/
-/*border-image-slice: 1;*/
-/*}*/
 
 /*--thank you pop starts here--*/
 .thank-you-pop{
@@ -97,10 +88,6 @@ html, body {
     background: #f2f2f2;
     font-size: 0.8rem;
 }
-.left-border {
-    /*border-left: 1px solid #000;*/
-}
-/* добавление разделителя между элементами хлебных крошек с помощью псевдоэлемента before */
 .left-border::before {
     display: inline-block;
     color: #673ab7;
@@ -111,4 +98,33 @@ html, body {
 }
 .user-info span {
     font-size: 1rem!important;
+}
+.loginForm {
+    border: 3px solid #2f5496;
+}
+.input, .select {
+    border-color: #a0a3af;
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 1px;
+    max-height: 20px;
+    padding: 0 0;
+    text-align: center;
+    text-align-last: center;
+    background: #e7e6e6;
+}
+.loginButton {
+    border-color: #a0a3af;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    max-height: 20px;
+    padding: 0 0;
+    text-align: center;
+    text-align-last: center;
+    background: #e7e6e6;
+    width: 45px;
+    color: #1b1e21;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
