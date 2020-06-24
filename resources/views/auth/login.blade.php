@@ -84,7 +84,7 @@
                     </form>
                 </div>
                 <div class="container" id="createAccount">
-                    <a role="button" href="{{ route('home') }}">
+                    <a role="button" href="{{ LaravelLocalization::localizeUrl('/register') }}">
                         Create a new account
                     </a>
                 </div>
