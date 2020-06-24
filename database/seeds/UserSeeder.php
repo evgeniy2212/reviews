@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use \App\Models\Region;
 
 class UserSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class UserSeeder extends Seeder
             'email' => 'user@gmail.com',
             'nickname' => 'blade',
             'city' => 'Denver',
-            'state' => 'NY',
+            'region_id' => Region::where('region', 'Alabama')->first()->id,
             'zip_code' => 12345,
             'is_admin' => 0,
             'email_verified_at' => date('Y-m-d H:i:s'),

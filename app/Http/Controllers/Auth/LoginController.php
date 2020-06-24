@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = 'profile/info';
 
     /**
      * Create a new controller instance.
@@ -44,5 +44,22 @@ class LoginController extends Controller
         $request->session()->flash('success', __('service/index.welcome', ['name' => $user->name]));
 
         return redirect()->intended($this->redirectPath());
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
     }
 }

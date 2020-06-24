@@ -13,4 +13,12 @@ return [
     'welcome' => 'Welcome',
     'email_enter' => 'Please enter your E-Mail',
     'password_enter' => 'Please enter your Password',
+    'continue' => 'Continue',
+    'close' => 'Close',
+    'forgot_password_question' => 'Forgot your password?',
+    'enter_email' => 'Please enter the email address you used up.',
+    'personal_info' => 'Personal Information',
+    'your_reviews' => 'Your reviews',
+    'star_info' => 'Star Info',
+    'mail' => 'Mail'
 ];

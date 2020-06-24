@@ -1,32 +1,53 @@
 header {
     padding-top: 2px;
 }
+@font-face {
+    font-family: ImprintMTShadow;
+    src: url('../fonts/ImprintMTShadow.ttf');
+}
+@font-face {
+    font-family: utsaah;
+    src: url('../fonts/utsaah.ttf');
+}
 #sitename span {
     font-size: 43px;
     margin: 0;
     padding: 0;
     line-height: 60%;
-    font-family: "Garamond";
-    font-weight: 700;
+    font-family: "ImprintMTShadow";
+    font-weight: 300;
     letter-spacing: 5px;
 }
 #sitename span a, #sitename span a:hover {
     color: #000;
     padding-left: 5px;
     text-decoration: none;
+    /*border-left: 4px solid grey;*/
 }
 #sitename {
     margin-top: 55px;
     padding: 0 0;
 }
+/*#logo {*/
+/*!*margin-top: 10px;*!*/
+/*padding-right: 0;*/
+/*!*min-width: 170px;*!*/
+/*}*/
 #sitename p {
     padding-left: 10px;
     margin-bottom: 0rem;
-    font-weight: 600;
-    font-size: 13px;
+    font-weight: bolder;
+    font-size: 14px;
+    font-family: "utsaah";
+    letter-spacing: 1px;
+}
+.scrollto span {
+    font-size: 30px!important;
 }
 #nav-menu-container {
     float: right;
+    /*margin-bottom: 22px;*/
+    /*font-size: 15px;*/
     font-size: 1rem;
 }
 #nav-search-container {
@@ -34,7 +55,9 @@ header {
     float: right;
     margin: 0;
 }
-
+/*.nav-menu > li {*/
+/*margin-left: 10px;*/
+/*}*/
 .nav-menu > li {
     float: left;
 }
@@ -171,6 +194,11 @@ body.mobile-nav-active #mobile-nav {
     content: "\f105";
 }
 
+
+/*.nav-menu li:hover > ul,*/
+/*.nav-menu li.sfHover > ul {*/
+/*display: block;*/
+/*}*/
 .nav-menu ul {
     margin: 4px 0 0 0;
     padding: 5px;
@@ -211,7 +239,7 @@ body.mobile-nav-active #mobile-nav {
     }
 }
 
-#searchForm select, #searchForm input, #searchForm button {
+#searchForm button {
     border-color: #a0a3af;
     border-style: dashed;
     border-width: 1px;
@@ -221,25 +249,24 @@ body.mobile-nav-active #mobile-nav {
     text-align: center;
     text-align-last: center;
     background: #e7e6e6;
+    width: 45px;
+    color: #1b1e21;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 #searchForm select, #searchForm input {
     width: 170px;
     font-size: 0.8rem;
     color: #78828a;
 }
-
-#searchForm button {
-    width: 45px;
-    color: #1b1e21;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
 .middleHeadContainer {
     padding-right: 20px;
     flex: 1;
 }
 .container-fluid {
+    /*width: 100%;*/
     max-width: 1300px;
+    /*padding: 5px 0;*/
     margin-right: auto;
     margin-left: auto;
 }
@@ -247,6 +274,7 @@ body.mobile-nav-active #mobile-nav {
     border: 3px double #2f5496;
     outline: 1px solid #2f5496;
     outline-offset: -4px;
+    background-color: #a0a0a0;
 }
 
 .nav-gradient {
@@ -255,6 +283,7 @@ body.mobile-nav-active #mobile-nav {
 .navbar-nav,
 .navigate {
     flex: 1;
+    /*margin: auto !important;*/
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

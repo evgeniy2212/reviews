@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,6 +45,30 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $countries = Country::all()->pluck('country', 'id');
+
+        return view('auth.register', compact('countries'));
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+//        return $this->registered($request, $user)
+//            ?: redirect($this->redirectPath());
+//        return redirect($this->redirectPath(), 301)->with('success', __('auth.success_register'));
+        return view('auth.verify');
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -57,8 +84,9 @@ class RegisterController extends Controller
                 'last_name' => ['required', 'string', 'max:255'],
                 'nickname' => ['nullable', 'string', 'max:255'],
                 'city' => ['required', 'string', 'max:255'],
-                'state' => ['required', 'string', 'max:255'],
+                'region' => ['required', 'integer', 'max:999999999'],
                 'zip_code' => ['required', 'integer', 'max:9999999999'],
+                'g-recaptcha-response' => ['required', 'captcha']
             ]
         );
     }
@@ -78,7 +106,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'nickname' => $data['nickname'] ?? '',
             'city' => $data['city'],
-            'state' => $data['state'],
+            'region_id' => $data['region'],
             'zip_code' => $data['zip_code'],
         ]);
     }

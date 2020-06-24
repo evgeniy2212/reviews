@@ -23,8 +23,18 @@ Route::group(
 
         Auth::routes(['verify' => true]);
 
-//        Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/', 'HomeController@index')->name('home');
+
+        Route::group(['prefix' => 'ajax'], function() {
+            Route::get('regions/{country}', 'RegionController@getRegions');
+        });
+
+        Route::group([
+            'prefix' => 'profile',
+            'middleware' => [ 'auth', 'verified' ]
+        ], function(){
+            Route::get('info', 'ProfileController@info')->name('profile-info');
+        });
 
 //        Route::get('/', function () {
 //            return view('welcome');

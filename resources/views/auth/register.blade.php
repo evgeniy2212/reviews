@@ -1,222 +1,244 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">@lang('register.register')</div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">
-                                @lang('register.first_name')
-                            </label>
-                            <div class="col-md-6">
-                                <input id="name"
-                                       type="text"
-                                       class="form-control"
-                                       name="name"
-                                       value="{{ old('name') }}"
-                                       required
-                                       autocomplete="name"
-                                       autofocus
-                                >
-                                <div class="invalid-tooltip">
-                                    Please provide a valid city.
+    <div class="container-fluid">
+        <div class="container">
+            <div class="content-place d-flex flex-column justify-content-center">
+                {{--<div class="container">--}}
+                @if($errors->any())
+                    <div class="errorMessage">{!! $errors->first() !!}</div>
+                @endif
+                <form method="POST" action="{{ route('register') }}" class="container" novalidate="" id="registerForm">
+                    @csrf
+                    <div class="registerFormContent">
+                        <div class="d-flex flex-column justify-content-around">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row align-items-center registerFields">
+                                        <div class="col-md-3">
+                                            <label for="name">
+                                                @lang('register.first_name')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input id="name"
+                                                   type="text"
+                                                   class="form-control input"
+                                                   name="name"
+                                                   minlength="3"
+                                                   value="{{ old('name') }}"
+                                                   required
+                                                   autocomplete="name">
+                                        </div>
+                                    </div>
                                 </div>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}rr</strong>
-                                    </span>
-                                @enderror
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row align-items-center registerFields">
+                                        <div class="col-md-2">
+                                            <label for="country">
+                                                @lang('register.country')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="select"
+                                                    id="selectCountry"
+                                                    name="country"
+                                                    required>
+                                                <option disabled selected>@lang('service/index.head_select')</option>
+                                                @foreach($countries as $id => $country)
+                                                    <option value="{{ $id }}">{!! $country !!}</option>
+                                                @endforeach
+                                            </select>
+                                            {{--<input id="country"--}}
+                                                   {{--type="text"--}}
+                                                   {{--class="form-control input"--}}
+                                                   {{--name="country"--}}
+                                                   {{--required--}}
+                                                   {{--autocomplete="country">--}}
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <label for="region" id="registerLabel">
+                                                @lang('register.state')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="select"
+                                                    id="selectRegion"
+                                                    name="region"
+                                                    disabled
+                                                    required>
+                                                <option disabled selected>@lang('service/index.head_select')</option>
+                                                <option value="1">@lang('service/index.person')</option>
+                                                <option value="2">@lang('service/index.company')</option>
+                                                <option value="3">@lang('service/index.goods')</option>
+                                                <option value="3">@lang('service/index.vacations')</option>
+                                            </select>
+                                            {{--<input id="region"--}}
+                                                   {{--type="text"--}}
+                                                   {{--class="form-control input"--}}
+                                                   {{--name="region"--}}
+                                                   {{--value="{{ old('region') }}"--}}
+                                                   {{--required--}}
+                                                   {{--autocomplete="region">--}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row align-items-center registerFields">
+                                        <div class="col-md-3">
+                                            <label for="last_name">
+                                                @lang('register.last_name')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input id="last_name"
+                                                   type="text"
+                                                   class="form-control input"
+                                                   name="last_name"
+                                                   minlength="3"
+                                                   value="{{ old('last_name') }}"
+                                                   required
+                                                   autocomplete="last_name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row align-items-center registerFields">
+                                        <div class="col-md-2">
+                                            <label for="zip_code">
+                                                @lang('register.zip_code')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input id="zip_code"
+                                                   type="text"
+                                                   class="form-control input"
+                                                   name="zip_code"
+                                                   minlength="3"
+                                                   required
+                                                   autocomplete="zip_code">
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <label for="city">
+                                                @lang('register.city_town')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input id="city"
+                                                   type="text"
+                                                   class="form-control input"
+                                                   name="city"
+                                                   minlength="3"
+                                                   value="{{ old('city') }}"
+                                                   required
+                                                   autocomplete="city">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row align-items-center registerFields">
+                                        <div class="col-md-3 registerLabel">
+                                            <label for="email">
+                                                @lang('register.e-mail') address
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input id="email"
+                                                   type="email"
+                                                   class="form-control input"
+                                                   name="email"
+                                                   value="{{ old('email') }}"
+                                                   required
+                                                   autocomplete="email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row align-items-center registerFields">
+                                        <div class="col-md-2">
+                                            <label for="password">
+                                                @lang('register.password')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input id="password"
+                                                   type="password"
+                                                   class="form-control input"
+                                                   name="password"
+                                                   required
+                                                   autocomplete="password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-start">
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-column">
+                                        <div class="d-flex flex-row registerFields">
+                                            <div class="col-md-6">
+                                                <label for="nickname">
+                                                    @lang('register.nickname')
+                                                </label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input id="nickname"
+                                                       type="text"
+                                                       class="form-control input"
+                                                       name="nickname"
+                                                       autocomplete="nickname">
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                                <span>
+                                                    You are able to use that name when you want to be annonymous and your email address  also not will be visiable at your published review.
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row align-items-center registerFields">
+                                        <div class="col-md-4">
+                                            <label for="password-confirm">
+                                                @lang('register.confirm_password')
+                                            </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input id="password-confirm"
+                                                   type="password"
+                                                   class="form-control input"
+                                                   name="password_confirmation"
+                                                   required
+                                                   autocomplete="new-password">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">
-                                @lang('register.last_name')
-                            </label>
-                            <div class="col-md-6">
-                                <input id="last_name"
-                                       type="text"
-                                       class="form-control @error('last_name') is-invalid @enderror"
-                                       name="last_name"
-                                       value="{{ old('last_name') }}"
-                                       required
-                                       autocomplete="last_name"
-                                       autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="col-md-4 offset-4" style="padding: 0 0;height: 70px">
+                            {!! NoCaptcha::renderJs('en') !!}
+                            {!! NoCaptcha::display(['data-size' => 'normal']) !!}
                         </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">
-                                @lang('register.nickname')
-                            </label>
-                            <div class="col-md-6">
-                                <input id="nickname"
-                                       type="text"
-                                       class="form-control @error('nickname') is-invalid @enderror"
-                                       name="nickname"
-                                       value="{{ old('nickname') }}"
-                                       autocomplete="nickname"
-                                       autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    </div>
+                    <div class="form-group d-flex flex-row justify-content-center align-items-center">
+                        <div class="col-md-2">
+                            <button type="submit" class="loginButton submitRegisterButton">
+                                Save
+                            </button>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">
-                                @lang('register.city')
-                            </label>
-                            <div class="col-md-6">
-                                <input id="city"
-                                       type="text"
-                                       class="form-control @error('city') is-invalid @enderror"
-                                       name="city"
-                                       required
-                                       value="{{ old('city') }}"
-                                       autocomplete="city"
-                                       autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="col-md-2">
+                            <a role="button" href="{{ route('home') }}" id="cancelButton">
+                                Cancel
+                            </a>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">
-                                @lang('register.state')
-                            </label>
-                            <div class="col-md-6">
-                                <input id="state"
-                                       type="text"
-                                       class="form-control @error('state') is-invalid @enderror"
-                                       name="state"
-                                       required
-                                       value="{{ old('state') }}"
-                                       autocomplete="state"
-                                       autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">
-                                @lang('register.zip_code')
-                            </label>
-                            <div class="col-md-6">
-                                <input id="zip_code"
-                                       type="number"
-                                       class="form-control @error('zip_code') is-invalid @enderror"
-                                       name="zip_code"
-                                       required
-                                       value="{{ old('zip_code') }}"
-                                       autocomplete="zip_code"
-                                       autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email"
-                                   class="col-md-4 col-form-label text-md-right">
-                                @lang('register.e-mail')
-                            </label>
-
-                            <div class="col-md-6">
-                                <input id="email"
-                                       type="email"
-                                       class="form-control @error('email') is-invalid @enderror"
-                                       name="email"
-                                       value="{{ old('email') }}"
-                                       required
-                                       autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password"
-                                   class="col-md-4 col-form-label text-md-right">
-                                @lang('register.password')
-                            </label>
-
-                            <div class="col-md-6">
-                                <input id="password"
-                                       type="password"
-                                       class="form-control @error('password') is-invalid @enderror"
-                                       name="password"
-                                       required
-                                       autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm"
-                                   class="col-md-4 col-form-label text-md-right">
-                                @lang('register.confirm_password')
-                            </label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm"
-                                       type="password"
-                                       class="form-control"
-                                       name="password_confirmation"
-                                       required
-                                       autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    @lang('register.register')
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 @endsection

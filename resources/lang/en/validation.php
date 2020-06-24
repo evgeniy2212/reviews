@@ -118,6 +118,7 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -133,6 +134,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'g-recaptcha-response' => [
+            'required' => 'Please verify that you are not a robot.',
+            'captcha' => 'Captcha error! Try again later, please.',
+        ]
     ],
 
     /*

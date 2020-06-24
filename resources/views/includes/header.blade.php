@@ -18,7 +18,7 @@
                 <div class="user-info d-flex flex-row justify-content-end align-items-end">
                     @auth
                         {{--<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>--}}
-                        <span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span>
+                        <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
                         <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
                         <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
                     @endauth

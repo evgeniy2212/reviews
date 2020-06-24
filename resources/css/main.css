@@ -17,15 +17,6 @@ html, body {
     padding-bottom: 20px;
     height: calc(100% - 235px);
 }
-/*.gradient {*/
-/*height: 100%;*/
-/*width: 100%;*/
-/*padding: 2%;*/
-/*margin: 0 auto;*/
-/*border: 10px solid transparent;*/
-/*border-image: linear-gradient(to right, transparent 0%, #ADF2F7 100%);*/
-/*border-image-slice: 1;*/
-/*}*/
 
 /*--thank you pop starts here--*/
 .thank-you-pop{
@@ -108,3 +99,77 @@ html, body {
 .user-info span {
     font-size: 1rem!important;
 }
+.loginForm {
+    border: 3px solid #2f5496;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1rem;
+}
+.headWelcome {
+    text-align: center;
+    font-size: 1.5rem;
+    padding-bottom: 15px;
+}
+.loginForm label {
+    font-size: 0.7rem;
+}
+.loginForm a {
+    font-size: 0.7rem;
+    text-align: left;
+}
+.loginForm input {
+    border-color: black;
+}
+.input, .select {
+    border-color: #a0a3af;
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 1px;
+    max-height: 20px;
+    padding: 0 0;
+    text-align: center;
+    text-align-last: center;
+    background: #e7e6e6;
+}
+.loginButton, .rememberButton, #cancelButton {
+    border-color: #a0a3af;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 25px;
+    padding: 0 0;
+    text-align: center;
+    text-align-last: center;
+    background: #e7e6e6;
+    color: #1b1e21;
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 100%;
+}
+#cancelButton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+#cancelButton:hover, #createAccount a, #createAccount a:hover {
+    text-decoration: none;
+    color: #1b1e21;
+}
+#createAccount a {
+    flex: 1;
+    text-align: center;
+    font-size: 1rem;
+}
+#createAccount {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #2f5496;
+    height: 10%;
+    margin-top: 1%;
+}
+

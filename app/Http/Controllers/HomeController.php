@@ -25,8 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        dd(__('register.first_name'));
-//        dd(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale());
         return view('home');
     }
 }
