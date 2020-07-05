@@ -111,7 +111,7 @@
                                                 @lang('register.zip_code')
                                             </label>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <input id="zip_code"
                                                    type="text"
                                                    class="form-control input"
@@ -120,7 +120,7 @@
                                                    required
                                                    autocomplete="zip_code">
                                         </div>
-                                        <div class="col-md-2 text-center">
+                                        <div class="col-md-3 text-center">
                                             <label for="city">
                                                 @lang('register.city_town')
                                             </label>

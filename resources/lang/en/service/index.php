@@ -20,5 +20,7 @@ return [
     'personal_info' => 'Personal Information',
     'your_reviews' => 'Your reviews',
     'star_info' => 'Star Info',
-    'mail' => 'Mail'
+    'mail' => 'Mail',
+    'change_password' => 'Change Password',
+    'reset_password' => 'Reset Password'
 ];

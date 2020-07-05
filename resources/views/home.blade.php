@@ -16,5 +16,5 @@
             </div>
         </div>
     </div>
-
+    <script src="{{ asset('js/ticker.js') }}"></script>
 @endsection

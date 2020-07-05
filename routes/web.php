@@ -11,9 +11,6 @@
 |
 */
 
-
-
-
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -34,6 +31,8 @@ Route::group(
             'middleware' => [ 'auth', 'verified' ]
         ], function(){
             Route::get('info', 'ProfileController@info')->name('profile-info');
+            Route::get('changePassword', 'Auth\ChangePasswordController@showChangePasswordForm')->name('get-change-password');
+            Route::post('changePassword', 'Auth\ChangePasswordController@changePassword')->name('change-password');
         });
 
 //        Route::get('/', function () {

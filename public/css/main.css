@@ -61,8 +61,9 @@
 html, body {
     background: no-repeat url(../images/background.jpg); /* Путь к фоновому изображению */
     background-color: #ebecf0; /* Цвет фона */
-    background-size: 100%;
+    background-size: cover;
     height: 100%;
+    background-position: center center;
 }
 .container {
     width: calc(100% - 290px);
@@ -97,7 +98,7 @@ html, body {
     font-size: 1rem!important;
 }
 .loginForm {
-    border: 3px solid #2f5496;
+    border: 2px solid #2f5496;
     height: 80%;
     display: flex;
     justify-content: center;
@@ -108,7 +109,11 @@ html, body {
 .headFormName {
     text-align: center;
     font-size: 1.5rem;
-    padding-bottom: 15px;
+    padding-bottom: 3%;
+    font-weight: bold;
+    color: #2f5496;
+    text-shadow: 0px 0px 4px #2f5496;
+    font-family: "Palatino Linotype";
 }
 .headFormDescription {
     text-align: center;
@@ -154,6 +159,9 @@ html, body {
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
     height: 25px;
     padding: 0 0;
     text-align: center;
@@ -183,7 +191,7 @@ html, body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 3px solid #2f5496;
+    border: 2px solid #2f5496;
     height: 10%;
     margin-top: 1%;
 }
@@ -214,6 +222,7 @@ html, body {
 }
 .registerFields label {
     margin: 0 0;
+    font-weight: 500;
 }
 .registerFormContent .input {
     font-size: 0.8rem;
@@ -233,6 +242,9 @@ html, body {
 }
 
 /*profile styles*/
+.profile-content-place {
+    background-color: #c1c1c1;
+}
 .profile-navigation {
     display: flex;
     flex-direction: column;
@@ -259,23 +271,30 @@ html, body {
     padding: 0 10px;
 }
 .profile-navigation .active {
-    border-bottom: 2px solid #2f5496;
+    /*border-bottom: 2px solid #2f5496;*/
 }
 .profile-navigation .active a {
     color: #000;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #2f5496;
 }
 .profile-place {
     width: calc(100% - 170px);
-    height: 98%;
-    border: 3px double #006ae2;
-    outline: 1px solid #006ae2;
+    height: 100%;
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 #personalForm {
     height: 45vh;
     width: 100%;
 }
 .personalFormContent {
-    height: 100%;
+    height: 90%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

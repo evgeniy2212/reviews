@@ -21,8 +21,9 @@ class ProfileController extends Controller
     public function info(){
         $user_info = $this->profileRepository->getProfileInfo();
         $countries = Country::all()->pluck('country', 'id');
-//        dd($user_info->region);
 
         return view('profile.personal_info', compact('user_info', 'countries'));
     }
+
+
 }

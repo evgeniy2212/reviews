@@ -31,3 +31,4 @@ mix.js('resources/js/app.js', 'public/js')
 // ], 'public/css/preloader.css');
 
 mix.js('resources/js/main.js', 'public/js');
+mix.js('resources/js/ticker.js', 'public/js');

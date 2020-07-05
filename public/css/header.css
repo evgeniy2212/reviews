@@ -76,8 +76,15 @@ header {
 .header-scrolled .nav-menu a {
     color: black;
 }
-.nav-menu li:hover > a, .nav-menu > .menu-active > a {
+.nav-menu li:hover > a {
     color: #2f5496;
+    opacity:1!important;
+    transition: 0.8s;
+}
+.nav-menu > .menu-active > a {
+    color: #2f5496;
+    opacity:1;
+    transition-delay: 1s;
 }
 .nav-menu a {
     padding: 0 10px 0px 10px;
@@ -297,7 +304,13 @@ body.mobile-nav-active #mobile-nav {
     border-left: 1px solid #454545;
     border-right: 1px solid #454545;
 }
-
+.navigate li a{
+    width: 100%;
+    height: 100%;
+    opacity: 0; /*Элемент полностью прозрачный (невидимый)*/
+    transition: 0.8s; /*Скорость перехода состояния элемента*/
+    /*visibility: hidden;*/
+}
 .navbar-nav,
 .navigate li:hover {
     box-shadow: inset 0 0 0 2px #2f5496;

@@ -81,10 +81,10 @@
             <div class="nav-gradient">
                 <ul class="nav-menu navigate">
                     <li class="menu-active"><a href="{{ route('home') }}">@lang('service/index.home')</a></li>
-                    <li class=""><a href="">@lang('service/index.person')</a></li>
-                    <li ><a href="">@lang('service/index.company')</a></li>
-                    <li ><a href="">@lang('service/index.goods')</a></li>
-                    <li><a href="">@lang('service/index.vacations')</a></li>
+                    <li><a href="">@lang('service/index.person')</a></li>
+                    <li><a href="">@lang('service/index.company')</a></li>
+                    <li><a href="" >@lang('service/index.goods')</a></li>
+                    <li><a href="" >@lang('service/index.vacations')</a></li>
                 </ul>
             </div>
         </div>
