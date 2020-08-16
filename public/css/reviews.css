@@ -1,0 +1,211 @@
+@font-face {
+    font-family: ImprintMTShadow;
+    src: url('../fonts/ImprintMTShadow.ttf');
+}
+
+/*Rating stars*/
+.rate-base-layer
+{
+    color: rgba(76, 150, 247, 0.48);
+}
+.rate-hover-layer
+{
+    color: #2f5496;
+}
+.rate-select-layer
+{
+    color: #2f5496;
+}
+.rating
+{
+    padding-bottom: 5px;
+    font-size: 22px;
+    padding-left: 7px;
+}
+.rating-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    /*padding-bottom: 10px;*/
+}
+
+/*createReviewForm*/
+.create-review-title {
+    font-size: 20px;
+    margin: 0;
+    /*padding: 0.5% 0;*/
+    font-family: "ImprintMTShadow";
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.create-review-label {
+    font-size: 13px;
+    color: #636363;
+    font-weight: normal;
+}
+.review-character-label {
+    font-size: 13px;
+    color: #636363;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+    /*margin-bottom: 20px;*/
+}
+.createReviewForm div{
+    padding: 0 0;
+    text-align: left;
+}
+#createReviewForm {
+    width: 100%;
+    max-height: 100%;
+}
+#createReviewForm input {
+    font-size: 12px;
+}
+.review-info-container {
+    padding-bottom: calc(calc(100vh - 300px)*0.05);
+}
+#createReviewForm .review-info-container div{
+    padding: 0 3px;
+}
+.review-content-place .input, .review-content-place select {
+    border-color: #2f5496;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    max-height: 20px;
+    max-width: 100%;
+    padding: 0 0;
+    text-align: center;
+    text-align-last: center;
+    background: #fcfbfb;
+}
+#review-text {
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+}
+.checkbox-container {
+    height: 28vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.checkbox-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.checkbox-item {
+    height: 18px;
+    box-sizing: border-box;
+    max-width: 50%;
+}
+.review-content-place {
+    height: calc(100vh - 230px);
+    overflow: auto;
+    width: 100%;
+    /*padding: 1%;*/
+    margin: 0 auto;
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
+    background: #f2f2f2;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.createReviewButton {
+    max-height: 20px;
+}
+.review-characteristics {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+}
+.create-review-name {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    text-align: center;
+}
+.create-review-buttons {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+}
+.review-filters {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    height: 50px;
+    border-bottom: 3px double #2f5496;
+    outline-offset: -4px;
+}
+.single-review {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: flex-start;
+    justify-content: space-around;
+    border-bottom: 1px groove #4a92f8;
+}
+.review-stars {
+    font-size: 24px;
+    color: #2f5496;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.single-review-info span {
+    font-size: 1rem;
+}
+.single-review-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 15%;
+}
+.single-review-content {
+    display: flex;
+    flex-direction: row;
+    /*text-align: center;*/
+    align-items: start;
+    width: 85%;
+    justify-content: flex-start;
+}
+.single-review-name {
+    width: 10%;
+    font-size: 1rem;
+}
+.single-review-review {
+    width: 90%;
+    line-height: 1.2rem;
+    letter-spacing: 1px;
+}
+.single-review-review p {
+    text-align: left;
+}
+.like-reaction :active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.like-reaction {
+    background-image: url("../images/positive_like.png");
+    cursor:pointer;
+    border: none;
+    width: 35px;
+    height: 35px;
+}

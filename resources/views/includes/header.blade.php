@@ -61,10 +61,11 @@
                     <input class="form-control mr-sm-2 input" id="searchCategory" type="text" placeholder="Search" aria-label="Search">
                     <select class="form-control mr-sm-2 select" id="selectCategory">
                         <option disabled selected>@lang('service/index.head_select')</option>
-                        <option value="1">@lang('service/index.person')</option>
-                        <option value="2">@lang('service/index.company')</option>
-                        <option value="3">@lang('service/index.goods')</option>
-                        <option value="3">@lang('service/index.vacations')</option>
+                        @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
+                            <option value="{{ $review_category->slug }}">
+                                @lang(trans('service/index.review_naming', ['name' => $review_category->lower_title]))
+                            </option>
+                        @endforeach
                     </select>
                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>
                 </form>
@@ -80,11 +81,16 @@
         <div class="container">
             <div class="nav-gradient">
                 <ul class="nav-menu navigate">
-                    <li class="menu-active"><a href="{{ route('home') }}">@lang('service/index.home')</a></li>
-                    <li><a href="">@lang('service/index.person')</a></li>
-                    <li><a href="">@lang('service/index.company')</a></li>
-                    <li><a href="" >@lang('service/index.goods')</a></li>
-                    <li><a href="" >@lang('service/index.vacations')</a></li>
+                    <li @if(\Route::current()->getName() == 'home')class="menu-active"@endif>
+                        <a href="{{ route('home') }}">@lang('service/index.home')</a>
+                    </li>
+                    @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
+                        <li @if(str_contains(url()->current(), $review_category->slug))class="menu-active"@endif>
+                            <a href="{{ route('reviews', $review_category->slug) }}">
+                                @lang(trans('service/index.review_naming', ['name' => $review_category->lower_title]))
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

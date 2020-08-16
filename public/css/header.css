@@ -86,6 +86,10 @@ header {
     opacity:1;
     transition-delay: 1s;
 }
+.nav-menu > .menu-active {
+    border-left: 1px solid #454545;
+    border-right: 1px solid #454545;
+}
 .nav-menu a {
     padding: 0 10px 0px 10px;
     text-decoration: none;
@@ -301,8 +305,8 @@ body.mobile-nav-active #mobile-nav {
 .navigate li{
     text-align: center;
     flex: 1;
-    border-left: 1px solid #454545;
-    border-right: 1px solid #454545;
+    /*border-left: 1px solid #454545;*/
+    /*border-right: 1px solid #454545;*/
 }
 .navigate li a{
     width: 100%;

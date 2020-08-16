@@ -1,7 +1,8 @@
 @extends('profile.index')
 
 @section('profile_content')
-    <form method="POST" action="{{ route('register') }}" novalidate="" id="personalForm">
+    <form method="POST" action="{{ route('updatePersonalInfo') }}" novalidate="" id="personalForm">
+        @method('PATCH')
         @csrf
         <div class="personalFormContent">
             <div class="d-flex flex-column justify-content-around">
@@ -44,37 +45,24 @@
                                         <option value="{{ $id }}">{!! $country !!}</option>
                                     @endforeach
                                 </select>
-                                {{--<input id="country"--}}
-                                {{--type="text"--}}
-                                {{--class="form-control input"--}}
-                                {{--name="country"--}}
-                                {{--required--}}
-                                {{--autocomplete="country">--}}
                             </div>
                             <div class="col-md-2 text-center">
-                                <label for="region" id="registerLabel">
+                                <label for="region_id" id="registerLabel">
                                     @lang('register.state')
                                 </label>
                             </div>
                             <div class="col-md-4">
                                 <select class="select"
                                         id="selectRegion"
-                                        name="region"
+                                        name="region_id"
                                         disabled
                                         required>
-                                    <option disabled selected>{{ $user_info->region->region }}</option>
+                                    <option disabled selected>Region</option>
                                     <option value="1">@lang('service/index.person')</option>
                                     <option value="2">@lang('service/index.company')</option>
                                     <option value="3">@lang('service/index.goods')</option>
                                     <option value="3">@lang('service/index.vacations')</option>
                                 </select>
-                                {{--<input id="region"--}}
-                                {{--type="text"--}}
-                                {{--class="form-control input"--}}
-                                {{--name="region"--}}
-                                {{--value="{{ old('region') }}"--}}
-                                {{--required--}}
-                                {{--autocomplete="region">--}}
                             </div>
                         </div>
                     </div>
@@ -118,7 +106,7 @@
                                        disabled
                                        autocomplete="zip_code">
                             </div>
-                            <div class="col-md-3 text-center">
+                            <div class="col-md-3" style="text-align: right;padding-right: 5px;">
                                 <label for="city">
                                     @lang('register.city_town')
                                 </label>
@@ -157,24 +145,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--<div class="col-md-6">--}}
-                        {{--<div class="d-flex flex-row align-items-center registerFields">--}}
-                            {{--<div class="col-md-2">--}}
-                                {{--<label for="password">--}}
-                                    {{--@lang('register.password')--}}
-                                {{--</label>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-10">--}}
-                                {{--<input id="password"--}}
-                                       {{--type="password"--}}
-                                       {{--class="form-control input"--}}
-                                       {{--name="password"--}}
-                                       {{--required--}}
-                                       {{--disabled--}}
-                                       {{--autocomplete="password">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
                 </div>
                 <div class="d-flex flex-row align-items-start">
                     <div class="col-md-6">
@@ -203,35 +173,13 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <a role="button" href="{{ route('get-change-password') }}" id="cancelButton">
+                        <a role="button" href="{{ route('get-change-password') }}" disabled id="cancelButton">
                             @lang('service/index.change_password')
                         </a>
-                        {{--<div class="d-flex flex-row align-items-center registerFields">--}}
-                            {{--<div class="col-md-4">--}}
-                                {{--<label for="password-confirm">--}}
-                                    {{--@lang('register.confirm_password')--}}
-                                {{--</label>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-md-8">--}}
-                                {{--<input id="password-confirm"--}}
-                                       {{--type="password"--}}
-                                       {{--class="form-control input"--}}
-                                       {{--name="password_confirmation"--}}
-                                       {{--required--}}
-                                       {{--disabled--}}
-                                       {{--autocomplete="new-password">--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
                     </div>
                 </div>
             </div>
         </div>
-        {{--<div class="d-flex flex-row">--}}
-        {{--<div class="col-md-4 offset-4" style="padding: 0 0;height: 70px">--}}
-        {{--{!! NoCaptcha::renderJs('en') !!}--}}
-        {{--{!! NoCaptcha::display(['data-size' => 'normal']) !!}--}}
-        {{--</div>--}}
-        {{--</div>--}}
         <div class="form-group d-flex flex-row justify-content-center align-items-center">
             <div class="col-md-2">
                 <a role="button" id="editProfileButton">
@@ -239,7 +187,7 @@
                 </a>
             </div>
             <div class="col-md-2">
-                <button type="submit" class="loginButton submitRegisterButton">
+                <button type="submit" id="saveButton" class="loginButton submitRegisterButton" disabled>
                     Save
                 </button>
             </div>

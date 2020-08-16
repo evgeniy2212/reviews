@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="container">
-            <div class="content-place d-flex flex-column justify-content-center align-items-center">
+            <div class="content-place profile-content-place d-flex flex-column justify-content-center align-items-center">
                 <div class="container loginForm">
                     @if($errors->any())
                         <div class="errorMessage">{!! $errors->first() !!}</div>

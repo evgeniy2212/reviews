@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Comment;
 use App\Models\Region;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,6 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -48,5 +50,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function region(){
         return $this->belongsTo(Region::class, 'region_id', 'id');
+    }
+
+    /**
+     * Get the comments for the reviews.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function getFullNameAttribute(){
+        return $this->name . ' ' . $this->last_name;
     }
 }

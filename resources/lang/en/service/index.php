@@ -2,6 +2,7 @@
 return [
     'site_name' => 'Reviews4info.com',
     'header_site_name' => 'Reviews4info',
+    'review_naming' => 'Review :name',
     'person' => 'Review Person',
     'company' => 'Review Company',
     'goods' => 'Review Goods',
@@ -22,5 +23,14 @@ return [
     'star_info' => 'Star Info',
     'mail' => 'Mail',
     'change_password' => 'Change Password',
-    'reset_password' => 'Reset Password'
+    'reset_password' => 'Reset Password',
+    'create_review_title' => 'WRITE A :title REVIEW',
+    'review_rating_title' => 'Overall rating',
+    'review_person_name_label' => 'Person`s Name',
+    'review_text_placeholder' => 'Write Your Own Text',
+    'review_positive_character' => 'Positive character traits',
+    'review_negative_character' => 'Negative character traits',
+    'review_nickname' => 'Nickname',
+    'default_nickname' => 'User',
+    'select_item' => 'Select :item',
 ];

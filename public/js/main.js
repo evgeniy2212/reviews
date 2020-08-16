@@ -106,6 +106,11 @@
       var form = $("#registerForm");
       validation(form, event);
     });
+    $(".submitReviewButton").click(function (event) {
+      var form = $("#createReviewForm");
+      validation(form, event);
+    }); //Choosing region after country
+
     $('#selectCountry').change(function () {
       // $('#selectRegion').prop("disabled", true);
       $.ajax({
@@ -116,7 +121,7 @@
           $('#selectRegion').empty();
 
           for (var k in data) {
-            $('#selectRegion').prepend('<option value="' + k + '">' + data[k].region + '</option>');
+            $('#selectRegion').prepend('<option value="' + data[k].id + '">' + data[k].region + '</option>');
           }
         }
       });
@@ -124,13 +129,17 @@
     });
     $('#editProfileButton').click(function () {
       $('#personalForm input').each(function () {
-        console.log($(this).prop("disabled", false));
+        $(this).prop("disabled", false);
       });
       $('#selectCountry').prop("disabled", false);
+      $('#cancelButton').prop("disabled", false);
+      $('#saveButton').prop("disabled", false);
     });
   });
 
   var validation = function validation(form, event) {
+    console.log(form);
+
     if (form[0].checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();

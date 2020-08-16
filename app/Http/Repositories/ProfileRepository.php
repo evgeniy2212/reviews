@@ -23,10 +23,20 @@ class ProfileRepository extends CoreRepository {
 
     public function getProfileInfo()
     {
-//        $user_columns = ['city', 'region', 'name', 'email', 'nickname'];
-
         return auth()->user();
     }
+
+//    /**
+//     * Получить модель для редактирования в админке.
+//     *
+//     * @param int $id
+//     * @return Model
+//     */
+//    public function getProfileById($id)
+//    {
+//        return $this->startConditions()
+//            ->find($id);
+//    }
 
 //    public function getOldImgSrc($news_id, $img_src)
 //    {

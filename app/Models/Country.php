@@ -15,4 +15,16 @@ class Country extends Model
     public function regions(){
         return $this->hasMany(Region::class, 'country_id', 'id');
     }
+
+    public function getRegionsByCountry($id){
+        return $this->whereId($id)
+            ->first()
+            ->regions()
+            ->get(['region', 'region_naming', 'id'])
+            ->toArray();
+    }
+
+    public function getCountries(){
+        return $this->all()->pluck('country', 'id');
+    }
 }
