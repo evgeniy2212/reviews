@@ -35,7 +35,7 @@
     </div>
     <div class="single-review-content">
         <div class="single-review-name">
-            {{ $review->name }} {{ $review->second_name }}
+            {{ $review->name }}
         </div>
         <div class="single-review-review">
             <p>
