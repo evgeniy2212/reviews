@@ -51,15 +51,9 @@
         });
 
         $('[id^="commentButton"]').click(function(event) {
-            let review = $(this).parent().parent();
-            // profile-review-item
+            let review = $(this).parent().parent().parent();
             let comments = review.find('.comment');
-            if(!comments.length) {
-                review = $(this).parent().parent().parent().find('.profile-review-item');
-                comments = review.find('.comment');
-            }
-            console.log(!comments.length);
-            review.find('.comment').each(function( index ) {
+            comments.each(function( index ) {
                 $( this ).toggle(750);
             });
             review.find('.review-textarea').toggle(750);

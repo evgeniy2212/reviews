@@ -118,7 +118,7 @@
                             </button>
                         </div>
                         <div class="col-md-2">
-                            <a role="button" href="{{ route('profile-info') }}" class="createReviewButton" id="cancelButton">
+                            <a role="button" href="{{ route('reviews', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
                                 Cancel
                             </a>
                         </div>
