@@ -16,6 +16,10 @@ class Country extends Model
         return $this->hasMany(Region::class, 'country_id', 'id');
     }
 
+    public function reviews(){
+        return $this->hasMany(Review::class, 'country_id', 'id');
+    }
+
     public function getRegionsByCountry($id){
         return $this->whereId($id)
             ->first()
@@ -24,7 +28,13 @@ class Country extends Model
             ->toArray();
     }
 
-    public function getCountries(){
-        return $this->all()->pluck('country', 'id');
+    public function getAllCountries(){
+        return $this->all()
+            ->pluck('country', 'id');
+    }
+
+    public function getCountriesContainRegions(){
+        return $this->whereHas('regions')
+            ->pluck('country', 'id');
     }
 }

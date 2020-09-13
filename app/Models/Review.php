@@ -17,8 +17,11 @@ class Review extends Model
         'user_id',
         'review',
         'region_id',
+        'country_id',
         'city',
         'review_category_id',
+        'category_by_review_id',
+        'review_group_id',
         'email',
         'name',
         'second_name',
@@ -38,8 +41,24 @@ class Review extends Model
         return $this->belongsTo(Region::class, 'region_id', 'id');
     }
 
+    public function country(){
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function category_group(){
+        return $this->belongsTo(GroupByReview::class, 'review_group_id', 'id');
+    }
+
+    public function category_by_review(){
+        return $this->belongsTo(CategoryByReview::class, 'category_by_review_id', 'id');
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'review_id', 'id');
     }
 
     /**
@@ -52,6 +71,12 @@ class Review extends Model
 
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('m-d-Y');
+    }
+
+    public function getFullNameAttribute(){
+        return $this->second_name
+            ? $this->name . ' ' . $this->second_name
+            : $this->name;
     }
 }

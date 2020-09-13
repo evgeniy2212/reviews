@@ -17,6 +17,8 @@ class CreateCountriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('country');
             $table->boolean('is_enable')->default(true);
+            $table->index('country');
+
             $table->timestamps();
         });
     }

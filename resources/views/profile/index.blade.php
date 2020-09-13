@@ -1,22 +1,26 @@
 @extends('layouts.app')
 
+@section('style_section')
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="container">
             <div class="content-place profile-content-place d-flex flex-row justify-content-between">
-                <div class="profile-navigation d-flex flex-column justify-content-between align-items-center">
+                <div class="profile-navigation">
                     <ul>
                         <li class="{{ Request::url() == route('profile-info') ? 'active' : '' }}">
                             <a href="{{ route('profile-info') }}">
                                 <span>@lang('service/index.personal_info')</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('profile-info') }}">
+                        <li class="{{ Request::url() == route('profile-reviews.index') ? 'active' : '' }}">
+                            <a href="{{ route('profile-reviews.index') }}">
                                 <span>@lang('service/index.your_reviews')</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="{{ Request::url() == route('profile-info') ? 'active' : '' }}">
                             <a href="{{ route('profile-info') }}">
                                 <span>@lang('service/index.mail')</span>
                             </a>
@@ -30,9 +34,6 @@
                 </div>
                 <div class="profile-place">
                     <div class="d-flex flex-column justify-content-center">
-                        {{--<div class="d-flex flex-row justify-content-start">--}}
-                        {{--<div class="d-flex flex-column justify-content-center">--}}
-                        {{--{{ dd(session()->all()) }}--}}
                         @if($errors->any())
                             <div class="errorMessage">{!! $errors->first() !!}</div>
                         @elseif (session('status'))
@@ -40,10 +41,17 @@
                         @endif
                         @yield('profile_content')
                     </div>
-                    {{--</div>--}}
-                    {{--</div>--}}
+                    @yield('profile_review_content')
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('modal_forms')
+    @include('includes.confirmDeleteReview')
+@endsection
+
+@section('script_section')
+    <script src="{{ asset('js/profile.js') }}"></script>
 @endsection

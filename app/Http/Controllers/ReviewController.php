@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveReviewRequest;
-use App\Models\Country;
+use App\Models\Comment;
 use App\Models\Review;
 use App\Models\ReviewCategory;
 use App\Repositories\ReviewRepository;
+use App\Services\ReviewService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class ReviewController extends Controller
 {
@@ -31,8 +31,10 @@ class ReviewController extends Controller
     }
 
     public function create($slug) {
-        $countries = (new Country())->getCountries();
+        $countries = ReviewService::getReviewCountriesBySlug($slug);
         $reviewCategory = new ReviewCategory();
+        $reviewCategory = $reviewCategory->whereSlug($slug)->first();
+        $categories = ReviewService::getReviewCategoriesBySlug($slug);
         $positiveCharacteristics = $reviewCategory
             ->getCharacteristicsByCategorySlug($slug, true)
             ->chunk($this->half);
@@ -46,7 +48,8 @@ class ReviewController extends Controller
             'positiveCharacteristics',
             'negativeCharacteristics',
             'reviewCategory',
-            'slug'
+            'slug',
+            'categories'
         ));
     }
 
@@ -62,5 +65,10 @@ class ReviewController extends Controller
     public function reviewReaction(Request $request){
         Review::whereId($request->id)
             ->update([$request->reaction => $request->value]);
+    }
+
+    public function reviewAddComment(Request $request){
+        $request->merge(['user_id' => auth()->user()->id]);
+        Comment::create($request->all());
     }
 }

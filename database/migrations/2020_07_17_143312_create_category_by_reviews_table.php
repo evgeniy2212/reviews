@@ -16,8 +16,10 @@ class CreateCategoryByReviewsTable extends Migration
         Schema::create('category_by_reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->bigInteger('review_category_id')->unsigned()->nullable();
             $table->boolean('is_published')->default(true);
 
+            $table->foreign('review_category_id')->references('id')->on('review_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

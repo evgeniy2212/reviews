@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Profile;
 
 use App\Http\Requests\Profile\PersonalInfoRequest;
 use App\Models\Country;
 use App\Repositories\ProfileRepository;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ProfileController extends Controller
+class PersonalInfoController extends Controller
 {
     /**
      * @var ProfileRepository
@@ -19,9 +20,9 @@ class ProfileController extends Controller
         $this->profileRepository = app(ProfileRepository::class);
     }
 
-    public function info(){
+    public function index(){
         $user_info = $this->profileRepository->getProfileInfo();
-        $countries = (new Country())->getCountries();
+        $countries = (new Country())->getCountriesContainRegions();
 
         return view('profile.personal_info', compact('user_info', 'countries'));
     }

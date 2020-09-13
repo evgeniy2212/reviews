@@ -35,6 +35,23 @@
             $('#selectRegion').removeAttr("disabled");
         });
 
+        //Choosing region after country
+        $('#selectCategoryGood').change(function() {
+            $.ajax({
+                url : "/ajax/groups/" + this.value,
+                dataType:"json",
+                success:function(data)
+                {
+                    $('#selectGroup').empty();
+                    for(var k in data) {
+                        $('#selectGroup').prepend('<option value="' + data[k].id + '">' + data[k].name + '</option>');
+                    }
+                }
+            });
+
+            $('#selectGroup').removeAttr("disabled");
+        });
+
         $('#editProfileButton').click(function(){
             $('#personalForm input').each(function(){
                 $(this).prop("disabled", false);

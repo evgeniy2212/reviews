@@ -27,18 +27,10 @@
 <section class="section">
     @yield('content')
     @include('includes.success')
+    @yield('modal_forms')
 </section>
 @include('includes.footer')
 </body>
 @include('includes.scripts')
 @include('includes.alerts')
-{{--<script>--}}
-    {{--$(window).on('load', function () {--}}
-        {{--$('body').addClass('loaded_hiding');--}}
-        {{--window.setTimeout(function () {--}}
-            {{--$('body').addClass('loaded');--}}
-            {{--$('body').removeClass('loaded_hiding');--}}
-        {{--}, 300);--}}
-    {{--})--}}
-{{--</script>--}}
 </html>

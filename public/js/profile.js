@@ -81,99 +81,55 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/main.js":
-/*!******************************!*\
-  !*** ./resources/js/main.js ***!
-  \******************************/
+/***/ "./resources/js/profile.js":
+/*!*********************************!*\
+  !*** ./resources/js/profile.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 (function ($) {
-  setTimeout(function () {
-    $('.close').click();
-  }, 3000);
   $(document).ready(function () {
-    $(".submitLoginButton").click(function (event) {
-      var form = $("#loginForm");
-      validation(form, event);
+    $('.deleteReview').click(function () {
+      console.log('deleteReview');
+      var id = $(this).data("reviewId");
+      var name = $(this).data("reviewName");
+      console.log(name);
+      var url = $("#deleteReviewForm").data('action');
+      url = url.replace(':id', id);
+      $("#deleteReviewForm").attr('action', url);
+      setModalData(name);
     });
-    $(".submitRegisterButton").click(function (event) {
-      var form = $("#registerForm");
-      validation(form, event);
-    });
-    $(".submitReviewButton").click(function (event) {
-      var form = $("#createReviewForm");
-      validation(form, event);
-    }); //Choosing region after country
-
-    $('#selectCountry').change(function () {
-      // $('#selectRegion').prop("disabled", true);
-      $.ajax({
-        url: "/ajax/regions/" + this.value,
-        dataType: "json",
-        success: function success(data) {
-          $('#registerLabel').text(data[0].region_naming);
-          $('#selectRegion').empty();
-
-          for (var k in data) {
-            $('#selectRegion').prepend('<option value="' + data[k].id + '">' + data[k].region + '</option>');
-          }
-        }
-      });
-      $('#selectRegion').removeAttr("disabled");
-    }); //Choosing region after country
-
-    $('#selectCategoryGood').change(function () {
-      $.ajax({
-        url: "/ajax/groups/" + this.value,
-        dataType: "json",
-        success: function success(data) {
-          $('#selectGroup').empty();
-
-          for (var k in data) {
-            $('#selectGroup').prepend('<option value="' + data[k].id + '">' + data[k].name + '</option>');
-          }
-        }
-      });
-      $('#selectGroup').removeAttr("disabled");
-    });
-    $('#editProfileButton').click(function () {
-      $('#personalForm input').each(function () {
-        $(this).prop("disabled", false);
-      });
-      $('#selectCountry').prop("disabled", false);
-      $('#cancelButton').prop("disabled", false);
-      $('#saveButton').prop("disabled", false);
-    });
+    $('#editReview').click(function () {
+      var name = $(this).data("reviewName");
+      setModalData(name);
+    }); // $('#confirmReviewButton').click(function(){
+    //     console.log('confirmReviewButton');
+    //     console.log($('[id^="ReviewForm"]'));
+    //     $('[id^="ReviewForm"]').submit();
+    // });
   });
 
-  var validation = function validation(form, event) {
-    console.log(form);
-
-    if (form[0].checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    form.addClass('was-validated');
-  };
+  function setModalData(name) {
+    $("#reviewName").text(name);
+  }
 })(jQuery);
 
 /***/ }),
 
-/***/ 1:
-/*!************************************!*\
-  !*** multi ./resources/js/main.js ***!
-  \************************************/
+/***/ 5:
+/*!***************************************!*\
+  !*** multi ./resources/js/profile.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OServer\OSPanel\domains\reviews.loc\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! C:\OServer\OSPanel\domains\reviews.loc\resources\js\profile.js */"./resources/js/profile.js");
 
 
 /***/ })

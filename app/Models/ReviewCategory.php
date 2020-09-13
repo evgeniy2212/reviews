@@ -17,6 +17,10 @@ class ReviewCategory extends Model
         return $this->hasMany(ReviewCharacteristic::class, 'review_category_id', 'id');
     }
 
+    public function category_by_reviews(){
+        return $this->hasMany(CategoryByReview::class, 'review_category_id', 'id');
+    }
+
     public function getCharacteristicsByCategorySlug($slug, $is_positive = null){
         return $this->whereSlug($slug)
             ->first()
@@ -25,7 +29,7 @@ class ReviewCategory extends Model
             ->when(!is_null($is_positive), function ($q) use($is_positive) {
                 return $q->where('is_positive', $is_positive);
             })
-            ->get(['name', 'id', 'is_positive', ]);
+            ->get(['name', 'id', 'is_positive']);
     }
 
     public function getLowerTitleAttribute(){

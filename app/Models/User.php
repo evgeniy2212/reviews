@@ -12,6 +12,12 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+    const NAME_SIGN = 1;
+    const NICKNAME_SIGN = 2;
+    const DEFAULT_SIGN = 3;
+
+    const DEFAULT_NAME = 'User';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -62,5 +68,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute(){
         return $this->name . ' ' . $this->last_name;
+    }
+
+    public function getUserSign($userSign){
+        switch ($userSign) {
+            case self::NAME_SIGN:
+                $result = $this->full_name;
+                break;
+            case self::NICKNAME_SIGN:
+                $result = $this->nickname;
+                break;
+            case self::DEFAULT_SIGN:
+                $result = self::DEFAULT_NAME;
+                break;
+            default: $result = self::DEFAULT_NAME;
+        }
+
+        return $result;
     }
 }

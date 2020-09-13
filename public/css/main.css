@@ -83,7 +83,8 @@ html, body {
     border: 3px double #2f5496;
     outline: 1px solid #2f5496;
     outline-offset: -4px;
-    background: #f2f2f2;
+    /*background: #f2f2f2;*/
+    background: white;
     font-size: 0.8rem;
 }
 .left-border::before {
@@ -155,7 +156,7 @@ html, body {
     text-align-last: center;
     background: #e7e6e6;
 }
-.loginButton, .rememberButton, #cancelButton, #editProfileButton {
+.loginButton, .rememberButton, #cancelButton, #editProfileButton, .otherButton {
     border-color: #a0a3af;
     border-style: solid;
     border-width: 1px;
@@ -173,12 +174,20 @@ html, body {
     font-weight: 500;
     width: 100%;
 }
-#cancelButton, #editProfileButton {
+/*.otherButton :active, :hover, :focus {*/
+    /*outline: 0;*/
+    /*border: 0;*/
+    /*!*outline-offset: 0;*!*/
+/*}*/
+#cancelButton, #editProfileButton, .otherButton {
     align-items: center;
     display: flex;
     justify-content: center;
 }
-#cancelButton:hover, #editProfileButton:hover, #createAccount a, #createAccount a:hover {
+#cancelButton:hover,
+#editProfileButton:hover,
+#createAccount a,
+#createAccount a:hover {
     text-decoration: none;
     color: #1b1e21;
 }
@@ -252,8 +261,8 @@ html, body {
 .profile-navigation {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: space-between;
+    align-items: center;
     width: 170px;
 }
 .profile-navigation a {
@@ -292,6 +301,7 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 2px;
 }
 #personalForm {
     height: 45vh;
@@ -341,6 +351,7 @@ button:disabled {
     display: inline-flex;
     align-items: center;
     user-select: none;
+    white-space: nowrap;
 }
 .custom-checkbox+label::before {
     content: '';
@@ -402,4 +413,40 @@ button:disabled {
 }
 .was-validated .invalid-selector {
     border-color: #dc3545;
+}
+.modal-dialog {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    bottom: 0;
+    left: 10%;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+}
+.review-items {
+    padding: 10px;
+    width: 100%;
+    border:1px solid #2f5496;
+    background: #f2f2f2;
+}
+.create-review-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    border:1px solid #2f5496;
+    background: #f2f2f2;
+}
+.create-review-button span, .exist-review-title span {
+    font-size: 1.2rem;
+    font-weight: normal;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+    color: rgba(3, 3, 3, 0.83);
+    text-shadow: 0px 0px 1px black;
+    font-family: "Palatino Linotype";
 }
