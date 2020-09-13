@@ -13,7 +13,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-        "mcamara/laravel-localization": "^1.5"
+        "mcamara/laravel-localization": "^1.5",
+        "fzaninotto/faker": "^1.9.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
