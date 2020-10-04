@@ -21,7 +21,7 @@
                         <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
                         <div class="message-count">
                             <div class="bg"></div>
-                            <a href="{{ route('profile-messages') }}"><span>{!! auth()->user()->getNewMessagesCount() ?? '' !!}</span></a>
+                            <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
                         </div>
                         <img src="{{ asset('images/congrats.png') }}" height="20px" width="30px"/>
                     @endauth
@@ -43,7 +43,6 @@
                                     <a href="{{ LaravelLocalization::localizeUrl('/logout') }}"
                                        onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        {{--{{ __('Logout') }}--}}
                                         Sign Out
                                     </a>
                                     <form id="logout-form" action="{{ LaravelLocalization::localizeUrl('/logout') }}" method="POST" style="display: none;">
