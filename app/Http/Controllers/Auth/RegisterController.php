@@ -85,7 +85,7 @@ class RegisterController extends Controller
                 'nickname' => ['nullable', 'string', 'max:255'],
                 'city' => ['required', 'string', 'max:255'],
                 'region' => ['required', 'integer', 'max:999999999'],
-                'zip_code' => ['required', 'integer', 'max:9999999999'],
+                'zip_code' => ['required'],
                 'g-recaptcha-response' => ['required', 'captcha']
             ]
         );

@@ -53,8 +53,8 @@
                         <span>{{ $review->characteristics->pluck('name')->implode(', ') }}</span>
                     @endif
                     <span>
-                {{ $review->review }}
-            </span>
+                        {{ $review->review }}
+                    </span>
                 </div>
             </div>
             <div class="profile-single-review-button">
@@ -64,7 +64,7 @@
                 </a>
                 <a data-toggle="modal"
                    type="button"
-                   id="commentButton-{{ $review->id }}">
+                   id="profileCommentButton-{{ $review->id }}">
                     Reply
                 </a>
                 <a data-toggle="modal"
@@ -79,12 +79,57 @@
         </div>
         <div class="w-100 profile-review-item">
             @foreach($review->comments as $comment)
-                <div class="comment">
-                    <span>
-                        {!! $comment->body !!}
-                    </span>
+                <div class="comment" style="display: none">
+                    <span>{!! $comment->body !!}</span>
+                    <div class="d-flex flex-row justify-content-around w-25">
+                        <div>
+                            <label for="comment-like-{!! $comment->id !!}">{!! $comment->likes !!}</label>
+                            <input id="comment-like-{!! $comment->id !!}"
+                                   class="comment-like-reaction"
+                                   type="image"
+                                   data-comment-id="{!! $comment->id !!}"
+                                   data-reaction-name="likes"
+                                   src="{{ asset('images/positive_like.png') }}"
+                                   @auth @else disabled @endauth/>
+                        </div>
+                        <div>
+                            <input id="comment-dislike-{!! $comment->id !!}"
+                                   class="comment-like-reaction"
+                                   type="image"
+                                   data-comment-id="{!! $comment->id !!}"
+                                   data-reaction-name="dislikes"
+                                   src="{{ asset('images/negative_like.png') }}"
+                                   @auth @else disabled @endauth/>
+                            <label for="comment-dislike-{!! $comment->id !!}">{!! $comment->dislikes !!}</label>
+                        </div>
+                    </div>
                 </div>
             @endforeach
+                <div class="comment-example" style="display: none">
+                    <span></span>
+                    <div class="d-flex flex-row justify-content-around w-25">
+                        <div>
+                            <label for="comment-like"></label>
+                            <input id="comment-like"
+                                   class="comment-like-reaction"
+                                   type="image"
+                                   data-review-id=""
+                                   data-reaction-name="likes"
+                                   src="{{ asset('images/positive_like.png') }}"
+                                   @auth @else disabled @endauth/>
+                        </div>
+                        <div>
+                            <input id="comment-dislike"
+                                   class="comment-like-reaction"
+                                   type="image"
+                                   data-review-id=""
+                                   data-reaction-name="dislikes"
+                                   src="{{ asset('images/negative_like.png') }}"
+                                   @auth @else disabled @endauth/>
+                            <label for="comment-like"></label>
+                        </div>
+                    </div>
+                </div>
             <div class="review-textarea" data-review-id="{{ $review->id }}">
                 <div class="col-md-9">
                         <textarea name="review"
@@ -94,7 +139,7 @@
                 </div>
                 <div class="col-md-3">
                     <button class="otherButton" id="addCommentButton-{{ $review->id }}">
-                        Add Review
+                        Add Comment
                     </button>
                 </div>
             </div>

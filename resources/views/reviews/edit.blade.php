@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('profile-reviews.update', $review->id) }}" novalidate="" id="editReviewForm">
+    <form method="POST" action="{{ route('profile-reviews.update', $review->id) }}" enctype="multipart/form-data" novalidate="" id="editReviewForm">
         @method('PATCH')
         @csrf
         <input type="hidden"
@@ -146,6 +146,22 @@
                                       type="text"
                                       id="review-text"
                                       placeholder="{{ empty($review->review) ? __('service/index.review_text_placeholder') : '' }}">{!! $review->review !!}</textarea>
+                            <div class="review-upload-files">
+                                <label class="custom-file-upload">
+                                    <input type="file"
+                                           id="img"
+                                           name="img"
+                                           accept="image/*"/>
+                                    <i class="fa fa-cloud-upload"></i> <span>{!! empty($review->image) ? __('service/index.add_photo') : $review->image->original_name !!}</span>
+                                </label>
+                                <label class="custom-file-upload">
+                                    <input type="file"
+                                           name="video"
+                                           id="video"
+                                           accept="video/*"/>
+                                    <i class="fa fa-cloud-upload"></i> <span>{!! empty($review->video) ? __('service/index.add_video') : $review->video->original_name !!}</span>
+                                </label>
+                            </div>
                         </div>
                         <div class="col-md-4 checkbox-container">
                             @foreach($negativeCharacteristics as $characteristics)

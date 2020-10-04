@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewCharacteristicsSeeder::class);
         $this->call(CategoryGroupByReviewSeeder::class);
         $this->call(ReviewSeeder::class);
+        $this->call(ReviewFilterSeeder::class);
+        $this->call(ReviewFilterValuesSeeder::class);
     }
 }

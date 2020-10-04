@@ -21,37 +21,30 @@
                         </span>
                     </div>
                     <div class="review-filters">
-                        <div class="col-md-3 d-flex flex-row justify-content-around">
-                            <div>
-                                <label for="country">
-                                    Filter by Date
-                                </label>
+                        @foreach($filters as $filter)
+                            <div class="col-md-3 d-flex flex-row justify-content-around">
+                                <div>
+                                    <label for="country">
+                                        {!! $filter->format_name !!}
+                                    </label>
+                                </div>
+                                <div>
+                                    <select class="select filter-select"
+                                            id="filter-{!! $filter->slug !!}"
+                                            name="{!! $filter->slug !!}">
+                                        <option value="" selected>All</option>
+                                        @foreach($filter->filter_values as $value)
+                                            <option value="{!! $value->slug !!}"
+                                                    {{ (array_key_exists($filter->slug, $paginateParams) && $paginateParams[$filter->slug] === $value->slug)
+                                                        ? 'selected'
+                                                        : ''}}>
+                                                {!! $value->format_value !!}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            <div>
-                                <select class="select"
-                                        id=""
-                                        name="date">
-                                    <option disabled selected>2020</option>
-                                    <option disabled selected>2019</option>
-                                    <option disabled selected>2018</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 d-flex flex-row justify-content-around">
-                            <div>
-                                <label for="country">
-                                    Sort by
-                                </label>
-                            </div>
-                            <div>
-                                <select class="select"
-                                        id=""
-                                        name="sort">
-                                    <option disabled selected>Alphabet</option>
-                                    <option disabled selected>Stars</option>
-                                </select>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     @foreach($reviews as $review)
                         @include('reviews.single_review')
@@ -60,7 +53,7 @@
                         <div class="container-fluid">
                             <div class="pagination-container">
                                 <div class="col-md-12 d-flex align-items-center justify-content-center">
-                                    {{ $reviews->links() }}
+                                    {{ $reviews->appends($paginateParams)->links() }}
                                 </div>
                             </div>
                         </div>

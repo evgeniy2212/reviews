@@ -117,6 +117,7 @@
                                                    class="form-control input"
                                                    name="zip_code"
                                                    minlength="3"
+                                                   value="{{ old('zip_code') }}"
                                                    required
                                                    autocomplete="zip_code">
                                         </div>
@@ -166,7 +167,7 @@
                                         </div>
                                         <div class="col-md-10">
                                             <input id="password"
-                                                   type="password"
+                                                   type="text"
                                                    class="form-control input"
                                                    name="password"
                                                    required
@@ -188,6 +189,7 @@
                                                 <input id="nickname"
                                                        type="text"
                                                        class="form-control input"
+                                                       value="{{ old('email') }}"
                                                        name="nickname"
                                                        autocomplete="nickname">
                                             </div>
@@ -208,7 +210,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <input id="password-confirm"
-                                                   type="password"
+                                                   type="text"
                                                    class="form-control input"
                                                    name="password_confirmation"
                                                    required

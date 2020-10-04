@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Review;
+use App\Notifications\ReviewCommentUpdate;
 
 class ReviewObserver
 {
@@ -14,7 +15,7 @@ class ReviewObserver
      */
     public function created(Review $review)
     {
-        //
+
     }
 
     /**
@@ -25,7 +26,7 @@ class ReviewObserver
      */
     public function updated(Review $review)
     {
-        //
+        $review->user->notify(new ReviewCommentUpdate());
     }
 
     /**
@@ -65,7 +66,6 @@ class ReviewObserver
      * @param \App\Models\Review  $product
      */
     public function creating(Review $review){
-//        dd($review);
     }
 
 }

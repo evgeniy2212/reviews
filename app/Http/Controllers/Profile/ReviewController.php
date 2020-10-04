@@ -3,35 +3,49 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveReviewRequest;
 use App\Models\Country;
 use App\Models\Review;
-use App\Models\ReviewCategory;
-use App\Repositories\ReviewRepository;
-use Illuminate\Http\Request;
+use App\Models\ReviewFilter;
+use App\Models\ReviewImage;
+use App\Repositories\ReviewFilterRepository;
+use App\Services\ImageService;
+use App\Services\ReviewService;
 
 class ReviewController extends Controller
 {
     protected $half = 9;
 
     /**
-     * @var ReviewRepository
+     * @var ReviewFilterRepository
      */
-    protected $reviewRepository;
+    protected $reviewFilterRepository;
 
     public function __construct()
     {
-        $this->reviewRepository = app(ReviewRepository::class);
+        $this->reviewFilterRepository = app(ReviewFilterRepository::class);
     }
 
     public function index() {
-        $reviews = $this->reviewRepository->getAllUserReviews();
+        $filter_alias = ReviewFilter::DATE_FILTER;
+        $sort_alias = ReviewFilter::SORT_BY_FILTER;
 
-        return view('profile.reviews', compact('reviews', 'slug'));
+        $filter = request()->$filter_alias;
+        $sort = request()->$sort_alias;
+
+        $reviews = ReviewService::getUserFilteredReviews($filter, $sort);
+        $filters = $this->reviewFilterRepository->getAllCategoryFilters();
+        $paginateParams = [
+            $filter_alias => request()->$filter_alias,
+            $sort_alias => request()->$sort_alias,
+        ];
+
+        return view('profile.reviews', compact('reviews', 'slug', 'filters', 'paginateParams'));
     }
 
     public function edit($review)
     {
-        $review = Review::with(['category', 'region', 'characteristics'])
+        $review = Review::with(['category', 'region', 'characteristics', 'image'])
             ->findOrFail($review);
 
         $countries = (new Country())->getCountriesContainRegions();
@@ -42,7 +56,6 @@ class ReviewController extends Controller
             ->getCharacteristicsByCategorySlug($review->category->slug, false)
             ->chunk($this->half);
         $checkedCharacteristics = $review->characteristics->pluck('id');
-dd($review);
 
         return view('reviews.edit', compact(
             'countries',
@@ -53,10 +66,14 @@ dd($review);
         ));
     }
 
-    public function update(Request $request, Review $review)
+    public function update(SaveReviewRequest $request, Review $review)
     {
         $review->update($request->all());
         $review->characteristics()->sync($request->characteristics);
+        if($request->has('img')){
+            $imageInfo = ImageService::updateImage($request, $review);
+            ReviewImage::updateOrCreate(['review_id' => $review->id], $imageInfo);
+        }
 
         return redirect()->route('profile-reviews.index');
     }

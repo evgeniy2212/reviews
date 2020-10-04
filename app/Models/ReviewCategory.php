@@ -21,6 +21,10 @@ class ReviewCategory extends Model
         return $this->hasMany(CategoryByReview::class, 'review_category_id', 'id');
     }
 
+    public function filters() {
+        return $this->hasMany(ReviewFilter::class, 'review_category_id', 'id')->orderByDesc('value');
+    }
+
     public function getCharacteristicsByCategorySlug($slug, $is_positive = null){
         return $this->whereSlug($slug)
             ->first()

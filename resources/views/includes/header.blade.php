@@ -19,8 +19,11 @@
                     @auth
                         {{--<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>--}}
                         <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
-                        <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
-                        <img src="{{ asset('images/congrats.png') }}" height="25px" width="35px"/>
+                        <div class="message-count">
+                            <div class="bg"></div>
+                            <a href="{{ route('profile-messages') }}"><span>{!! auth()->user()->getNewMessagesCount() ?? '' !!}</span></a>
+                        </div>
+                        <img src="{{ asset('images/congrats.png') }}" height="20px" width="30px"/>
                     @endauth
                 </div>
             </div>
@@ -57,12 +60,27 @@
                         </ul>
                     </nav>
                 </div>
-                <form class="form-inline" id="searchForm">
-                    <input class="form-control mr-sm-2 input" id="searchCategory" type="text" placeholder="Search" aria-label="Search">
-                    <select class="form-control mr-sm-2 select" id="selectCategory">
+                <form method="GET"
+                      action="{{ route('search') }}"
+                      class="form-inline"
+                      novalidate=""
+                      id="searchForm">
+                    <input class="form-control mr-sm-2 input"
+                           id="searchCategory"
+                           type="text"
+                           name="search"
+                           placeholder="Search"
+                           aria-label="Search"
+                           value="{{ isset($search) ? $search : '' }}"
+                           required>
+                    <select class="form-control mr-sm-2 select"
+                            id="selectCategory"
+                            name="category"
+                            required>
                         <option disabled selected>@lang('service/index.head_select')</option>
                         @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
-                            <option value="{{ $review_category->slug }}">
+                            <option {{ (isset($search_category) && $search_category == $review_category->slug) ? 'selected' : '' }}
+                                    value="{{ $review_category->slug }}">
                                 @lang(trans('service/index.review_naming', ['name' => $review_category->lower_title]))
                             </option>
                         @endforeach
@@ -72,8 +90,8 @@
             </div>
         </div>
         <div class="d-flex flex-row justify-content-between">
-            <div class="advertising">
-                <img src="{{ asset('images/advertising.jpg') }}" height="125px" width="310px"/>
+            <div class="post">
+                <img src="{{ asset('images/post.jpg') }}" height="125px" width="310px"/>
             </div>
         </div>
     </div>
@@ -85,7 +103,8 @@
                         <a href="{{ route('home') }}">@lang('service/index.home')</a>
                     </li>
                     @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
-                        <li @if(str_contains(url()->current(), $review_category->slug))class="menu-active"@endif>
+                        <li @if(str_contains(url()->current(), $review_category->slug) || str_contains(url()->full(), 'category=' . $review_category->slug))
+                            class="menu-active"@endif>
                             <a href="{{ route('reviews', $review_category->slug) }}">
                                 @lang(trans('service/index.review_naming', ['name' => $review_category->lower_title]))
                             </a>

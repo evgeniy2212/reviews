@@ -50,33 +50,105 @@
             @if($review->characteristics->isNotEmpty())
                 <span>{{ $review->characteristics->pluck('name')->implode(', ') }}</span>
             @endif
-            <span>
+            <p>
+                @if($review->video)
+                    <video width="250" height="200" controls>
+                        <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
+                        {{--<source src="movie.ogg" type="video/ogg">--}}
+                        Your browser does not support the video tag.
+                    </video>
+                @endif
+                @if($review->image)
+                    <img src="{{ $review->image->getResizeImageUrl() }}"
+                         alt=""
+                         width="200"
+                         height="200">
+                @endif
                 {{ $review->review }}
-            </span>
+            </p>
             <div class="w-100">
                 @foreach($review->comments as $comment)
-                    <div class="comment">
-                        <span>
-                            {!! $comment->body !!}
-                        </span>
+                    <div class="comment" style="display: none">
+                        <span>{!! $comment->body !!}</span>
+                        <div class="d-flex flex-row justify-content-around w-25">
+                            <div>
+                                <label for="comment-like-{!! $comment->id !!}">{!! $comment->likes !!}</label>
+                                <input id="comment-like-{!! $comment->id !!}"
+                                       class="comment-like-reaction"
+                                       type="image"
+                                       data-comment-id="{!! $comment->id !!}"
+                                       data-reaction-name="likes"
+                                       src="{{ asset('images/positive_like.png') }}"
+                                       @auth @else disabled @endauth/>
+                            </div>
+                            <div>
+                                <input id="comment-dislike-{!! $comment->id !!}"
+                                       class="comment-like-reaction"
+                                       type="image"
+                                       data-comment-id="{!! $comment->id !!}"
+                                       data-reaction-name="dislikes"
+                                       src="{{ asset('images/negative_like.png') }}"
+                                       @auth @else disabled @endauth/>
+                                <label for="comment-dislike-{!! $comment->id !!}">{!! $comment->dislikes !!}</label>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
-                <div class="review-textarea" data-review-id="{{ $review->id }}">
-                    <div class="col-md-9">
-                        <textarea name="review"
-                                  type="text"
-                                  id="review-text"
-                                  placeholder="@lang('service/index.review_text_placeholder')"></textarea>
+                    <div class="comment-example" style="display: none">
+                        <span></span>
+                        <div class="d-flex flex-row justify-content-around w-25">
+                            <div>
+                                <label for="comment-like"></label>
+                                <input id="comment-like"
+                                       class="comment-like-reaction"
+                                       type="image"
+                                       data-review-id=""
+                                       data-reaction-name="likes"
+                                       src="{{ asset('images/positive_like.png') }}"
+                                       @auth @else disabled @endauth/>
+                            </div>
+                            <div>
+                                <input id="comment-dislike"
+                                       class="comment-like-reaction"
+                                       type="image"
+                                       data-review-id=""
+                                       data-reaction-name="dislikes"
+                                       src="{{ asset('images/negative_like.png') }}"
+                                       @auth @else disabled @endauth/>
+                                <label for="comment-like"></label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <button class="otherButton" id="addCommentButton-{{ $review->id }}">
-                            Add Review
-                        </button>
+                @auth()
+                    <div class="review-textarea" data-review-id="{{ $review->id }}">
+                        <div class="col-md-9">
+                            <textarea name="review"
+                                      type="text"
+                                      id="review-text"
+                                      placeholder="@lang('service/index.review_text_placeholder')"
+                                      style="overflow:hidden"></textarea>
+                        </div>
+                        <div class="col-md-3 comment-buttons">
+                            <button class="otherButton" id="addCommentButton-{{ $review->id }}">
+                                Add Comment
+                            </button>
+                            @if(auth()->user()->id !== $review->user_id)
+                                <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}">
+                                    Send mail
+                                </button>
+                            @endauth
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-2 offset-10">
+                @else
+                        <div class="review-textarea" id="review-for-guest" data-review-id="{{ $review->id }}">
+                            <div class="col-md-9">
+                                <p style="color: #dc3545">Log in to your account and leave your comment!</p>
+                            </div>
+                        </div>
+                @endauth
+                <div class="col-md-3 offset-9">
                     <button class="otherButton" id="commentButton-{{ $review->id }}">
-                        Reply
+                        Show Comments
                     </button>
                 </div>
             </div>

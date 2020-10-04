@@ -11,10 +11,11 @@
         "php": "^7.2",
         "anhskohbo/no-captcha": "^3.2",
         "fideloper/proxy": "^4.0",
+        "fzaninotto/faker": "^1.9.1",
+        "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-        "mcamara/laravel-localization": "^1.5",
-        "fzaninotto/faker": "^1.9.1"
+        "mcamara/laravel-localization": "^1.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",

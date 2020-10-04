@@ -2,9 +2,9 @@
     {{--<div class="d-flex flex-row justify-content-around">--}}
     <div>
         <ul class="footer">
-            <li><a href="#">Privacy Policy</a></li>
-            <li class="left-border"><a href="#">Contact</a></li>
-            <li class="left-border"><a href="#">Term of Service</a></li>
+            <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+            <li class="left-border"><a href="{{ route('get-in-touch') }}">Contact</a></li>
+            <li class="left-border"><a href="{{ route('term-of-service') }}">Term of Service</a></li>
         </ul>
     </div>
     <div style="text-align: center">

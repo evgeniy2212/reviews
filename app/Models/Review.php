@@ -61,6 +61,18 @@ class Review extends Model
         return $this->hasMany(Comment::class, 'review_id', 'id');
     }
 
+    public function messages(){
+        return $this->hasMany(Message::class, 'review_id', 'id');
+    }
+
+    public function image(){
+        return $this->hasOne(ReviewImage::class, 'review_id', 'id');
+    }
+
+    public function video(){
+        return $this->hasOne(ReviewVideo::class, 'review_id', 'id');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -78,5 +90,11 @@ class Review extends Model
         return $this->second_name
             ? $this->name . ' ' . $this->second_name
             : $this->name;
+    }
+
+    public function isHasUnreadMessages(){
+        return $this->messages()
+            ->where('is_read', false)
+            ->count();
     }
 }

@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-md-2 text-center">
                                 <label for="region_id" id="registerLabel">
-                                    @lang('register.state')
+                                    {!! $user_info->region->region_naming !!}
                                 </label>
                             </div>
                             <div class="col-md-4">
@@ -57,7 +57,7 @@
                                         name="region_id"
                                         disabled
                                         required>
-                                    <option disabled selected>Region</option>
+                                    <option disabled selected>{!! $user_info->region->region !!}</option>
                                     <option value="1">@lang('service/index.person')</option>
                                     <option value="2">@lang('service/index.company')</option>
                                     <option value="3">@lang('service/index.goods')</option>

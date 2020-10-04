@@ -20,9 +20,9 @@
                                 <span>@lang('service/index.your_reviews')</span>
                             </a>
                         </li>
-                        <li class="{{ Request::url() == route('profile-info') ? 'active' : '' }}">
-                            <a href="{{ route('profile-info') }}">
-                                <span>@lang('service/index.mail')</span>
+                        <li class="{{ Request::url() == route('profile-messages') ? 'active' : '' }}">
+                            <a href="{{ route('profile-messages') }}">
+                                <span>@lang('service/index.mail', ['count' => auth()->user()->getNewMessagesCount()])</span>
                             </a>
                         </li>
                     </ul>
@@ -42,6 +42,7 @@
                         @yield('profile_content')
                     </div>
                     @yield('profile_review_content')
+                    @yield('profile_message_content')
                 </div>
             </div>
         </div>

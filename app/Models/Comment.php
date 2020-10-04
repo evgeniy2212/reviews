@@ -15,6 +15,8 @@ class Comment extends Model
         'user_id',
         'review_id',
         'body',
+        'likes',
+        'dislikes',
     ];
 
     public function review(){

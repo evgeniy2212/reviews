@@ -16,6 +16,12 @@
             validation(form, event);
         });
 
+        $(".submitTouchInfoButton").click(function(event) {
+            var form = $("#sendTouchInfo");
+            validation(form, event);
+        });
+
+
         //Choosing region after country
         $('#selectCountry').change(function() {
             // $('#selectRegion').prop("disabled", true);
@@ -64,12 +70,11 @@
 
 
     var validation = function(form, event){
-        console.log(form);
         if (form[0].checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
         }
 
         form.addClass('was-validated');
-    }
+    };
 })(jQuery);

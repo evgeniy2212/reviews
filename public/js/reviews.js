@@ -122,45 +122,138 @@
       }
     });
     $(".like-reaction").click(function (event) {
-      var wasReaction = sessionStorage.getItem('wasReaction' + this.id);
-      var $label = $("label[for='" + this.id + "']");
-      var $id = $(this).data('reviewId');
-      var $reaction = $(this).data('reactionName');
+      var reactionType = $(this).data('reactionName');
+      var reviewId = $(this).data('reviewId');
+      var wasReaction = sessionStorage.getItem('wasReaction' + reviewId);
+      var wasReactionType = sessionStorage.getItem('wasReviewReactionType' + reviewId);
+      var wasReactionTypeCnt = sessionStorage.getItem('wasReviewTypeCnt' + reactionType + reviewId);
+      var label = $("label[for='" + this.id + "']");
+      var reviewLikes = Number.parseInt(label.text());
 
       if (wasReaction !== 'true') {
-        $label.text(Number.parseInt($label.text()) + 1);
-        sessionStorage.setItem('wasReaction' + this.id, true);
+        reviewLikes++;
+        label.text(reviewLikes);
+        sessionStorage.setItem('wasReviewReactionType' + reviewId, reactionType);
+        sessionStorage.setItem('wasReaction' + reviewId, true);
+        sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
       } else if (wasReaction == 'true') {
-        $label.text(Number.parseInt($label.text()) - 1);
-        sessionStorage.setItem('wasReaction' + this.id, false);
+        if (wasReactionType === reactionType) {
+          reviewLikes--;
+          label.text(reviewLikes);
+          sessionStorage.setItem('wasReviewReactionType' + reviewId, reactionType);
+          sessionStorage.setItem('wasReaction' + reviewId, false);
+          sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
+        }
       }
 
-      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-      $.ajax({
-        type: 'POST',
-        url: '/ajax/review-reaction',
-        data: {
-          _token: CSRF_TOKEN,
-          reaction: $(this).data('reactionName'),
-          value: Number.parseInt($label.text()),
-          id: $id
-        },
-        success: function success(data) {
-          console.log(data);
+      if (reviewLikes - wasReactionTypeCnt !== 0) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+          type: 'POST',
+          url: '/ajax/review-reaction',
+          data: {
+            _token: CSRF_TOKEN,
+            reaction: reactionType,
+            value: reviewLikes,
+            id: reviewId
+          },
+          success: function success(data) {
+            console.log(data);
+          }
+        });
+      }
+    });
+    $(".comment-like-reaction").click(function (event) {
+      var reactionType = $(this).data('reactionName');
+      var commentId = $(this).data('commentId');
+      var wasReaction = sessionStorage.getItem('wasCommentReaction' + commentId);
+      var wasReactionType = sessionStorage.getItem('wasCommentReactionType' + commentId);
+      var wasReactionTypeCnt = sessionStorage.getItem('wasReactionTypeCnt' + reactionType + commentId);
+      var label = $("label[for='" + this.id + "']");
+      var commentLikes = Number.parseInt(label.text());
+
+      if (wasReaction !== 'true') {
+        commentLikes++;
+        label.text(commentLikes);
+        sessionStorage.setItem('wasCommentReactionType' + commentId, reactionType);
+        sessionStorage.setItem('wasCommentReaction' + commentId, true);
+        sessionStorage.setItem('wasReactionTypeCnt' + reactionType + commentId, commentLikes);
+      } else if (wasReaction == 'true') {
+        if (wasReactionType === reactionType) {
+          commentLikes--;
+          label.text(commentLikes);
+          sessionStorage.setItem('wasCommentReactionType' + commentId, reactionType);
+          sessionStorage.setItem('wasCommentReaction' + commentId, false);
+          sessionStorage.setItem('wasReactionTypeCnt' + reactionType + commentId, commentLikes);
         }
-      });
+      }
+
+      if (commentLikes - wasReactionTypeCnt !== 0) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+          type: 'POST',
+          url: '/ajax/review-comment-reaction',
+          data: {
+            _token: CSRF_TOKEN,
+            reaction: reactionType,
+            value: Number.parseInt(label.text()),
+            id: commentId
+          },
+          success: function success(data) {}
+        });
+      }
     });
     $('[id^="commentButton"]').click(function (event) {
       var review = $(this).parent().parent().parent();
       var comments = review.find('.comment');
       comments.each(function (index) {
-        $(this).toggle(750);
+        if ($(this).text().trim()) {
+          $(this).toggle(750);
+          $(this).css('display', 'flex');
+        }
       });
       review.find('.review-textarea').toggle(750);
-      $(this).text().trim() == 'Reply' ? $(this).text('Close') : $(this).text('Reply');
+      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Show Comments');
+    });
+    $('[id^="profileCommentButton"]').click(function (event) {
+      var review = $(this).parent().parent().parent();
+      var comments = review.find('.comment');
+      comments.each(function (index) {
+        if ($(this).text().trim()) {
+          $(this).toggle(750);
+          $(this).css('display', 'flex');
+        }
+      });
+      review.find('.review-textarea').toggle(750);
+      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
+    });
+    $('[id^="profileMessageButton"]').click(function (event) {
+      var review = $(this).parent().parent().parent();
+      var comments = review.find('.message');
+      comments.each(function (index) {
+        if ($(this).text().trim()) {
+          $(this).toggle(750);
+          $(this).css('display', 'flex');
+        }
+      });
+      review.find('.review-textarea').toggle(750);
+      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
+      $(this).closest('.single-review').removeClass('unread-profile-messages');
+      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      var reviewId = $(this).attr('data-review-id');
+      console.log(reviewId);
+      $.ajax({
+        type: 'POST',
+        url: '/ajax/review-message-read',
+        data: {
+          _token: CSRF_TOKEN,
+          review_id: reviewId
+        }
+      });
     });
     $('[id^="addCommentButton"]').click(function (event) {
       var review = $(this).parent().parent();
+      review.find('button').prop('disabled', true);
       var text = review.find('textarea').val();
       var reviewId = review.data("reviewId");
 
@@ -175,15 +268,124 @@
             review_id: reviewId
           },
           success: function success(data) {
-            var elem = review.parent().find('.comment:last');
+            var elem = review.parent().find('.comment-example');
             var cloneElem = elem.clone();
-            cloneElem.text(text).insertAfter(elem).hide().show(750);
+            cloneElem.attr('class', 'comment');
+            cloneElem.find('input').each(function (index, element) {
+              if (index == 0) {
+                $(this).attr('id', 'comment-like-' + data.comment_id);
+                $(this).attr('data-comment-id', data.comment_id);
+              } else {
+                $(this).attr('id', 'comment-dislike-' + data.comment_id);
+                $(this).attr('data-comment-id', data.comment_id);
+              }
+            });
+            cloneElem.find('label').each(function (index, element) {
+              if (index == 0) {
+                $(this).attr('for', 'comment-like-' + data.comment_id);
+                $(this).text(0);
+              } else {
+                $(this).attr('for', 'comment-dislike-' + data.comment_id);
+                $(this).text(0);
+              }
+            });
+            cloneElem.find('span').text(data.body);
+            cloneElem.insertBefore(review.parent().find('.comment-example')).hide().show(750);
             review.find('textarea').val('');
+            review.find('button').removeAttr("disabled");
           }
         });
       } else {
         alert('Comment is empty!');
       }
+    });
+    $('[id^="sendReviewMessageButton"]').click(function (event) {
+      var review = $(this).parent().parent();
+      review.find('button').prop('disabled', true);
+      var text = review.find('textarea').val();
+      var reviewId = review.data("reviewId");
+
+      if (text.trim()) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+          type: 'POST',
+          url: '/ajax/review-send-message',
+          data: {
+            _token: CSRF_TOKEN,
+            message: text,
+            review_id: reviewId
+          },
+          success: function success(data) {
+            review.find('textarea').val('');
+            review.find('button').removeAttr("disabled");
+          }
+        });
+      } else {
+        alert('Mail message is empty!');
+      }
+    });
+    $('[id^="sendProfileReviewMessageButton"]').click(function (event) {
+      var review = $(this).parent().parent();
+      review.find('button').prop('disabled', true);
+      var text = review.find('textarea').val();
+      var reviewId = review.data("reviewId");
+
+      if (text.trim()) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+          type: 'POST',
+          url: '/ajax/review-send-message',
+          data: {
+            _token: CSRF_TOKEN,
+            message: text,
+            review_id: reviewId
+          },
+          success: function success(data) {
+            var elem = review.parent().find('.message-example');
+            var cloneElem = elem.clone();
+            cloneElem.attr('class', 'comment');
+            cloneElem.find('span').text(data.data[0].message);
+            cloneElem.insertBefore(review.parent().find('.message-example')).hide().show(750);
+            review.find('textarea').val('');
+            review.find('button').removeAttr("disabled");
+          }
+        });
+      } else {
+        alert('Mail message is empty!');
+      }
+    });
+    $("#review-text").keyup(function () {
+      $(this).height(1);
+      $(this).height(60 + $(this).prop('scrollHeight'));
+      var review = $(this).parent().parent();
+      review.find('button').prop('disabled', false);
+    });
+    $(".filter-select").change(function () {
+      var slug = $(this).attr('name');
+      var item = $(this).children("option:selected").val();
+      var str = window.location.search;
+      str = replaceQueryParam(slug, item, str);
+      str = replaceQueryParam('page', 1, str);
+      window.location = window.location.pathname + str;
+    });
+
+    function replaceQueryParam(param, newval, search) {
+      var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
+      var query = search.replace(regex, "$1").replace(/&$/, '');
+      return (query.length > 2 ? query + "&" : "?") + (newval ? param + "=" + newval : '');
+    }
+
+    $('#video').change(function () {
+      if (this.files[0].size > 50000000) {
+        alert("he file must be less than 50 MB!");
+        this.value = "";
+      }
+
+      ;
+    });
+    $('input[type="file"]').change(function (e) {
+      var fileName = e.target.files[0].name;
+      $(this).parent().find('span').text(fileName);
     });
   });
 })(jQuery);

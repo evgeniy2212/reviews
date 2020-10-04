@@ -19,7 +19,10 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('user_id')->index()->unsigned();
             $table->bigInteger('review_id')->index()->unsigned();
             $table->text('body');
+            $table->integer('likes')->default(0);
+            $table->integer('dislikes')->default(0);
             $table->boolean('is_published')->default(true);
+            $table->string('user_sign')->nullable();
 
             $table->foreign('review_id')->references('id')->on('reviews')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

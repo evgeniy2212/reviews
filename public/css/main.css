@@ -217,7 +217,7 @@ html, body {
 }
 .registerFormContent {
     border: 1px dashed #a0a3af;
-    height: 70%;
+    height: 67%;
     margin-bottom: 10px;
     background: white;
     display: flex;
@@ -449,4 +449,101 @@ button:disabled {
     color: rgba(3, 3, 3, 0.83);
     text-shadow: 0px 0px 1px black;
     font-family: "Palatino Linotype";
+}
+.message-count {
+    position: relative;
+    height: 20px;
+    width: 30px;
+    z-index: 5;
+    margin-left: 10px;
+}
+.message-count .bg {
+    position: absolute;
+    background-image: url("../images/message.png");
+    z-index: -1;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+.message-count a {
+    color: #2f5496;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #2f5496;
+    text-shadow: 0px 0px 4px #2f5496;
+}
+.message-count a:hover {
+    text-decoration: none;
+}
+.get-in-touch-content-place {
+    height: calc(100vh - 230px);
+    overflow: auto;
+    width: 100%;
+    /*padding: 1%;*/
+    margin: 0 auto;
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
+    background: #f2f2f2;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.touch-info-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px 0;
+}
+.get-in-touch-info-place {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.get-in-touch-info-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.touch-info-sitename {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #6c6c6c;
+    font-family: "Palatino Linotype";
+}
+.touch-info-message-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.3rem;
+    /*padding-bottom: 3%;*/
+    font-weight: bold;
+    color: #6c6c6c;
+    /*text-shadow: 0px 0px 4px #2f5496;*/
+    font-family: "Palatino Linotype";
+}
+.touch-info-message textarea {
+    resize: none;
+    width: 100%;
+    height: 100px;
+    font-size: 0.8rem;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 1px;
+}
+.touch-input-container {
+    /*d-flex flex-row justify-content-center*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.touch-input-container input {
+    margin-left: 10px;
+    font-size: 0.8rem;
+    text-align: left;
+    color: black;
+    text-align-last: left;
 }

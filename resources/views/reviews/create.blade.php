@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('save-review') }}" novalidate="" id="createReviewForm">
+    <form method="POST" action="{{ route('save-review') }}" enctype="multipart/form-data" novalidate="" id="createReviewForm">
         @csrf
         <input type="hidden"
                name="review_category_id"
@@ -62,9 +62,28 @@
                         </div>
                         <div class="col-md-4">
                             <textarea name="review"
+                                      class="form-control"
                                       type="text"
-                                      id="review-text"
+                                      id="review-create-text"
+                                      required
                                       placeholder="@lang('service/index.review_text_placeholder')"></textarea>
+                            <div class="review-upload-files">
+                                <label class="custom-file-upload">
+                                    <input type="file"
+                                           id="img"
+                                           name="img"
+                                           accept="image/*"/>
+                                    <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_photo')</span>
+                                </label>
+                                <label class="custom-file-upload">
+                                    <input type="file"
+                                           name="video"
+                                           id="video"
+                                           size="2MB"
+                                           accept="video/*"/>
+                                    <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_video')</span>
+                                </label>
+                            </div>
                         </div>
                         <div class="col-md-4 checkbox-container">
                             @foreach($negativeCharacteristics as $characteristics)

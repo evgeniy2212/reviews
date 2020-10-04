@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Comment;
+use App\Models\Message;
 use App\Models\Region;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,6 +59,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Region::class, 'region_id', 'id');
     }
 
+    public function messages(){
+        return $this->hasMany(Message::class, 'from', 'id');
+    }
+
+    public function given_by_messages(){
+        return $this->hasMany(Message::class, 'to', 'id');
+    }
+
     /**
      * Get the comments for the reviews.
      */
@@ -85,5 +94,11 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $result;
+    }
+
+    public function getNewMessagesCount(){
+        return $this->given_by_messages()
+            ->whereIsRead(false)
+            ->count();
     }
 }

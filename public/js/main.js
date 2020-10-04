@@ -109,6 +109,10 @@
     $(".submitReviewButton").click(function (event) {
       var form = $("#createReviewForm");
       validation(form, event);
+    });
+    $(".submitTouchInfoButton").click(function (event) {
+      var form = $("#sendTouchInfo");
+      validation(form, event);
     }); //Choosing region after country
 
     $('#selectCountry').change(function () {
@@ -153,8 +157,6 @@
   });
 
   var validation = function validation(form, event) {
-    console.log(form);
-
     if (form[0].checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();

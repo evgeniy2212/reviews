@@ -13,7 +13,7 @@ class Country extends Model
     ];
 
     public function regions(){
-        return $this->hasMany(Region::class, 'country_id', 'id');
+        return $this->hasMany(Region::class, 'country_id', 'id')->orderByDesc('region');
     }
 
     public function reviews(){

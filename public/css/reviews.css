@@ -69,7 +69,7 @@
 #createReviewForm .review-info-container div, #editReviewForm .review-info-container div {
     padding: 0 3px;
 }
-.review-content-place .input, .review-content-place select {
+.review-content-place .input, .get-in-touch-content-place .input, .review-content-place select {
     border-color: #2f5496;
     border-style: solid;
     border-width: 1px;
@@ -81,11 +81,36 @@
     text-align-last: center;
     background: #fcfbfb;
 }
-#review-text {
+#review-text, #review-create-text {
     resize: none;
     width: 100%;
-    height: 100%;
+    height: 85%;
     font-size: 0.8rem;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 1px;
+}
+.review-upload-files{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 15%;
+    margin-top: 1%;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid rgb(118, 118, 118);
+    display: inline-block;
+    padding: 3px 6px;
+    cursor: pointer;
+    background-color: white;
+    height: 100%;
+    width: 49%;
+    text-align: center;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
 }
 .checkbox-container {
     height: 28vh;
@@ -204,20 +229,42 @@
     letter-spacing: 1px;
     padding-bottom: 10px;
 }
-.single-review-review span {
+.single-review-review p, .single-review-review span{
     text-align: left;
     padding-bottom: 5px;
+}
+.single-review-review img {
+    float: right;
+    margin: 5px 5px 5px 5px;
+}
+.single-review-review video {
+    float: right;
+    margin: 5px 5px 5px 5px;
+    object-fit: fill;
 }
 .like-reaction :active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
 }
-.like-reaction {
+.comment-like-reaction :active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.like-reaction, .comment-like-reaction {
     background-image: url("../images/positive_like.png");
     cursor:pointer;
     border: none;
     width: 22px;
     height: 22px;
+}
+.comment-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.comment-buttons button{
+    margin-bottom: 15px;
 }
 .pagination-container {
     display: flex;
@@ -239,21 +286,44 @@
     border-color: #2f5496;
 }
 .comment {
-    display: flex;
+    display: none;
     flex-direction: row;
     width: 100%;
     text-align: start;
+    justify-content: space-between;
     align-items: stretch;
     border-bottom: 1px groove #4a92f8;
     border-image: linear-gradient(to right, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;
     margin-bottom: 10px;
+}
+.message{
     display: none;
+    flex-direction: row;
+    width: 100%;
+    text-align: start;
+    justify-content: start;
+    align-items: stretch;
+    border-bottom: 1px groove #4a92f8;
+    border-image: linear-gradient(to right, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;
+    margin-bottom: 10px;
+    font-family: "ImprintMTShadow";
+    font-size: 14px;
+}
+.message .sender-name {
+    margin-right: 5px;
+    white-space: nowrap; /* Запрещаем перенос строк */
+}
+.unread-profile-messages{
+    background-color: #f5fcb3;
 }
 .review-textarea {
     display: none;
-    /*display: flex;*/
     flex-direction: row;
+    min-height: 100px;
 }
-.review-textarea[style*='display: block']{
+.review-textarea[style*='display: block'], .comment[style*='display: block'] {
     display: flex !important;
+}
+#review-for-guest {
+    min-height: 50px;
 }
