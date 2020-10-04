@@ -47,5 +47,5 @@ return [
     'your_name' => 'Your Name',
     'your_email' => 'Your Email',
     'your_phone' => 'Your Phone',
-    'touch_text_placeholder' => 'Your Phone',
+    'touch_text_placeholder' => 'Your Message',
 ];
