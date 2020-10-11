@@ -1,7 +1,7 @@
 @extends('profile.index')
 
 @section('profile_content')
-    <form class="form-horizontal" method="POST" action="{{ route('change-password') }}">
+    <form class="form-horizontal" method="POST" novalidate="" id="changePassForm" action="{{ route('change-password') }}">
         @csrf
 
         <div class="form-group d-flex flex-row align-items-center registerFields">
@@ -22,6 +22,13 @@
                 <label for="new-password">New Password</label>
             </div>
             <div class="col-md-6">
+                <div id="password-rules" style="display: none;">
+                    <input id="Length" type="checkbox" class="custom-checkbox"><label for="Length">Must be at least 8 charcters</label>
+                    <input id="UpperCase" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 upper case character</label>
+                    <input id="LowerCase" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 lower case character</label>
+                    <input id="Numbers" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 numeric character</label>
+                    <input id="Symbols" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 special character</label>
+                </div>
                 <input id="new-password"
                        type="password"
                        class="form-control input"
@@ -43,7 +50,7 @@
         </div>
         <div class="form-group d-flex flex-row justify-content-center align-items-center">
             <div class="col-md-3">
-                <button type="submit" class="loginButton submitRegisterButton">
+                <button type="submit" class="loginButton submitChangePassButton">
                     Save
                 </button>
             </div>

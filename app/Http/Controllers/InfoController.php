@@ -21,8 +21,11 @@ class InfoController extends Controller
         return view('get_in_touch');
     }
 
+    public function termOfConditions(){
+        return view('term_of_conditions');
+    }
+
     public function sendTouchInfo(GetInTouchRequest $request){
-        Log::info($request->all());
         User::whereIsAdmin(true)->first()->notify(new GetInTouch());
 
         return redirect()->route('home');

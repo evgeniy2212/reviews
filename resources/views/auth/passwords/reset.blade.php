@@ -111,12 +111,6 @@
                                    required autocomplete="new-password">
                         </div>
                     </div>
-                    {{--<div class="d-flex flex-row justify-content-center">--}}
-                        {{--<div class="col-md-6">--}}
-                            {{--{!! NoCaptcha::renderJs('en') !!}--}}
-                            {{--{!! NoCaptcha::display(['data-size' => 'normal']) !!}--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
                     <div class="form-group d-flex flex-row justify-content-center align-items-center">
                         <div class="col-md-6">
                             <button type="submit" name="remember" value="1" class="rememberButton submitLoginButton">

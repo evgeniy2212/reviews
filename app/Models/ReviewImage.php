@@ -26,4 +26,9 @@ class ReviewImage extends Model
     {
         return asset('storage/images/resize_images/reviews/' . $this->name);
     }
+
+//    public function getFullScreenImageUrl()
+//    {
+//        return asset('storage/images/full_screen_images/reviews/' . $this->name);
+//    }
 }

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="d-flex flex-row justify-content-around w-100">
-            <div>
+            <div class="like-container-right">
                 <label for="like-{{ $review->id }}">{{ $review->likes }}</label>
                 <input data-review-id="{{ $review->id }}"
                        data-reaction-name="likes"
@@ -25,7 +25,7 @@
                        src="{{ asset('images/positive_like.png') }}"
                        @auth @else disabled @endauth/>
             </div>
-            <div>
+            <div class="like-container-left">
                 <input data-review-id="{{ $review->id }}"
                        data-reaction-name="dislikes"
                        id="dislike-{{ $review->id }}"
@@ -52,7 +52,7 @@
             @endif
             <p>
                 @if($review->video)
-                    <video width="250" height="200" controls>
+                    <video width="200" height="150" controls>
                         <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                         {{--<source src="movie.ogg" type="video/ogg">--}}
                         Your browser does not support the video tag.
@@ -61,8 +61,12 @@
                 @if($review->image)
                     <img src="{{ $review->image->getResizeImageUrl() }}"
                          alt=""
-                         width="200"
-                         height="200">
+                         data-full-size-src="{{ $review->image->getImageUrl() }}"
+                         class="reviewImage"
+                         style="cursor: pointer;"
+                         id="myImg"
+                         width="150"
+                         height="150">
                 @endif
                 {{ $review->review }}
             </p>

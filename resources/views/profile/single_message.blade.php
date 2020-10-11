@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="d-flex flex-row justify-content-around w-100">
-            <div>
+            <div class="like-container-right">
                 <label for="like-{{ $review->id }}">{{ $review->likes }}</label>
                 <input data-review-id="{{ $review->id }}"
                        data-reaction-name="likes"
@@ -25,7 +25,7 @@
                        src="{{ asset('images/positive_like.png') }}"
                        @auth @else disabled @endauth/>
             </div>
-            <div>
+            <div class="like-container-left">
                 <input data-review-id="{{ $review->id }}"
                        data-reaction-name="dislikes"
                        id="dislike-{{ $review->id }}"

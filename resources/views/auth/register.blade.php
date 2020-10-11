@@ -4,7 +4,6 @@
     <div class="container-fluid">
         <div class="container">
             <div class="content-place profile-content-place d-flex flex-column justify-content-center">
-                {{--<div class="container">--}}
                 @if($errors->any())
                     <div class="errorMessage">{!! $errors->first() !!}</div>
                 @endif
@@ -32,7 +31,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 hide-when-show-rules">
                                     <div class="d-flex flex-row align-items-center registerFields">
                                         <div class="col-md-2">
                                             <label for="country">
@@ -43,18 +42,13 @@
                                             <select class="select"
                                                     id="selectCountry"
                                                     name="country"
+                                                    data-country="{{ old('country') }}"
                                                     required>
                                                 <option disabled selected>@lang('service/index.head_select')</option>
                                                 @foreach($countries as $id => $country)
                                                     <option value="{{ $id }}">{!! $country !!}</option>
                                                 @endforeach
                                             </select>
-                                            {{--<input id="country"--}}
-                                                   {{--type="text"--}}
-                                                   {{--class="form-control input"--}}
-                                                   {{--name="country"--}}
-                                                   {{--required--}}
-                                                   {{--autocomplete="country">--}}
                                         </div>
                                         <div class="col-md-2 text-center">
                                             <label for="region" id="registerLabel">
@@ -65,6 +59,7 @@
                                             <select class="select"
                                                     id="selectRegion"
                                                     name="region"
+                                                    data-region="{{ old('region') }}"
                                                     disabled
                                                     required>
                                                 <option disabled selected>@lang('service/index.head_select')</option>
@@ -73,13 +68,6 @@
                                                 <option value="3">@lang('service/index.goods')</option>
                                                 <option value="3">@lang('service/index.vacations')</option>
                                             </select>
-                                            {{--<input id="region"--}}
-                                                   {{--type="text"--}}
-                                                   {{--class="form-control input"--}}
-                                                   {{--name="region"--}}
-                                                   {{--value="{{ old('region') }}"--}}
-                                                   {{--required--}}
-                                                   {{--autocomplete="region">--}}
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +92,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 hide-when-show-rules">
                                     <div class="d-flex flex-row align-items-center registerFields">
                                         <div class="col-md-2">
                                             <label for="zip_code">
@@ -166,6 +154,13 @@
                                             </label>
                                         </div>
                                         <div class="col-md-10">
+                                            <div id="password-rules" style="display: none;">
+                                                <input id="Length" type="checkbox" class="custom-checkbox"><label for="Length">Must be at least 8 charcters</label>
+                                                <input id="UpperCase" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 upper case character</label>
+                                                <input id="LowerCase" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 lower case character</label>
+                                                <input id="Numbers" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 numeric character</label>
+                                                <input id="Symbols" type="checkbox" class="custom-checkbox"><label for="Length">Must have atleast 1 special character</label>
+                                            </div>
                                             <input id="password"
                                                    type="text"
                                                    class="form-control input"
@@ -217,6 +212,16 @@
                                                    autocomplete="new-password">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row align-items-start">
+                                <div class="col-md-6">
+                                    <input type="checkbox"
+                                           class="custom-checkbox"
+                                           id="confirmTermOfConditions"
+                                           name="confirm_term_of_conditions"
+                                           required>
+                                    <label for="confirmTermOfConditions">I agree with</label> <a href="{{ route('term-of-conditions') }}">Term of conditions</a>
                                 </div>
                             </div>
                         </div>

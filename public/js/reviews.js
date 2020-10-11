@@ -376,8 +376,8 @@
     }
 
     $('#video').change(function () {
-      if (this.files[0].size > 50000000) {
-        alert("he file must be less than 50 MB!");
+      if (this.files[0].size > 100000000) {
+        alert("he file must be less than 100 MB!");
         this.value = "";
       }
 
@@ -386,6 +386,21 @@
     $('input[type="file"]').change(function (e) {
       var fileName = e.target.files[0].name;
       $(this).parent().find('span').text(fileName);
+    }); // Get the modal
+
+    var modal = document.getElementById("imageModal");
+    $(".closeImageModal").click(function (event) {
+      modal.style.display = "none";
+    });
+    $(".reviewImage").click(function (event) {
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      // var img = document.getElementById("myImg");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption"); // img.onclick = function(){
+
+      modal.style.display = "block";
+      modalImg.src = $(this).attr('data-full-size-src');
+      captionText.innerHTML = this.alt; // }
     });
   });
 })(jQuery);

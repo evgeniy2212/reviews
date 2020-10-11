@@ -52,9 +52,26 @@
                     @if($review->characteristics->isNotEmpty())
                         <span>{{ $review->characteristics->pluck('name')->implode(', ') }}</span>
                     @endif
-                    <span>
-                        {{ $review->review }}
-                    </span>
+                        <p>
+                            @if($review->video)
+                                <video width="200" height="150" controls>
+                                    <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
+                                    {{--<source src="movie.ogg" type="video/ogg">--}}
+                                    Your browser does not support the video tag.
+                                </video>
+                            @endif
+                            @if($review->image)
+                                <img src="{{ $review->image->getResizeImageUrl() }}"
+                                     alt=""
+                                     data-full-size-src="{{ $review->image->getImageUrl() }}"
+                                     class="reviewImage"
+                                     style="cursor: pointer;"
+                                     id="myImg"
+                                     width="150"
+                                     height="150">
+                            @endif
+                            {{ $review->review }}
+                        </p>
                 </div>
             </div>
             <div class="profile-single-review-button">

@@ -30,6 +30,11 @@
     @yield('modal_forms')
 </section>
 @include('includes.footer')
+<div id="imageModal" class="image-modal">
+    <span class="closeImageModal">&times;</span>
+    <img class="image-modal-content" id="img01">
+    <div id="caption"></div>
+</div>
 </body>
 @include('includes.scripts')
 @include('includes.alerts')

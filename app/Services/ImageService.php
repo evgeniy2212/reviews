@@ -17,9 +17,9 @@ class ImageService {
         Storage::disk('public')->putFileAs('images/upload_images/reviews/', $file, $fileName);
         Storage::disk('public')->makeDirectory('images/resize_images/reviews/');
         Image::make($file->getRealPath())
-            ->resize(200, 200, function($img){
+            ->resize(150, 150, function($img){
                 $img->aspectRatio();
-            })->resizeCanvas(200, 200)
+            })->resizeCanvas(150, 150)
             ->save(storage_path('app/public/images/resize_images/reviews/' . $fileName));
 
         return [

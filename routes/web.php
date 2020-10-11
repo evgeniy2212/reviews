@@ -60,6 +60,7 @@ Route::group(
 
         Route::get('search', 'ReviewController@search')->name('search');
         Route::get('term-of-service', 'InfoController@termOfService')->name('term-of-service');
+        Route::get('term-of-conditions', 'InfoController@termOfConditions')->name('term-of-conditions');
         Route::get('privacy-policy', 'InfoController@privacyPolicy')->name('privacy-policy');
         Route::get('get-in-touch', 'InfoController@getInTouch')->name('get-in-touch');
         Route::post('send-touch-info', 'InfoController@sendTouchInfo')->name('send-touch-info');
