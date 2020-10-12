@@ -652,3 +652,15 @@ button:disabled {
 .invalid-checkbox+label::before {
     border: 2px solid red!important;
 }
+#shareForm {
+    border: 3px solid #2f5496;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    font-size: 15px;
+}
+#shareForm div{
+    margin: 8px;
+}

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GetInTouchRequest;
+use App\Http\Requests\ShareRequest;
+use App\Mail\ShareMail;
 use App\Notifications\GetInTouch;
 use App\User;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class InfoController extends Controller
 {
@@ -27,6 +29,12 @@ class InfoController extends Controller
 
     public function sendTouchInfo(GetInTouchRequest $request){
         User::whereIsAdmin(true)->first()->notify(new GetInTouch());
+
+        return redirect()->route('home');
+    }
+
+    public function share(ShareRequest $request){
+        Mail::to($request->email)->send(new ShareMail());
 
         return redirect()->route('home');
     }

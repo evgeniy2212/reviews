@@ -35,6 +35,7 @@
     <img class="image-modal-content" id="img01">
     <div id="caption"></div>
 </div>
+@include('includes.share')
 </body>
 @include('includes.scripts')
 @include('includes.alerts')

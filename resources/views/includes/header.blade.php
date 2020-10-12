@@ -54,7 +54,9 @@
                                 <a href="#">Save</a>
                             </li>
                             <li class="left-border">
-                                <a href="#">Share</a>
+                                <a href=""
+                                   data-toggle="modal"
+                                   data-target="#shareModal">Share</a>
                             </li>
                         </ul>
                     </nav>

@@ -64,5 +64,7 @@ Route::group(
         Route::get('privacy-policy', 'InfoController@privacyPolicy')->name('privacy-policy');
         Route::get('get-in-touch', 'InfoController@getInTouch')->name('get-in-touch');
         Route::post('send-touch-info', 'InfoController@sendTouchInfo')->name('send-touch-info');
-
+        Route::post('share', 'InfoController@share')->name('share');
 });
+
+//Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerAutologinController@index');

@@ -221,7 +221,7 @@
                                            id="confirmTermOfConditions"
                                            name="confirm_term_of_conditions"
                                            required>
-                                    <label for="confirmTermOfConditions">I agree with</label> <a href="{{ route('term-of-conditions') }}">Term of conditions</a>
+                                    <label for="confirmTermOfConditions">I agree with</label> <a href="{{ route('term-of-conditions') }}" target="_blank">Term of conditions</a>
                                 </div>
                             </div>
                         </div>
