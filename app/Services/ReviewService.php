@@ -35,7 +35,7 @@ class ReviewService {
         $result = Review::whereHas('category', function ($query) use($category) {
                 $query->where('slug', $category);
             })
-//            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
+            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
             })
@@ -57,7 +57,7 @@ class ReviewService {
         $sort_by = self::getSortMethod($sort);
 
         $result = Review::whereUserId(auth()->user()->id)
-//            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
+            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
             })
