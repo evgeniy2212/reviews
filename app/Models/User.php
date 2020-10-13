@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Comment;
 use App\Models\Message;
 use App\Models\Region;
+use App\Models\Review;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -68,15 +69,31 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Get the comments for the reviews.
+     * Get comments for the reviews.
      */
     public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 
+    /**
+     * Get user reviews.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'user_id', 'id');
+    }
+
     public function getFullNameAttribute(){
         return $this->name . ' ' . $this->last_name;
+    }
+
+    public function getReviewsCountAttribute(){
+        return $this->reviews->count();
+    }
+
+    public function getCommentsCountAttribute(){
+        return $this->comments->count();
     }
 
     public function getUserSign($userSign){

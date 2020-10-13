@@ -95,6 +95,7 @@
 
 (function ($) {
   var isCheckedTermOfCondition = true;
+  var isCheckedYearsOld = true;
   setTimeout(function () {
     $('.close').click();
   }, 3000);
@@ -111,6 +112,8 @@
       var form = $("#registerForm");
       isCheckedTermOfCondition = $('#confirmTermOfConditions').is(':checked');
       isCheckedTermOfCondition ? $('#confirmTermOfConditions').removeClass('invalid-checkbox') : $('#confirmTermOfConditions').addClass('invalid-checkbox');
+      isCheckedYearsOld = $('#confirmYearsOld').is(':checked');
+      isCheckedYearsOld ? $('#confirmYearsOld').removeClass('invalid-checkbox') : $('#confirmYearsOld').addClass('invalid-checkbox');
       validation(form, event);
     });
     $(".submitReviewButton").click(function (event) {
@@ -167,7 +170,7 @@
       $('#password-rules').hide(); // $('.hide-when-show-rules').show();
     });
 
-    if ($('#selectCountry').length && $('#selectCountry').attr('data-country').length) {
+    if ($('#selectCountry') !== null && $('#selectCountry').length && $('#selectCountry').attr('data-country').length) {
       $.ajax({
         url: "/ajax/regions/" + $('#selectCountry').attr('data-country'),
         dataType: "json",
@@ -198,7 +201,7 @@
       $('#password, #new-password').removeClass('invalid-input');
     }
 
-    if (form[0].checkValidity() === false || isCheckPassInvalid || !isCheckedTermOfCondition) {
+    if (form[0].checkValidity() === false || isCheckPassInvalid || !isCheckedTermOfCondition || !isCheckedYearsOld) {
       event.preventDefault();
       event.stopPropagation();
     }

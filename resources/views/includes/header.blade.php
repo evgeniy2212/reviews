@@ -15,17 +15,28 @@
                         Yours reviews makes our live better.
                     </p>
                 </div>
-                <div class="user-info d-flex flex-row justify-content-end align-items-end">
-                    @auth
-                        {{--<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>--}}
-                        <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
-                        <div class="message-count">
-                            <div class="bg"></div>
-                            <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
+                @auth
+                    <div class="d-flex flex-row">
+                        <div style="height: auto;">
+                            <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
                         </div>
-                        <img src="{{ asset('images/congrats.png') }}" height="20px" width="30px"/>
-                    @endauth
-                </div>
+                        <div class="d-flex flex-column">
+                            <div class="user-info d-flex flex-row justify-content-between align-items-center">
+                                <div class="message-count">
+                                    <div class="bg"></div>
+                                    <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
+                                </div>
+                                <img src="{{ asset('images/congrats.png') }}" height="20px" width="30px"/>
+                            </div>
+                            <div class="user-activities">
+                                <span>Reviews: {{ auth()->user()->reviewsCount }}</span>
+                                <span>Replies: {{ auth()->user()->commentsCount }}</span>
+                                <span>Finger marks: 0</span>
+                                {{--<span>Mail: 100</span>--}}
+                            </div>
+                        </div>
+                    </div>
+                @endauth
             </div>
             <div class="d-flex flex-row justify-content-between align-items-end">
                 <div class="d-flex flex-row justify-content-between">
@@ -51,7 +62,7 @@
                                 </li>
                             @endguest
                             <li class="left-border">
-                                <a href="#">Save</a>
+                                <a href="{{ asset('files/reviews4info.zip') }}" download="reviews4info">Save</a>
                             </li>
                             <li class="left-border">
                                 <a href=""
