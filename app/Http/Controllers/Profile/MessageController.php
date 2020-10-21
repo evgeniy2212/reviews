@@ -26,7 +26,7 @@ class MessageController extends Controller
 
     public function index() {
         $reviews = $this->reviewRepository->getAllUserReviewWithMessages();
-//dd($reviews);
+
         return view('profile.messages', compact('reviews'));
     }
 }

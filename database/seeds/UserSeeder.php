@@ -68,6 +68,20 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('123321123'),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'Admin',
+                'last_name' => 'Adminov',
+                'email' => 'devonics.en@gmail.com',
+                'nickname' => 'devonicks',
+                'city' => 'Denver',
+                'region_id' => Region::where('region', 'Alabama')->first()->id,
+                'zip_code' => 12345,
+                'is_admin' => 1,
+                'email_verified_at' => date('Y-m-d H:i:s'),
+                'password' => bcrypt('123321123'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ]
         ];
 

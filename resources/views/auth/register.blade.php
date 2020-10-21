@@ -223,14 +223,14 @@
                                            required>
                                     <label for="confirmTermOfConditions">I agree with</label> <a href="{{ route('term-of-conditions') }}" target="_blank">Term of conditions</a>
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox"
-                                           class="custom-checkbox"
-                                           id="confirmYearsOld"
-                                           name="confirm_term_of_conditions"
-                                           required>
-                                    <label for="confirmYearsOld">I`m 21 years old</label>
-                                </div>
+                                {{--<div class="col-md-6">--}}
+                                    {{--<input type="checkbox"--}}
+                                           {{--class="custom-checkbox"--}}
+                                           {{--id="confirmYearsOld"--}}
+                                           {{--name="confirm_term_of_conditions"--}}
+                                           {{--required>--}}
+                                    {{--<label for="confirmYearsOld">I`m 21 years old</label>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>

@@ -26,13 +26,12 @@
                                     <div class="bg"></div>
                                     <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
                                 </div>
-                                <img src="{{ asset('images/congrats.png') }}" height="20px" width="30px"/>
+                                <img src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="20px" width="30px"/>
                             </div>
                             <div class="user-activities">
                                 <span>Reviews: {{ auth()->user()->reviewsCount }}</span>
                                 <span>Replies: {{ auth()->user()->commentsCount }}</span>
-                                <span>Finger marks: 0</span>
-                                {{--<span>Mail: 100</span>--}}
+                                <span>Finger marks: {{ auth()->user()->reaction_count ?? 0 }}</span>
                             </div>
                         </div>
                     </div>

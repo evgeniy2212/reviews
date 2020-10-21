@@ -24,11 +24,8 @@ class SaveCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
             'review_id' => 'required',
             'body' => 'required',
-            'likes' => 'required',
-            'dislikes' => 'required',
         ];
     }
 }

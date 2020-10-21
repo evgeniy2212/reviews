@@ -28,6 +28,7 @@
         });
 
         $(".like-reaction").click(function(event) {
+            let userReactionIncreased = 1;
             let reactionType = $(this).data('reactionName');
             let reviewId = $(this).data('reviewId');
             let wasReaction = sessionStorage.getItem('wasReaction' + reviewId);
@@ -45,6 +46,7 @@
             } else if(wasReaction == 'true'){
                 if(wasReactionType === reactionType){
                     reviewLikes--;
+                    userReactionIncreased = 0;
                     label.text(reviewLikes);
                     sessionStorage.setItem('wasReviewReactionType' + reviewId, reactionType);
                     sessionStorage.setItem('wasReaction' + reviewId, false);
@@ -57,15 +59,16 @@
                 $.ajax({
                     type:'POST',
                     url:'/ajax/review-reaction',
-                    data: {_token: CSRF_TOKEN, reaction: reactionType, value: reviewLikes, id: reviewId},
+                    data: {_token: CSRF_TOKEN, reaction: reactionType, value: reviewLikes, id: reviewId, user_reaction_increase: userReactionIncreased},
                     success:function(data){
-                        console.log(data);
+                        // console.log(data);
                     }
                 });
             }
         });
 
         $(".comment-like-reaction").click(function(event) {
+            let userReactionIncreased = 1;
             let reactionType = $(this).data('reactionName');
             let commentId = $(this).data('commentId');
             let wasReaction = sessionStorage.getItem('wasCommentReaction' + commentId);
@@ -83,6 +86,7 @@
             } else if(wasReaction == 'true'){
                 if(wasReactionType === reactionType){
                     commentLikes--;
+                    userReactionIncreased = 0;
                     label.text(commentLikes);
                     sessionStorage.setItem('wasCommentReactionType' + commentId, reactionType);
                     sessionStorage.setItem('wasCommentReaction' + commentId, false);
@@ -95,7 +99,7 @@
                 $.ajax({
                     type:'POST',
                     url:'/ajax/review-comment-reaction',
-                    data: {_token: CSRF_TOKEN, reaction: reactionType, value: Number.parseInt(label.text()), id: commentId},
+                    data: {_token: CSRF_TOKEN, reaction: reactionType, value: Number.parseInt(label.text()), id: commentId, user_reaction_increase: userReactionIncreased},
                     success:function(data){
 
                     }
@@ -113,7 +117,7 @@
                 }
             });
             review.find('.review-textarea').toggle(750);
-            $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Show Comments');
+            $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Show Comments (' + $(this).data('comments') + ')');
         });
 
         $('[id^="profileCommentButton"]').click(function(event) {
@@ -143,7 +147,6 @@
             $(this).closest('.single-review').removeClass('unread-profile-messages')
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             let reviewId = $(this).attr('data-review-id');
-            console.log(reviewId);
             $.ajax({
                 type:'POST',
                 url:'/ajax/review-message-read',

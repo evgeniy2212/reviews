@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\GetInTouchRequest;
 use App\Http\Requests\ShareRequest;
 use App\Mail\ShareMail;
+use App\Models\BadWord;
 use App\Notifications\GetInTouch;
 use App\User;
 use Illuminate\Support\Facades\Mail;
@@ -37,5 +38,9 @@ class InfoController extends Controller
         Mail::to($request->email)->send(new ShareMail());
 
         return redirect()->route('home');
+    }
+
+    public function getBadWords(){
+        return BadWord::all()->pluck('word');
     }
 }

@@ -122,6 +122,7 @@
       }
     });
     $(".like-reaction").click(function (event) {
+      var userReactionIncreased = 1;
       var reactionType = $(this).data('reactionName');
       var reviewId = $(this).data('reviewId');
       var wasReaction = sessionStorage.getItem('wasReaction' + reviewId);
@@ -138,7 +139,9 @@
         sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
       } else if (wasReaction == 'true') {
         if (wasReactionType === reactionType) {
+          userReactionIncreased = 0;
           reviewLikes--;
+          userReactionIncreased = 0;
           label.text(reviewLikes);
           sessionStorage.setItem('wasReviewReactionType' + reviewId, reactionType);
           sessionStorage.setItem('wasReaction' + reviewId, false);
@@ -155,15 +158,16 @@
             _token: CSRF_TOKEN,
             reaction: reactionType,
             value: reviewLikes,
-            id: reviewId
+            id: reviewId,
+            user_reaction_increase: userReactionIncreased
           },
-          success: function success(data) {
-            console.log(data);
+          success: function success(data) {// console.log(data);
           }
         });
       }
     });
     $(".comment-like-reaction").click(function (event) {
+      var userReactionIncreased = 1;
       var reactionType = $(this).data('reactionName');
       var commentId = $(this).data('commentId');
       var wasReaction = sessionStorage.getItem('wasCommentReaction' + commentId);
@@ -181,6 +185,7 @@
       } else if (wasReaction == 'true') {
         if (wasReactionType === reactionType) {
           commentLikes--;
+          userReactionIncreased = 0;
           label.text(commentLikes);
           sessionStorage.setItem('wasCommentReactionType' + commentId, reactionType);
           sessionStorage.setItem('wasCommentReaction' + commentId, false);
@@ -197,7 +202,8 @@
             _token: CSRF_TOKEN,
             reaction: reactionType,
             value: Number.parseInt(label.text()),
-            id: commentId
+            id: commentId,
+            user_reaction_increase: userReactionIncreased
           },
           success: function success(data) {}
         });
@@ -213,7 +219,7 @@
         }
       });
       review.find('.review-textarea').toggle(750);
-      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Show Comments');
+      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Show Comments (' + $(this).data('comments') + ')');
     });
     $('[id^="profileCommentButton"]').click(function (event) {
       var review = $(this).parent().parent().parent();
@@ -241,7 +247,6 @@
       $(this).closest('.single-review').removeClass('unread-profile-messages');
       var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       var reviewId = $(this).attr('data-review-id');
-      console.log(reviewId);
       $.ajax({
         type: 'POST',
         url: '/ajax/review-message-read',

@@ -15,21 +15,21 @@
                         <div class="get-in-touch-info-place">
                             <div class="col-md-5 offset-md-1">
                                 <div class="get-in-touch-info-item">
-                                    <span>77 Sundial Ave.</span>
-                                    <span>Suite 77</span>
-                                    <span>Manchester, NH 30101</span>
+                                    <span>{{ \App\Services\ServiceInfoService::getInfoValueByName('address') }}</span>
+                                    <span>Suite {{ \App\Services\ServiceInfoService::getInfoValueByName('suite') }}</span>
+                                    <span>{{ \App\Services\ServiceInfoService::getInfoValueByName('city') }}, {{ \App\Services\ServiceInfoService::getInfoValueByName('postal_code') }}</span>
                                 </div>
                             </div>
                             <div class="col-md-5 offset-md-1">
                                 <div class="get-in-touch-info-item">
                                     <div style="white-space:nowrap">
-                                        <span style="font-weight: bold">Tel.</span> <span>603 888-8888</span>
+                                        <span style="font-weight: bold">Tel.</span> <span>{{ \App\Services\ServiceInfoService::getInfoValueByName('phone') }}</span>
                                     </div>
                                     <div style="white-space:nowrap">
-                                        <span style="font-weight: bold">Fax.</span> <span>603 888-8888</span>
+                                        <span style="font-weight: bold">Fax.</span> <span>{{ \App\Services\ServiceInfoService::getInfoValueByName('fax') }}</span>
                                     </div>
                                     <div style="white-space:nowrap">
-                                        <span style="font-weight: bold">Email:</span> <span>info@Reviews4info.com</span>
+                                        <span style="font-weight: bold">Email:</span> <span>{{ \App\Services\ServiceInfoService::getInfoValueByName('email') }}</span>
                                     </div>
                                 </div>
                             </div>

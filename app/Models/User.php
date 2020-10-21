@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Comment;
+use App\Models\Congratulation;
 use App\Models\Message;
 use App\Models\Region;
 use App\Models\Review;
@@ -20,6 +21,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const DEFAULT_NAME = 'User';
 
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'deleted_at',
+        'email_verified_at',
+        'two_factor_expires_at',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -35,7 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'region_id',
         'zip_code',
-        'is_admin'
+        'is_admin',
+        'reaction_count',
+        'congratulation_id',
+        'two_factor_code',
+        'two_factor_expires_at',
     ];
 
     /**
@@ -74,6 +87,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function congratulation(){
+        return $this->belongsTo(Congratulation::class, 'congratulation_id', 'id');
     }
 
     /**
@@ -117,5 +134,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->given_by_messages()
             ->whereIsRead(false)
             ->count();
+    }
+
+    public function generateTwoFactorCode()
+    {
+        $this->timestamps = false;
+        $this->two_factor_code = rand(100000, 999999);
+        $this->two_factor_expires_at = now()->addMinutes(10);
+        $this->save();
+    }
+
+    public function resetTwoFactorCode()
+    {
+        $this->timestamps = false;
+        $this->two_factor_code = null;
+        $this->two_factor_expires_at = null;
+        $this->save();
     }
 }

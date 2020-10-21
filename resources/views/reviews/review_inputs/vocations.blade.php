@@ -57,6 +57,7 @@
         <div class="col-md-3">
             <select class="select"
                     name="country_id"
+                    data-country="{{ old('country') }}"
                     required>
                 <option disabled selected value="">@lang(trans('service/index.select_item', ['item' => 'country']))</option>
                 @foreach($countries as $id => $country)

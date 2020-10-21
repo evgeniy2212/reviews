@@ -2,6 +2,7 @@
 
 @section('style_section')
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @endsection
 
 @section('content')
@@ -25,6 +26,23 @@
                                 <span>@lang('service/index.mail', ['count' => auth()->user()->getNewMessagesCount()])</span>
                             </a>
                         </li>
+                        @if(auth()->user()->is_admin)
+                            <li class="{{ Request::url() == route('admin.contacts.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.contacts.index') }}">
+                                    <span>@lang('service/admin.contacts')</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::url() == route('admin.info_page', 'term_of_service') ? 'active' : '' }}">
+                                <a href="{{ route('admin.info_page', 'term_of_service') }}">
+                                    <span>@lang('service/admin.term_of_service')</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::url() == route('admin.info_page', 'privacy_policy') ? 'active' : '' }}">
+                                <a href="{{ route('admin.info_page', 'privacy_policy') }}">
+                                    <span>@lang('service/admin.privacy_policy')</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                     <div style="width: 100px;">
                         <a role="button" href="{{ route('home') }}" id="cancelButton">
@@ -41,6 +59,9 @@
                         @endif
                         @yield('profile_content')
                     </div>
+                    @if(auth()->user()->is_admin)
+                        @yield('admin_content')
+                    @endif
                     @yield('profile_review_content')
                     @yield('profile_message_content')
                 </div>

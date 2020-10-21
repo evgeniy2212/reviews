@@ -41,6 +41,16 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'adminer' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+
+            // you may create customized middleware to fit your needs
+            // example uses Laravel default authentication (default protection)
+            \Illuminate\Auth\Middleware\Authenticate::class,
+        ],
     ];
 
     /**
@@ -66,6 +76,8 @@ class Kernel extends HttpKernel
         'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
         'localeCookieRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
+        'adminer' => \App\Http\Middleware\Authenticate::class,
+        'twofactor' => \App\Http\Middleware\TwoFactor::class,
     ];
 
     /**

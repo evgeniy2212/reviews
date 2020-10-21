@@ -22,5 +22,8 @@ class CommentController extends Controller
     public function commentReaction(Request $request){
         $comment = Comment::find($request->id);
         $comment->update([$request->reaction => $request->value]);
+        $request->user_reaction_increase
+            ? auth()->user()->increment('reaction_count', 1)
+            : auth()->user()->decrement('reaction_count', 1);
     }
 }

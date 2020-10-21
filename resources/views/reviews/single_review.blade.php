@@ -125,14 +125,14 @@
                     </div>
                 @auth()
                     <div class="review-textarea" data-review-id="{{ $review->id }}">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <textarea name="review"
                                       type="text"
                                       id="review-text"
                                       placeholder="@lang('service/index.review_text_placeholder')"
                                       style="overflow:hidden"></textarea>
                         </div>
-                        <div class="col-md-3 comment-buttons">
+                        <div class="col-md-4 comment-buttons">
                             <button class="otherButton" id="addCommentButton-{{ $review->id }}">
                                 Add Comment
                             </button>
@@ -150,9 +150,9 @@
                             </div>
                         </div>
                 @endauth
-                <div class="col-md-3 offset-9">
-                    <button class="otherButton" id="commentButton-{{ $review->id }}">
-                        Show Comments
+                <div class="col-md-4 offset-8">
+                    <button class="otherButton" style="white-space: nowrap" id="commentButton-{{ $review->id }}" data-comments="{{ $review->comments->count() }}">
+                        Show Comments ({!! $review->comments->count() !!})
                     </button>
                 </div>
             </div>

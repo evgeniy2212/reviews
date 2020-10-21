@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+@section('script_section')
+    <script src="http://lonekorean.github.io/highlight-within-textarea/jquery.highlight-within-textarea.js"></script>
+@endsection
+@section('style_section')
+    <link rel="stylesheet" href="http://lonekorean.github.io/highlight-within-textarea/jquery.highlight-within-textarea.css">
+@endsection
 @section('content')
     <form method="POST" action="{{ route('save-review') }}" enctype="multipart/form-data" novalidate="" id="createReviewForm">
         @csrf

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Notifications\TwoFactorCode;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -43,7 +44,14 @@ class LoginController extends Controller
     public function authenticated(Request $request, User $user) {
         $request->session()->flash('success', __('service/index.welcome', ['name' => $user->name]));
 
-        return redirect()->intended($this->redirectPath());
+        if($user->is_admin){
+            $user->generateTwoFactorCode();
+            $user->notify(new TwoFactorCode());
+
+            return redirect()->route('admin.contacts.index');
+        } else {
+            return redirect()->intended($this->redirectPath());
+        }
     }
 
     /**

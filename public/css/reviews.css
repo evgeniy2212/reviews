@@ -84,10 +84,24 @@
 #review-text, #review-create-text {
     resize: none;
     width: 100%;
-    height: 85%;
+    height: 100%;
     font-size: 0.8rem;
     border: 1px solid rgb(118, 118, 118);
     border-radius: 1px;
+}
+#review-create-text {
+    padding: 10px;
+}
+.hwt-container{
+    height: 85%;
+    width: 100%;
+    background-color: white;
+}
+.hwt-highlights{
+    padding: 10px;
+}
+.hwt-content mark{
+    background-color: red;
 }
 .review-upload-files{
     display: flex;

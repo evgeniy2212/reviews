@@ -96,6 +96,7 @@
 (function ($) {
   var isCheckedTermOfCondition = true;
   var isCheckedYearsOld = true;
+  var isExistBadWords = false;
   setTimeout(function () {
     $('.close').click();
   }, 3000);
@@ -118,6 +119,7 @@
     });
     $(".submitReviewButton").click(function (event) {
       var form = $("#createReviewForm");
+      isExistBadWords = $('#createReviewForm').find('mark').length ? true : false;
       validation(form, event);
     });
     $(".submitTouchInfoButton").click(function (event) {
@@ -155,6 +157,12 @@
       });
       $('#selectGroup').removeAttr("disabled");
     });
+    $('#enableInputsButton').click(function () {
+      var editForm = $(this).data('form');
+      $('#' + editForm + ' input, textarea').each(function () {
+        $(this).prop("disabled", false);
+      });
+    });
     $('#editProfileButton').click(function () {
       $('#personalForm input').each(function () {
         $(this).prop("disabled", false);
@@ -165,10 +173,10 @@
     });
     $("#password, #new-password").on('keyup', ValidatePassword);
     $("#password, #new-password").focus(function () {
-      $('#password-rules').show(); // $('.hide-when-show-rules').hide();
+      $('#password-rules').show();
     }).blur(function () {
-      $('#password-rules').hide(); // $('.hide-when-show-rules').show();
-    });
+      $('#password-rules').hide();
+    }); // console.log($('#selectCountry').attr('data-country'));
 
     if ($('#selectCountry') !== null && $('#selectCountry').length && $('#selectCountry').attr('data-country').length) {
       $.ajax({
@@ -188,6 +196,27 @@
         }
       });
     }
+
+    if ($("#review-create-text").length) {
+      var badWords = [];
+      $.ajax({
+        url: "/ajax/bad-words",
+        dataType: "json",
+        success: function success(data) {
+          badWords = data;
+          $('#review-create-text').highlightWithinTextarea({
+            highlight: badWords,
+            className: 'red'
+          });
+        },
+        error: function error() {
+          $('#review-create-text').highlightWithinTextarea({
+            highlight: [],
+            className: 'red'
+          });
+        }
+      });
+    }
   });
 
   var validation = function validation(form, event) {
@@ -201,7 +230,11 @@
       $('#password, #new-password').removeClass('invalid-input');
     }
 
-    if (form[0].checkValidity() === false || isCheckPassInvalid || !isCheckedTermOfCondition || !isCheckedYearsOld) {
+    if (isExistBadWords) {
+      alert('Your review contain Bad Words! You must delete Bad Words!');
+    }
+
+    if (form[0].checkValidity() === false || isCheckPassInvalid || !isCheckedTermOfCondition || !isCheckedYearsOld || isExistBadWords) {
       event.preventDefault();
       event.stopPropagation();
     }

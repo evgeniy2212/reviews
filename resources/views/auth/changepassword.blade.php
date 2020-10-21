@@ -3,7 +3,6 @@
 @section('profile_content')
     <form class="form-horizontal" method="POST" novalidate="" id="changePassForm" action="{{ route('change-password') }}">
         @csrf
-
         <div class="form-group d-flex flex-row align-items-center registerFields">
             <div class="col-md-2 offset-1">
                 <label for="new-password">Current Password</label>

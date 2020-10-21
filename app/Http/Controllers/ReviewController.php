@@ -121,16 +121,9 @@ class ReviewController extends Controller
     public function reviewReaction(Request $request){
         $review = Review::find($request->id);
         $review->update([$request->reaction => $request->value]);
-    }
-
-    public function reviewAddComment(Request $request){
-        $request->merge(['user_id' => auth()->user()->id]);
-        $comment = Comment::create($request->all());
-
-        return [
-            'body' => $comment->body,
-            'review_id' => $comment->review_id
-        ];
+        $request->user_reaction_increase
+            ? auth()->user()->increment('reaction_count', 1)
+            : auth()->user()->decrement('reaction_count', 1);
     }
 
     public function reviewReadMessages(Request $request){

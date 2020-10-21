@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Requests\Profile\PersonalInfoRequest;
 use App\Models\Country;
 use App\Repositories\ProfileRepository;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PersonalInfoController extends Controller
