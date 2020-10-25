@@ -12,6 +12,14 @@
         }
 
         $(".rating").rate(options);
+        $(".rating").click(function(event) {
+            let currentRating = $(this).find('#rating').val();
+            if(currentRating <= 2){
+                $('#submitFormAccept').val(0);
+            } else {
+                $('#submitFormAccept').val(1);
+            }
+        });
 
         $(".submitReviewButton").click(function(event) {
             if ($('#selectRegion option:selected').val() == ''){
@@ -144,7 +152,7 @@
             });
             review.find('.review-textarea').toggle(750);
             $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
-            $(this).closest('.single-review').removeClass('unread-profile-messages')
+            $(this).closest('.single-review').removeClass('unread-profile-messages');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             let reviewId = $(this).attr('data-review-id');
             $.ajax({
@@ -270,7 +278,7 @@
 
         $('#video').change(function() {
             if(this.files[0].size > 100000000){
-                alert("he file must be less than 100 MB!");
+                alert("The file must be less than 100 MB!");
                 this.value = "";
             };
         });

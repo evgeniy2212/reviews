@@ -179,6 +179,7 @@ html, body {
     font-size: 0.8rem;
     font-weight: 500;
     width: 100%;
+    /*white-space: nowrap;*/
 }
 /*.otherButton :active, :hover, :focus {*/
     /*outline: 0;*/
@@ -419,6 +420,9 @@ button:disabled {
 }
 .was-validated .invalid-selector {
     border-color: #dc3545;
+}
+.was-validated .form-control:invalid {
+    border-color: #dc3545!important;
 }
 .modal-dialog {
     position: absolute;
@@ -669,4 +673,46 @@ button:disabled {
 }
 #shareForm div{
     margin: 8px;
+}
+
+.successModalDialog .modal-dialog, .errorModalDialog .modal-dialog{
+    position: absolute;
+    top: 25%;
+    width: 50%;
+    max-width: 760px;
+    right: 25%;
+    bottom: 0;
+    left: 25%;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+    text-align: center;
+}
+.successModalDialog .modal-content{
+    padding: 10px;
+    color: #2d4585;
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
+    border-radius: 1px;
+}
+.successModalDialog span, .errorModalDialog span{
+    padding: 10px 0;
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+.successModalDialog button, .errorModalDialog button, .successModalDialog a{
+    margin: 25px 0 10px 0;
+}
+.successModalDialog a:hover {
+    text-decoration: none;
+}
+.errorModalDialog .modal-content{
+    padding: 10px;
+    color: red;
+    /*border: 3px double red;*/
+    border: 1px solid red;
+    /*outline: 1px solid red;*/
+    /*outline-offset: -4px;*/
+    border-radius: 1px;
 }

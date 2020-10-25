@@ -16,25 +16,27 @@
                     </p>
                 </div>
                 @auth
-                    <div class="d-flex flex-row">
-                        <div style="height: auto;">
-                            <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
-                        </div>
-                        <div class="d-flex flex-column">
-                            <div class="user-info d-flex flex-row justify-content-between align-items-center">
-                                <div class="message-count">
-                                    <div class="bg"></div>
-                                    <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
+                    @if(!auth()->user()->two_factor_code)
+                        <div class="d-flex flex-row">
+                            <div style="height: auto;">
+                                <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div class="user-info d-flex flex-row justify-content-between align-items-center">
+                                    <div class="message-count">
+                                        <div class="bg"></div>
+                                        <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
+                                    </div>
+                                    <img src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="35px" width="30px"/>
                                 </div>
-                                <img src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="20px" width="30px"/>
-                            </div>
-                            <div class="user-activities">
-                                <span>Reviews: {{ auth()->user()->reviewsCount }}</span>
-                                <span>Replies: {{ auth()->user()->commentsCount }}</span>
-                                <span>Finger marks: {{ auth()->user()->reaction_count ?? 0 }}</span>
+                                <div class="user-activities">
+                                    <span>Reviews: {{ auth()->user()->reviewsCount }}</span>
+                                    <span>Replies: {{ auth()->user()->commentsCount }}</span>
+                                    <span>Finger marks: {{ auth()->user()->reaction_count ?? 0 }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endauth
             </div>
             <div class="d-flex flex-row justify-content-between align-items-end">
@@ -102,7 +104,18 @@
         </div>
         <div class="d-flex flex-row justify-content-between">
             <div class="post">
-                <img src="{{ asset('images/post.jpg') }}" height="125px" width="310px"/>
+                <div class="slider">
+                    <div class="slider__wrapper">
+                        <div class="slider__item">
+                            <div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">1</div>
+                        </div>
+                        <div class="slider__item">
+                            <div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">2</div>
+                        </div>
+                    </div>
+                    <a class="slider__control slider__control_left" href="#" role="button"></a>
+                    <a class="slider__control slider__control_right" href="#" role="button"></a>
+                </div>
             </div>
         </div>
     </div>

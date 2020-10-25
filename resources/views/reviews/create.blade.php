@@ -1,10 +1,18 @@
 @extends('layouts.app')
+
 @section('script_section')
     <script src="http://lonekorean.github.io/highlight-within-textarea/jquery.highlight-within-textarea.js"></script>
 @endsection
+
 @section('style_section')
     <link rel="stylesheet" href="http://lonekorean.github.io/highlight-within-textarea/jquery.highlight-within-textarea.css">
 @endsection
+
+@section('modal_forms')
+    @include('includes.modal.twentyoneYearAccept')
+    @include('includes.modal.errorBadWords')
+@endsection
+
 @section('content')
     <form method="POST" action="{{ route('save-review') }}" enctype="multipart/form-data" novalidate="" id="createReviewForm">
         @csrf
@@ -14,6 +22,10 @@
         <input type="hidden"
                name="category_slug"
                value="{{ $slug }}">
+        <input type="hidden"
+               name="submitFormAccept"
+               id="submitFormAccept"
+               value="1">
         <div class="container-fluid">
             <div class="container">
                 <div class="review-content-place">
@@ -84,7 +96,7 @@
                                     <input type="file"
                                            name="video"
                                            id="video"
-                                           size="2MB"
+                                           size="100MB"
                                            accept="video/*"/>
                                     <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_video')</span>
                                 </label>

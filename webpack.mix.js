@@ -35,3 +35,4 @@ mix.js('resources/js/ticker.js', 'public/js');
 mix.js('resources/js/rater.js', 'public/js');
 mix.js('resources/js/reviews.js', 'public/js');
 mix.js('resources/js/profile.js', 'public/js');
+mix.js('resources/js/slider.js', 'public/js');

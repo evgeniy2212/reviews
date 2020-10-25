@@ -22,6 +22,7 @@ return [
     'your_reviews' => 'Your reviews',
     'star_info' => 'Star Info',
     'mail' => 'Mail (:count)',
+    'banners' => 'Create Ad',
     'change_password' => 'Change Password',
     'reset_password' => 'Reset Password',
     'create_review_title' => 'WRITE A :title REVIEW',

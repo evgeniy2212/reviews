@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('script_section')
+    <script src="http://lonekorean.github.io/highlight-within-textarea/jquery.highlight-within-textarea.js"></script>
+@endsection
+
+@section('style_section')
+    <link rel="stylesheet" href="http://lonekorean.github.io/highlight-within-textarea/jquery.highlight-within-textarea.css">
+@endsection
+
+@section('modal_forms')
+    @include('includes.modal.twentyoneYearAccept')
+    @include('includes.modal.errorBadWords')
+@endsection
+
 @section('content')
     <form method="POST" action="{{ route('profile-reviews.update', $review->id) }}" enctype="multipart/form-data" novalidate="" id="editReviewForm">
         @method('PATCH')
@@ -10,6 +23,10 @@
         <input type="hidden"
                name="category_slug"
                value="{{ $review->category->slug }}">
+        <input type="hidden"
+               name="submitFormAccept"
+               id="submitFormAccept"
+               value="1">
         <div class="container-fluid">
             <div class="container">
                 <div class="review-content-place">

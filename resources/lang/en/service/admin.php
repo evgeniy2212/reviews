@@ -10,4 +10,5 @@ return [
     'fax' => 'Fax',
     'term_of_service' => 'Term Of Service',
     'privacy_policy' => 'Privacy Policy',
+    'enter_two_factor_code' => 'Please enter your code'
 ];

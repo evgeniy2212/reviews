@@ -26,7 +26,9 @@
 @include('includes.header')
 <section class="section">
     @yield('content')
-    @include('includes.success')
+    @include('includes.modal.successReviewCreating')
+    @include('includes.modal.errorMessage')
+    @include('includes.modal.addPostRedirect')
     @yield('modal_forms')
 </section>
 @include('includes.footer')

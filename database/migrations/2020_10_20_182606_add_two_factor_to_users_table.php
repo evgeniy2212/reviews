@@ -15,6 +15,7 @@ class AddTwoFactorToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('two_factor_code')->nullable();
+            $table->boolean('is_blocked')->default(false);
             $table->dateTime('two_factor_expires_at')->nullable();
         });
     }
@@ -27,7 +28,7 @@ class AddTwoFactorToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['two_factor_code', 'two_factor_expires_at']);
+            $table->dropColumn(['two_factor_code', 'two_factor_expires_at', 'is_blocked']);
         });
     }
 }

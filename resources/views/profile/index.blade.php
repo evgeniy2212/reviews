@@ -3,7 +3,9 @@
 @section('style_section')
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @endsection
+
 
 @section('content')
     <div class="container-fluid">
@@ -24,6 +26,11 @@
                         <li class="{{ Request::url() == route('profile-messages') ? 'active' : '' }}">
                             <a href="{{ route('profile-messages') }}">
                                 <span>@lang('service/index.mail', ['count' => auth()->user()->getNewMessagesCount()])</span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::url() == route('banners') ? 'active' : '' }}">
+                            <a href="{{ route('banners') }}">
+                                <span>@lang('service/index.banners')</span>
                             </a>
                         </li>
                         @if(auth()->user()->is_admin)
@@ -71,9 +78,10 @@
 @endsection
 
 @section('modal_forms')
-    @include('includes.confirmDeleteReview')
+    @include('includes.modal.confirmDeleteReview')
 @endsection
 
 @section('script_section')
     <script src="{{ asset('js/profile.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @endsection

@@ -108,6 +108,15 @@
 
     };
     $(".rating").rate(options);
+    $(".rating").click(function (event) {
+      var currentRating = $(this).find('#rating').val();
+
+      if (currentRating <= 2) {
+        $('#submitFormAccept').val(0);
+      } else {
+        $('#submitFormAccept').val(1);
+      }
+    });
     $(".submitReviewButton").click(function (event) {
       if ($('#selectRegion option:selected').val() == '') {
         $('#selectRegion').addClass('invalid-selector');
@@ -139,7 +148,6 @@
         sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
       } else if (wasReaction == 'true') {
         if (wasReactionType === reactionType) {
-          userReactionIncreased = 0;
           reviewLikes--;
           userReactionIncreased = 0;
           label.text(reviewLikes);
@@ -382,7 +390,7 @@
 
     $('#video').change(function () {
       if (this.files[0].size > 100000000) {
-        alert("he file must be less than 100 MB!");
+        alert("The file must be less than 100 MB!");
         this.value = "";
       }
 

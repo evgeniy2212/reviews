@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BadWordsSeeder::class);
         $this->call(ServiceInfoSeeder::class);
         $this->call(CongratulationSeeder::class);
+        $this->call(BannerCategoriesSeeder::class);
     }
 }

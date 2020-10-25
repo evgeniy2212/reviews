@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Message;
+use App\Notifications\ReviewCreate;
 use App\Notifications\ReviewMessageCreate;
 use Illuminate\Support\Facades\Log;
 
@@ -16,8 +17,7 @@ class MessageObserver
      */
     public function created(Message $message)
     {
-        Log::info('MessageNotify: ', [$message->to()->first()]);
-        $message->to()->first()->notify(new ReviewMessageCreate());
+        $message->to()->first()->notify(new ReviewCreate());
     }
 
     /**

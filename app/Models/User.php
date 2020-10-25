@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Banner;
 use App\Models\Comment;
 use App\Models\Congratulation;
 use App\Models\Message;
@@ -101,6 +102,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class, 'user_id', 'id');
     }
 
+    public function banners()
+    {
+        return $this->hasMany(Banner::class, 'user_id', 'id');
+    }
+
     public function getFullNameAttribute(){
         return $this->name . ' ' . $this->last_name;
     }
@@ -150,5 +156,16 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->two_factor_code = null;
         $this->two_factor_expires_at = null;
         $this->save();
+    }
+
+    public function isUserReviewAlreadyExist(string $categoryId, string $name, string $secondName = null){
+        return $this->reviews()
+            ->whereReviewCategoryId($categoryId)
+            ->whereName($name)
+            ->when($secondName, function($q) use ($secondName){
+                return $q->whereSecondName($secondName);
+            })
+            ->get()
+            ->count();
     }
 }

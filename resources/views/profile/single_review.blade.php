@@ -54,7 +54,7 @@
                     @endif
                         <p>
                             @if($review->video)
-                                <video width="200" height="150" controls>
+                                <video width="135" height="100" controls>
                                     <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                                     {{--<source src="movie.ogg" type="video/ogg">--}}
                                     Your browser does not support the video tag.
@@ -67,8 +67,8 @@
                                      class="reviewImage"
                                      style="cursor: pointer;"
                                      id="myImg"
-                                     width="150"
-                                     height="150">
+                                     width="100"
+                                     height="100">
                             @endif
                             {{ $review->review }}
                         </p>

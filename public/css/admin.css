@@ -16,3 +16,22 @@
     border: 1px solid rgb(118, 118, 118);
     border-radius: 1px;
 }
+.twoFactorForm {
+    border: 2px solid #2f5496;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 1rem;
+}
+.twoFactorForm label {
+    font-size: 0.7rem;
+}
+.twoFactorForm a {
+    font-size: 1rem;
+    text-align: left;
+}
+.twoFactorForm input {
+    border-color: black;
+}

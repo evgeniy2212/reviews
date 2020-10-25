@@ -65,7 +65,7 @@ class ReviewService {
             ->with(['comments'])
             ->with(['image'])
             ->when(!empty($sort), function($q) use($sort_by){
-                $q->orderBy($sort_by, 'DESC');
+                $q->orderBy($sort_by);
             })
             ->when(empty($sort), function($q){
                 $q->orderBy('created_at', 'DESC');

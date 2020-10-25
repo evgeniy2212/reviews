@@ -97,6 +97,7 @@
   var isCheckedTermOfCondition = true;
   var isCheckedYearsOld = true;
   var isExistBadWords = false;
+  var isSubmitFormAccept = true;
   setTimeout(function () {
     $('.close').click();
   }, 3000);
@@ -120,7 +121,20 @@
     $(".submitReviewButton").click(function (event) {
       var form = $("#createReviewForm");
       isExistBadWords = $('#createReviewForm').find('mark').length ? true : false;
+      isSubmitFormAccept = $('#submitFormAccept').val() > 0 ? true : false;
+
+      if (!isSubmitFormAccept) {
+        $('#acceptFormModal').modal('show');
+      }
+
       validation(form, event);
+    });
+    $('.slider__item').click(function () {
+      $('#addPostRedirect').modal('show');
+    });
+    $('#acceptModal').click(function () {
+      $('#submitFormAccept').val(1);
+      $('#acceptFormModal').modal('hide');
     });
     $(".submitTouchInfoButton").click(function (event) {
       var form = $("#sendTouchInfo");
@@ -231,10 +245,11 @@
     }
 
     if (isExistBadWords) {
-      alert('Your review contain Bad Words! You must delete Bad Words!');
+      // alert('Your review contain Bad Words! You must delete Bad Words!');
+      $('#errorBadWords').modal('show');
     }
 
-    if (form[0].checkValidity() === false || isCheckPassInvalid || !isCheckedTermOfCondition || !isCheckedYearsOld || isExistBadWords) {
+    if (form[0].checkValidity() === false || isCheckPassInvalid || !isCheckedTermOfCondition || !isCheckedYearsOld || isExistBadWords || !isSubmitFormAccept) {
       event.preventDefault();
       event.stopPropagation();
     }

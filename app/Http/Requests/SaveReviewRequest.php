@@ -28,7 +28,7 @@ class SaveReviewRequest extends FormRequest
             'last_name' => 'sometimes|required',
             'country' => 'sometimes|required',
             'region_id' => 'sometimes|required',
-            'review_group_id' => 'sometimes|required',
+            'review_category_id' => 'sometimes|required',
             'category_by_review_id' => 'sometimes|required',
             'country_id' => 'sometimes|required',
             'city' => 'sometimes|required',

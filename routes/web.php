@@ -42,16 +42,18 @@ Route::group(
                 'index', 'edit', 'update', 'destroy'
             ])->names('profile-reviews');
             Route::get('messages', 'Profile\MessageController@index')->name('profile-messages');
+            Route::get('banners', 'Profile\BannerController@index')->name('banners');
             Route::get('changePassword', 'Auth\ChangePasswordController@showChangePasswordForm')->name('get-change-password');
             Route::post('changePassword', 'Auth\ChangePasswordController@changePassword')->name('change-password');
             Route::patch('update-persona-info', 'Profile\PersonalInfoController@updatePersonalInfo')->name('updatePersonalInfo');
+            Route::post('save-banner', 'Profile\BannerController@save')->name('saveBanner');
         });
 
         Route::group([
             'prefix' => 'admin',
             'as' => 'admin.',
             'namespace' => 'Admin',
-            'middleware' => ['auth', 'twofactor']
+            'middleware' => ['auth', 'verified', 'twofactor']
         ], function(){
             Route::resource('/contacts', 'ContactController')->only('index', 'store');
             Route::get('/info_page/{info_page}', 'InfoPageController@index')->name('info_page');

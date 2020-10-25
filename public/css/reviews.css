@@ -361,3 +361,35 @@ input[type="file"] {
 #review-for-guest {
     min-height: 50px;
 }
+.acceptModalDialog .modal-dialog{
+    position: absolute;
+    top: 40%;
+    width: 50%;
+    max-width: 760px;
+    right: 25%;
+    bottom: 0;
+    left: 25%;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+    text-align: center;
+}
+/*@media (min-width: 1500px){*/
+    /*.acceptModalDialog .modal-dialog {*/
+        /*max-width: 35%;*/
+    /*}*/
+/*}*/
+.acceptModalDialog .modal-content{
+    padding: 10px;
+    color: red;
+    border-color: red;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    /*-webkit-box-shadow: 0px 0px 10px 0px rgba(255, 0, 14, 0.82);*/
+    /*-moz-box-shadow: 0px 0px 10px 0px rgba(255, 0, 14, 0.82);*/
+    /*box-shadow: 0 0 2px 2px rgba(255, 0, 14, 0.82);*/
+}
+.acceptModalDialog button{
+    margin: 10px 0;
+}
