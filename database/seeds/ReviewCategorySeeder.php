@@ -17,6 +17,7 @@ class ReviewCategorySeeder extends Seeder
                 'title' => 'PERSON',
                 'slug' => \Illuminate\Support\Str::slug('person'),
                 'is_published' => true,
+                'enable_low_rating' => false
             ],
             [
                 'title' => 'COMPANY',

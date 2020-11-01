@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+    const ADMIN_FILTERS = [
+        'activity' => [
+            'all' => [],
+            'holded' => ['is_published' => false],
+            'unholded' => ['is_published' => true],
+        ],
+//        'category',
+//        'year',
+//        'month',
+//        'day'
+    ];
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -95,6 +107,9 @@ class Review extends Model
     public function isHasUnreadMessages(){
         return $this->messages()
             ->where('is_read', false)
+            ->when(auth()->user(), function($q){
+                $q->whereTo(auth()->user()->id);
+            })
             ->count();
     }
 }

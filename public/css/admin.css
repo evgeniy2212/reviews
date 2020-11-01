@@ -35,3 +35,127 @@
 .twoFactorForm input {
     border-color: black;
 }
+.singleBanner, .singleUser {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: stretch;
+    /*justify-content: space-around;*/
+    border-bottom: 1px groove #4a92f8;
+    padding: 10px 0;
+}
+.singleBlockedUser, .singleBlockedReview{
+    background-color: #c1c1c1;
+}
+.singleBannerInfo{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    width: 20%;
+    padding: 0 1%;
+}
+.singleUserInfo {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: start;
+    width: 85%;
+    padding: 0 1%;
+}
+.singleUserInfoColumn{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    justify-content: space-around;
+    /*width: 20%;*/
+    padding: 0 1%;
+}
+.singleUserInfoItem {
+    padding: 5px 0;
+    white-space: nowrap;
+}
+.singleUserInfoItemNaming {
+    font-weight: bolder;
+}
+.singleBannerDatepicker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.singleBannerDatepicker div {
+    padding-bottom: 5px;
+}
+.singleBannerContent{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.singleBannerControl, .singleUserControl{
+    width: 15%;
+    padding: 0 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.singleUserControl button {
+    margin-bottom: 10px;
+}
+.singleUserControl a, .singleUserControl a:hover {
+    text-decoration: none;
+    color: #1b1e21;
+}
+.adminFilters {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #2f5496;
+    margin-bottom: 10px;
+}
+.adminFilterItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.adminFilterItem div {
+    padding-right: 5px;
+}
+.adminSingleReviewButton {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    max-height: 100px;
+    justify-content: space-around;
+}
+.adminSingleReviewInfo span {
+    font-size: 15px;
+}
+.adminSingleReviewInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20%;
+}
+.adminSingleReviewContent {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width: 80%;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 0 5px;
+}
+.adminSingleReviewButton a:hover, .adminSingleReviewButton a {
+    text-decoration: none;
+    color: #1b1e21;
+    /*margin: 10px 10px;*/
+}

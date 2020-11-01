@@ -25,6 +25,7 @@
         <input type="hidden"
                name="submitFormAccept"
                id="submitFormAccept"
+               data-enable-low-rating="{{ $reviewCategory->enable_low_rating ? 1 : 0 }}"
                value="1">
         <div class="container-fluid">
             <div class="container">
@@ -49,12 +50,12 @@
                         @include('reviews.review_inputs.' . $slug)
                     </div>
                     <div class="d-flex flex-row">
-                        <div class="col-md-4 text-center offset-md-4">
+                        <div class="col-md-4 text-center">
                             <span class="review-character-label">
                                 @lang('service/index.review_positive_character')
                             </span>
                         </div>
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-4 text-center offset-md-4">
                             <span class="review-character-label">
                                 @lang('service/index.review_negative_character')
                             </span>
@@ -136,7 +137,7 @@
                                    name="user_sign"
                                    value="{{ \App\User::NICKNAME_SIGN }}"
                                    @empty(auth()->user()->nickname) disabled @endempty>
-                            <label for="name2">{{ auth()->user()->nickname ?? __('service/index.review_nickname') }}</label>
+                            <label for="name2">{{ empty(auth()->user()->nickname) ? __('service/index.review_nickname') : auth()->user()->nickname }}</label>
                         </div>
                         <div class="col-md-4">
                             <input type="radio"

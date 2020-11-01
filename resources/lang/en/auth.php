@@ -15,5 +15,6 @@ return [
 
     'failed' => 'Authentication failed.<br>You entered an incorrect username or password.<br>Try again.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'blocked_user' => 'You have been blocked by the site administration'
 
 ];

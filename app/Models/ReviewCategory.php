@@ -10,7 +10,8 @@ class ReviewCategory extends Model
         'id',
         'title',
         'slug',
-        'is_published'
+        'is_published',
+        'enable_low_rating'
     ];
 
     public function characteristics(){

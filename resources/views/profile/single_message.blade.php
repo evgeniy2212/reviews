@@ -73,9 +73,9 @@
                     <span>{!! $message->message !!}</span>
                 </div>
             @endforeach
-                <div class="message-example" style="display: none">
-                    <span></span>
-                    <span></span>
+                <div class="message-example" data-sender-name="{{ auth()->user()->full_name }}" style="display: none">
+                    <span class="sender-name"></span>
+                    <span class="message-response"></span>
                 </div>
             <div class="review-textarea" data-review-id="{{ $review->id }}">
                 <div class="col-md-9">

@@ -18,6 +18,7 @@ class CreateReviewCategoriesTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->boolean('is_published')->default(true);
+            $table->boolean('enable_low_rating')->default(true);
 
             $table->timestamps();
         });

@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class BannerCategory extends Model
 {
+    const FILTERS = [
+        'ACTIVITY' => [
+            'ALL' => [],
+            'PUBLISHED' => ['is_published' => true],
+            'UNPUBLISHED' => ['is_published' => false],
+        ]
+    ];
+
     protected $fillable = [
         'id',
         'title',

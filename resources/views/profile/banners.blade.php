@@ -1,6 +1,7 @@
 @extends('profile.index')
 
 @section('profile_review_content')
+{{--    {{ dd(session()->all()) }}--}}
     <form method="POST" action="{{ route('saveBanner') }}" enctype="multipart/form-data" novalidate="" id="bannerForm">
         @csrf
         <div class="banners">
@@ -12,9 +13,9 @@
             </div>
             <div class="bannerInfo">
                 <div>
-                <span class="create-review-label">
-                    @lang('service\profile.banner_category')
-                </span>
+                    <span class="create-review-label">
+                        @lang('service\profile.banner_category')
+                    </span>
                 </div>
                 <div>
                     <select class="select"
@@ -28,9 +29,9 @@
                     </select>
                 </div>
                 <div style="white-space:nowrap">
-                <span class="create-review-label text-center">
-                    @lang('service\profile.banner_another_email')
-                </span>
+                    <span class="create-review-label text-center">
+                        @lang('service\profile.banner_another_email')
+                    </span>
                 </div>
                 <div>
                     <input id="email"
@@ -41,9 +42,9 @@
                            autocomplete="email">
                 </div>
                 <div style="white-space:nowrap">
-                <span class="create-review-label text-center">
-                    @lang('service\profile.from')
-                </span>
+                    <span class="create-review-label text-center">
+                        @lang('service\profile.from')
+                    </span>
                 </div>
                 <div>
                     <input type="text"
@@ -53,9 +54,9 @@
                            autocomplete="off">
                 </div>
                 <div style="white-space:nowrap">
-                <span class="create-review-label text-center">
-                    @lang('service\profile.to')
-                </span>
+                    <span class="create-review-label text-center">
+                        @lang('service\profile.to')
+                    </span>
                 </div>
                 <div>
                     <input type="text"

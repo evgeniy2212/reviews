@@ -11,7 +11,7 @@
                    class="form-control input"
                    name="name"
                    minlength="3"
-                   value="{{ old('name') }}"
+                   value="{{ empty($review) ? old('name') : $review->name }}"
                    placeholder="@lang('service/index.review_name_placeholder')"
                    required
                    autocomplete="name">
@@ -26,7 +26,7 @@
                    type="email"
                    class="form-control input"
                    name="email"
-                   value="{{ old('email') }}"
+                   value="{{ empty($review) ? old('email') : $review->email }}"
                    placeholder="@lang('service/index.review_default_placeholder')"
                    autocomplete="email">
         </div>
@@ -43,9 +43,9 @@
             <select class="select"
                     name="category_by_review_id"
                     required>
-                <option disabled selected value="">@lang(trans('service/index.select_item', ['item' => 'category']))</option>
+                <option disabled {{ empty($review) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => 'category']) }}</option>
                 @foreach($categories as $id => $category)
-                    <option value="{{ $id }}">{!! $category !!}</option>
+                    <option value="{{ $id }}" {{ (!empty($review) && ($review->category_by_review->id == $id)) ? 'selected' : '' }}>{!! $category !!}</option>
                 @endforeach
             </select>
         </div>
@@ -59,9 +59,9 @@
                     name="country_id"
                     data-country="{{ old('country') }}"
                     required>
-                <option disabled selected value="">@lang(trans('service/index.select_item', ['item' => 'country']))</option>
+                <option {{ empty($review) ? 'selected' : '' }} disabled value="">{{ trans('service/index.select_item', ['item' => 'country']) }}</option>
                 @foreach($countries as $id => $country)
-                    <option value="{{ $id }}">{!! $country !!}</option>
+                    <option value="{{ $id }}" {{ (!empty($review) && ($review->country->id == $id)) ? 'selected' : '' }}>{!! $country !!}</option>
                 @endforeach
             </select>
         </div>

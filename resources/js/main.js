@@ -26,8 +26,8 @@
         });
 
         $(".submitReviewButton").click(function(event) {
-            var form = $("#createReviewForm");
-            isExistBadWords = $('#createReviewForm').find('mark').length ? true : false;
+            var form = $("#createReviewForm").length > 0 ? $("#createReviewForm") : $("#editReviewForm");
+            isExistBadWords = form.find('mark').length ? true : false;
             isSubmitFormAccept = $('#submitFormAccept').val() > 0 ? true : false;
             if(!isSubmitFormAccept){
                 $('#acceptFormModal').modal('show');
@@ -126,7 +126,7 @@
             });
         }
 
-        if($( "#review-create-text" ).length){
+        if($( "#review-create-text, #review-text" ).length){
             let badWords = [];
             $.ajax({
                 url : "/ajax/bad-words",
@@ -134,13 +134,13 @@
                 success:function(data)
                 {
                     badWords = data;
-                    $('#review-create-text').highlightWithinTextarea({
+                    $('#review-create-text, #review-text').highlightWithinTextarea({
                         highlight: badWords,
                         className: 'red'
                     });
                 },
                 error: function(){
-                    $('#review-create-text').highlightWithinTextarea({
+                    $('#review-create-text, #review-text').highlightWithinTextarea({
                         highlight: [],
                         className: 'red'
                     });

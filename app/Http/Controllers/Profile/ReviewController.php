@@ -32,8 +32,9 @@ class ReviewController extends Controller
 
         $filter = request()->$filter_alias;
         $sort = request()->$sort_alias;
+        $user_id = auth()->user()->id;
 
-        $reviews = ReviewService::getUserFilteredReviews($filter, $sort);
+        $reviews = ReviewService::getUserFilteredReviews($user_id, $filter, $sort);
         $filters = $this->reviewFilterRepository->getAllCategoryFilters();
         $paginateParams = [
             $filter_alias => request()->$filter_alias,
@@ -45,9 +46,9 @@ class ReviewController extends Controller
 
     public function edit($review)
     {
-        $review = Review::with(['category', 'region', 'characteristics', 'image'])
+        $review = Review::with(['category', 'region', 'characteristics', 'image', 'category_group', 'category_by_review'])
             ->findOrFail($review);
-
+        $categories = ReviewService::getReviewCategoriesBySlug($review->category->slug);
         $countries = (new Country())->getCountriesContainRegions();
         $positiveCharacteristics = $review->category
             ->getCharacteristicsByCategorySlug($review->category->slug, true)
@@ -62,6 +63,7 @@ class ReviewController extends Controller
             'positiveCharacteristics',
             'negativeCharacteristics',
             'review',
+            'categories',
             'checkedCharacteristics'
         ));
     }

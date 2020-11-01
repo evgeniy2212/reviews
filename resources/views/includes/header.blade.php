@@ -106,12 +106,18 @@
             <div class="post">
                 <div class="slider">
                     <div class="slider__wrapper">
-                        <div class="slider__item">
-                            <div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">1</div>
-                        </div>
-                        <div class="slider__item">
-                            <div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">2</div>
-                        </div>
+                        {{--<div class="slider__item">--}}
+                            {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">1</div>--}}
+                            {{--<div style="height: 120px; background-image: url(../images/post.jpg); background-repeat: no-repeat; background-size: cover;">1</div>--}}
+                        {{--</div>--}}
+                        @foreach(\App\Services\BannerService::getHeadBanners() as $banner)
+                            <div class="slider__item">
+                                <div style="height: 120px; background-image: url('{{ $banner->getImageUrl() }}'); background-repeat: no-repeat; background-size: cover;"></div>
+                            </div>
+                        @endforeach
+                        {{--<div class="slider__item">--}}
+                            {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">2</div>--}}
+                        {{--</div>--}}
                     </div>
                     <a class="slider__control slider__control_left" href="#" role="button"></a>
                     <a class="slider__control slider__control_right" href="#" role="button"></a>

@@ -20,13 +20,13 @@ class CreateBannersTable extends Migration
             $table->string('src', 200);
             $table->string('name', 200)->default('');
             $table->string('original_name', 200)->default('');
-            $table->string('title')->default('');
+            $table->string('title')->nullable();
             $table->string('alt', 100)->default('');
             $table->boolean('is_new')->default(false);
             $table->boolean('is_published')->default(false);
             $table->dateTime('from')->useCurrent();
             $table->dateTime('to')->useCurrent();
-            $table->string('email');
+            $table->string('email')->default('');
 
             $table->foreign('banner_category_id')->references('id')->on('banner_categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

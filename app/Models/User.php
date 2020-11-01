@@ -22,6 +22,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const DEFAULT_NAME = 'User';
 
+    const FILTERS = [
+        'ACTIVITY' => [
+            'ALL' => [],
+            'BLOCKED' => ['is_blocked' => true],
+            'ACTIVE' => ['is_blocked' => false],
+        ]
+    ];
+
     protected $dates = [
         'updated_at',
         'created_at',
@@ -50,6 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'congratulation_id',
         'two_factor_code',
         'two_factor_expires_at',
+        'is_blocked',
     ];
 
     /**
@@ -109,6 +118,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute(){
         return $this->name . ' ' . $this->last_name;
+    }
+
+    public function getFullAddressAttribute(){
+        return $this->city . ', ' . $this->zip_code;
     }
 
     public function getReviewsCountAttribute(){

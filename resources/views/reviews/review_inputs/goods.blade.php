@@ -11,7 +11,7 @@
                    class="form-control input"
                    name="name"
                    minlength="3"
-                   value="{{ old('name') }}"
+                   value="{{ empty($review) ? old('name') : $review->name }}"
                    placeholder="@lang('service/index.review_name_placeholder')"
                    required
                    autocomplete="name">
@@ -26,7 +26,7 @@
                    type="email"
                    class="form-control input"
                    name="email"
-                   value="{{ old('email') }}"
+                   value="{{ empty($review) ? old('email') : $review->email }}"
                    placeholder="@lang('service/index.review_default_placeholder')"
                    autocomplete="email">
         </div>
@@ -42,10 +42,11 @@
         <div>
             <select class="select"
                     id="selectCategoryGood"
+                    name="category_by_review_id"
                     required>
-                <option disabled selected value="">@lang(trans('service/index.select_item', ['item' => 'category']))</option>
+                <option {{ empty($review) ? 'selected' : '' }} disabled value="">{{ trans('service/index.select_item', ['item' => 'category']) }}</option>
                 @foreach($categories as $id => $category)
-                    <option value="{{ $id }}">{!! $category !!}</option>
+                    <option value="{{ $id }}" {{ (!empty($review) && ($review->category_by_review->id == $id)) ? 'selected' : '' }}>{!! $category !!}</option>
                 @endforeach
             </select>
         </div>
@@ -60,7 +61,7 @@
                     name="review_group_id"
                     disabled
                     required>
-                <option selected value="">@lang(trans('service/index.select_item', ['item' => 'group']))</option>
+                <option disabled selected value="{{ empty($review) ? '' : $review->category_group->id }}">{{ empty($review) ? __(trans('service/index.select_item', ['item' => 'category'])) : $review->category_group->name }}</option>
                 <option value="1">@lang('service/index.person')</option>
                 <option value="2">@lang('service/index.company')</option>
                 <option value="3">@lang('service/index.goods')</option>

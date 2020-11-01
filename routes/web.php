@@ -56,6 +56,11 @@ Route::group(
             'middleware' => ['auth', 'verified', 'twofactor']
         ], function(){
             Route::resource('/contacts', 'ContactController')->only('index', 'store');
+            Route::resource('/banners', 'BannerController')->only('index', 'store', 'update');
+            Route::resource('/users', 'UserController')->only('index', 'update');
+            Route::resource('/reviews', 'ReviewController')->only('index', 'update');
+            Route::resource('/users_reviews', 'UserReviewController')->only('show', 'update');
+            Route::get('search', 'UserController@search')->name('searchUsers');
             Route::get('/info_page/{info_page}', 'InfoPageController@index')->name('info_page');
             Route::post('/info_page', 'InfoPageController@store')->name('save_info_page');
         });

@@ -15,7 +15,7 @@ class ReviewObserver
      */
     public function created(Review $review)
     {
-
+//        $review->user->notify(new ReviewCreate());
     }
 
     /**
@@ -66,6 +66,7 @@ class ReviewObserver
      * @param \App\Models\Review  $product
      */
     public function creating(Review $review){
+        $review->is_published = true;
     }
 
 }

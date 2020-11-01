@@ -8,13 +8,13 @@
             selected_symbol_type: 'utf8_star', // Must be a key from symbols
             cursor: 'default',
             readonly: false,
-            change_once: false, // Determines if the rating can only be set once
+            change_ofnce: false, // Determines if the rating can only be set once
         }
 
         $(".rating").rate(options);
         $(".rating").click(function(event) {
             let currentRating = $(this).find('#rating').val();
-            if(currentRating <= 2){
+            if(currentRating <= 2 && !$('#submitFormAccept').data('enableLowRating')){
                 $('#submitFormAccept').val(0);
             } else {
                 $('#submitFormAccept').val(1);
@@ -241,8 +241,10 @@
                     success:function(data){
                         let elem = review.parent().find('.message-example');
                         let cloneElem = elem.clone();
-                        cloneElem.attr('class', 'comment');
-                        cloneElem.find('span').text(data.data[0].message);
+                        console.log(elem.data('senderName'));
+                        cloneElem.attr('class', 'comment message');
+                        cloneElem.find('.message-response').text(data.data[0].message);
+                        cloneElem.find('.sender-name').text(elem.data('senderName'));
                         cloneElem.insertBefore(review.parent().find('.message-example')).hide().show(750);
                         review.find('textarea').val('');
                         review.find('button').removeAttr("disabled");
@@ -251,13 +253,6 @@
             } else {
                 alert('Mail message is empty!');
             }
-        });
-
-        $( "#review-text" ).keyup(function() {
-            $(this).height(1);
-            $(this).height(60 + $(this).prop('scrollHeight'));
-            let review = $(this).parent().parent();
-            review.find('button').prop('disabled', false);
         });
 
         $( ".filter-select" ).change(function() {

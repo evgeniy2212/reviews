@@ -89,7 +89,7 @@
     border: 1px solid rgb(118, 118, 118);
     border-radius: 1px;
 }
-#review-create-text {
+#review-create-text , #review-text{
     padding: 10px;
 }
 .hwt-container{

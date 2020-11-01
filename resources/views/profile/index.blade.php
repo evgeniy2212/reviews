@@ -34,6 +34,21 @@
                             </a>
                         </li>
                         @if(auth()->user()->is_admin)
+                            <li class="{{ Request::url() == route('admin.banners.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.banners.index') }}">
+                                    <span>@lang('service/admin.banners')</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::url() == route('admin.users.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.users.index') }}">
+                                    <span>@lang('service/admin.users')</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::url() == route('admin.reviews.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.reviews.index') }}">
+                                    <span>@lang('service/admin.reviews')</span>
+                                </a>
+                            </li>
                             <li class="{{ Request::url() == route('admin.contacts.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.contacts.index') }}">
                                     <span>@lang('service/admin.contacts')</span>
@@ -60,7 +75,7 @@
                 <div class="profile-place">
                     <div class="d-flex flex-column justify-content-center">
                         @if($errors->any())
-                            <div class="errorMessage">{!! $errors->first() !!}</div>
+                            {{--<div class="errorMessage">{!! $errors->first() !!}</div>--}}
                         @elseif (session('status'))
                             <div class="successMessage">{!! session('status') !!}</div>
                         @endif
@@ -80,6 +95,12 @@
 @section('modal_forms')
     @include('includes.modal.confirmDeleteReview')
 @endsection
+
+@if(auth()->user()->is_admin)
+    @section('script_section')
+        <script src="{{ asset('js/admin.js') }}"></script>
+    @endsection
+@endif
 
 @section('script_section')
     <script src="{{ asset('js/profile.js') }}"></script>

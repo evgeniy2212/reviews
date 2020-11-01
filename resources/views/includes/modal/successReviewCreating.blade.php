@@ -22,10 +22,10 @@
     </div>
 </div>
 
-@if(session()->has('success'))
+@if(session()->has('success_review_creating'))
     <script>
         $(document).ready(function() {
-            $('#popupmodal').modal();
+            $('#successModal').modal();
         });
     </script>
 @endif

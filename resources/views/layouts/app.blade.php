@@ -28,6 +28,7 @@
     @yield('content')
     @include('includes.modal.successReviewCreating')
     @include('includes.modal.errorMessage')
+    @include('includes.modal.successMessage')
     @include('includes.modal.addPostRedirect')
     @yield('modal_forms')
 </section>

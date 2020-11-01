@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveReviewRequest;
-use App\Models\Comment;
 use App\Models\Review;
 use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
@@ -87,7 +86,6 @@ class ReviewController extends Controller
         $negativeCharacteristics = $reviewCategory
             ->getCharacteristicsByCategorySlug($slug, false)
             ->chunk($this->half);
-        $reviewCategory = $reviewCategory->whereSlug($slug)->first();
 
         return view('reviews.create', compact(
             'countries',
@@ -100,7 +98,10 @@ class ReviewController extends Controller
     }
 
     public function save(SaveReviewRequest $request) {
-        if(auth()->user()->isUserReviewAlreadyExist($request->review_category_id, $request->name, $request->second_name)){
+        if($request->has('category_slug')
+            && $request->category_slug == 'person'
+            && auth()->user()->isUserReviewAlreadyExist($request->review_category_id, $request->name, $request->second_name)
+        ) {
             return redirect()->back()->withErrors(['msg' => __('service\message.review_already_exist')]);
         }
         $request->merge(['user_id' => auth()->user()->id]);
@@ -118,7 +119,7 @@ class ReviewController extends Controller
         }
         $slug = $request->category_slug;
 
-        return redirect()->route('reviews',['review_item' => $slug])->with(['success' => 'Review Created']);
+        return redirect()->route('reviews',['review_item' => $slug])->with(['success_review_creating' => 'Review Created']);
     }
 
     public function reviewReaction(Request $request){

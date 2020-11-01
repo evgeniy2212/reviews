@@ -194,6 +194,8 @@ html, body {
 #cancelButton:hover,
 #editProfileButton:hover,
 #createAccount a,
+.otherButton a,
+.otherButton a:hover,
 #createAccount a:hover {
     text-decoration: none;
     color: #1b1e21;

@@ -36,6 +36,7 @@ class ReviewService {
                 $query->where('slug', $category);
             })
             ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
+            ->whereIsPublished(true)
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
             })
@@ -53,10 +54,10 @@ class ReviewService {
         return $result;
     }
 
-    public static function getUserFilteredReviews($filter = '', $sort = '', $search = '', $perPage = 5) {
+    public static function getUserFilteredReviews($user_id, $filter = '', $sort = '', $search = '', $perPage = 10) {
         $sort_by = self::getSortMethod($sort);
 
-        $result = Review::whereUserId(auth()->user()->id)
+        $result = Review::whereUserId($user_id)
             ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
@@ -90,5 +91,38 @@ class ReviewService {
         }
 
         return $sort;
+    }
+
+    public static function getAdminFilteredReviews($filter = '', $sort = '', $search = '', $perPage = 10) {
+        $sort_by = self::getSortMethod($sort);
+        $reviewFilter = self::getFilterMethod($filter);
+
+        $result = Review::when(!empty($reviewFilter), function($q) use ($reviewFilter){
+            $key = key($reviewFilter);
+            $q->where($key, $reviewFilter[$key]);
+        })
+        ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
+//            ->when(!empty($filter), function($q) use ($filter){
+//                $q->whereYear('created_at', $filter);
+//            })
+            ->with(['characteristics:name'])
+            ->with(['comments'])
+            ->with(['image'])
+            ->when(!empty($sort), function($q) use($sort_by){
+                $q->orderBy($sort_by);
+            })
+            ->when(empty($sort), function($q){
+                $q->orderBy('created_at', 'DESC');
+            })
+            ->paginate($perPage);
+
+        return $result;
+    }
+
+    protected static function getFilterMethod($filters = []){
+        $key = array_key_first($filters);
+        return $key
+            ? Review::ADMIN_FILTERS[$key][$filters[$key]]
+            : $key;
     }
 }

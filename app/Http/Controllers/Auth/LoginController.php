@@ -42,7 +42,7 @@ class LoginController extends Controller
     }
 
     public function authenticated(Request $request, User $user) {
-        $request->session()->flash('success', __('service/index.welcome', ['name' => $user->name]));
+//        $request->session()->flash('success', __('service/index.welcome', ['name' => $user->name]));
 
         if($user->is_admin){
             $user->generateTwoFactorCode();
@@ -69,5 +69,47 @@ class LoginController extends Controller
             'password' => 'required|string',
             'g-recaptcha-response' => 'required|captcha',
         ]);
+    }
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            return auth()->user()->is_blocked
+                ? $this->sendBlockedResponse()
+                : $this->sendLoginResponse($request);
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    protected function sendBlockedResponse(){
+        auth()->logout();
+
+        return redirect()->back()->withErrors(['msg' => __('auth.blocked_user')]);
     }
 }

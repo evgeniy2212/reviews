@@ -11,7 +11,7 @@
                    class="form-control input"
                    name="name"
                    minlength="3"
-                   value="{{ old('name') }}"
+                   value="{{ empty($review) ? old('name') : $review->name }}"
                    placeholder="@lang('service/index.review_name_placeholder')"
                    required
                    autocomplete="name">
@@ -26,7 +26,7 @@
                    type="email"
                    class="form-control input"
                    name="email"
-                   value="{{ old('email') }}"
+                   value="{{ empty($review) ? old('email') : $review->email }}"
                    placeholder="@lang('service/index.review_default_placeholder')"
                    autocomplete="email">
         </div>
@@ -45,9 +45,9 @@
                     name="country"
                     data-country="{{ old('country') }}"
                     required>
-                <option disabled selected value="">@lang(trans('service/index.select_item', ['item' => 'country']))</option>
+                <option disabled {{ empty($review) ? 'selected' : '' }} value="">@lang(trans('service/index.select_item', ['item' => 'country']))</option>
                 @foreach($countries as $id => $country)
-                    <option value="{{ $id }}">{!! $country !!}</option>
+                    <option value="{{ $id }}" {{ (!empty($review) && ($review->region->country_id == $id)) ? 'selected' : '' }}>{!! $country !!}</option>
                 @endforeach
             </select>
         </div>
@@ -62,7 +62,7 @@
                     name="region_id"
                     disabled
                     required>
-                <option selected value="">@lang(trans('service/index.select_item', ['item' => 'region']))</option>
+                <option selected value="{{ empty($review) ? '' : $review->region->id }}">{{ empty($review) ? trans('service/index.select_item', ['item' => 'region']) : $review->region->region }}</option>
                 <option value="1">@lang('service/index.person')</option>
                 <option value="2">@lang('service/index.company')</option>
                 <option value="3">@lang('service/index.goods')</option>
@@ -75,7 +75,7 @@
                    class="form-control input"
                    name="city"
                    minlength="3"
-                   value="{{ old('city') }}"
+                   value="{{ empty($review) ? old('city') : $review->city }}"
                    required
                    placeholder="@lang('register.city_town')"
                    autocomplete="city">
