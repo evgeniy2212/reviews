@@ -96,7 +96,6 @@
 (function ($) {
   $(document).ready(function () {
     $('.deleteReview').click(function () {
-      console.log('deleteReview');
       var id = $(this).data("reviewId");
       var name = $(this).data("reviewName");
       console.log(name);
@@ -119,7 +118,7 @@
         minDate: 0
       });
     });
-    $("#imgBanner").change(function () {
+    $('#imgBanner').change(function () {
       readURL(this);
     });
     $("#bannerButton").click(function (event) {

@@ -50,9 +50,9 @@
                 </div>
                 <div>
                 <div>
-                <span class="create-review-label">
-                @lang('service\profile.banner_category')
-                </span>
+                    <span class="create-review-label">
+                        @lang('service\profile.banner_category')
+                    </span>
                 </div>
                 <select class="select"
                         id="bannerCategory"
@@ -82,8 +82,10 @@
                     id="bannerPublishButton{{ $banner->id }}"
                     class="otherButton"
                     name="is_published"
-                    value="{{ ($banner->is_published && !$banner->user->is_admin) ? 0 : 1 }}">
-                @if($banner->is_published && !$banner->user->is_admin)
+{{--                    value="{{ ($banner->is_published && !$banner->user->is_admin) ? 0 : 1 }}">--}}
+                    value="{{ $banner->is_published ? 0 : 1 }}">
+{{--                @if($banner->is_published && !$banner->user->is_admin)--}}
+                @if($banner->is_published)
                     @lang('service\admin.unpublish')
                 @else
                     @lang('service\admin.publish')

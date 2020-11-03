@@ -1,7 +1,6 @@
 @extends('profile.index')
 
 @section('profile_review_content')
-{{--    {{ dd(session()->all()) }}--}}
     <form method="POST" action="{{ route('saveBanner') }}" enctype="multipart/form-data" novalidate="" id="bannerForm">
         @csrf
         <div class="banners">

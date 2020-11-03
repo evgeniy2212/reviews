@@ -28,12 +28,12 @@
                                 <span>@lang('service/index.mail', ['count' => auth()->user()->getNewMessagesCount()])</span>
                             </a>
                         </li>
-                        <li class="{{ Request::url() == route('banners') ? 'active' : '' }}">
-                            <a href="{{ route('banners') }}">
-                                <span>@lang('service/index.banners')</span>
-                            </a>
-                        </li>
                         @if(auth()->user()->is_admin)
+                            <li class="{{ Request::url() == route('banners') ? 'active' : '' }}">
+                                <a href="{{ route('banners') }}">
+                                    <span>@lang('service/index.banners')</span>
+                                </a>
+                            </li>
                             <li class="{{ Request::url() == route('admin.banners.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.banners.index') }}">
                                     <span>@lang('service/admin.banners')</span>
@@ -96,13 +96,10 @@
     @include('includes.modal.confirmDeleteReview')
 @endsection
 
-@if(auth()->user()->is_admin)
-    @section('script_section')
-        <script src="{{ asset('js/admin.js') }}"></script>
-    @endsection
-@endif
-
 @section('script_section')
+    @if(auth()->user()->is_admin)
+        <script src="{{ asset('js/admin.js') }}"></script>
+    @endif
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @endsection

@@ -23,7 +23,7 @@ class BannerController extends Controller
         $banners = BannerService::getAdminFilteredBanners($bannerFilter);
         $paginateParams = $bannerFilter;
         $bannerCategories = BannerCategory::all()->pluck('title', 'id');
-//dd(BannerService::getHeadBanners());
+
         return view('admin.banners', compact('banners', 'paginateParams', 'bannerCategories'));
     }
 

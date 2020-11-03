@@ -1,7 +1,6 @@
 (function($) {
     $( document ).ready(function() {
         $('.deleteReview').click(function(){
-            console.log('deleteReview');
             var id = $(this).data("reviewId");
             var name = $(this).data("reviewName");
             console.log(name);
@@ -28,7 +27,7 @@
             });
         } );
 
-        $("#imgBanner").change(function() {
+        $('#imgBanner').change(function() {
             readURL(this);
         });
 
@@ -53,7 +52,6 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function(e) {
                 $('#blah').attr('src', e.target.result);
             }

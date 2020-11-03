@@ -16,7 +16,7 @@ class CongratulationSeeder extends Seeder
         $congratulations = [
             [
                 'name' => 'default',
-                'src' => asset('images/congratulations/default_congratulation.png'),
+                'src' => 'images/congratulations/default_congratulation.png',
             ],
         ];
 
