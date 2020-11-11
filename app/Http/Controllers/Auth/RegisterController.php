@@ -113,6 +113,7 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'region_id' => $data['region'],
             'zip_code' => $data['zip_code'],
+            'congratulation_id' => 1
         ]);
     }
 }

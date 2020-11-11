@@ -113,9 +113,9 @@
     $(".submitRegisterButton").click(function (event) {
       var form = $("#registerForm");
       isCheckedTermOfCondition = $('#confirmTermOfConditions').is(':checked');
-      isCheckedTermOfCondition ? $('#confirmTermOfConditions').removeClass('invalid-checkbox') : $('#confirmTermOfConditions').addClass('invalid-checkbox');
-      isCheckedYearsOld = $('#confirmYearsOld').is(':checked');
-      isCheckedYearsOld ? $('#confirmYearsOld').removeClass('invalid-checkbox') : $('#confirmYearsOld').addClass('invalid-checkbox');
+      isCheckedTermOfCondition ? $('#confirmTermOfConditions').removeClass('invalid-checkbox') : $('#confirmTermOfConditions').addClass('invalid-checkbox'); // isCheckedYearsOld = $('#confirmYearsOld').is(':checked')
+      // isCheckedYearsOld ? $('#confirmYearsOld').removeClass('invalid-checkbox') : $('#confirmYearsOld').addClass('invalid-checkbox');
+
       validation(form, event);
     });
     $(".submitReviewButton").click(function (event) {
