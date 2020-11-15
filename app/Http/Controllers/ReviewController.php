@@ -108,7 +108,7 @@ class ReviewController extends Controller
                 $request->city,
                 $request->second_name)
         ) {
-            return redirect()->back()->withErrors(['msg' => __('service\message.review_already_exist')]);
+            return redirect()->back()->withErrors(['msg' => __('service/message.review_already_exist')]);
         }
         $request->merge(['user_id' => auth()->user()->id]);
         $review = Review::create($request->all());

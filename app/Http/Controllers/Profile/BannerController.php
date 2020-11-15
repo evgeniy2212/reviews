@@ -27,6 +27,6 @@ class BannerController extends Controller
         }
         Banner::create($request->all());
 
-        return redirect()->route('banners')->withSuccess([__('service\profile.banner_request_success')]);
+        return redirect()->route('banners')->withSuccess([__('service/profile.banner_request_success')]);
     }
 }

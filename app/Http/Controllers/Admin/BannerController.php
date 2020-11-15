@@ -80,7 +80,7 @@ class BannerController extends Controller
     public function update(UpdateBannerRequest $request, Banner $banner)
     {
         if($request->is_published && BannerService::isPublishedMaxBanners()){
-            return redirect()->back()->withErrors(['msg' => __('service\admin.max_banners_published', ['count' => Banner::MAX_BANNERS_COUNT])]);
+            return redirect()->back()->withErrors(['msg' => __('service/admin.max_banners_published', ['count' => Banner::MAX_BANNERS_COUNT])]);
         }
         if($request->has('img')){
             $imageInfo = ImageService::updateBanner($request, $banner);

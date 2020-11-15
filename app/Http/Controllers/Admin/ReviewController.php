@@ -78,7 +78,7 @@ class ReviewController extends Controller
     {
         $review->update($request->all());
 
-        return redirect()->back()->withSuccess([__('service\admin.review_updated_successfully')]);
+        return redirect()->back()->withSuccess([__('service/admin.review_updated_successfully')]);
     }
 
     /**

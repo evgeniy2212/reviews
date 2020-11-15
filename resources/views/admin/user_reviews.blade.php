@@ -35,30 +35,30 @@
                         {{--name="is_blocked"--}}
                         {{--value="{{ $user->is_blocked ? 0 : 1 }}">--}}
                     {{--@if($user->is_blocked)--}}
-                        {{--@lang('service\admin.unhold')--}}
+                        {{--@lang('service/admin.unhold')--}}
                     {{--@else--}}
-                        {{--@lang('service\admin.hold')--}}
+                        {{--@lang('service/admin.hold')--}}
                     {{--@endif--}}
                 {{--</button>--}}
                 {{--<a type="button"--}}
                    {{--class="otherButton"--}}
-                   {{--href="{{ route('admin.users_reviews.show', $user->id) }}">@lang('service\admin.user.reviews')</a>--}}
+                   {{--href="{{ route('admin.users_reviews.show', $user->id) }}">@lang('service/admin.user.reviews')</a>--}}
             {{--</div>--}}
             <div class="singleUserInfo">
                 <div class="singleUserInfoColumn">
                     <div class="singleUserInfoItem">
-                        <span class="singleUserInfoItemNaming">@lang('service\admin.user.name')</span> <span>{!! $user->full_name !!}</span>
+                        <span class="singleUserInfoItemNaming">@lang('service/admin.user.name')</span> <span>{!! $user->full_name !!}</span>
                     </div>
                     <div class="singleUserInfoItem">
-                        <span class="singleUserInfoItemNaming">@lang('service\admin.user.pseudonym')</span> <span>{!! empty($user->nickname) ? ' - ' : $user->nickname !!}</span>
+                        <span class="singleUserInfoItemNaming">@lang('service/admin.user.pseudonym')</span> <span>{!! empty($user->nickname) ? ' - ' : $user->nickname !!}</span>
                     </div>
                 </div>
                 <div class="singleUserInfoColumn">
                     <div class="singleUserInfoItem">
-                        <span class="singleUserInfoItemNaming">@lang('service\admin.user.address')</span> <span>{!! $user->full_address !!}</span>
+                        <span class="singleUserInfoItemNaming">@lang('service/admin.user.address')</span> <span>{!! $user->full_address !!}</span>
                     </div>
                     <div>
-                        <span class="singleUserInfoItemNaming">@lang('service\admin.user.email')</span> <span>{!! $user->email !!}</span>
+                        <span class="singleUserInfoItemNaming">@lang('service/admin.user.email')</span> <span>{!! $user->email !!}</span>
                     </div>
                 </div>
             </div>

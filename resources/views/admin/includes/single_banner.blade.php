@@ -4,12 +4,12 @@
     <div class="singleBanner">
         <div class="singleBannerInfo">
             <div>
-                <span>@lang('service\admin.banner_user_name', ['name' => $banner->user->full_name])</span>
+                <span>@lang('service/admin.banner_user_name', ['name' => $banner->user->full_name])</span>
             </div>
             <div class="singleBannerDatepicker">
                 <div style="white-space:nowrap">
                 <span class="create-review-label text-center">
-                    @lang('service\profile.from')
+                    @lang('service/profile.from')
                 </span>
                 </div>
                 <div>
@@ -22,7 +22,7 @@
                 </div>
                 <div style="white-space:nowrap">
                 <span class="create-review-label text-center">
-                    @lang('service\profile.to')
+                    @lang('service/profile.to')
                 </span>
                 </div>
                 <div>
@@ -51,7 +51,7 @@
                 <div>
                 <div>
                     <span class="create-review-label">
-                        @lang('service\profile.banner_category')
+                        @lang('service/profile.banner_category')
                     </span>
                 </div>
                 <select class="select"
@@ -86,9 +86,9 @@
                     value="{{ $banner->is_published ? 0 : 1 }}">
 {{--                @if($banner->is_published && !$banner->user->is_admin)--}}
                 @if($banner->is_published)
-                    @lang('service\admin.unpublish')
+                    @lang('service/admin.unpublish')
                 @else
-                    @lang('service\admin.publish')
+                    @lang('service/admin.publish')
                 @endif
             </button>
         </div>

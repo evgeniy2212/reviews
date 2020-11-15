@@ -84,9 +84,9 @@
                             name="is_published"
                             value="{{ $review->is_published ? 0 : 1 }}">
                         @if($review->is_published)
-                            @lang('service\admin.hold')
+                            @lang('service/admin.hold')
                         @else
-                            @lang('service\admin.unhold')
+                            @lang('service/admin.unhold')
                         @endif
                     </button>
                 </form>

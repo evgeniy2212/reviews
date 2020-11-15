@@ -78,7 +78,7 @@ class UserController extends Controller
     {
         $user->update($request->all());
 
-        return redirect()->back()->withSuccess([__('service\admin.user_updated_successfully', ['name' => $user->full_name])]);
+        return redirect()->back()->withSuccess([__('service/admin.user_updated_successfully', ['name' => $user->full_name])]);
     }
 
     /**
