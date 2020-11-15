@@ -13,7 +13,7 @@
             <div class="bannerInfo">
                 <div>
                     <span class="create-review-label">
-                        @lang('service\profile.banner_category')
+                        @lang('service/profile.banner_category')
                     </span>
                 </div>
                 <div>
@@ -29,7 +29,7 @@
                 </div>
                 <div style="white-space:nowrap">
                     <span class="create-review-label text-center">
-                        @lang('service\profile.banner_another_email')
+                        @lang('service/profile.banner_another_email')
                     </span>
                 </div>
                 <div>
@@ -42,7 +42,7 @@
                 </div>
                 <div style="white-space:nowrap">
                     <span class="create-review-label text-center">
-                        @lang('service\profile.from')
+                        @lang('service/profile.from')
                     </span>
                 </div>
                 <div>
@@ -54,7 +54,7 @@
                 </div>
                 <div style="white-space:nowrap">
                     <span class="create-review-label text-center">
-                        @lang('service\profile.to')
+                        @lang('service/profile.to')
                     </span>
                 </div>
                 <div>
