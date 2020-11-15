@@ -94,7 +94,7 @@
                                       class="form-control"
                                       type="text"
                                       required
-                                      placeholder="@lang('service/index.touch_text_placeholder')"></textarea>
+                                      placeholder="{{ __('service/index.touch_text_placeholder') }}">{{ old('message') ?? '' }}</textarea>
                         </div>
                     </div>
                     <div class="create-review-buttons">

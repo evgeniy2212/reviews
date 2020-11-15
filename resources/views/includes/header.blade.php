@@ -16,7 +16,7 @@
                     </p>
                 </div>
                 @auth
-                    @if(!auth()->user()->two_factor_code)
+                    @if(auth()->user()->email_verified_at && !auth()->user()->two_factor_code)
                         <div class="d-flex flex-row">
                             <div style="height: auto;">
                                 <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
@@ -43,14 +43,9 @@
                 <div class="d-flex flex-row justify-content-between">
                     <nav id="nav-menu-container">
                         <ul class="nav-menu">
-                            @guest
-                                <li>
-                                    <a href="{{ LaravelLocalization::localizeUrl('/login') }}">Sign In</a>
-                                </li>
-                                <li class="left-border">
-                                    <a href="{{ LaravelLocalization::localizeUrl('/register') }}">Sign Up</a>
-                                </li>
-                            @else
+                            @if(auth()->user()
+                            && auth()->user()->email_verified_at
+                            && !auth()->user()->two_factor_code)
                                 <li>
                                     <a href="{{ LaravelLocalization::localizeUrl('/logout') }}"
                                        onclick="event.preventDefault();
@@ -61,7 +56,14 @@
                                         @csrf
                                     </form>
                                 </li>
-                            @endguest
+                            @else
+                                <li>
+                                    <a href="{{ LaravelLocalization::localizeUrl('/login') }}">Sign In</a>
+                                </li>
+                                <li class="left-border">
+                                    <a href="{{ LaravelLocalization::localizeUrl('/register') }}">Sign Up</a>
+                                </li>
+                            @endif
                             <li class="left-border">
                                 <a href="{{ asset('files/reviews4info.zip') }}" download="reviews4info">Save</a>
                             </li>

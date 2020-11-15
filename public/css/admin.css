@@ -118,6 +118,37 @@
     height: 50px;
     border-bottom: 1px solid #2f5496;
     margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.adminFilterDatepicker {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    max-width: 35%;
+}
+.adminFilterDatepicker .datepicker {
+    max-width: 45%;
+}
+.adminFilterButton {
+    border-color: #a0a3af;
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 1px;
+    max-height: 20px;
+    padding: 0 0;
+    text-align: center;
+    text-align-last: center;
+    background: #e7e6e6;
+    width: 45px;
+    color: #1b1e21;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.adminFilterButton:hover{
+    text-decoration: none;
+    color: #1b1e21;
+    background: #e7e6e6;
+    border-color: #a0a3af;
 }
 .adminFilterItem {
     display: flex;

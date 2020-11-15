@@ -17,10 +17,9 @@ class ReviewController extends Controller
      */
     public function index(Request $request)
     {
-        $userFilter = array_intersect_key(request()->all(), Review::ADMIN_FILTERS);
-//        dd($userFilter);
-        $reviews = ReviewService::getAdminFilteredReviews($userFilter);
-        $paginateParams = $userFilter;
+        $reviewFilter = array_intersect_key(request()->all(), Review::ADMIN_FILTERS);
+        $reviews = ReviewService::getAdminFilteredReviews($reviewFilter);
+        $paginateParams = $reviewFilter;
 
         return view('admin.reviews', compact('reviews', 'paginateParams'));
     }
@@ -91,5 +90,13 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request) {
+        $reviewFilter = array_intersect_key(request()->all(), Review::ADMIN_FILTERS);
+        $reviews = ReviewService::getAdminFilteredReviews($reviewFilter, $request->search);
+        $paginateParams = array_merge($reviewFilter, ['search' => $request->search]);
+
+        return view('admin.reviews', compact('reviews', 'paginateParams'));
     }
 }

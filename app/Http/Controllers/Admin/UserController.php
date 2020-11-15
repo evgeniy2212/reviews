@@ -17,9 +17,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-//        dd($request->all());
         $userFilter = array_intersect_key(request()->all(), User::FILTERS);
-//        dd($userFilter);
         $users = UserService::getAdminFilteredUsers($userFilter);
         $paginateParams = $userFilter;
 

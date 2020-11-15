@@ -31,7 +31,6 @@ class PersonalInfoRequest extends FormRequest
             'zip_code' => 'required',
             'city' => 'required',
             'email' => 'required|email',
-            'review_category_id' => 'required'
         ];
     }
 }

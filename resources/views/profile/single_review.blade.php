@@ -5,8 +5,8 @@
         </div>
         <div>
             <div class="review-stars">
-                @for($i=0;$i < 5; $i++)
-                    @if($i < $review->rating)
+                @for($i=1;$i < 6; $i++)
+                    @if($i <= $review->rating)
                         &#9733;
                     @else
                         &#9734;

@@ -98,9 +98,16 @@
     $(".admin-filter-select").change(function () {
       var slug = $(this).attr('name');
       var item = $(this).children("option:selected").val();
-      var str = window.location.search; // alert(str);
-
+      var str = window.location.search;
       str = replaceQueryParam(slug, item, str);
+      str = replaceQueryParam('page', 1, str);
+      window.location = window.location.pathname + str;
+    });
+    $(".adminFilterButton").click(function (event) {
+      var str = window.location.search;
+      str = replaceQueryParam($(".adminFilters .select").attr('name'), $(".adminFilters .select").val(), str);
+      str = replaceQueryParam('from', $(".adminFilterDatepicker [name='from']").val(), str);
+      str = replaceQueryParam('to', $(".adminFilterDatepicker [name='to']").val(), str);
       str = replaceQueryParam('page', 1, str);
       window.location = window.location.pathname + str;
     });

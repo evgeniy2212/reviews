@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Review;
 use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ReviewService {
@@ -93,13 +94,26 @@ class ReviewService {
         return $sort;
     }
 
-    public static function getAdminFilteredReviews($filter = '', $sort = '', $search = '', $perPage = 10) {
-        $sort_by = self::getSortMethod($sort);
-        $reviewFilter = self::getFilterMethod($filter);
-
-        $result = Review::when(!empty($reviewFilter), function($q) use ($reviewFilter){
-            $key = key($reviewFilter);
-            $q->where($key, $reviewFilter[$key]);
+    public static function getAdminFilteredReviews($filters = [], $search = '', $perPage = 10) {
+        $reviewFilters = self::getFilterMethod($filters);
+        $result = Review::when(!empty($reviewFilters), function($q) use ($reviewFilters){
+            foreach ($reviewFilters as $filter) {
+                $key = array_key_first($filter);
+                if(!empty($filter)){
+                    switch ($key){
+                        case 'from':
+//                            dd(Carbon::createFromFormat('Y-m-d', $filter['from']));
+//                            $q->where('created_at', '>=', Carbon::parse($filter['from'])->toDateString());
+                            $q->where('created_at', '>=', Carbon::parse($filter['from'])->toDateString());
+                            break;
+                        case 'to':
+                            $q->whereDate('created_at', '<=', Carbon::parse($filter['to'])->toDateString());
+                            break;
+                        default:
+                            $q->where($key, $filter[$key]);
+                    }
+                }
+            }
         })
         ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
 //            ->when(!empty($filter), function($q) use ($filter){
@@ -108,21 +122,35 @@ class ReviewService {
             ->with(['characteristics:name'])
             ->with(['comments'])
             ->with(['image'])
-            ->when(!empty($sort), function($q) use($sort_by){
-                $q->orderBy($sort_by);
-            })
-            ->when(empty($sort), function($q){
-                $q->orderBy('created_at', 'DESC');
-            })
+//            ->when(!empty($sort), function($q) use($sort_by){
+//                $q->orderBy($sort_by);
+//            })
+//            ->when(empty($sort), function($q){
+//                $q->orderBy('created_at', 'DESC');
+//            })
             ->paginate($perPage);
 
         return $result;
     }
 
     protected static function getFilterMethod($filters = []){
-        $key = array_key_first($filters);
-        return $key
-            ? Review::ADMIN_FILTERS[$key][$filters[$key]]
-            : $key;
+//        $key = array_key_first($filters);
+        $result = [];
+        foreach($filters as $key => $filter){
+            $result[] = Review::ADMIN_FILTERS[$key][$filters[$key]] ?? [$key => $filter];
+        }
+
+        return $result;
+//        return $key
+//            ? (Review::ADMIN_FILTERS[$key][$filters[$key]] ?? $key)
+//            : $key;
+    }
+
+    public static function difToMinRangeDate(){
+        return Carbon::now()->diffInDays(Review::min('created_at'));
+    }
+
+    public static function difToMaxRangeDate(){
+        return Carbon::now()->diffInDays(Review::max('created_at'));
     }
 }

@@ -24,8 +24,8 @@ class SaveReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'last_name' => 'sometimes|required',
+            'name' => 'required|alpha',
+            'last_name' => 'sometimes|required|alpha',
             'country' => 'sometimes|required',
             'region_id' => 'sometimes|required',
             'review_category_id' => 'sometimes|required',

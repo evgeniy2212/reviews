@@ -16,7 +16,7 @@
                         {{ __('Before proceeding, please check your email for a verification link.') }}<br>
                         {{ __('If you did not receive the email, click "Request another"') }}.
                     </div>
-                    <div class="form-group d-flex flex-row justify-content-center align-items-center">
+                    <div class="form-group verifyRegisterControl">
                         <div class="col-md-3">
                             <form method="POST" action="{{ route('verification.resend') }}">
                                 @csrf

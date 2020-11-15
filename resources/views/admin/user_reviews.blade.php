@@ -6,9 +6,9 @@
             @foreach(\App\Models\BannerCategory::FILTERS as $filterName => $filters)
                 <div class="col-md-4 d-flex flex-row justify-content-around">
                     <div>
-                        <label for="bannerFilter">
+                        {{--<label for="bannerFilter">--}}
                             {!! $filterName !!}
-                        </label>
+                        {{--</label>--}}
                     </div>
                     <div>
                         <select class="select filter-select"

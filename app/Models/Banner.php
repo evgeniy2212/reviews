@@ -42,12 +42,12 @@ class Banner extends Model
 
     public function setFromAttribute($value)
     {
-        $this->from = Carbon::parse($value)->format('d-m-Y H:i:s');
+        $this->attributes['from'] = Carbon::parse($value)->format('Y-m-d H:i:s');
     }
 
     public function setToAttribute($value)
     {
-        $this->to = Carbon::parse($value)->format('d-m-Y H:i:s');
+        $this->attributes['to'] = Carbon::parse($value)->format('Y-m-d H:i:s');
     }
 
     public function getImageUrl()

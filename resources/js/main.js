@@ -3,6 +3,7 @@
     var isCheckedYearsOld = true;
     var isExistBadWords = false;
     var isSubmitFormAccept = true;
+    var isCheckedCountryRegion = true;
 
     setTimeout(function(){$('.close').click()}, 3000);
     $( document ).ready(function() {
@@ -18,6 +19,22 @@
 
         $(".submitRegisterButton").click(function(event) {
             var form = $("#registerForm");
+
+            if ($('#selectRegion option:selected').val() == 'Select'){
+                $('#selectRegion').addClass('invalid-selector');
+                isCheckedCountryRegion = false;
+            } else {
+                isCheckedCountryRegion = true;
+                $('#selectRegion').removeClass( "invalid-selector" )
+            }
+
+            if ($('#selectCountry option:selected').val() == 'Select'){
+                $('#selectCountry').addClass('invalid-selector');
+                isCheckedCountryRegion = false;
+            } else {
+                isCheckedCountryRegion = true;
+                $('#selectCountry').removeClass( "invalid-selector" )
+            }
 
             isCheckedTermOfCondition = $('#confirmTermOfConditions').is(':checked')
             isCheckedTermOfCondition ? $('#confirmTermOfConditions').removeClass('invalid-checkbox') : $('#confirmTermOfConditions').addClass('invalid-checkbox');
@@ -169,6 +186,7 @@
             || !isCheckedTermOfCondition
             || !isCheckedYearsOld
             || isExistBadWords
+            || !isCheckedCountryRegion
             || !isSubmitFormAccept)
         {
             event.preventDefault();

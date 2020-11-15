@@ -4,9 +4,9 @@
     <div class="container-fluid">
         <div class="container">
             <div class="content-place profile-content-place d-flex flex-column justify-content-center">
-                @if($errors->any())
-                    <div class="errorMessage">{!! $errors->first() !!}</div>
-                @endif
+                {{--@if($errors->any())--}}
+                    {{--<div class="errorMessage">{!! $errors->first() !!}</div>--}}
+                {{--@endif--}}
                 <form method="POST" action="{{ route('register') }}" class="container" novalidate="" id="registerForm">
                     @csrf
                     <div class="registerFormContent">
@@ -184,7 +184,7 @@
                                                 <input id="nickname"
                                                        type="text"
                                                        class="form-control input"
-                                                       value="{{ old('email') }}"
+                                                       value="{{ old('nickname') }}"
                                                        name="nickname"
                                                        autocomplete="nickname">
                                             </div>

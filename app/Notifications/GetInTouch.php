@@ -11,14 +11,24 @@ class GetInTouch extends Notification
 {
     use Queueable;
 
+    private $name;
+    private $email;
+    private $phone;
+    private $message;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        string $name, string $phone, string $email, string $message
+    )
     {
-        //
+        $this->name = $name;
+        $this->phone = $phone;
+        $this->email = $email;
+        $this->message = $message;
     }
 
     /**
@@ -42,7 +52,11 @@ class GetInTouch extends Notification
     {
         return (new MailMessage)
                     ->line('The Get In Touch Info.')
-                    ->action('Notification Action', url('/'))
+                    ->line('Name: ' . $this->name)
+                    ->line('Email: ' . $this->email)
+                    ->line('Phone: ' . $this->phone)
+                    ->line('Message: ' . $this->message)
+//                    ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
 

@@ -6,9 +6,9 @@
             @foreach(\App\User::FILTERS as $filterName => $filters)
                 <div class="adminFilterItem">
                     <div>
-                        <label for="userFilter">
+                        {{--<label for="userFilter">--}}
                             {!! $filterName !!}
-                        </label>
+                        {{--</label>--}}
                     </div>
                     <div>
                         <select class="select admin-filter-select"

@@ -32,8 +32,8 @@ class BannerService {
         $bannerInfo = ['title', 'src', 'to', 'from'];
         return Banner::select($bannerInfo)
             ->where('is_published', true)
-            ->where('from', '>=', Carbon::now()->setTime(0,0)->format('Y-m-d H:i:s'))
-            ->where('to', '<=', Carbon::now()->setTime(23,59, 59)->format('Y-m-d H:i:s'))
+            ->where('from', '<=', Carbon::now()->setTime(0,0)->format('Y-m-d H:i:s'))
+            ->where('to', '>=', Carbon::now()->setTime(0,0, 0)->format('Y-m-d H:i:s'))
 //            ->orWhereHas('user', function ($query) {
 //                $query->where('is_admin', true);
 //            })

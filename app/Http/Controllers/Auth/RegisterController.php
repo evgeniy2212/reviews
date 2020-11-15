@@ -41,7 +41,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+//        $this->middleware('guest');
     }
 
     /**
@@ -90,7 +90,7 @@ class RegisterController extends Controller
                 'nickname' => ['nullable', 'string', 'max:255'],
                 'city' => ['required', 'string', 'max:255'],
                 'region' => ['required', 'integer', 'max:999999999'],
-                'zip_code' => ['required'],
+                'zip_code' => ['required', 'numeric', 'digits:5'],
                 'g-recaptcha-response' => ['required', 'captcha']
             ]
         );

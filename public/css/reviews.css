@@ -101,7 +101,8 @@
     padding: 10px;
 }
 .hwt-content mark{
-    background-color: red;
+    background-color: #ff000057;
+    /*color: red;*/
 }
 .review-upload-files{
     display: flex;

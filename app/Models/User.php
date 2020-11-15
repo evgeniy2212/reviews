@@ -171,13 +171,15 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->save();
     }
 
-    public function isUserReviewAlreadyExist(string $categoryId, string $name, string $secondName = null){
+    public function isUserReviewAlreadyExist(string $categoryId, string $name, string $region_id, string $city, string $secondName = null){
         return $this->reviews()
             ->whereReviewCategoryId($categoryId)
             ->whereName($name)
             ->when($secondName, function($q) use ($secondName){
                 return $q->whereSecondName($secondName);
             })
+            ->whereRegionId($region_id)
+            ->whereCity($city)
             ->get()
             ->count();
     }

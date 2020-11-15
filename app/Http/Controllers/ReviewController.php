@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SaveReviewRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Review;
 use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
@@ -46,7 +47,7 @@ class ReviewController extends Controller
         return view('reviews.index', compact('reviews', 'slug', 'filters', 'paginateParams'));
     }
 
-    public function search(Request $request) {
+    public function search(SearchRequest $request) {
         $filter_alias = ReviewFilter::DATE_FILTER;
         $sort_alias = ReviewFilter::SORT_BY_FILTER;
 
@@ -100,7 +101,12 @@ class ReviewController extends Controller
     public function save(SaveReviewRequest $request) {
         if($request->has('category_slug')
             && $request->category_slug == 'person'
-            && auth()->user()->isUserReviewAlreadyExist($request->review_category_id, $request->name, $request->second_name)
+            && auth()->user()->isUserReviewAlreadyExist(
+                $request->review_category_id,
+                $request->name,
+                $request->region_id,
+                $request->city,
+                $request->second_name)
         ) {
             return redirect()->back()->withErrors(['msg' => __('service\message.review_already_exist')]);
         }

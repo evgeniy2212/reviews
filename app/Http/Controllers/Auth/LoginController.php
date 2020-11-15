@@ -38,12 +38,10 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+//        $this->middleware('guest')->except('logout');
     }
 
     public function authenticated(Request $request, User $user) {
-//        $request->session()->flash('success', __('service/index.welcome', ['name' => $user->name]));
-
         if($user->is_admin){
             $user->generateTwoFactorCode();
             $user->notify(new TwoFactorCode());

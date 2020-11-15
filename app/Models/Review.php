@@ -14,10 +14,10 @@ class Review extends Model
             'holded' => ['is_published' => false],
             'unholded' => ['is_published' => true],
         ],
-//        'category',
-//        'year',
-//        'month',
-//        'day'
+        'from' => [],
+        'to' => [],
+//        'month' => [],
+//        'day' => []
     ];
 
     /**

@@ -29,7 +29,12 @@ class InfoController extends Controller
     }
 
     public function sendTouchInfo(GetInTouchRequest $request){
-        User::whereIsAdmin(true)->first()->notify(new GetInTouch());
+        User::whereIsAdmin(true)->first()->notify(new GetInTouch(
+            $request->name,
+            $request->phone,
+            $request->email,
+            $request->message
+        ));
 
         return redirect()->route('home');
     }

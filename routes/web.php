@@ -60,7 +60,8 @@ Route::group(
             Route::resource('/users', 'UserController')->only('index', 'update');
             Route::resource('/reviews', 'ReviewController')->only('index', 'update');
             Route::resource('/users_reviews', 'UserReviewController')->only('show', 'update');
-            Route::get('search', 'UserController@search')->name('searchUsers');
+            Route::get('search-user', 'UserController@search')->name('searchUsers');
+            Route::get('search-review', 'ReviewController@search')->name('searchReviews');
             Route::get('/info_page/{info_page}', 'InfoPageController@index')->name('info_page');
             Route::post('/info_page', 'InfoPageController@store')->name('save_info_page');
         });

@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Review;
 use App\Notifications\ReviewCommentUpdate;
+use App\Services\CongratsService;
+use Illuminate\Support\Facades\Log;
 
 class ReviewObserver
 {
@@ -15,7 +17,10 @@ class ReviewObserver
      */
     public function created(Review $review)
     {
+//        dd($review->user);
 //        $review->user->notify(new ReviewCreate());
+//        Log::info('UserCongratulation: ', [CongratsService::checkUserCongratulation($review->user)]);
+        $review->user()->update(['congratulation_id' => CongratsService::checkUserCongratulation($review->user)]);
     }
 
     /**

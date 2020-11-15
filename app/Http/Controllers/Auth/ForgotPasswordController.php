@@ -31,7 +31,6 @@ class ForgotPasswordController extends Controller
         ]);
         $user_check = User::where('email', $request->email)->first();
 
-//        dd(!$user_check || !$user_check->email_verified_at);
         if (!$user_check || !$user_check->email_verified_at) {
             return back()->with('status', 'Your account is not activated. Please activate it first.');
         } else {
@@ -40,7 +39,7 @@ class ForgotPasswordController extends Controller
             );
 
             if ($response === Password::RESET_LINK_SENT) {
-                return back()->with('success', trans($response));
+                return redirect(route('home'))->withSuccess(['A confirm link has been sent to your email address.']);
             }
 
             return back()->withErrors(

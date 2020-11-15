@@ -21,9 +21,12 @@
         //     $('[id^="ReviewForm"]').submit();
         // });
 
+        var minDate = $("#adminDatepickerDifMinRange").length > 0 ? $("#adminDatepickerDifMinRange").val() : 0;
+        var maxDate = $("#adminDatepickerDifMaxRange").length > 0 ? $("#adminDatepickerDifMaxRange").val() : 0;
         $( function() {
             $( ".datepicker" ).datepicker({
-                minDate: 0
+                minDate: -minDate,
+                maxDate: maxDate
             });
         } );
 
