@@ -31,7 +31,7 @@
             @endforeach
             <div class="adminFilterItem adminFilterDatepicker">
                 <input type="text"
-                       class="form-control input datepicker"
+                       class="form-control input adminReviewdatepicker"
                        name="from"
                        required
                        placeholder="start date"
@@ -41,7 +41,7 @@
                        id="adminDatepickerDifMinRange"
                        value="{{ \App\Services\ReviewService::difToMinRangeDate() }}">
                 <input type="text"
-                       class="form-control input datepicker"
+                       class="form-control input adminReviewdatepicker"
                        name="to"
                        required
                        value="{{ empty($paginateParams['to']) ? old('to') : $paginateParams['to'] }}"

@@ -8,6 +8,16 @@
             str = replaceQueryParam('page', 1, str);
             window.location = window.location.pathname + str
         });
+
+        var minDate = $("#adminDatepickerDifMinRange").length > 0 ? $("#adminDatepickerDifMinRange").val() : 0;
+        var maxDate = $("#adminDatepickerDifMaxRange").length > 0 ? $("#adminDatepickerDifMaxRange").val() : 0;
+        $( function() {
+            $( ".adminReviewdatepicker" ).datepicker({
+                minDate: -minDate,
+                maxDate: maxDate
+            });
+        } );
+
         $(".adminFilterButton").click(function (event) {
             var str = window.location.search;
             str = replaceQueryParam(

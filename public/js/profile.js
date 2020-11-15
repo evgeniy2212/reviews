@@ -113,13 +113,9 @@
     //     $('[id^="ReviewForm"]').submit();
     // });
 
-    var minDate = $("#adminDatepickerDifMinRange").length > 0 ? $("#adminDatepickerDifMinRange").val() : 0;
-    var maxDate = $("#adminDatepickerDifMaxRange").length > 0 ? $("#adminDatepickerDifMaxRange").val() : 0; // console.log('minDate: ', minDate, 'maxDate: ', maxDate);
-
     $(function () {
       $(".datepicker").datepicker({
-        minDate: -minDate,
-        maxDate: maxDate
+        minDate: 0
       });
     });
     $('#imgBanner').change(function () {

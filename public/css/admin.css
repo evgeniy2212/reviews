@@ -126,7 +126,8 @@
     justify-content: space-around;
     max-width: 35%;
 }
-.adminFilterDatepicker .datepicker {
+.adminFilterDatepicker .datepicker,
+.adminFilterDatepicker .adminReviewdatepicker{
     max-width: 45%;
 }
 .adminFilterButton {
