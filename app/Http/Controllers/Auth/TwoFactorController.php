@@ -30,8 +30,8 @@ class TwoFactorController extends Controller
             'two_factor_code' => 'integer|required',
         ]);
         $user = auth()->user();
-//        if($request->input('two_factor_code') == $user->two_factor_code)
-        if($request->input('two_factor_code') == 1111)
+        if($request->input('two_factor_code') == $user->two_factor_code)
+//        if($request->input('two_factor_code') == 1111)
         {
             $user->resetTwoFactorCode();
 //            return redirect()->route('admin.home');
