@@ -12,28 +12,45 @@ class CongratsService {
     }
 
     public static function checkUserCongratulation(User $user){
-        switch ($count = $user->reviews_count){
+        $congratulation = self::getCongratulationByCount($user->reviews_count);
+        return $congratulation->id;
+    }
+
+    public static function getCongratulationSrcByCount($count){
+        $congratulation = self::getCongratulationByCount($count);
+        return asset($congratulation->src);
+    }
+
+    private static function getCongratulationByCount($count){
+        $result = '';
+        switch ($count){
+            case(0):
+                $result = Congratulation::firstWhere('name', 'default');
+                break;
             case ($count >= Congratulation::FIRST_CONGRATULATION
                 && $count < Congratulation::SECOND_CONGRATULATION):
-                return Congratulation::firstWhere('name', 'first')->id;
+                $result = Congratulation::firstWhere('name', 'first');
                 break;
             case ($count >= Congratulation::SECOND_CONGRATULATION
-                && $count < Congratulation::THIRD_CONGRATULATION_CONGRATULATION):
-                return Congratulation::firstWhere('name', 'second')->id;
+                && $count < Congratulation::THIRD_CONGRATULATION):
+                $result = Congratulation::firstWhere('name', 'second');
                 break;
             case ($count >= Congratulation::THIRD_CONGRATULATION
                 && $count < Congratulation::FOURTH_CONGRATULATION):
-                return Congratulation::firstWhere('name', 'third')->id;
+                $result = Congratulation::firstWhere('name', 'third');
                 break;
             case ($count >= Congratulation::FOURTH_CONGRATULATION
                 && $count < Congratulation::FIFTH_CONGRATULATION):
-                return Congratulation::firstWhere('name', 'fourth')->id;
+                $result = Congratulation::firstWhere('name', 'fourth');
                 break;
             case ($count >= Congratulation::FIFTH_CONGRATULATION):
-                return Congratulation::firstWhere('name', 'fifth')->id;
+                $result = Congratulation::firstWhere('name', 'fifth');
                 break;
             default:
-                return Congratulation::firstWhere('name', 'default')->id;
+                $result = Congratulation::firstWhere('name', 'default');
+                break;
         }
+
+        return $result;
     }
 }

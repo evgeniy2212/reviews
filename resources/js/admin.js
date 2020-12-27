@@ -9,6 +9,15 @@
             window.location = window.location.pathname + str
         });
 
+        $( ".admin-complain" ).click(function() {
+            let slug = $(this).attr('name');
+            let item = $(this).attr('value');
+            var str = window.location.search;
+            str = replaceQueryParam(slug, item, str);
+            str = replaceQueryParam('page', 1, str);
+            window.location = window.location.pathname + str
+        });
+
         var minDate = $("#adminDatepickerDifMinRange").length > 0 ? $("#adminDatepickerDifMinRange").val() : 0;
         var maxDate = $("#adminDatepickerDifMaxRange").length > 0 ? $("#adminDatepickerDifMaxRange").val() : 0;
         $( function() {
@@ -37,6 +46,31 @@
             );
             str = replaceQueryParam('page', 1, str);
             window.location = window.location.pathname + str
+        });
+
+        $('[id^="adminComplaintButton"]').click(function(event) {
+            let review = $(this).parent().parent().parent();
+            let complains = review.find('.complain');
+            complains.each(function( index ) {
+                if($(this).text().trim()) {
+                    $(this).toggle(750);
+                    $(this).css('display', 'flex');
+                }
+            });
+            review.find('.review-textarea').toggle(750);
+            $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Complains (' + $(this).data('complains') + ')');
+        });
+
+        $('.deleteLogo').click(function(){
+            let id = $(this).data("logoId");
+            let name = $(this).data("reviewName");
+            let categoryName = $(this).data("reviewCategoryName");
+            let url =  $("#deleteLogoForm").data('action');
+            url = url.replace(':id', id);
+            console.log(id, name, categoryName, url);
+            $("#deleteLogoForm").attr('action', url);
+            $("#reviewName").text(name);
+            $("#reviewCategoryName").text(categoryName);
         });
     });
 

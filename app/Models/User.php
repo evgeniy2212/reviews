@@ -116,6 +116,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Banner::class, 'user_id', 'id');
     }
 
+    public function complains()
+    {
+        return $this->belongsToMany(Review::class, 'complains')
+            ->withPivot('msg', 'is_new');
+    }
+
     public function getFullNameAttribute(){
         return $this->name . ' ' . $this->last_name;
     }
@@ -132,7 +138,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->comments->count();
     }
 
-    public function getUserSign($userSign){
+    public function getUserSign($userSign = self::DEFAULT_NAME){
         switch ($userSign) {
             case self::NAME_SIGN:
                 $result = $this->full_name;
@@ -182,5 +188,9 @@ class User extends Authenticatable implements MustVerifyEmail
             ->whereCity($city)
             ->get()
             ->count();
+    }
+
+    public function scopeActiveUsers($query){
+        return $query->where('is_admin', false)->whereNotNull('email_verified_at');
     }
 }

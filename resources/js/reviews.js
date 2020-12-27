@@ -141,6 +141,11 @@
             $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
         });
 
+        $('[id^="complainButton"]').click(function(event) {
+            let reviewId = $(this).data('review');
+            $('#complainForm').find("input[name='review_id']").val(reviewId);
+        });
+
         $('[id^="profileMessageButton"]').click(function(event) {
             let review = $(this).parent().parent().parent();
             let comments = review.find('.message');
@@ -223,6 +228,7 @@
                     }
                 });
             } else {
+                review.find('button').removeAttr("disabled");
                 alert('Mail message is empty!');
             }
         });
@@ -241,7 +247,6 @@
                     success:function(data){
                         let elem = review.parent().find('.message-example');
                         let cloneElem = elem.clone();
-                        console.log(elem.data('senderName'));
                         cloneElem.attr('class', 'comment message');
                         cloneElem.find('.message-response').text(data.data[0].message);
                         cloneElem.find('.sender-name').text(elem.data('senderName'));
@@ -251,6 +256,7 @@
                     }
                 });
             } else {
+                review.find('button').removeAttr("disabled");
                 alert('Mail message is empty!');
             }
         });
@@ -301,5 +307,13 @@
             captionText.innerHTML = this.alt;
             // }
         });
+
+        $('#congratulation-img').hover(
+            function(){
+                $('#congratulation-rules').show();
+            },
+            function(){
+                $('#congratulation-rules').hide();
+            });
     });
 })(jQuery);

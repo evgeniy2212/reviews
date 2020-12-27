@@ -26,6 +26,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('congratulation:new_year')->cron('0 2 1 1 *')->yearly()->timezone('America/New_York');
+        $schedule->command('congratulation:new_year')->cron('0 22 27 12 *')->yearly()->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('30 21 27 12 *')->yearly()->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('0 21 27 12 *')->yearly()->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('0 2 28 12 *')->yearly()->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->everyFiveMinutes()->timezone('Europe/Kiev');
     }
 
     /**

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Review;
 use App\Services\ReviewService;
-use App\Services\UserService;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -50,8 +50,9 @@ class UserReviewController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $reviews = ReviewService::getUserFilteredReviews($user->id);
-        $paginateParams = [];
+        $reviewFilter = array_intersect_key(request()->all(), Review::ADMIN_FILTERS);
+        $reviews = ReviewService::getAdminUserFilteredReviews($user->id, $reviewFilter);
+        $paginateParams = $reviewFilter;
 
         return view('admin.user_reviews', compact('reviews', 'paginateParams', 'user'));
     }

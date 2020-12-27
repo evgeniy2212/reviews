@@ -86,6 +86,8 @@ class BannerController extends Controller
             $imageInfo = ImageService::updateBanner($request, $banner);
             $request->merge($imageInfo);
         }
+        $data = $request->all();
+        $data['title'] = $request->title ?? '';
         $banner->update($request->all());
 
         return redirect()->back();

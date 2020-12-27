@@ -8,6 +8,7 @@ return [
     'banners' => 'Ad Requests',
     'users' => 'Users',
     'reviews' => 'Reviews',
+    'complains' => 'Complains',
     'postal_code' => 'Postal Code',
     'phone' => 'Phone',
     'fax' => 'Fax',
@@ -27,4 +28,10 @@ return [
     'max_banners_published' => 'The maximum number (:count) of banners has already been published',
     'user_updated_successfully' => 'User :name updated successfully!',
     'review_updated_successfully' => 'Review updated successfully!',
+    'logo_saved_successfully' => 'Logo saved successfully!',
+    'logo_delete_successfully' => 'Logo delete successfully!',
+    'logo_delete_error' => 'Logo delete error!',
+    'logo_updated_successfully' => 'Logo updated successfully!',
+    'complain.block' => 'Block',
+    'complain.not_block' => 'Not Block',
 ];

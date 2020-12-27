@@ -14,6 +14,28 @@
                     <p>
                         Yours reviews makes our live better.
                     </p>
+                    {{--<script>--}}
+                        {{--setTimeout(function() {--}}
+                            {{--var ad = document.querySelector("ins.adsbygoogle"); // создаем переменную с блоком рекламы от гугл--}}
+                            {{--var adblock = document.getElementsByClassName('ads'); // создаем переменную с нашим блоком ads--}}
+                            {{--if (ad && ad.innerHTML.replace(/\s/g, "").length == 0) { // Если рекламный блок пуст--}}
+                                {{--ad.style.cssText = 'display:block !important'; // Делаем его видимым в любом случае--}}
+                                {{--for(var i = 0; i < adblock.length; i++) { // Если у нас много блоков с рекламой, проходимся по всем.--}}
+                                    {{--(function(index) {--}}
+                                        {{--adblock[index].innerHTML = 'Здесь была бы реклама, если бы не adblock и я получил бы лишнию копейку, а так тут просто черный блок с текстом';--}}
+                                        {{--adblock[index].style.background = '#000';--}}
+                                        {{--adblock[index].style.color = '#fff';--}}
+                                        {{--adblock[index].style.padding = '15px';--}}
+                                        {{--adblock[index].style.fontSize = '20px';--}}
+                                        {{--adblock[index].style.minHeight = '90px';--}}
+                                        {{--adblock[index].style.maxWidth = '728px';--}}
+                                        {{--adblock[index].style.margin = '15px auto';--}}
+                                        {{--adblock[index].className = '';--}}
+                                    {{--})(i);--}}
+                                {{--}--}}
+                            {{--}--}}
+                        {{--}, 2000);--}}
+                    {{--</script>--}}
                 </div>
                 @auth
                     @if(auth()->user()->email_verified_at && !auth()->user()->two_factor_code)
@@ -27,7 +49,8 @@
                                         <div class="bg"></div>
                                         <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
                                     </div>
-                                    <img src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="35px" width="30px"/>
+                                    <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="35px" width="30px"/>
+                                    @include('includes.popups.congratulation_rules')
                                 </div>
                                 <div class="user-activities">
                                     <span>Reviews: {{ auth()->user()->reviewsCount }}</span>
@@ -65,7 +88,8 @@
                                 </li>
                             @endif
                             <li class="left-border">
-                                <a href="{{ asset('files/reviews4info.zip') }}" download="reviews4info">Save</a>
+{{--                                <a href="{{ asset('files/reviews4info.zip') }}" download="reviews4info">Save</a>--}}
+                                <a href="{{ route('save-shortcut') }}">Save</a>
                             </li>
                             <li class="left-border">
                                 <a href=""
@@ -114,7 +138,9 @@
                         {{--</div>--}}
                         @foreach(\App\Services\BannerService::getHeadBanners() as $banner)
                             <div class="slider__item">
-                                <div style="height: 120px; background-image: url('{{ $banner->getImageUrl() }}'); background-repeat: no-repeat; background-size: cover;"></div>
+                                <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '148' : '123' }}px;">
+                                    <span>{{ empty($banner->title) ? '' : $banner->title }}</span>
+                                </div>
                             </div>
                         @endforeach
                         {{--<div class="slider__item">--}}

@@ -69,7 +69,7 @@
         <div class="w-100 profile-review-item">
             @foreach($review->messages as $message)
                 <div class="message" data-is-read-messages="" style="display: none">
-                    <span class="sender-name">{!! $message->from()->first()->full_name !!}</span>
+                    <span class="sender-name">{!! $message->from()->first()->full_name !!}: </span>
                     <span>{!! $message->message !!}</span>
                 </div>
             @endforeach

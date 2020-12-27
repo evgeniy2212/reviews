@@ -85,6 +85,7 @@
                            type="text"
                            class="form-control input"
                            name="title"
+                           maxlength="35"
                            placeholder="@lang('service/profile.banner_title')"
                            autocomplete="off">
                 </div>

@@ -3,47 +3,33 @@
 @section('profile_review_content')
     <div class="profile-review-place">
         <div class="adminFilters">
-            @foreach(\App\Models\BannerCategory::FILTERS as $filterName => $filters)
-                <div class="col-md-4 d-flex flex-row justify-content-around">
-                    <div>
-                        {{--<label for="bannerFilter">--}}
-                            {!! $filterName !!}
-                        {{--</label>--}}
+            @foreach(\App\Models\Review::ADMIN_FILTERS as $filterName => $filters)
+                @if(!empty($filters))
+                    <div class="col-md-4 d-flex flex-row justify-content-around">
+                        <div>
+                            {{--<label for="bannerFilter">--}}
+                            {!! strtoupper($filterName) !!}
+                            {{--</label>--}}
+                        </div>
+                        <div>
+                            <select class="select filter-select"
+                                    id="bannerFilter-{!! $filterName !!}"
+                                    name="{!! $filterName !!}">
+                                @foreach($filters as $key => $value)
+                                    <option value="{!! $key !!}"
+                                            {{ (array_key_exists($filterName, $paginateParams) && $paginateParams[$filterName] === $key)
+                                                ? 'selected'
+                                                : ''}}>
+                                        {!! $key !!}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <select class="select filter-select"
-                                id="bannerFilter-{!! $filterName !!}"
-                                name="{!! $filterName !!}">
-                            @foreach($filters as $key => $value)
-                                <option value="{!! $key !!}"
-                                        {{ (array_key_exists($filterName, $paginateParams) && $paginateParams[$filterName] === $key)
-                                            ? 'selected'
-                                            : ''}}>
-                                    {!! $key !!}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                @endif
             @endforeach
         </div>
         <div class="singleUser">
-            {{--<div class="singleUserControl">--}}
-                {{--<button type="submit"--}}
-                        {{--id="userPublishButton{{ $user->id }}"--}}
-                        {{--class="otherButton"--}}
-                        {{--name="is_blocked"--}}
-                        {{--value="{{ $user->is_blocked ? 0 : 1 }}">--}}
-                    {{--@if($user->is_blocked)--}}
-                        {{--@lang('service/admin.unhold')--}}
-                    {{--@else--}}
-                        {{--@lang('service/admin.hold')--}}
-                    {{--@endif--}}
-                {{--</button>--}}
-                {{--<a type="button"--}}
-                   {{--class="otherButton"--}}
-                   {{--href="{{ route('admin.users_reviews.show', $user->id) }}">@lang('service/admin.user.reviews')</a>--}}
-            {{--</div>--}}
             <div class="singleUserInfo">
                 <div class="singleUserInfoColumn">
                     <div class="singleUserInfoItem">

@@ -1,5 +1,9 @@
 @extends('profile.index')
 
+@section('modal_forms')
+    @include('includes.modal.confirmDeleteLogo')
+@endsection
+
 @section('profile_review_content')
     <div class="profile-review-place">
         <div class="adminFilters">

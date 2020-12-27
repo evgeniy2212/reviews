@@ -85,12 +85,26 @@ class Review extends Model
         return $this->hasOne(ReviewVideo::class, 'review_id', 'id');
     }
 
+    public function complains()
+    {
+        return $this->belongsToMany(User::class, 'complains')
+            ->withPivot('msg', 'is_new');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function characteristics()
     {
         return $this->belongsToMany(ReviewCharacteristic::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function logo()
+    {
+        return $this->belongsToMany(Logo::class, 'logo_review');
     }
 
     public function getCreatedAtAttribute($date)

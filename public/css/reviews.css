@@ -22,6 +22,12 @@
     font-size: 22px;
     padding-left: 7px;
 }
+.middle-rating-star
+{
+    padding-bottom: 5px;
+    font-size: 22px;
+    padding-left: 7px;
+}
 .rating-container {
     align-items: center;
     display: flex;
@@ -64,7 +70,7 @@
     font-size: 12px;
 }
 .review-info-container {
-    padding-bottom: calc(calc(100vh - 300px)*0.05);
+    padding-bottom: calc(calc(100vh - 330px)*0.05);
 }
 #createReviewForm .review-info-container div, #editReviewForm .review-info-container div {
     padding: 0 3px;
@@ -143,8 +149,8 @@ input[type="file"] {
     box-sizing: border-box;
     max-width: 50%;
 }
-.review-content-place {
-    height: calc(100vh - 230px);
+.review-content-place, .review-content-place:hover {
+    height: calc(100vh - 260px);
     overflow: auto;
     width: 100%;
     /*padding: 1%;*/
@@ -216,6 +222,19 @@ input[type="file"] {
     justify-content: flex-start;
     width: 15%;
 }
+.single-comment-info span {
+    font-size: 15px;
+}
+.single-comment-info div {
+    margin-bottom: 10px;
+}
+.single-comment-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 15%;
+}
 .single-review-content {
     display: flex;
     flex-direction: row;
@@ -233,6 +252,22 @@ input[type="file"] {
     font-size: 1rem;
     padding-bottom: 5px;
 }
+.single-review-logo-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.single-review-logo-name > *{
+    margin-bottom: 10px;
+}
+.single-review-logo-name img {
+    width: auto;
+    height: auto;
+    max-height: 50px;
+    max-width: 50px;
+    margin: auto;
+}
 .single-review-review {
     display: flex;
     flex-direction: column;
@@ -246,6 +281,8 @@ input[type="file"] {
 }
 .single-review-review p, .single-review-review span{
     text-align: left;
+    float: left;
+    width: 100%;
     padding-bottom: 5px;
 }
 .single-review-review img {
@@ -259,15 +296,18 @@ input[type="file"] {
 }
 .profile-single-review-review p, .profile-single-review-review span {
     text-align: left;
+    float: left;
+    width: 100%;
     padding-bottom: 5px;
 }
 .profile-single-review-review img {
-    float: left;
+    float: right;
     margin: 5px 5px 5px 5px;
 }
 .profile-single-review-review video {
     margin: 5px 5px 5px 5px;
     object-fit: fill;
+    float: right;
 }
 .like-reaction :active, :hover, :focus {
     outline: 0;
@@ -331,6 +371,20 @@ input[type="file"] {
     border-image: linear-gradient(to right, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;
     margin-bottom: 10px;
 }
+.complain {
+    display: none;
+    flex-direction: row;
+    width: 100%;
+    text-align: start;
+    justify-content: start;
+    align-items: stretch;
+    border-bottom: 1px groove #4a92f8;
+    border-image: linear-gradient(to right, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;
+    margin-bottom: 10px;
+}
+.complain span {
+    padding: 0 5px;
+}
 .message{
     display: none;
     flex-direction: row;
@@ -393,4 +447,11 @@ input[type="file"] {
 }
 .acceptModalDialog button{
     margin: 10px 0;
+}
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }

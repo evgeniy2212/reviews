@@ -28,6 +28,10 @@ class InfoController extends Controller
         return view('term_of_conditions');
     }
 
+    public function saveShortcutInstruction(){
+        return view('saveShortcutInstruction');
+    }
+
     public function sendTouchInfo(GetInTouchRequest $request){
         User::whereIsAdmin(true)->first()->notify(new GetInTouch(
             $request->name,

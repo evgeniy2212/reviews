@@ -7,7 +7,6 @@ use App\Models\Banner;
 use App\Models\BannerCategory;
 use App\Http\Requests\Profile\StoreBanner;
 use App\Services\ImageService;
-use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {

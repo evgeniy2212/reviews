@@ -18,7 +18,7 @@ class CategoryByReview extends Model
     }
 
     public function groups(){
-        return $this->hasMany(GroupByReview::class, 'category_id', 'id');
+        return $this->hasMany(GroupByReview::class, 'category_id', 'id')->orderByDesc('name');
     }
 
     public function getGroupsByCategory($id){

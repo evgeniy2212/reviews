@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('modal_forms')
+    @include('includes.modal.complainModal')
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="container">
@@ -15,40 +19,62 @@
                     </div>
                 </div>
                 <div class="review-items">
-                    <div class="d-flex flex-row justify-content-center exist-review-title">
-                        <span>
-                            EXISTING REVIEWS
-                        </span>
-                    </div>
-                    <div class="review-filters">
-                        @foreach($filters as $filter)
-                            <div class="col-md-3 d-flex flex-row justify-content-around">
-                                <div>
-                                    <label for="country">
-                                        {!! $filter->format_name !!}
-                                    </label>
-                                </div>
-                                <div>
-                                    <select class="select filter-select"
-                                            id="filter-{!! $filter->slug !!}"
-                                            name="{!! $filter->slug !!}">
-                                        <option value="" selected>All</option>
-                                        @foreach($filter->filter_values as $value)
-                                            <option value="{!! $value->slug !!}"
-                                                    {{ (array_key_exists($filter->slug, $paginateParams) && $paginateParams[$filter->slug] === $value->slug)
-                                                        ? 'selected'
-                                                        : ''}}>
-                                                {!! $value->format_value !!}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                    @if($reviews->count())
+                        <div class="d-flex flex-row justify-content-center exist-review-title">
+                            <span>
+                               {{ empty($search) ? '' : "\"$search\"" }} EXISTING REVIEWS
+                            </span>
+                        </div>
+                        @if(!empty($avgRating))
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="middle-rating-star" data-rate-value="5" style="width: 91.6406px; height: 33px; position: relative; cursor: default; user-select: none;">
+                                    <div class="rate-base-layer" style="width: 100%; height: 33px; overflow: hidden; position: absolute; top: 0px; display: block; white-space: nowrap;">
+                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                    </div>
+                                    <div class="rate-select-layer" style="width: {!! $starPercent !!}%; height: 33px; overflow: hidden; position: absolute; top: 0px; display: block; white-space: nowrap;">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
-                    @foreach($reviews as $review)
+                        @endif
+                        <div class="review-filters">
+                            @foreach($filters as $filter)
+                                <div class="col-md-3 d-flex flex-row justify-content-around">
+                                    <div>
+                                        <label for="country">
+                                            {!! $filter->format_name !!}
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <select class="select filter-select"
+                                                id="filter-{!! $filter->slug !!}"
+                                                name="{!! $filter->slug !!}">
+                                            <option value="" selected>All</option>
+                                            @foreach($filter->filter_values as $value)
+                                                <option value="{!! $value->slug !!}"
+                                                        {{ (array_key_exists($filter->slug, $paginateParams) && $paginateParams[$filter->slug] === $value->slug)
+                                                            ? 'selected'
+                                                            : ''}}>
+                                                    {!! $value->format_value !!}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="d-flex flex-row justify-content-center exist-review-title">
+                            <span>
+                                SEARCH RESULT IS EMPTY
+                            </span>
+                        </div>
+                    @endif
+                    @forelse($reviews as $review)
                         @include('reviews.single_review')
-                    @endforeach
+                    @empty
+
+                    @endforelse
                     @if($reviews->total() > $reviews->count())
                         <div class="container-fluid">
                             <div class="pagination-container">

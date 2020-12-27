@@ -71,11 +71,11 @@ html, body {
 .section {
     padding-top: 10px;
     padding-bottom: 20px;
-    height: calc(100% - 235px);
+    height: calc(100% - 265px);
 }
 
 .content-place {
-    height: calc(100vh - 230px);
+    height: calc(100vh - 260px);
     overflow: auto;
     width: 100%;
     padding: 1%;
@@ -195,6 +195,7 @@ html, body {
 #editProfileButton:hover,
 #createAccount a,
 .otherButton a,
+.otherButton:hover,
 .otherButton a:hover,
 #createAccount a:hover {
     text-decoration: none;
@@ -284,8 +285,8 @@ html, body {
 .profile-navigation ul {
     padding: 0;
     list-style-type: none;
-    font-size: 11px;
-    line-height: 300%;
+    font-size: 0.7rem;
+    line-height: 3em;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -490,7 +491,7 @@ button:disabled {
     text-decoration: none;
 }
 .get-in-touch-content-place {
-    height: calc(100vh - 230px);
+    height: calc(100vh - 260px);
     overflow: auto;
     width: 100%;
     /*padding: 1%;*/
@@ -653,6 +654,41 @@ button:disabled {
     border-radius: 5px;
     z-index: 50;
 }
+#congratulation-rules{
+    position: absolute;
+    left: 49%;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    margin-top: 195px;
+    padding: 3px;
+    background-color: #f1f1f1;
+    border: 2px solid #2f5496;
+    border-radius: 5px;
+    z-index: 50;
+    font-size: 0.8rem;
+}
+#congratulation-rules span {
+    margin: 0 1em;
+    display:inline-block;
+}
+[data-tooltip] {
+    position: relative; /* Относительное позиционирование */
+}
+/* Выводим саму подсказку */
+[data-tooltip]:hover::after {
+    content: attr(data-tooltip); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    width: 300px; /* Ширина подсказки */
+    right: 0px; top: 30px; /* Положение подсказки */
+    padding: 3px;
+    background-color: #f1f1f1;
+    border: 2px solid #2f5496;
+    border-radius: 5px;
+    z-index: 50;
+    font-size: 0.8rem;
+}
 .invalid-input {
     border-color: #e3342f!important;
     padding-right: calc(1.6em + 0.75rem)!important;
@@ -724,4 +760,68 @@ button:disabled {
     justify-content: center;
     align-items: center;
     margin: 25px 0 0 0;
+}
+#complainForm {
+    border: 3px solid #2f5496;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    font-size: 15px;
+}
+#complainForm div{
+    margin: 8px;
+}
+#complainForm textarea{
+    resize: none;
+    width: 100%;
+    /*height: calc(100vh - 320px);*/
+    /*height: 100%;*/
+    min-height: 100px;
+    padding: 2%;
+    font-size: 0.8rem;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 1px;
+}
+.otherButton[disabled] {
+    background-color: #59595982;
+    pointer-events: none;
+}
+.shortcut{
+    text-decoration: underline;
+    font-weight: 700;
+    color: #413e3e;
+}
+.shortcut:hover {
+    cursor: pointer;
+}
+#shortcutInstructionModal{
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+}
+#shortcutInstructionModal > li{
+    list-style-type: none;
+    padding: 0.7em 0 0 0;
+}
+#shortcutInstructionModal > li > ol {
+    color: #7b7676;
+    list-style: none;
+    counter-reset: my-awesome-counter;
+    padding: 0;
+}
+#shortcutInstructionModal > li > ol > strong{
+    color: #413e3e;
+}
+#shortcutInstructionModal > li > ol > li {
+    counter-increment: my-awesome-counter;
+    font-weight: 500;
+}
+#shortcutInstructionModal > li > ol > li::before {
+    content: "Step " counter(my-awesome-counter) ": ";
+    font-weight: 500;
+}
+#shortcutInstructionModal .disabled{
+    color: rgba(123, 118, 118, 0.28);
 }

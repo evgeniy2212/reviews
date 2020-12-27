@@ -1,4 +1,4 @@
-<div class="single-review">
+<div class="single-review {{ $review->is_published ? '' : 'singleBlockedReview' }}">
     <div class="single-review-info">
         <div>
             <span>{{ $review->created_at }}</span>
@@ -36,13 +36,19 @@
                 <label for="dislike-{{ $review->id }}">{{ $review->dislikes }}</label>
             </div>
         </div>
+        <div class="d-flex flex-row justify-content-center w-100">
+            <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="35px" width="30px"/>
+        </div>
     </div>
     <div class="profile-single-review-item">
         <div class="w-100 d-flex flex-row">
             <div class="profile-single-review-content">
                 <div class="single-review-name">
-                    <div>
-                        {{ $review->full_name }}
+                    <div class="single-review-logo-name">
+                        <span>{{ $review->full_name }}</span>
+                        @if($review->logo->count())
+                            <img src="{{ asset($review->logo->first()->getImageUrl()) }}" height="50px" width="50px"/>
+                        @endif
                     </div>
                     <div>
                         <i>{{ $review->user->getUserSign($review->user_sign) }}</i>
@@ -59,6 +65,11 @@
                                     {{--<source src="movie.ogg" type="video/ogg">--}}
                                     Your browser does not support the video tag.
                                 </video>
+                            @else
+                                <img src="{{ asset('storage/images/default_img_video.png') }}"
+                                     alt="photo"
+                                     width="135"
+                                     height="100">
                             @endif
                             @if($review->image)
                                 <img src="{{ $review->image->getResizeImageUrl() }}"
@@ -69,32 +80,57 @@
                                      id="myImg"
                                      width="100"
                                      height="100">
+                            @else
+                                <img src="{{ asset('storage/images/default_img.png') }}"
+                                     alt=""
+                                     width="100"
+                                     height="100">
                             @endif
                             {{ $review->review }}
                         </p>
                 </div>
             </div>
-            <div class="profile-single-review-button">
-                <a type="button"
-                   href="{{ route('profile-reviews.edit', $review->id) }}">
-                    Edit
-                </a>
-                <a data-toggle="modal"
-                   type="button"
-                   id="profileCommentButton-{{ $review->id }}">
-                    Reply
-                </a>
-                <a data-toggle="modal"
-                   type="button"
-                   class="deleteReview"
-                   data-review-id="{{ $review->id }}"
-                   data-review-name="{{ $review->full_name }}"
-                   data-target="#deleteReviewModal">
-                    Delete
-                </a>
+            <div class="profile-single-review-button {{ $review->is_published ?: 'profile-single-review-blocked' }}">
+                @if(!$review->is_published)
+                    <span>Review blocked due to complaints.</span>
+                @else
+                    <a type="button"
+                        href="{{ route('profile-reviews.edit', $review->id) }}">
+                        Edit
+                    </a>
+                    <a data-toggle="modal"
+                       type="button"
+                       id="profileCommentButton-{{ $review->id }}">
+                        Reply
+                    </a>
+                    <a data-toggle="modal"
+                       type="button"
+                       class="deleteReview"
+                       data-review-id="{{ $review->id }}"
+                       data-review-name="{{ $review->full_name }}"
+                       data-target="#deleteReviewModal">
+                        Delete
+                    </a>
+                @endif
             </div>
         </div>
+        @if(!$review->is_published)
+            <div class="w-25">
+                <a type="button"
+                   class="otherButton"
+                   id="profileComplaintButton-{{ $review->id }}"
+                   data-complains="{{ $review->complains->count() }}">
+                    Complains ({!! $review->complains->count() !!})
+                </a>
+            </div>
+        @endif
         <div class="w-100 profile-review-item">
+            @foreach($review->complains as $complain)
+                <div class="complain" style="display: none">
+                    <span>{!! $complain->full_name !!}</span>
+                    <span>{!! $complain->pivot->msg !!}</span>
+                </div>
+            @endforeach
             @foreach($review->comments as $comment)
                 <div class="comment" style="display: none">
                     <span>{!! $comment->body !!}</span>

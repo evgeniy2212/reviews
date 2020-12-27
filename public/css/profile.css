@@ -2,7 +2,7 @@
     font-family: ImprintMTShadow;
     src: url('../fonts/ImprintMTShadow.ttf');
 }
-#deleteReviewForm, #editReviewForm {
+#deleteReviewForm, #editReviewForm, #deleteCommentForm {
     border: 3px solid #2f5496;
     padding: 30px 0;
     display: flex;
@@ -37,7 +37,15 @@
     justify-content: flex-start;
     padding: 10px 0;
 }
-.profile-single-review-button a {
+.profile-single-comment-button{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    padding: 0 0;
+}
+.profile-single-review-button a, .profile-single-comment-button a {
     border-color: #a0a3af;
     border-style: dashed;
     border-width: 1px;
@@ -53,9 +61,18 @@
     font-size: 0.8rem;
     font-weight: 500;
 }
-.profile-single-review-button a:hover {
+.profile-single-review-button a:hover, .profile-single-comment-button a:hover {
     text-decoration: none;
     color: #1b1e21;
+}
+.profile-single-review-blocked {
+    background-color: rgba(255, 0, 0, 0.53);
+    max-height: 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .profile-single-review-review {
     display: flex;
@@ -76,6 +93,41 @@
     width: 85%;
     padding-bottom: 10px;
 }
+.profile-single-comment-item{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 0 0;
+}
+.profile-single-comment-body{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around;
+    width: 98%;
+    line-height: 1.2rem;
+    letter-spacing: 1px;
+}
+.profile-single-comment {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: stretch;
+    justify-content: space-around;
+    border-bottom: 1px groove #4a92f8;
+    padding: 10px 0;
+    min-height: 125px;
+}
+.comment-textarea {
+    resize: none;
+    width: 100%;
+    min-height: 100px;
+    /*height: calc(100vh - 360px);*/
+    /*margin: 1% 1% 2% 1%;*/
+    /*font-size: 0.8rem;*/
+    /*border: 1px solid rgb(118, 118, 118);*/
+    /*border-radius: 1px;*/
+}
 .banners{
     display: flex;
     justify-content: center;
@@ -85,23 +137,33 @@
     padding: 5% 2%;
 }
 .bannerTitle{
-    font-size: 22px;
+    font-size: 1.6rem;
     color: #454545c7;
     margin: 0 0 1% 0;
     padding: 0;
     font-family: "ImprintMTShadow";
     font-weight: 300;
 }
-.bannerContent{
-    font-size: 0.8rem;
-    margin: 0 0 1% 0;
+
+@media (max-width: 1366px) {
+    .bannerContent{
+        font-size: 0.7rem;
+        margin: 0 0 1% 0;
+    }
 }
+@media (min-width: 1400px) {
+    .bannerContent{
+        font-size: 0.8rem;
+        margin: 0 0 1% 0;
+    }
+}
+
 .bannerInfo {
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-grow: 1;
-    margin: 0 0 15px 0;
+    margin: 0 0 0.8em 0;
 }
 .bannerInfo span {
     padding: 0 5px 0 10px;
@@ -125,6 +187,7 @@
     background-color: #e7e6e6;
     height: 100%;
     width: 100%;
+    max-width: 150px;
     text-align: center;
     white-space: nowrap; /* Запрещаем перенос строк */
     overflow: hidden; /* Обрезаем все, что не помещается в область */
@@ -132,23 +195,28 @@
 }
 @media (max-width: 1366px) {
     #bannerImagePreview{
-        width: 250px;
-        height: 100px;
+        width: 185px;
+        height: 90px;
         border: 1px dashed #a0a3af;
         margin: 0 0 5px 0;
+        display: flex;
     }
 }
 @media (min-width: 1400px) {
     #bannerImagePreview{
         width: 310px;
-        height: 125px;
+        height: 150px;
         border: 1px dashed #a0a3af;
         margin: 0 0 5px 0;
+        display: flex;
     }
 }
 #bannerImagePreview img{
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
 }
 .bannerImagePreviewContainer{
     display: flex;

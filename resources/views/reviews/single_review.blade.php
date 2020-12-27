@@ -36,11 +36,17 @@
                 <label for="dislike-{{ $review->id }}">{{ $review->dislikes }}</label>
             </div>
         </div>
+        <div class="d-flex flex-row justify-content-center w-100">
+            <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="35px" width="30px"/>
+        </div>
     </div>
     <div class="single-review-content">
         <div class="single-review-name">
-            <div>
-                {{ $review->full_name }}
+            <div class="single-review-logo-name">
+                <span>{{ $review->full_name }}</span>
+                @if($review->logo->count())
+                    <img src="{{ asset($review->logo->first()->getImageUrl()) }}" height="50px" width="50px"/>
+                @endif
             </div>
             <div>
                 <i>{{ $review->user->getUserSign($review->user_sign) }}</i>
@@ -57,6 +63,11 @@
                         {{--<source src="movie.ogg" type="video/ogg">--}}
                         Your browser does not support the video tag.
                     </video>
+                @else
+                    <img src="{{ asset('storage/images/default_img_video.png') }}"
+                         alt="photo"
+                         width="135"
+                         height="100">
                 @endif
                 @if($review->image)
                     <img src="{{ $review->image->getResizeImageUrl() }}"
@@ -65,6 +76,11 @@
                          class="reviewImage"
                          style="cursor: pointer;"
                          id="myImg"
+                         width="100"
+                         height="100">
+                @else
+                    <img src="{{ asset('storage/images/default_img.png') }}"
+                         alt=""
                          width="100"
                          height="100">
                 @endif
@@ -98,31 +114,31 @@
                         </div>
                     </div>
                 @endforeach
-                    <div class="comment-example" style="display: none">
-                        <span></span>
-                        <div class="d-flex flex-row justify-content-around w-25">
-                            <div>
-                                <label for="comment-like"></label>
-                                <input id="comment-like"
-                                       class="comment-like-reaction"
-                                       type="image"
-                                       data-review-id=""
-                                       data-reaction-name="likes"
-                                       src="{{ asset('images/positive_like.png') }}"
-                                       @auth @else disabled @endauth/>
-                            </div>
-                            <div>
-                                <input id="comment-dislike"
-                                       class="comment-like-reaction"
-                                       type="image"
-                                       data-review-id=""
-                                       data-reaction-name="dislikes"
-                                       src="{{ asset('images/negative_like.png') }}"
-                                       @auth @else disabled @endauth/>
-                                <label for="comment-like"></label>
-                            </div>
+                <div class="comment-example" style="display: none">
+                    <span></span>
+                    <div class="d-flex flex-row justify-content-around w-25">
+                        <div>
+                            <label for="comment-like"></label>
+                            <input id="comment-like"
+                                   class="comment-like-reaction"
+                                   type="image"
+                                   data-review-id=""
+                                   data-reaction-name="likes"
+                                   src="{{ asset('images/positive_like.png') }}"
+                                   @auth @else disabled @endauth/>
+                        </div>
+                        <div>
+                            <input id="comment-dislike"
+                                   class="comment-like-reaction"
+                                   type="image"
+                                   data-review-id=""
+                                   data-reaction-name="dislikes"
+                                   src="{{ asset('images/negative_like.png') }}"
+                                   @auth @else disabled @endauth/>
+                            <label for="comment-like"></label>
                         </div>
                     </div>
+                </div>
                 @auth()
                     <div class="review-textarea" data-review-id="{{ $review->id }}">
                         <div class="col-md-8">
@@ -137,7 +153,7 @@
                                 Add Comment
                             </button>
                             @if(auth()->user()->id !== $review->user_id)
-                                <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}">
+                                <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}" data-tooltip="You have the option to send a private message to the author of the review.">
                                     Send mail
                                 </button>
                             @endauth
@@ -154,6 +170,20 @@
                     <button class="otherButton" style="white-space: nowrap" id="commentButton-{{ $review->id }}" data-comments="{{ $review->comments->count() }}">
                         Show Comments ({!! $review->comments->count() !!})
                     </button>
+                </div>
+                <div class="col-md-4 offset-8">
+                    @auth()
+                        @if(auth()->user()->id !== $review->user_id)
+                            <a type="button"
+                               href=""
+                               {{ auth()->user()->complains->contains($review->id) ? 'disabled' : '' }}
+                               data-toggle="modal"
+                               class="otherButton" style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
+                               id="complainButton-{{ $review->id }}"
+                               data-review="{{ $review->id }}"
+                               data-target="#complainModal">Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>
+                        @endauth
+                    @endauth
                 </div>
             </div>
         </div>

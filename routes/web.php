@@ -41,6 +41,10 @@ Route::group(
             Route::resource('reviews', 'Profile\ReviewController')->only([
                 'index', 'edit', 'update', 'destroy'
             ])->names('profile-reviews');
+            Route::resource('comments', 'Profile\CommentController')->only([
+                'index', 'edit', 'update', 'destroy'
+            ])->names('profile-comments');
+            Route::get('search-comment', 'Profile\CommentController@search')->name('searchUserComments');
             Route::get('messages', 'Profile\MessageController@index')->name('profile-messages');
             Route::get('banners', 'Profile\BannerController@index')->name('banners');
             Route::get('changePassword', 'Auth\ChangePasswordController@showChangePasswordForm')->name('get-change-password');
@@ -60,16 +64,24 @@ Route::group(
             Route::resource('/users', 'UserController')->only('index', 'update');
             Route::resource('/reviews', 'ReviewController')->only('index', 'update');
             Route::resource('/users_reviews', 'UserReviewController')->only('show', 'update');
+            Route::resource('/complains', 'ComplainController')->only('index', 'update');
+            Route::patch('/complain-review/{review}', 'ComplainController@updateComplainReview')->name('update_complain_review');
             Route::get('search-user', 'UserController@search')->name('searchUsers');
             Route::get('search-review', 'ReviewController@search')->name('searchReviews');
             Route::get('/info_page/{info_page}', 'InfoPageController@index')->name('info_page');
             Route::post('/info_page', 'InfoPageController@store')->name('save_info_page');
+            Route::get('create-review-logo/{review}', 'LogoController@createLogo')->name('create_review_logo');
+            Route::get('edit-review-logo/{logo}', 'LogoController@edit')->name('edit_review_logo');
+            Route::post('save-logo/{review}', 'LogoController@save')->name('save_logo');
+            Route::patch('/update-logo/{logo}', 'LogoController@update')->name('update_logo');
+            Route::delete('/delete-logo/{id}', 'LogoController@destroy')->name('delete_logo');
         });
 
         Route::group([
             'prefix' => 'reviews',
         ], function(){
             Route::get('/{review_item}', 'ReviewController@index')->name('reviews');
+            Route::get('/show/{review}', 'ReviewController@show')->name('show-review');
             Route::get('create/{review_item}', 'ReviewController@create')
                 ->name('create-review')
                 ->middleware('auth', 'verified');
@@ -83,8 +95,10 @@ Route::group(
         Route::get('term-of-conditions', 'InfoController@termOfConditions')->name('term-of-conditions');
         Route::get('privacy-policy', 'InfoController@privacyPolicy')->name('privacy-policy');
         Route::get('get-in-touch', 'InfoController@getInTouch')->name('get-in-touch');
+        Route::get('save-shortcut', 'InfoController@saveShortcutInstruction')->name('save-shortcut');
         Route::post('send-touch-info', 'InfoController@sendTouchInfo')->name('send-touch-info');
         Route::post('share', 'InfoController@share')->name('share');
+        Route::post('/complain-review', 'ComplainController@addComplain')->name('complain_review');
 
         Route::get('verify/resend', 'Auth\TwoFactorController@resend')->name('verify.resend');
         Route::resource('verify', 'Auth\TwoFactorController')->only(['index', 'store']);

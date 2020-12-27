@@ -36,13 +36,19 @@
                 <label for="dislike-{{ $review->id }}">{{ $review->dislikes }}</label>
             </div>
         </div>
+        <div class="d-flex flex-row justify-content-center w-100">
+            <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="35px" width="30px"/>
+        </div>
     </div>
     <div class="profile-single-review-item">
         <div class="w-100 d-flex flex-row">
             <div class="adminSingleReviewContent">
                 <div class="single-review-name">
-                    <div>
-                        {{ $review->full_name }}
+                    <div class="single-review-logo-name">
+                        <span>{{ $review->full_name }}</span>
+                        @if($review->logo->count())
+                            <img src="{{ asset($review->logo->first()->getImageUrl()) }}" height="50px" width="50px"/>
+                        @endif
                     </div>
                     <div>
                         <i>{{ $review->user->getUserSign($review->user_sign) }}</i>
@@ -59,6 +65,11 @@
                                 {{--<source src="movie.ogg" type="video/ogg">--}}
                                 Your browser does not support the video tag.
                             </video>
+                        @else
+                            <img src="{{ asset('storage/images/default_img_video.png') }}"
+                                 alt="photo"
+                                 width="135"
+                                 height="100">
                         @endif
                         @if($review->image)
                             <img src="{{ $review->image->getResizeImageUrl() }}"
@@ -67,6 +78,11 @@
                                  class="reviewImage"
                                  style="cursor: pointer;"
                                  id="myImg"
+                                 width="100"
+                                 height="100">
+                        @else
+                            <img src="{{ asset('storage/images/default_img.png') }}"
+                                 alt=""
                                  width="100"
                                  height="100">
                         @endif
@@ -91,11 +107,35 @@
                     </button>
                 </form>
                 <a data-toggle="modal"
-                   type="button"
-                   class="otherButton"
-                   id="profileCommentButton-{{ $review->id }}">
+                       type="button"
+                       class="otherButton"
+                       id="profileCommentButton-{{ $review->id }}">
                     Reply
                 </a>
+                @if($review->category->is_enable_logo)
+                    @if($review->logo->count())
+                        <a href="{{ route('admin.edit_review_logo', ['logo' => $review->logo->first()->id]) }}"
+                           type="button"
+                           class="otherButton">
+                            Update logo
+                        </a>
+                        <a data-toggle="modal"
+                           type="button"
+                           class="deleteLogo otherButton"
+                           data-logo-id="{{ $review->logo->first()->id }}"
+                           data-review-name="{{ $review->full_name }}"
+                           data-review-category-name="{{ $review->category->title }}"
+                           data-target="#deleteLogoModal">
+                            Delete logo
+                        </a>
+                    @else
+                        <a href="{{ route('admin.create_review_logo', ['review' => $review->id]) }}"
+                           type="button"
+                           class="otherButton">
+                            Add logo
+                        </a>
+                    @endif
+                @endif
             </div>
         </div>
         <div class="w-100 profile-review-item">

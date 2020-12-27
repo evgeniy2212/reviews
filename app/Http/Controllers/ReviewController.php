@@ -47,6 +47,12 @@ class ReviewController extends Controller
         return view('reviews.index', compact('reviews', 'slug', 'filters', 'paginateParams'));
     }
 
+    public function show(Review $review) {
+        $reviews = collect([])->merge([$review]);
+
+        return view('reviews.show_review', compact('reviews'));
+    }
+
     public function search(SearchRequest $request) {
         $filter_alias = ReviewFilter::DATE_FILTER;
         $sort_alias = ReviewFilter::SORT_BY_FILTER;
@@ -58,6 +64,12 @@ class ReviewController extends Controller
             $request->search
         );
 
+        $avgRating = ReviewService::getFilteredReviewsRating(
+            $request->category,
+            $request->$filter_alias,
+            $request->search
+        );
+
         $paginateParams = [
             'search' => $request->search,
             'category' => $request->category,
@@ -65,6 +77,7 @@ class ReviewController extends Controller
             $sort_alias => request()->$sort_alias,
         ];
         $filters = $this->reviewFilterRepository->getAllCategoryFilters($request->category);
+        $starPercent = round($avgRating * 100 / 5.0);
 
         return view('reviews.index')->with([
             'reviews' =>$reviews,
@@ -72,7 +85,9 @@ class ReviewController extends Controller
             'search' => $request->search,
             'search_category' => $request->category,
             'filters' => $filters,
-            'paginateParams' => $paginateParams
+            'paginateParams' => $paginateParams,
+            'avgRating' => $avgRating,
+            'starPercent' => $starPercent
         ]);
     }
 

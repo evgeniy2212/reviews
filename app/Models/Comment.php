@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    const PROFILE_FILTERS = [
+        'from' => [],
+        'to' => [],
+    ];
     /**
      * The attributes that aren't mass assignable.
      *
@@ -21,5 +27,14 @@ class Comment extends Model
 
     public function review(){
         return $this->belongsTo(Review::class, 'review_id', 'id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('m-d-Y');
     }
 }

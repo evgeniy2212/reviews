@@ -12,7 +12,7 @@
                     </div>
                     <div>
                         <select class="select admin-filter-select"
-                                id="userFilter-{!! $filterName !!}"
+                                 id="userFilter-{!! $filterName !!}"
                                 name="{!! $filterName !!}">
                             @foreach($filters as $key => $value)
                                 <option value="{!! $key !!}"

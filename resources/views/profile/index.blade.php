@@ -23,6 +23,11 @@
                                 <span>@lang('service/index.your_reviews')</span>
                             </a>
                         </li>
+                        <li class="{{ Request::url() == route('profile-comments.index') ? 'active' : '' }}">
+                            <a href="{{ route('profile-comments.index') }}">
+                                <span>@lang('service/index.your_comments')</span>
+                            </a>
+                        </li>
                         <li class="{{ Request::url() == route('profile-messages') ? 'active' : '' }}">
                             <a href="{{ route('profile-messages') }}">
                                 <span>@lang('service/index.mail', ['count' => auth()->user()->getNewMessagesCount()])</span>
@@ -47,6 +52,11 @@
                             <li class="{{ Request::url() == route('admin.reviews.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.reviews.index') }}">
                                     <span>@lang('service/admin.reviews')</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::url() == route('admin.complains.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.complains.index') }}">
+                                    <span>@lang('service/admin.complains')</span>
                                 </a>
                             </li>
                             <li class="{{ Request::url() == route('admin.contacts.index') ? 'active' : '' }}">

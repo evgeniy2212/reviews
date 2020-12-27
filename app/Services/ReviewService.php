@@ -36,7 +36,13 @@ class ReviewService {
         $result = Review::whereHas('category', function ($query) use($category) {
                 $query->where('slug', $category);
             })
-            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
+            ->whereHas('user', function ($query) {
+                $query->where('is_blocked', false);
+            })
+            ->when(!empty($search), function($q) use ($search){
+                $q->where(DB::raw('CONCAT_WS(" ", name, second_name)'), '=', "{$search}");
+            })
+//            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
             ->whereIsPublished(true)
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
@@ -55,6 +61,23 @@ class ReviewService {
         return $result;
     }
 
+    public static function getFilteredReviewsRating($category, $filter = '', $search = '') {
+        $result = Review::whereHas('category', function ($query) use($category) {
+            $query->where('slug', $category);
+        })
+        ->whereHas('user', function ($query) {
+            $query->where('is_blocked', false);
+        })
+        ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), '=', "{$search}")
+        ->whereIsPublished(true)
+        ->when(!empty($filter), function($q) use ($filter){
+            $q->whereYear('created_at', $filter);
+        })
+        ->avg('rating');
+
+        return $result;
+    }
+
     public static function getUserFilteredReviews($user_id, $filter = '', $sort = '', $search = '', $perPage = 10) {
         $sort_by = self::getSortMethod($sort);
 
@@ -69,6 +92,42 @@ class ReviewService {
             ->when(!empty($sort), function($q) use($sort_by){
                 $q->orderBy($sort_by);
             })
+            ->when(empty($sort), function($q){
+                $q->orderBy('created_at', 'DESC');
+            })
+            ->paginate($perPage);
+
+        return $result;
+    }
+
+    public static function getAdminUserFilteredReviews($user_id, $filters = [], $sort = '', $search = '', $perPage = 10) {
+        $reviewFilters = self::getFilterMethod($filters);
+
+        $result = Review::whereUserId($user_id)
+            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
+            ->when(!empty($reviewFilters), function($q) use ($reviewFilters){
+                foreach ($reviewFilters as $filter) {
+                    $key = array_key_first($filter);
+                    if(!empty($filter)){
+                        switch ($key){
+                            case 'from':
+                                $q->where('created_at', '>=', Carbon::parse($filter['from'])->toDateString());
+                                break;
+                            case 'to':
+                                $q->whereDate('created_at', '<=', Carbon::parse($filter['to'])->toDateString());
+                                break;
+                            default:
+                                $q->where($key, $filter[$key]);
+                        }
+                    }
+                }
+            })
+            ->with(['characteristics:name'])
+            ->with(['comments'])
+            ->with(['image'])
+//            ->when(!empty($sort), function($q) use($sort_by){
+//                $q->orderBy($sort_by);
+//            })
             ->when(empty($sort), function($q){
                 $q->orderBy('created_at', 'DESC');
             })
@@ -102,8 +161,6 @@ class ReviewService {
                 if(!empty($filter)){
                     switch ($key){
                         case 'from':
-//                            dd(Carbon::createFromFormat('Y-m-d', $filter['from']));
-//                            $q->where('created_at', '>=', Carbon::parse($filter['from'])->toDateString());
                             $q->where('created_at', '>=', Carbon::parse($filter['from'])->toDateString());
                             break;
                         case 'to':
@@ -128,22 +185,19 @@ class ReviewService {
 //            ->when(empty($sort), function($q){
 //                $q->orderBy('created_at', 'DESC');
 //            })
+            ->orderBy('created_at', 'DESC')
             ->paginate($perPage);
 
         return $result;
     }
 
     protected static function getFilterMethod($filters = []){
-//        $key = array_key_first($filters);
         $result = [];
         foreach($filters as $key => $filter){
             $result[] = Review::ADMIN_FILTERS[$key][$filters[$key]] ?? [$key => $filter];
         }
 
         return $result;
-//        return $key
-//            ? (Review::ADMIN_FILTERS[$key][$filters[$key]] ?? $key)
-//            : $key;
     }
 
     public static function difToMinRangeDate(){
@@ -152,5 +206,13 @@ class ReviewService {
 
     public static function difToMaxRangeDate(){
         return Carbon::now()->diffInDays(Review::max('created_at'));
+    }
+
+    public static function getSameLogoReviews($category, $search){
+        return Review::whereHas('category', function ($query) use($category) {
+            $query->where('slug', $category);
+        })->where(
+            DB::raw('CONCAT_WS(" ", name, second_name)'), '=', "{$search}"
+        )->get();
     }
 }

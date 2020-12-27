@@ -36,13 +36,19 @@
                 <label for="dislike-{{ $review->id }}">{{ $review->dislikes }}</label>
             </div>
         </div>
+        <div class="d-flex flex-row justify-content-center w-100">
+            <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="35px" width="30px"/>
+        </div>
     </div>
     <div class="profile-single-review-item">
         <div class="w-100 d-flex flex-row">
             <div class="adminSingleReviewContent">
                 <div class="single-review-name">
-                    <div>
-                        {{ $review->full_name }}
+                    <div class="single-review-logo-name">
+                        <span>{{ $review->full_name }}</span>
+                        @if($review->logo->count())
+                            <img src="{{ asset($review->logo->first()->getImageUrl()) }}" height="50px" width="50px"/>
+                        @endif
                     </div>
                     <div>
                         <i>{{ $review->user->getUserSign($review->user_sign) }}</i>

@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="singleBannerContent">
-            <div class="">
+            <div class="bannerImagePreview">
                 <div class="w-100">
                     <label class="bannerFileUpload">
                         <input type="file"
@@ -73,7 +73,9 @@
                        type="text"
                        class="form-control input"
                        name="title"
+                       maxlength="35"
                        placeholder="@lang('service/profile.banner_title')"
+                       value="{{ $banner->title }}"
                        autocomplete="off">
             </div>
         </div>
