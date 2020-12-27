@@ -241,6 +241,10 @@
       review.find('.review-textarea').toggle(750);
       $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
     });
+    $('[id^="complainButton"]').click(function (event) {
+      var reviewId = $(this).data('review');
+      $('#complainForm').find("input[name='review_id']").val(reviewId);
+    });
     $('[id^="profileMessageButton"]').click(function (event) {
       var review = $(this).parent().parent().parent();
       var comments = review.find('.message');
@@ -334,6 +338,7 @@
           }
         });
       } else {
+        review.find('button').removeAttr("disabled");
         alert('Mail message is empty!');
       }
     });
@@ -356,7 +361,6 @@
           success: function success(data) {
             var elem = review.parent().find('.message-example');
             var cloneElem = elem.clone();
-            console.log(elem.data('senderName'));
             cloneElem.attr('class', 'comment message');
             cloneElem.find('.message-response').text(data.data[0].message);
             cloneElem.find('.sender-name').text(elem.data('senderName'));
@@ -366,6 +370,7 @@
           }
         });
       } else {
+        review.find('button').removeAttr("disabled");
         alert('Mail message is empty!');
       }
     });
@@ -410,6 +415,11 @@
       modal.style.display = "block";
       modalImg.src = $(this).attr('data-full-size-src');
       captionText.innerHTML = this.alt; // }
+    });
+    $('#congratulation-img').hover(function () {
+      $('#congratulation-rules').show();
+    }, function () {
+      $('#congratulation-rules').hide();
     });
   });
 })(jQuery);

@@ -143,13 +143,14 @@
 
       if (!isSubmitFormAccept) {
         $('#acceptFormModal').modal('show');
+        event.preventDefault();
+      } else {
+        validation(form, event);
       }
+    }); // $('.slider__item').click(function(){
+    //     $('#addPostRedirect').modal('show');
+    // });
 
-      validation(form, event);
-    });
-    $('.slider__item').click(function () {
-      $('#addPostRedirect').modal('show');
-    });
     $('#acceptModal').click(function () {
       $('#submitFormAccept').val(1);
       $('#acceptFormModal').modal('hide');
@@ -181,15 +182,16 @@
         dataType: "json",
         success: function success(data) {
           $('#selectGroup').empty();
+          var length = data.length - 1;
 
           for (var k in data) {
-            $('#selectGroup').prepend('<option value="' + data[k].id + '">' + data[k].name + '</option>');
+            $('#selectGroup').prepend('<option value="' + data[k].id + '"' + (length == k ? "selected" : "") + ' >' + data[k].name + '</option>');
           }
         }
       });
       $('#selectGroup').removeAttr("disabled");
     });
-    $('#enableInputsButton').click(function () {
+    $('[id^="enableInputsButton"]').click(function () {
       var editForm = $(this).data('form');
       $('#' + editForm + ' input, textarea').each(function () {
         $(this).prop("disabled", false);
@@ -228,6 +230,36 @@
         }
       });
     }
+
+    $('.shortcut').click(function (event) {
+      var instructionTitle = $(this).parent();
+      var showList = instructionTitle.find('ol');
+      event.preventDefault(); // hide all span
+
+      $('#shortcutInstructionModal li ol').not(showList).slideUp(500, 'swing');
+
+      if (showList.is(":visible")) {
+        $('#shortcutInstructionModal .shortcut').not($(this)).removeClass('disabled');
+      } else {
+        $('#shortcutInstructionModal .shortcut').not($(this)).addClass('disabled');
+      } // here is what I want to do
+
+
+      showList.slideToggle(750, 'swing');
+      $(this).removeClass('disabled');
+    });
+    $('[id^="adminComplaintButton"]').click(function (event) {
+      var review = $(this).parent().parent().parent();
+      var complains = review.find('.complain');
+      complains.each(function (index) {
+        if ($(this).text().trim()) {
+          $(this).toggle(750);
+          $(this).css('display', 'flex');
+        }
+      });
+      review.find('.review-textarea').toggle(750);
+      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Complains (' + $(this).data('complains') + ')');
+    });
 
     if ($("#review-create-text, #review-text").length) {
       var badWords = [];

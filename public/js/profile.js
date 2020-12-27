@@ -104,9 +104,36 @@
       $("#deleteReviewForm").attr('action', url);
       setModalData(name);
     });
+    $('.deleteComment').click(function () {
+      var id = $(this).data("reviewId");
+      console.log(id);
+      var url = $("#deleteCommentForm").data('action');
+      url = url.replace(':id', id);
+      $("#deleteCommentForm").attr('action', url);
+    });
     $('#editReview').click(function () {
       var name = $(this).data("reviewName");
       setModalData(name);
+    });
+    $('[id^="enableEditCommentButton"]').click(function () {
+      var editForm = $(this).data('form');
+      $('#' + editForm).find('textarea').each(function () {
+        $(this).prop("disabled", false);
+      });
+      $(this).parent().find('[id^="saveCommentButton"]').show();
+      $(this).parent().find('[id^="cancelSaveCommentButton"]').show();
+    });
+    $('[id^="saveCommentButton"]').click(function () {
+      var saveForm = $(this).data('form');
+      $("#" + saveForm).submit();
+    });
+    $('[id^="cancelSaveCommentButton"]').click(function () {
+      var cancelForm = $(this).data('form');
+      $('#' + cancelForm).find('textarea').each(function () {
+        $(this).prop("disabled", true);
+      });
+      $(this).parent().find('[id^="saveCommentButton"]').hide();
+      $(this).parent().find('[id^="cancelSaveCommentButton"]').hide();
     }); // $('#confirmReviewButton').click(function(){
     //     console.log('confirmReviewButton');
     //     console.log($('[id^="ReviewForm"]'));
@@ -177,6 +204,18 @@
 
     form.addClass('was-validated');
   };
+
+  $('[id^="profileComplaintButton"]').click(function (event) {
+    var review = $(this).parent().parent();
+    var complains = review.find('.complain');
+    complains.each(function (index) {
+      if ($(this).text().trim()) {
+        $(this).toggle(750);
+        $(this).css('display', 'flex');
+      }
+    });
+    $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Complains (' + $(this).data('complains') + ')');
+  });
 })(jQuery);
 
 /***/ }),
