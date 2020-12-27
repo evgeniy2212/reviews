@@ -48,18 +48,6 @@
             window.location = window.location.pathname + str
         });
 
-        $('[id^="adminComplaintButton"]').click(function(event) {
-            let review = $(this).parent().parent().parent();
-            let complains = review.find('.complain');
-            complains.each(function( index ) {
-                if($(this).text().trim()) {
-                    $(this).toggle(750);
-                    $(this).css('display', 'flex');
-                }
-            });
-            review.find('.review-textarea').toggle(750);
-            $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Complains (' + $(this).data('complains') + ')');
-        });
 
         $('.deleteLogo').click(function(){
             let id = $(this).data("logoId");

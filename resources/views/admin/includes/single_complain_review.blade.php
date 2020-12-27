@@ -61,10 +61,6 @@
                         @else
                             <img src="{{ asset('storage/images/default_img_video.png') }}"
                                  alt="photo"
-                                 {{--data-full-size-src="{{ asset('storage/images/default_full_size_img.png') }}"--}}
-                                 {{--class="reviewImage"--}}
-                                 {{--style="cursor: pointer;"--}}
-                                 {{--id="myImg"--}}
                                  width="135"
                                  height="100">
                         @endif
@@ -80,10 +76,6 @@
                         @else
                             <img src="{{ asset('storage/images/default_img.png') }}"
                                  alt=""
-                                 {{--data-full-size-src="{{ asset('storage/images/default_full_size_img.png') }}"--}}
-                                 {{--class="reviewImage"--}}
-                                 {{--style="cursor: pointer;"--}}
-                                 {{--id="myImg"--}}
                                  width="100"
                                  height="100">
                         @endif
