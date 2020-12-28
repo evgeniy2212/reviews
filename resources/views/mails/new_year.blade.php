@@ -1,9 +1,6 @@
 @component('mail::message')
+    Happy New Year!
 
-@component('mail::button', ['url' => route('home')])
-GO
-@endcomponent
-
-Thanks,<br>
+With best regards,<br>
 {{ config('app.name') }}
 @endcomponent
