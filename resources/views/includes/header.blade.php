@@ -138,7 +138,7 @@
                         {{--</div>--}}
                         @foreach(\App\Services\BannerService::getHeadBanners() as $banner)
                             <div class="slider__item">
-                                <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '148' : '123' }}px;">
+                                <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '125' }}px;">
                                     <span>{{ empty($banner->title) ? '' : $banner->title }}</span>
                                 </div>
                             </div>
