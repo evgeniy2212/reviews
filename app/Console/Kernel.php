@@ -27,13 +27,13 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('congratulation:new_year')->cron('0 2 1 1 *')->yearly()->timezone('America/New_York');
-        $schedule->command('congratulation:new_year')->cron('0 22 27 12 *')->yearly()->timezone('Europe/Kiev');
-        $schedule->command('congratulation:new_year')->cron('30 21 27 12 *')->yearly()->timezone('Europe/Kiev');
-        $schedule->command('congratulation:new_year')->cron('0 21 27 12 *')->yearly()->timezone('Europe/Kiev');
-        $schedule->command('congratulation:new_year')->cron('0 4 28 12 *')->yearly()->timezone('Europe/Kiev');
-        $schedule->command('congratulation:new_year')->cron('0 2 28 12 *')->yearly()->timezone('Europe/Kiev');
-        $schedule->command('congratulation:new_year')->cron('0 3 28 12 *')->yearly()->timezone('Europe/Kiev');
-//        $schedule->command('congratulation:new_year')->everyFiveMinutes();
+        $schedule->command('congratulation:new_year')->cron('0 22 28 12 *')->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('10 19 28 12 *');
+        $schedule->command('congratulation:new_year')->cron('15 19 28 12 *');
+        $schedule->command('congratulation:new_year')->cron('30 19 28 12 *')->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('35 19 28 12 *')->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('45 19 28 12 *')->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('0 20 28 12 *')->timezone('Europe/Kiev');
     }
 
     /**
