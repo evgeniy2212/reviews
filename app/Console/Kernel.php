@@ -30,6 +30,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('congratulation:new_year')->cron('0 22 28 12 *')->timezone('Europe/Kiev');
         $schedule->command('congratulation:new_year')->cron('10 19 28 12 *');
         $schedule->command('congratulation:new_year')->cron('15 19 28 12 *');
+        $schedule->command('congratulation:new_year')->cron('05 19 28 12 *')->timezone('Europe/Kiev');
+        $schedule->command('congratulation:new_year')->cron('12 19 28 12 *')->timezone('Europe/Kiev');
         $schedule->command('congratulation:new_year')->cron('30 19 28 12 *')->timezone('Europe/Kiev');
         $schedule->command('congratulation:new_year')->cron('35 19 28 12 *')->timezone('Europe/Kiev');
         $schedule->command('congratulation:new_year')->cron('45 19 28 12 *')->timezone('Europe/Kiev');
