@@ -40,14 +40,17 @@
                 @auth
                     @if(auth()->user()->email_verified_at && !auth()->user()->two_factor_code)
                         <div class="d-flex flex-row">
-                            <div style="height: auto;">
+                            <div style="height: auto; margin-top: 5px">
                                 <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
                             </div>
                             <div class="d-flex flex-column">
                                 <div class="user-info d-flex flex-row justify-content-between align-items-center">
                                     <div class="message-count">
-                                        <div class="bg"></div>
-                                        <a href="{{ route('profile-messages') }}"><span>{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span></a>
+                                        {{--<div class="bg"></div>--}}
+                                        <a href="{{ route('profile-messages') }}">
+                                            <div class="bg"></div>
+                                            <span class="{{ (auth()->user()->getNewMessagesCount() > 0) ? 'message-accounting' : '' }}">{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span>
+                                        </a>
                                     </div>
                                     <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="35px" width="30px"/>
                                     @include('includes.popups.congratulation_rules')

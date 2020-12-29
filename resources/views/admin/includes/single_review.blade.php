@@ -36,9 +36,6 @@
                 <label for="dislike-{{ $review->id }}">{{ $review->dislikes }}</label>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-center w-100">
-            <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="35px" width="30px"/>
-        </div>
     </div>
     <div class="profile-single-review-item">
         <div class="w-100 d-flex flex-row">
@@ -50,8 +47,11 @@
                             <img src="{{ asset($review->logo->first()->getImageUrl()) }}" height="50px" width="50px"/>
                         @endif
                     </div>
-                    <div>
+                    <div class="single-review-user-name">
                         <i>{{ $review->user->getUserSign($review->user_sign) }}</i>
+                        <div>
+                            <img src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="25px" width="20px"/>
+                        </div>
                     </div>
                 </div>
                 <div class="profile-single-review-review">
@@ -60,7 +60,7 @@
                     @endif
                     <p>
                         @if($review->video)
-                            <video width="135" height="100" controls>
+                            <video controls class="videoPreview">
                                 <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                                 {{--<source src="movie.ogg" type="video/ogg">--}}
                                 Your browser does not support the video tag.
@@ -68,23 +68,19 @@
                         @else
                             <img src="{{ asset('storage/images/default_img_video.png') }}"
                                  alt="photo"
-                                 width="135"
-                                 height="100">
+                                 class="videoPreview">
                         @endif
                         @if($review->image)
                             <img src="{{ $review->image->getResizeImageUrl() }}"
                                  alt=""
                                  data-full-size-src="{{ $review->image->getImageUrl() }}"
-                                 class="reviewImage"
+                                 class="reviewImage previewImage"
                                  style="cursor: pointer;"
-                                 id="myImg"
-                                 width="100"
-                                 height="100">
+                                 id="myImg">
                         @else
                             <img src="{{ asset('storage/images/default_img.png') }}"
                                  alt=""
-                                 width="100"
-                                 height="100">
+                                 class="previewImage">
                         @endif
                         {{ $review->review }}
                     </p>

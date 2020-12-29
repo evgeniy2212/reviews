@@ -92,11 +92,8 @@ html, body {
     color: #673ab7;
     content: ":";
 }
-.user-info span, .user-info img {
+.user-info img {
     margin-left: 10px;
-}
-.user-info span {
-    font-size: 1rem!important;
 }
 .user-activities {
     display: flex;
@@ -465,8 +462,8 @@ button:disabled {
 }
 .message-count {
     position: relative;
-    height: 22px;
-    width: 31px;
+    height: 25px;
+    width: 35px;
     z-index: 5;
     margin-left: 10px;
 }
@@ -489,6 +486,17 @@ button:disabled {
 }
 .message-count a:hover {
     text-decoration: none;
+}
+.message-accounting {
+    position: absolute;
+    left: 25%;
+    top: 15%;
+    opacity: 1;
+    font-size: 0.8rem;
+    width: 19px;
+    height: 19px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
 }
 .get-in-touch-content-place {
     height: calc(100vh - 260px);
@@ -824,4 +832,14 @@ button:disabled {
 }
 #shortcutInstructionModal .disabled{
     color: rgba(123, 118, 118, 0.28);
+}
+.videoPreview{
+    width: 135px;
+    height: 100px;
+    border: 1px groove #4a92f8;
+}
+.previewImage {
+    width: 100px;
+    height: 100px;
+    border: 1px groove #4a92f8;
 }

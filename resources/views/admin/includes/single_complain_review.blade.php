@@ -44,8 +44,11 @@
                     <div>
                         {{ $review->full_name }}
                     </div>
-                    <div>
+                    <div class="single-review-user-name">
                         <i>{{ $review->user->getUserSign($review->user_sign) }}</i>
+                        <div>
+                            <img src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="25px" width="20px"/>
+                        </div>
                     </div>
                 </div>
                 <div class="profile-single-review-review">
@@ -54,30 +57,26 @@
                     @endif
                     <p>
                         @if($review->video)
-                            <video width="135" height="100" controls>
+                            <video class="videoPreview" controls>
                                 <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         @else
                             <img src="{{ asset('storage/images/default_img_video.png') }}"
                                  alt="photo"
-                                 width="135"
-                                 height="100">
+                                 class="videoPreview">
                         @endif
                         @if($review->image)
                             <img src="{{ $review->image->getResizeImageUrl() }}"
                                  alt=""
                                  data-full-size-src="{{ $review->image->getImageUrl() }}"
-                                 class="reviewImage"
+                                 class="reviewImage previewImage"
                                  style="cursor: pointer;"
-                                 id="myImg"
-                                 width="100"
-                                 height="100">
+                                 id="myImg">
                         @else
                             <img src="{{ asset('storage/images/default_img.png') }}"
                                  alt=""
-                                 width="100"
-                                 height="100">
+                                 class="previewImage">
                         @endif
                         {{ $review->review }}
                     </p>
