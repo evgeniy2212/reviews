@@ -29,6 +29,11 @@ class ReviewFilterValuesSeeder extends Seeder
                 'filter_id' => 1,
             ],
             [
+                'value' => '2021',
+                'slug' => \Illuminate\Support\Str::slug('2021'),
+                'filter_id' => 1,
+            ],
+            [
                 'value' => 'alphabet',
                 'slug' => \Illuminate\Support\Str::slug('alphabet'),
                 'filter_id' => 2,

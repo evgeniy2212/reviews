@@ -24,7 +24,7 @@ class UpdateBannerRequest extends FormRequest
     public function rules()
     {
         return [
-            'is_published' => 'required'
+//            'is_published' => 'required'
         ];
     }
 }

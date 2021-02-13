@@ -186,6 +186,7 @@ class User extends Authenticatable implements MustVerifyEmail
             })
             ->whereRegionId($region_id)
             ->whereCity($city)
+            ->whereIsPublished(true)
             ->get()
             ->count();
     }

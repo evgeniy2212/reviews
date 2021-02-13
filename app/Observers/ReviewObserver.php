@@ -17,9 +17,7 @@ class ReviewObserver
      */
     public function created(Review $review)
     {
-//        dd($review->user);
 //        $review->user->notify(new ReviewCreate());
-//        Log::info('UserCongratulation: ', [CongratsService::checkUserCongratulation($review->user)]);
         $review->user()->update(['congratulation_id' => CongratsService::checkUserCongratulation($review->user)]);
     }
 
@@ -71,7 +69,7 @@ class ReviewObserver
      * @param \App\Models\Review  $product
      */
     public function creating(Review $review){
-        $review->is_published = true;
+//        $review->is_published = true;
     }
 
 }

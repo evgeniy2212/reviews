@@ -59,7 +59,7 @@
         } );
 
         $('#imgBanner').change(function() {
-            readURL(this);
+            readImageURL(this);
         });
 
         $("#bannerButton").click(function (event) {
@@ -78,17 +78,117 @@
 
             validation(form, event);
         });
+
+        $("#congratulationButton").click(function(event) {
+            var form = $("#congratulationForm");
+            if ($('#selectRegion option:selected').val() == ''){
+                $('#selectRegion').addClass('invalid-selector');
+            } else {
+                $('#selectRegion').removeClass( "invalid-selector" )
+            }
+
+            if ($('#selectCountry option:selected').val() == ''){
+                $('#selectCountry').addClass('invalid-selector');
+            } else {
+                $('#selectCountry').removeClass( "invalid-selector" )
+            }
+
+            if ($('#selectCategory option:selected').val() == ''){
+                $('#selectCategory').addClass('invalid-selector');
+            } else {
+                $('#selectCategory').removeClass( "invalid-selector" )
+            }
+            validation(form, event);
+        });
+
+        $('#imgCongratulation').change(function() {
+            readImageURL(this);
+        });
+
+        $('#videoCongratulation').change(function() {
+            readVideoURL(this);
+            $('.videoPreview').hide();
+            $('.congratulationVideoPreview').show();
+        });
+
+        $('#imgDefaultCongratulation').click(function() {
+            $('.congratulationContentContainer').hide();
+            $('.congratulationDefaultImagesContainer').css('display', 'flex');
+        });
+
+        $('#imgCongratulation, #videoCongratulation').click(function() {
+            $('.congratulationContentContainer').css('display', 'flex');
+            $('.congratulationDefaultImagesContainer').hide();
+        });
+        $('#imgDefaultCongratulationClose').click(function(){
+            $('.congratulationContentContainer').css('display', 'flex');
+            $('.congratulationDefaultImagesContainer').hide();
+            let src = '';
+            if($('#imgCongratulation').data('src') === ''){
+                src = $('#blah').data('defaultSrc');
+            } else {
+                src = $('#imgCongratulation').data('src');
+            }
+            $('#blah').attr('src', src);
+            $('#blah').data('src', src);
+        });
+
+        $('#imgDefaultCongratulationSave').click(function(){
+            $('.congratulationContentContainer').css('display', 'flex');
+            $('.congratulationDefaultImagesContainer').hide();
+            let src = $('.congratulationDefaultImages .congratulationHighlight').find('img').attr('src');
+            $('#imgDefaultCongratulationValue').val(src);
+            $('#blah').attr('src', src);
+            $('#blah').data('src', src);
+            $('#blah').data('defaultSrc', src);
+            $('#imgCongratulation').val('');
+            $('#imgCongratulation').data('src', '');
+            let uploadingImageInput = $('#imgCongratulation').parent().find('span');
+            uploadingImageInput.text(uploadingImageInput.data('placeholder'));
+        });
+
+        $(".congratulationDefaultImagePreview").hover(
+            function(){
+                $('#blah').attr('src', $(this).find('img').attr('src'));
+            },
+            function(){
+                $('#blah').attr('src', $('#blah').data('src'));
+            });
+
+        $('.congratulationDefaultImagePreview').click(function() {
+            var $this = $(this);
+            // Clear formatting
+            $('.congratulationDefaultImagePreview').removeClass('congratulationHighlight');
+
+            // Highlight with coloured border
+            $this.addClass('congratulationHighlight');
+            let src = $(this).find('img').attr('src');
+            $('#blah').attr('src', src);
+            $('#blah').data('src', src);
+        });
+
+        $('.congratulationDefaultImages').click(function() {
+            $('.congratulationContentContainer').hide();
+            $('.congratulationDefaultImagesContainer').css('display', 'flex');
+        });
     });
 
-    function readURL(input) {
+    function readImageURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
                 $('#blah').attr('src', e.target.result);
-            }
-
+                $('#blah').data('src', e.target.result);
+                $('#imgCongratulation').data('src', e.target.result);
+            };
             reader.readAsDataURL(input.files[0]); // convert to base64 string
         }
+    }
+
+    function readVideoURL(input){
+        var $source = $('#videoPreview');
+        $source[0].src = URL.createObjectURL(input.files[0]);
+        $source.parent()[0].load();
     }
 
     function setModalData(name){

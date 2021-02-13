@@ -12,7 +12,7 @@
                     @forelse($reviews as $review)
                         @include('reviews.single_review')
                     @empty
-                        <span>You don`t have Comments.</span>
+                        <span>You don`t have Reviews.</span>
                     @endforelse
                 </div>
             </div>

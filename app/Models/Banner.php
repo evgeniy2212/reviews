@@ -18,6 +18,7 @@ class Banner extends Model
         'name',
         'original_name',
         'title',
+        'link',
         'is_published',
         'from',
         'to',

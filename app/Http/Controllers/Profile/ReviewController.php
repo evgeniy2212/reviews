@@ -57,6 +57,8 @@ class ReviewController extends Controller
             ->getCharacteristicsByCategorySlug($review->category->slug, false)
             ->chunk($this->half);
         $checkedCharacteristics = $review->characteristics->pluck('id');
+        $slug = $review->category->slug;
+        $controlButtons = ($review->is_published && !$review->complains->count()) ? null : 'presaving';
 
         return view('reviews.edit', compact(
             'countries',
@@ -64,12 +66,31 @@ class ReviewController extends Controller
             'negativeCharacteristics',
             'review',
             'categories',
-            'checkedCharacteristics'
+            'checkedCharacteristics',
+            'slug',
+            'controlButtons'
         ));
     }
 
     public function update(SaveReviewRequest $request, Review $review)
     {
+        $request->merge(['is_published' => $request->is_published ?? true]);
+        $review->update($request->all());
+        $review->characteristics()->sync($request->characteristics);
+        if($request->has('img')){
+            $imageInfo = ImageService::updateImage($request, $review);
+            ReviewImage::updateOrCreate(['review_id' => $review->id], $imageInfo);
+        }
+        $slug = $review->category->slug;
+
+        return $request->redirectToMain
+            ? redirect()->route('reviews',['review_item' => $slug])->with(['success_review_creating' => 'Review Created'])
+            : redirect()->route('profile-reviews.index');
+    }
+
+    public function preupdating(SaveReviewRequest $request, Review $review)
+    {
+        $request->merge(['is_published' => false]);
         $review->update($request->all());
         $review->characteristics()->sync($request->characteristics);
         if($request->has('img')){
@@ -77,7 +98,7 @@ class ReviewController extends Controller
             ReviewImage::updateOrCreate(['review_id' => $review->id], $imageInfo);
         }
 
-        return redirect()->route('profile-reviews.index');
+        return redirect()->route('presavingShow-review', ['review' => $review->id]);
     }
 
     public function destroy($review)

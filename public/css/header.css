@@ -405,3 +405,13 @@ body.mobile-nav-active #mobile-nav {
     font-size: 1.1rem;
     /*letter-spacing: 3px;*/
 }
+.slider_content a {
+    color: #000;
+    padding-left: 5px;
+    text-decoration: none;
+    /*border-left: 4px solid grey;*/
+}
+.slider_content a:hover {
+    text-underline: none;
+    color: #2f5496;
+}

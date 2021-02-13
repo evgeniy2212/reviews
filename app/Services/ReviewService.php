@@ -7,11 +7,14 @@ use App\Models\Country;
 use App\Models\Review;
 use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
+use App\Models\ReviewImage;
+use App\Models\ReviewVideo;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ReviewService {
-    public static function getReviewCountriesBySlug(string $slug){
+    public static function getReviewCountriesBySlug(string $slug = ''){
         switch ($slug) {
             case 'vocations':
                 return (new Country())->getAllCountries();
@@ -95,6 +98,13 @@ class ReviewService {
             ->when(empty($sort), function($q){
                 $q->orderBy('created_at', 'DESC');
             })
+            ->where(function($q){
+                $q->whereIsPublished(true)
+                    ->orWhere(function($query){
+                        $query->whereIsPublished(false)
+                            ->whereHas('complains');
+                    });
+            })
             ->paginate($perPage);
 
         return $result;
@@ -122,12 +132,16 @@ class ReviewService {
                     }
                 }
             })
+            ->where(function($q){
+                $q->whereIsPublished(true)
+                    ->orWhere(function($query){
+                        $query->whereIsPublished(false)
+                            ->whereHas('complains');
+                    });
+            })
             ->with(['characteristics:name'])
             ->with(['comments'])
             ->with(['image'])
-//            ->when(!empty($sort), function($q) use($sort_by){
-//                $q->orderBy($sort_by);
-//            })
             ->when(empty($sort), function($q){
                 $q->orderBy('created_at', 'DESC');
             })
@@ -172,19 +186,17 @@ class ReviewService {
                 }
             }
         })
+        ->where(function($q){
+            $q->whereIsPublished(true)
+                ->orWhere(function($query){
+                    $query->whereIsPublished(false)
+                        ->whereHas('complains');
+                });
+        })
         ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
-//            ->when(!empty($filter), function($q) use ($filter){
-//                $q->whereYear('created_at', $filter);
-//            })
             ->with(['characteristics:name'])
             ->with(['comments'])
             ->with(['image'])
-//            ->when(!empty($sort), function($q) use($sort_by){
-//                $q->orderBy($sort_by);
-//            })
-//            ->when(empty($sort), function($q){
-//                $q->orderBy('created_at', 'DESC');
-//            })
             ->orderBy('created_at', 'DESC')
             ->paginate($perPage);
 
@@ -214,5 +226,23 @@ class ReviewService {
         })->where(
             DB::raw('CONCAT_WS(" ", name, second_name)'), '=', "{$search}"
         )->get();
+    }
+
+    public static function createReview(Request $request){
+        $request->merge(['user_id' => auth()->user()->id]);
+        $review = Review::create($request->all());
+        $review->characteristics()->attach($request->characteristics);
+        if($request->has('img')){
+            $imageInfo = ImageService::uploadImage($request, $review);
+            $imageInfo = array_merge($imageInfo, ['review_id' => $review->id]);
+            ReviewImage::create($imageInfo);
+        }
+        if($request->has('video')){
+            $videoInfo = VideoService::uploadVideo($request, $review);
+            $videoInfo = array_merge($videoInfo, ['review_id' => $review->id]);
+            ReviewVideo::create($videoInfo);
+        }
+
+        return $review;
     }
 }

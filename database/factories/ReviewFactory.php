@@ -5,7 +5,7 @@
 use App\Models\Review;
 use Faker\Generator as Faker;
 
-$factory->define(Review::class, function (Faker $faker) {
+    $factory->define(Review::class, function (Faker $faker) {
     $user = \App\User::all()->random();
     $date = \Carbon\Carbon::create(2019, 5, 28, 0, 0, 0);
     $category_id = rand(1, 4);

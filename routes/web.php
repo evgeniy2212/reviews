@@ -22,6 +22,8 @@ Route::group(
 
         Route::get('/', 'HomeController@index')->name('home');
 
+        Route::get('/test', 'HomeController@test');
+        Route::get('/send-message', 'HomeController@sendMessage');
         Route::group(['prefix' => 'ajax'], function() {
             Route::get('regions/{country}', 'RegionController');
             Route::get('groups/{group}', 'ReviewCategoryGroupController');
@@ -41,6 +43,7 @@ Route::group(
             Route::resource('reviews', 'Profile\ReviewController')->only([
                 'index', 'edit', 'update', 'destroy'
             ])->names('profile-reviews');
+            Route::patch('preupdating-review/{review}', 'Profile\ReviewController@preupdating')->name('preupdating-review');
             Route::resource('comments', 'Profile\CommentController')->only([
                 'index', 'edit', 'update', 'destroy'
             ])->names('profile-comments');
@@ -51,6 +54,13 @@ Route::group(
             Route::post('changePassword', 'Auth\ChangePasswordController@changePassword')->name('change-password');
             Route::patch('update-persona-info', 'Profile\PersonalInfoController@updatePersonalInfo')->name('updatePersonalInfo');
             Route::post('save-banner', 'Profile\BannerController@save')->name('saveBanner');
+            Route::resource('congratulations', 'Profile\CongratulationController')->only([
+                'index', 'create', 'store', 'destroy'
+            ])->names('profile-congratulations');
+            Route::resource('important-date', 'Profile\ImportantDateController')->only([
+                'index', 'store', 'destroy'
+            ])->names('profile-important-date');
+            Route::delete('profile-important-dates-delete', 'Profile\ImportantDateController@deleteDates')->name('profile-important-dates-delete');
         });
 
         Route::group([
@@ -82,11 +92,18 @@ Route::group(
         ], function(){
             Route::get('/{review_item}', 'ReviewController@index')->name('reviews');
             Route::get('/show/{review}', 'ReviewController@show')->name('show-review');
+            Route::get('/presaving-show/{review}', 'ReviewController@presavingShow')->name('presavingShow-review');
             Route::get('create/{review_item}', 'ReviewController@create')
                 ->name('create-review')
                 ->middleware('auth', 'verified');
             Route::post('save', 'ReviewController@save')
                 ->name('save-review')
+                ->middleware('auth', 'verified');
+            Route::post('presaving', 'ReviewController@presaving')
+                ->name('presaving-review')
+                ->middleware('auth', 'verified');
+            Route::post('confirm-saving-review', 'ReviewController@confirmSaving')
+                ->name('confirmSaving-review')
                 ->middleware('auth', 'verified');
         });
 

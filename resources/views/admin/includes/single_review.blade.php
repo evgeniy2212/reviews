@@ -46,11 +46,16 @@
                         @if($review->logo->count())
                             <img src="{{ asset($review->logo->first()->getImageUrl()) }}" height="50px" width="50px"/>
                         @endif
+                        <div class="single-review-user-geoposition">
+                            <i>{{ $review->getFullGeoposition() }}</i>
+                        </div>
                     </div>
-                    <div class="single-review-user-name">
-                        <i>{{ $review->user->getUserSign($review->user_sign) }}</i>
-                        <div>
-                            <img src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="25px" width="20px"/>
+                    <div>
+                        <div class="single-review-user-name">
+                            <i>{{ $review->user->getUserSign($review->user_sign) }}</i>
+                            <div>
+                                <img src="{{ App\Services\CongratsService::getUserCongratulation($review->user) }}" height="25px" width="20px"/>
+                            </div>
                         </div>
                     </div>
                 </div>

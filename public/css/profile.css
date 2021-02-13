@@ -223,4 +223,187 @@
     display: flex;
     flex-direction: column;
 }
-
+.bannerImagePreviewContainer input{
+    margin-top: 5px;
+}
+.create-congratulation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /*text-align: center;*/
+    font-size: 12px;
+}
+#congratulationForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.congratulationTitle{
+    font-size: 1.6rem;
+    color: #454545c7;
+    margin: 0 0 1% 0;
+    padding: 0;
+    font-family: "ImprintMTShadow";
+    font-weight: 300;
+}
+#congratulationForm .input, #congratulationForm select {
+    border-color: #2f5496;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    max-height: 20px;
+    max-width: 100%;
+    padding: 0 0;
+    text-align: center;
+    text-align-last: center;
+    background: #fcfbfb;
+}
+#congratulationForm, .congratulation-info-container div {
+    padding: 0 1px;
+}
+#congratulationForm input, .create-congratulation-label{
+    font-size: 12px;
+}
+.create-congratulation-name {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: 3px 0 0 0;
+    width: 100%;
+}
+.create-congratulation-media {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.congratulationContentContainer textarea {
+    resize: none;
+    width: 60%;
+    height: 100%;
+    min-height: 200px;
+    font-size: 0.8rem;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 1px;
+}
+.create-congratulation-image {
+    /*border: 1px dashed #a0a3af;*/
+    border-color: #a0a3af;
+    border-style: dashed;
+    border-width: 1px;
+    display: inline-block;
+    padding: 3px 6px;
+    cursor: pointer;
+    background-color: #e7e6e6;
+    height: 100%;
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+#congratulationImagePreview{
+    width: 135px;
+    height: 135px;
+    border: 1px dashed #a0a3af;
+    margin: 0 0 5px 0;
+    display: flex;
+}
+#congratulationImagePreview img{
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+.congratulationDefaultImages {
+    display: flex;
+    flex-wrap: wrap;
+}
+.congratulationDefaultImagePreview{
+    width: 75px;
+    height: 75px;
+    border: 1px solid rgba(44, 45, 49, 0.87);
+    margin: 0 0 5px 0;
+    display: flex;
+}
+.congratulationHighlight {
+    border: 2px solid #2f5496;
+}
+.congratulationDefaultImagePreview img{
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+.congratulationControlContainer {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+.congratulationContentContainer {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+}
+.congratulationDefaultImagesContainer{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+}
+.congratulationContentUpload {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.congratulationImagePreviewContainer{
+    display: flex;
+    flex-direction: column;
+}
+.congratulationImagePreviewContainer input{
+    margin-top: 5px;
+}
+.congratulationVideoPreview {
+    display: none;
+    width: 135px;
+    height: 100px;
+    border: 1px groove #4a92f8;
+}
+.was-validated .invalid-selector {
+    border-color: #dc3545!important;
+}
+.was-validated .form-control:invalid {
+    border-color: #dc3545!important;
+}
+.profile-congratulation-filters {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid #2f5496;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+#importantDateForm{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.importantDateTitle{
+    font-size: 1.6rem;
+    color: #454545c7;
+    margin: 0 0 1% 0;
+    padding: 0;
+    font-family: "ImprintMTShadow";
+    font-weight: 300;
+}

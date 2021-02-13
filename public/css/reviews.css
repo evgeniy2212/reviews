@@ -287,7 +287,7 @@ input[type="file"] {
     align-items: center;
 }
 .single-review-logo-name > *{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .single-review-logo-name img {
     width: auto;
@@ -306,6 +306,14 @@ input[type="file"] {
     height: 25px;
     width: 20px;
     margin: 0 5px;
+}
+.single-review-user-geoposition {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    word-wrap: break-word;
+    font-size: 0.75rem;
 }
 .single-review-review {
     display: flex;

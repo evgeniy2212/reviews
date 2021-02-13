@@ -77,21 +77,29 @@
                        placeholder="@lang('service/profile.banner_title')"
                        value="{{ $banner->title }}"
                        autocomplete="off">
+                <input id="link"
+                       type="text"
+                       class="form-control input"
+                       name="link"
+                       maxlength="35"
+                       placeholder="@lang('service/profile.banner_link')"
+                       value="{{ $banner->link }}"
+                       autocomplete="off">
             </div>
         </div>
         <div class="singleBannerControl">
+            <div class="checkbox-item">
+                <input type="checkbox"
+                       class="custom-checkbox"
+                       id="banner-{{ $banner->id }}"
+                       name="is_published"
+                       {{ $banner->is_published ? 'checked' : '' }}>
+                <label for="banner-{{ $banner->id }}">@lang('service/profile.banner_published')</label>
+            </div>
             <button type="submit"
                     id="bannerPublishButton{{ $banner->id }}"
-                    class="otherButton"
-                    name="is_published"
-{{--                    value="{{ ($banner->is_published && !$banner->user->is_admin) ? 0 : 1 }}">--}}
-                    value="{{ $banner->is_published ? 0 : 1 }}">
-{{--                @if($banner->is_published && !$banner->user->is_admin)--}}
-                @if($banner->is_published)
-                    @lang('service/admin.unpublish')
-                @else
-                    @lang('service/admin.publish')
-                @endif
+                    class="otherButton">
+                @lang('service/admin.update')
             </button>
         </div>
     </div>

@@ -18,6 +18,7 @@ return [
     'banner_user_name' => 'Name: :name',
     'publish' => 'Publish',
     'unpublish' => 'Unpublish',
+    'update' => 'Update',
     'hold' => 'Hold',
     'unhold' => 'Unhold',
     'user.name' => 'User Name: ',

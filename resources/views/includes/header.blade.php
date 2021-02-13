@@ -142,7 +142,11 @@
                         @foreach(\App\Services\BannerService::getHeadBanners() as $banner)
                             <div class="slider__item">
                                 <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '125' }}px;">
-                                    <span>{{ empty($banner->title) ? '' : $banner->title }}</span>
+                                    @if(empty($banner->link))
+                                        <span>{{ empty($banner->title) ? '' : $banner->title }}</span>
+                                    @else
+                                        <a href="{{ $banner->link }}" target="_blank">{{ empty($banner->title) ? $banner->link : $banner->title }}</a>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach

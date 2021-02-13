@@ -20,6 +20,10 @@ class Review extends Model
 //        'day' => []
     ];
 
+    const SHOW_GEO = [
+    'person'
+];
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -125,5 +129,9 @@ class Review extends Model
                 $q->whereTo(auth()->user()->id);
             })
             ->count();
+    }
+
+    public function getFullGeoposition(){
+        return $this->region->country->country . ', ' . $this->region->region . ', ' . $this->city;
     }
 }

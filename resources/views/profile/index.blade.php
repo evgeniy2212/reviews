@@ -33,6 +33,21 @@
                                 <span>@lang('service/index.mail', ['count' => auth()->user()->getNewMessagesCount()])</span>
                             </a>
                         </li>
+                        <li class="{{ Request::url() == route('profile-congratulations.create') ? 'active' : '' }}">
+                            <a href="{{ route('profile-congratulations.create') }}">
+                                <span>@lang('service/index.write_congratulation')</span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::url() == route('profile-congratulations.index') ? 'active' : '' }}">
+                            <a href="{{ route('profile-congratulations.index') }}">
+                                <span>@lang('service/index.your_congratulation')</span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::url() == route('profile-important-date.index') ? 'active' : '' }}">
+                            <a href="{{ route('profile-important-date.index') }}">
+                                <span>@lang('service/index.important_dates')</span>
+                            </a>
+                        </li>
                         @if(auth()->user()->is_admin)
                             <li class="{{ Request::url() == route('banners') ? 'active' : '' }}">
                                 <a href="{{ route('banners') }}">

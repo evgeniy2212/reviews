@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConfirmSaveReviewRequest;
 use App\Http\Requests\SaveReviewRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Review;
@@ -125,20 +126,40 @@ class ReviewController extends Controller
         ) {
             return redirect()->back()->withErrors(['msg' => __('service/message.review_already_exist')]);
         }
-        $request->merge(['user_id' => auth()->user()->id]);
-        $review = Review::create($request->all());
-        $review->characteristics()->attach($request->characteristics);
-        if($request->has('img')){
-            $imageInfo = ImageService::uploadImage($request, $review);
-            $imageInfo = array_merge($imageInfo, ['review_id' => $review->id]);
-            ReviewImage::create($imageInfo);
-        }
-        if($request->has('video')){
-            $videoInfo = VideoService::uploadVideo($request, $review);
-            $videoInfo = array_merge($videoInfo, ['review_id' => $review->id]);
-            ReviewVideo::create($videoInfo);
-        }
+        $request->merge(['is_published' => true]);
+        ReviewService::createReview($request);
         $slug = $request->category_slug;
+
+        return redirect()->route('reviews',['review_item' => $slug])->with(['success_review_creating' => 'Review Created']);
+    }
+
+    public function presaving(SaveReviewRequest $request) {
+        if($request->has('category_slug')
+            && $request->category_slug == 'person'
+            && auth()->user()->isUserReviewAlreadyExist(
+                $request->review_category_id,
+                $request->name,
+                $request->region_id,
+                $request->city,
+                $request->second_name)
+        ) {
+            return redirect()->back()->withErrors(['msg' => __('service/message.review_already_exist')]);
+        }
+        $request->merge(['is_published' => false]);
+        $review = ReviewService::createReview($request);
+
+        return redirect()->route('presavingShow-review', ['review' => $review->id]);
+    }
+
+    public function presavingShow(Review $review) {
+        return view('reviews.presaving_show_review', compact('review'));
+    }
+
+    public function confirmSaving(ConfirmSaveReviewRequest $request) {
+        $review = Review::findOrFail($request->review_id);
+        $review->is_published = true;
+        $review->save();
+        $slug = $review->category->slug;
 
         return redirect()->route('reviews',['review_item' => $slug])->with(['success_review_creating' => 'Review Created']);
     }

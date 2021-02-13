@@ -152,21 +152,7 @@
                             <label for="name3">@lang('service/index.default_nickname')</label>
                         </div>
                     </div>
-                    <div class="edit-review-buttons">
-                        <div class="col-md-2">
-                            <button data-toggle="modal"
-                               type="submit"
-                               id="editReview"
-                               class="loginButton submitReviewButton">
-                                Save
-                            </button>
-                        </div>
-                        <div class="col-md-2">
-                            <a role="button" href="{{ route('profile-reviews.index') }}" class="" id="cancelButton">
-                                Cancel
-                            </a>
-                        </div>
-                    </div>
+                    @include('reviews.control_buttons.' . (empty($controlButtons) ? '' : $controlButtons . '_') .'edit_buttons')
                 </div>
             </div>
         </div>

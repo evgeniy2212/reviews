@@ -45,6 +45,8 @@
 
         $(".submitReviewButton").click(function(event) {
             var form = $("#createReviewForm").length > 0 ? $("#createReviewForm") : $("#editReviewForm");
+            let action = $(this).data('action');
+            form.attr('action', action);
             isExistBadWords = form.find('mark').length ? true : false;
             isSubmitFormAccept = $('#submitFormAccept').val() > 0 ? true : false;
             if(!isSubmitFormAccept){

@@ -150,8 +150,17 @@
                     </div>
                     <div class="create-review-buttons">
                         <div class="col-md-2">
-                            <button type="submit" class="createReviewButton loginButton submitReviewButton">
+                            <button type="submit"
+                                    class="createReviewButton loginButton submitReviewButton"
+                                    data-action="{{ route('save-review') }}">
                                 Save
+                            </button>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit"
+                                    class="createReviewButton loginButton submitReviewButton"
+                                    data-action="{{ route('presaving-review') }}">
+                                View and Save
                             </button>
                         </div>
                         <div class="col-md-2">
