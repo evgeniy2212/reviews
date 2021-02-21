@@ -8,7 +8,7 @@ use App\Models\Country;
 use App\Models\Review;
 use App\Models\ReviewFilter;
 use App\Models\ReviewImage;
-use App\Repositories\ReviewFilterRepository;
+use App\Http\Repositories\ReviewFilterRepository;
 use App\Services\ImageService;
 use App\Services\ReviewService;
 
@@ -41,7 +41,7 @@ class ReviewController extends Controller
             $sort_alias => request()->$sort_alias,
         ];
 
-        return view('profile.reviews', compact('reviews', 'slug', 'filters', 'paginateParams'));
+        return view('profile.reviews', compact('reviews', 'filters', 'paginateParams'));
     }
 
     public function edit($review)

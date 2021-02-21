@@ -250,7 +250,7 @@
     font-family: "ImprintMTShadow";
     font-weight: 300;
 }
-#congratulationForm .input, #congratulationForm select {
+#congratulationForm .input, #congratulationForm select, #importantDateForm .input, #importantDateForm select {
     border-color: #2f5496;
     border-style: solid;
     border-width: 1px;
@@ -262,11 +262,25 @@
     text-align-last: center;
     background: #fcfbfb;
 }
+.congratulation-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 #congratulationForm, .congratulation-info-container div {
     padding: 0 1px;
 }
-#congratulationForm input, .create-congratulation-label{
-    font-size: 12px;
+.profile-congratulation-user-inputs {
+    /*d-flex flex-row align-items-center flex-grow-1*/
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+.profile-congratulation-user-inputs > * {
+    margin: 0 2px;
 }
 .create-congratulation-name {
     display: flex;
@@ -282,12 +296,13 @@
 }
 .congratulationContentContainer textarea {
     resize: none;
-    width: 60%;
+    width: 65%;
     height: 100%;
     min-height: 200px;
     font-size: 0.8rem;
     border: 1px solid rgb(118, 118, 118);
     border-radius: 1px;
+    margin: 0 10px;
 }
 .create-congratulation-image {
     /*border: 1px dashed #a0a3af;*/
@@ -300,8 +315,10 @@
     background-color: #e7e6e6;
     height: 100%;
     width: 100%;
+    max-height: 50px;
     max-width: 150px;
     text-align: center;
+    vertical-align: center!important;
     white-space: nowrap; /* Запрещаем перенос строк */
     overflow: hidden; /* Обрезаем все, что не помещается в область */
     text-overflow: ellipsis; /* Добавляем многоточие */
@@ -345,21 +362,25 @@
     display: flex;
     flex-direction: column;
     width: 25%;
+    justify-content: center;
+    align-items: center;
 }
 .congratulationContentContainer {
-    width: 75%;
+    width: 80%;
     display: flex;
     flex-direction: row;
 }
 .congratulationDefaultImagesContainer{
     display: none;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
 }
 .congratulationContentUpload {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 35%;
+    justify-content: space-around;
+    align-items: center;
 }
 .congratulationImagePreviewContainer{
     display: flex;
@@ -393,11 +414,15 @@
 }
 #importantDateForm{
     width: 100%;
-    height: 100%;
+    max-height: 20%;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    border-bottom: 1px solid #2f5496;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 .importantDateTitle{
     font-size: 1.6rem;
@@ -406,4 +431,104 @@
     padding: 0;
     font-family: "ImprintMTShadow";
     font-weight: 300;
+}
+.importantDateInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-grow: 1;
+    margin: 0 0 0.8em 0;
+}
+.importantDateInfo > * {
+    margin: 0 5px;
+}
+.profile-important-date-filters {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    /*border-bottom: 1px solid #2f5496;*/
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.profile-important-date-control {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: start;
+}
+.profile-important-date-control button{
+    width: 150px;
+}
+.profile-single-important-date {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width: 100%;
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+.profile-single-important-date-info {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width: 95%;
+    justify-content: flex-start;
+    border: 1px solid #2f5496;
+    padding: 2px 10px;
+    font-size: 0.9rem;
+}
+.important-date-dull {
+    color: rgb(118, 118, 118);
+}
+.profile-single-important-date-name {
+    width: 38%;
+}
+.profile-single-important-date-type{
+    width: 43%;
+}
+.profile-single-important-date-date{
+    width: 19%;
+}
+
+.profile-single-important-date .custom-checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    white-space: nowrap;
+    margin: 0 0 0 10px;
+}
+.profile-single-important-date .custom-checkbox+label::before {
+    width: 2.1em;
+    height: 2.1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #2F5496;
+    border-radius: 0;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    background: #fcfbfb;
+}
+.profile-single-important-date .custom-checkbox:checked+label::before {
+    border-color: #2F5496;
+    background-color: #2F5496;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+.profile-single-important-date .custom-checkbox:disabled+label::before {
+    border-color: rgba(115, 115, 131, 0.92);
+    background-color: rgba(190, 208, 214, 0.78);
+}
+.create-review-label {
+    white-space: nowrap;
+    font-size: 1rem;
+}
+#importantDateForm select, #importantDateForm input {
+    font-size: 0.9rem;
+    max-width: 25%;
 }

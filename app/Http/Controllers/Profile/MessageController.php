@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\ReviewFilterRepository;
-use App\Repositories\ReviewRepository;
+use App\Http\Repositories\ReviewFilterRepository;
+use App\Http\Repositories\ReviewRepository;
 
 class MessageController extends Controller
 {

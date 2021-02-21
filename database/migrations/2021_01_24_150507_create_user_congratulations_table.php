@@ -18,7 +18,7 @@ class CreateUserCongratulationsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->text('body')->nullable();
             $table->bigInteger('region_id')->unsigned()->nullable();
-            $table->bigInteger('countryid')->unsigned()->nullable();
+            $table->bigInteger('country_id')->unsigned()->nullable();
             $table->string('city')->nullable();
             $table->bigInteger('congratulation_category_id')->unsigned()->nullable();
             $table->string('name');

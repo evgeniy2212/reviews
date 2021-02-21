@@ -2,8 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Mail\CongratulationEmail;
-use App\Models\User;
+use App\Mail\CongratulationRemindEmail;
+use App\Models\ImportantDateRemind;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -11,20 +12,18 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class SendEmailJob implements ShouldQueue
+class CongratulationRemind implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    private $templateName;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($templateName)
+    public function __construct()
     {
-        $this->templateName = $templateName;
+
     }
 
     /**
@@ -34,9 +33,12 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        foreach(User::activeUsers()->get()->chunk(100) as $users){
-            foreach($users as $user){
-                Mail::to($user->email)->send(new CongratulationEmail($this->templateName));
+        foreach(ImportantDateRemind::whereImportantDateRemind(Carbon::today())->get()->chunk(100) as $reminds){
+            foreach($reminds as $remind){
+                Mail::to($remind->importantDate->user->email)
+                    ->send(
+                        new CongratulationRemindEmail($remind)
+                    );
             }
         }
     }

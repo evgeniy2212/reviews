@@ -1,6 +1,7 @@
 <?php
 return [
     'site_name' => 'Reviews4info.com',
+    'delete' => 'Delete',
     'header_site_name' => 'Reviews4info',
     'review_naming' => 'Review :name',
     'person' => 'Review Person',
@@ -46,7 +47,7 @@ return [
     'default_nickname' => 'User',
     'select_item' => 'Select :item',
     'select_review_category_good' => 'Select category of good',
-    'select_review_category_vocation' => 'Select category',
+    'reviews.select_category' => 'Select category',
     'select_review_group_good' => 'Select group',
     'add_photo' => 'Add photo',
     'add_video' => 'Add video',
@@ -58,4 +59,5 @@ return [
     'complain.msg' => 'complain message',
     'congratulation.default_rating' => '- default congratulation',
     'congratulation.need_rating' => '- :count reviews',
+    'datepicker_placeholder' => 'DD/MM/YEAR',
 ];

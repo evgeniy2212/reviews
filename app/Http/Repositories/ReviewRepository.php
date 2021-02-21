@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Http\Repositories;
 
 use App\Models\Review as Model;
 use Illuminate\Support\Facades\DB;

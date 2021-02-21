@@ -433,7 +433,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OServer\OSPanel\domains\reviews.loc\resources\js\reviews.js */"./resources/js/reviews.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/reviews.js */"./resources/js/reviews.js");
 
 
 /***/ })

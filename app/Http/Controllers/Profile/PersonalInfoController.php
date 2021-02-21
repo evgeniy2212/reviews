@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Requests\Profile\PersonalInfoRequest;
 use App\Models\Country;
-use App\Repositories\ProfileRepository;
+use App\Http\Repositories\ProfileRepository;
 use App\Http\Controllers\Controller;
 
 class PersonalInfoController extends Controller
@@ -29,8 +29,7 @@ class PersonalInfoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  PersonalInfoRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function updatePersonalInfo(PersonalInfoRequest $request)

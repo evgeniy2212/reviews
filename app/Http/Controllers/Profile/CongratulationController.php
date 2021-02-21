@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Congratulation;
 use App\Models\ReviewFilter;
 use App\Models\UserCongratulation;
-use App\Repositories\ReviewFilterRepository;
+use App\Http\Repositories\ReviewFilterRepository;
 use App\Services\ReviewService;
 use App\Services\UserCongratulationService;
 use Illuminate\Http\Request;
@@ -34,7 +34,7 @@ class CongratulationController extends Controller
             $sort_alias => request()->$sort_alias,
         ];
 
-        return view('profile.congratulation.index', compact('congratulations', 'slug', 'filters', 'paginateParams'));
+        return view('profile.congratulation.index', compact('congratulations', 'filters', 'paginateParams'));
     }
 
     /**

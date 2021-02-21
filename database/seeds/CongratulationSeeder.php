@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Congratulation;
-use App\User;
+use App\Models\User;
 
 class CongratulationSeeder extends Seeder
 {

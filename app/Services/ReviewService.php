@@ -9,6 +9,7 @@ use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
 use App\Models\ReviewImage;
 use App\Models\ReviewVideo;
+use App\Models\UserCongratulation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,10 +34,21 @@ class ReviewService {
         }
     }
 
-    public static function getFilteredReviews($category, $filter = '', $sort = '', $search = '', $perPage = 5) {
+    public static function getFilteredReviews(
+        $category,
+        $filter = '',
+        $sort = '',
+        $search = '',
+        $contentFilterType = '',
+        $perPage = 5)
+    {
         $sort_by = self::getSortMethod($sort);
+        $result = collect([]);
 
-        $result = Review::whereHas('category', function ($query) use($category) {
+        if(empty($contentFilterType)
+            ||$contentFilterType == ReviewFilter::REVIEWS_CONTENT_TYPE
+            || $contentFilterType == ReviewFilter::ALL_CONTENT_TYPE){
+            $reviews = Review::whereHas('category', function ($query) use($category) {
                 $query->where('slug', $category);
             })
             ->whereHas('user', function ($query) {
@@ -58,10 +70,24 @@ class ReviewService {
             })
             ->when(empty($sort), function($q){
                 $q->orderBy('created_at', 'DESC');
-            })
-            ->paginate($perPage);
+            })->get();
 
-        return $result;
+            $result = $reviews;
+        }
+
+        if(!empty($contentFilterType) && (
+                $contentFilterType == ReviewFilter::CONGRATULATIONS_CONTENT_TYPE
+                || $contentFilterType == ReviewFilter::ALL_CONTENT_TYPE
+            ))
+        {
+            $congratulations = UserCongratulation::whereIsPublished(true)
+                ->orderBy('created_at', 'DESC')
+                ->get();
+
+            $result = $result->merge($congratulations);
+        }
+//todo Сортировка, поздравления в выводе вместе с отзывами сортируются не по дате
+        return $result->paginate($perPage);
     }
 
     public static function getFilteredReviewsRating($category, $filter = '', $search = '') {

@@ -3,11 +3,14 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Review;
+use App\Models\Region;
+use App\Models\User;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
     $factory->define(Review::class, function (Faker $faker) {
-    $user = \App\User::all()->random();
-    $date = \Carbon\Carbon::create(2019, 5, 28, 0, 0, 0);
+    $user = User::all()->random();
+    $date = Carbon::create(2019, 5, 28, 0, 0, 0);
     $category_id = rand(1, 4);
     $review_group_id = $category_id == 3 ? rand(1, 40) : null;
     $category_by_review_id = $category_id == 4 ? rand(4, 11) : null;
@@ -15,7 +18,7 @@ use Faker\Generator as Faker;
     return [
         'user_id' => $user->id,
         'review' => $faker->realText(rand(100, 300)),
-        'region_id' => \App\Models\Region::all()->first()->id,
+        'region_id' => Region::all()->first()->id,
         'city' => $faker->city,
         'review_category_id' => $category_id,
         'review_group_id' => $review_group_id,

@@ -58,9 +58,9 @@ Route::group(
                 'index', 'create', 'store', 'destroy'
             ])->names('profile-congratulations');
             Route::resource('important-date', 'Profile\ImportantDateController')->only([
-                'index', 'store', 'destroy'
+                'index', 'store'
             ])->names('profile-important-date');
-            Route::delete('profile-important-dates-delete', 'Profile\ImportantDateController@deleteDates')->name('profile-important-dates-delete');
+            Route::post('profile-important-dates-delete', 'Profile\ImportantDateController@deleteDates')->name('profile-important-dates-delete');
         });
 
         Route::group([

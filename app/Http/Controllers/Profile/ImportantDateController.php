@@ -3,35 +3,43 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\ImportantDateRemind;
 use App\Models\ReviewFilter;
-use App\Repositories\ReviewFilterRepository;
+use App\Http\Repositories\ReviewFilterRepository;
+use App\Models\UserImportantDate;
 use App\Services\UserImportantDateService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ImportantDateController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
+        //todo Доделать мультиселект для периода напоминания
+        //todo Доделать деволтные картинки для прикрепления к поздравлению
         $filter_alias = ReviewFilter::DATE_FILTER;
         $sort_alias = ReviewFilter::SORT_BY_FILTER;
 
         $filter = request()->$filter_alias;
         $sort = request()->$sort_alias;
-        $user_id = auth()->user()->id;
+        $user_id = auth()->id();
 
-        $importantDates = UserImportantDateService::getUserFilteredCongratulations($user_id, $filter, $sort);
+        $importantDates = UserImportantDateService::getUserFilteredImportantDay($user_id, $filter, $sort);
         $filters = (new ReviewFilterRepository())->getAllCategoryFilters();
         $paginateParams = [
             $filter_alias => request()->$filter_alias,
             $sort_alias => request()->$sort_alias,
         ];
 
-        return view('profile.important_date.index', compact('importantDates', 'slug', 'filters', 'paginateParams'));
+        $importantDateTypes = UserImportantDateService::getImportantDateTypes();
+
+        return view('profile.important_date.index', compact('importantDates', 'importantDateTypes','filters', 'paginateParams'));
     }
 
     /**
@@ -52,7 +60,22 @@ class ImportantDateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->merge(['user_id' => auth()->id()]);
+        $importantDateDate = Carbon::parse($request->important_date_date);
+        $request->offsetSet(
+            'important_date_date',
+            $importantDateDate->format('Y-m-d H:i:s')
+        );
+        $importantDate = UserImportantDate::create($request->all());
+
+        foreach($request->important_date_reminds as $dateRemind){
+            ImportantDateRemind::create([
+                'important_date_remind' => $importantDateDate->subDays($dateRemind)->format('Y-m-d H:i:s'),
+                'important_date_id' => $importantDate->id
+            ]);
+        }
+
+        return redirect(route('profile-important-date.index'));
     }
 
     /**
@@ -92,11 +115,12 @@ class ImportantDateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteDates(Request $request)
     {
-        //
+        UserImportantDate::whereIn('id', $request->dates)->delete();
     }
 }

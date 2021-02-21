@@ -1,13 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\Banner;
-use App\Models\Comment;
-use App\Models\Congratulation;
-use App\Models\Message;
-use App\Models\Region;
-use App\Models\Review;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -144,7 +138,9 @@ class User extends Authenticatable implements MustVerifyEmail
                 $result = $this->full_name;
                 break;
             case self::NICKNAME_SIGN:
-                $result = $this->nickname;
+                $result = empty($this->nickname)
+                    ? self::DEFAULT_NAME
+                    : $this->nickname;
                 break;
             case self::DEFAULT_SIGN:
                 $result = self::DEFAULT_NAME;

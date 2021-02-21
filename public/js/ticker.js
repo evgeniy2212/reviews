@@ -121,7 +121,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OServer\OSPanel\domains\reviews.loc\resources\js\ticker.js */"./resources/js/ticker.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/ticker.js */"./resources/js/ticker.js");
 
 
 /***/ })

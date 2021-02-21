@@ -34,7 +34,7 @@ class UserImportantDateService {
                 $q->orderBy($sort_by);
             })
             ->when(empty($sort), function($q){
-                $q->orderBy('created_at', 'DESC');
+                $q->orderBy('important_date_date', 'DESC');
             })
             ->where(function($q){
                 $q->whereIsPublished(true);
@@ -59,6 +59,15 @@ class UserImportantDateService {
         }
 
         return $sort;
+    }
+
+    static public function getImportantDateTypes()
+    {
+        $selectValues = ['id', 'name'];
+
+        return UserImportantDateType::select($selectValues)
+            ->whereIsPublished(true)
+            ->get();
     }
 
 }

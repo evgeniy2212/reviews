@@ -10,7 +10,7 @@ use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
 use App\Models\ReviewImage;
 use App\Models\ReviewVideo;
-use App\Repositories\ReviewFilterRepository;
+use App\Http\Repositories\ReviewFilterRepository;
 use App\Services\ImageService;
 use App\Services\ReviewService;
 use App\Services\VideoService;
@@ -36,12 +36,19 @@ class ReviewController extends Controller
 
         $filter = request()->$filter_alias;
         $sort = request()->$sort_alias;
+        $contentType = ReviewFilter::CONTENT_TYPE_FILTER;
 
-        $reviews = ReviewService::getFilteredReviews($slug, $filter, $sort);
+        $contentFilterType =
+            in_array($slug, ReviewFilter::CONTENT_TYPE_FILTER_ENABLE)
+                ? (request()->$contentType ?? ReviewFilter::ALL_CONTENT_TYPE)
+                : '';
+
+        $reviews = ReviewService::getFilteredReviews($slug, $filter, $sort, '', $contentFilterType);
 
         $paginateParams = [
             $filter_alias => request()->$filter_alias,
             $sort_alias => request()->$sort_alias,
+            $contentType => request()->$contentType
         ];
         $filters = $this->reviewFilterRepository->getAllCategoryFilters($slug);
 

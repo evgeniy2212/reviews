@@ -8,9 +8,22 @@ class ReviewFilter extends Model
 {
     const DATE_FILTER = 'filter-by-date';
     const SORT_BY_FILTER = 'sort-by';
+    const CONTENT_TYPE_FILTER = 'content_type';
 
     const SORT_BY_RATING = 'rating';
     const SORT_BY_ALPHABET = 'alphabet';
+
+    const ALL_CONTENT_TYPE = 'All';
+    const REVIEWS_CONTENT_TYPE = 'Reviews';
+    const CONGRATULATIONS_CONTENT_TYPE = 'Congratulations';
+
+    const CONTENT_TYPE_FILTER_ENABLE = [
+        'person'
+    ];
+
+    const CONTENT_TYPES = [
+        self::ALL_CONTENT_TYPE, self::CONGRATULATIONS_CONTENT_TYPE, self::REVIEWS_CONTENT_TYPE
+    ];
 
     protected $fillable = [
         'name',

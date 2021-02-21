@@ -3,8 +3,7 @@
 namespace App\Services;
 
 use App\Models\Congratulation;
-use App\User;
-use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class CongratsService {
     public static function getUserCongratulation(User $user){

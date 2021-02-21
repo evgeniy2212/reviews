@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Http\Repositories;
 
-use App\User as Model;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\User as Model;
 
 
 /**

@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <div class="d-flex flex-row align-items-center flex-grow-1">
+    <div class="profile-congratulation-user-inputs">
         <div>
             <span class="create-congratulation-label">
                 @lang('service/profile.congratulation.create.category')

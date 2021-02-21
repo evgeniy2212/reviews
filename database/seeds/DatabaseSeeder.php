@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewCategorySeeder::class);
         $this->call(ReviewCharacteristicsSeeder::class);
         $this->call(CategoryGroupByReviewSeeder::class);
+        $this->call(CongratulationSeeder::class);
         $this->call(ReviewSeeder::class);
         $this->call(ReviewFilterSeeder::class);
         $this->call(ReviewFilterValuesSeeder::class);
         $this->call(BadWordsSeeder::class);
         $this->call(ServiceInfoSeeder::class);
-        $this->call(CongratulationSeeder::class);
         $this->call(BannerCategoriesSeeder::class);
         $this->call(BannerSeeder::class);
         $this->call(UserCongratulationCategorySeeder::class);

@@ -171,6 +171,51 @@
             $('.congratulationContentContainer').hide();
             $('.congratulationDefaultImagesContainer').css('display', 'flex');
         });
+
+        $("#importantDateButton").click(function(event) {
+            var form = $("#importantDateForm");
+            if ($('#importantDateType option:selected').val() == ''){
+                $('#importantDateType').addClass('invalid-selector');
+            } else {
+                $('#importantDateType').removeClass( "invalid-selector" )
+            }
+
+            if ($('#remindPeriod option:selected').val() == ''){
+                $('#remindPeriod').addClass('invalid-selector');
+            } else {
+                $('#remindPeriod').removeClass( "invalid-selector" )
+            }
+
+            validation(form, event);
+        });
+
+        $('.checkImportantDate').change(function() {
+            if($(".profile-single-important-date input[type=checkbox]:checked").length > 0){
+                $("#deleteImportantDates").prop( "disabled", false );
+            } else {
+                $("#deleteImportantDates").prop( "disabled", true );
+            }
+        });
+
+        $("#deleteImportantDates").click(function(event) {
+            var deleteImportants = [];
+            $(".profile-single-important-date input[type=checkbox]:checked").each(function(){
+                deleteImportants.push($(this).val());
+            });
+            if (deleteImportants.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "profile-important-dates-delete",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {dates: deleteImportants},
+                    success: function(data) {
+                        location.reload();
+                    },
+                });
+            }
+        });
     });
 
     function readImageURL(input) {
@@ -196,19 +241,6 @@
     }
 
     var validation = function(form, event){
-        // let allPassRulesCnt = $('#password-rules').find("[type='checkbox']").length;
-        // let checkedPassRulesCnt = $('#password-rules').find("[type='checkbox']:checked").length;
-        // let isCheckPassInvalid = allPassRulesCnt != checkedPassRulesCnt;
-        // if(isCheckPassInvalid){
-        //     $('#password, #new-password').addClass('invalid-input');
-        // } else {
-        //     $('#password, #new-password').removeClass('invalid-input');
-        // }
-        // if(isExistBadWords){
-        //     // alert('Your review contain Bad Words! You must delete Bad Words!');
-        //     $('#errorBadWords').modal('show');
-        // }
-        //
         if (form[0].checkValidity() === false)
         {
             event.preventDefault();

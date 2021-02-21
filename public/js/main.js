@@ -138,6 +138,8 @@
     });
     $(".submitReviewButton").click(function (event) {
       var form = $("#createReviewForm").length > 0 ? $("#createReviewForm") : $("#editReviewForm");
+      var action = $(this).data('action');
+      form.attr('action', action);
       isExistBadWords = form.find('mark').length ? true : false;
       isSubmitFormAccept = $('#submitFormAccept').val() > 0 ? true : false;
 
@@ -359,7 +361,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OServer\OSPanel\domains\reviews.loc\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /var/www/resources/js/main.js */"./resources/js/main.js");
 
 
 /***/ })

@@ -6,10 +6,10 @@
         <div class="congratulationTitle">
             <span>@lang('service/profile.congratulation.create.title')</span>
         </div>
-        <div class="d-flex flex-row align-items-center congratulation-info-container">
+        <div class="congratulation-info-container">
             @include('profile.congratulation.user_info_inputs')
         </div>
-        <div class="d-flex flex-row align-items-center congratulation-info-container">
+        <div class="congratulation-info-container">
             @include('profile.congratulation.congratulation_info_inputs')
         </div>
         <div class="create-congratulation-media">
@@ -124,7 +124,7 @@
                        class="custom-radio"
                        id="name1"
                        name="user_sign"
-                       value="{{ \App\User::NAME_SIGN }}"
+                       value="{{ \App\Models\User::NAME_SIGN }}"
                        checked>
                 <label for="name1">{{ auth()->user()->full_name }}</label>
             </div>
@@ -133,7 +133,7 @@
                        class="custom-radio"
                        id="name2"
                        name="user_sign"
-                       value="{{ \App\User::NICKNAME_SIGN }}"
+                       value="{{ \App\Models\User::NICKNAME_SIGN }}"
                        @empty(auth()->user()->nickname) disabled @endempty>
                 <label for="name2">{{ empty(auth()->user()->nickname) ? __('service/index.review_nickname') : auth()->user()->nickname }}</label>
             </div>
@@ -142,7 +142,7 @@
                        class="custom-radio"
                        id="name3"
                        name="user_sign"
-                       value="{{ \App\User::DEFAULT_SIGN }}">
+                       value="{{ \App\Models\User::DEFAULT_SIGN }}">
                 <label for="name3">@lang('service/index.default_nickname')</label>
             </div>
         </div>

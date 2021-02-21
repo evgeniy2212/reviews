@@ -127,4 +127,5 @@
     @endif
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{{--    <script src="{{ asset('js/BsMultiSelect.js') }}"></script>--}}
 @endsection

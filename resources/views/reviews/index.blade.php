@@ -62,6 +62,28 @@
                                     </div>
                                 </div>
                             @endforeach
+                            <div class="col-md-4 d-flex flex-row justify-content-around">
+                                <div>
+                                    <label>
+                                        @lang('service/index.reviews.select_category')
+                                    </label>
+                                </div>
+                                <div>
+                                    <select class="select filter-select"
+                                            id="filter-{!! \App\Models\ReviewFilter::CONTENT_TYPE_FILTER !!}"
+                                            name="{!! \App\Models\ReviewFilter::CONTENT_TYPE_FILTER !!}">
+{{--                                        <option value="" selected>All</option>--}}
+                                        @foreach(\App\Models\ReviewFilter::CONTENT_TYPES as $content_type)
+                                            <option value="{!! $content_type !!}"
+                                                {{ (array_key_exists(\App\Models\ReviewFilter::CONTENT_TYPE_FILTER, $paginateParams) && $paginateParams[\App\Models\ReviewFilter::CONTENT_TYPE_FILTER] === $content_type)
+                                                    ? 'selected'
+                                                    : ''}}>
+                                                {!! $content_type !!}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     @else
                         <div class="d-flex flex-row justify-content-center exist-review-title">
@@ -71,7 +93,11 @@
                         </div>
                     @endif
                     @forelse($reviews as $review)
-                        @include('reviews.single_review')
+                        @if(class_basename($review) != 'Review')
+                            @include('reviews.single_congratulation')
+                        @else
+                            @include('reviews.single_review')
+                        @endif
                     @empty
 
                     @endforelse

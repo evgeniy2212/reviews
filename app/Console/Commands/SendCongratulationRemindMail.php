@@ -2,18 +2,18 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SendEmailJob;
+use App\Jobs\CongratulationRemind;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
-class SendNewYearMail extends Command
+class SendCongratulationRemindMail extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'congratulation:new_year';
+    protected $signature = 'congratulation:remind';
 
     /**
      * The console command description.
@@ -39,6 +39,6 @@ class SendNewYearMail extends Command
      */
     public function handle()
     {
-        dispatch(new SendEmailJob('new_year'));
+        dispatch(new CongratulationRemind());
     }
 }

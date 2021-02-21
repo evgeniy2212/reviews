@@ -6,7 +6,7 @@ use App\Models\UserCongratulation;
 use Faker\Generator as Faker;
 
     $factory->define(UserCongratulation::class, function (Faker $faker) {
-    $user = \App\User::all()->random();
+    $user = \App\Models\User::all()->random();
     $date = \Carbon\Carbon::create(2019, 5, 28, 0, 0, 0);
     $category_id = rand(1, 20);
 

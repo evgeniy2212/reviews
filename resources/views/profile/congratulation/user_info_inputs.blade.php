@@ -1,10 +1,10 @@
-<div class="col-md-5">
-    <div class="d-flex flex-row align-items-center flex-grow-1">
-        <div class="col-md-3">
-            <span class="create-congratulation-label text-center">
-                @lang('service/profile.congratulation.create.person_name')
-            </span>
-        </div>
+<div class="col-md-4">
+    <div class="profile-congratulation-user-inputs">
+{{--        <div class="col-md-3">--}}
+{{--            <span class="create-congratulation-label text-center">--}}
+{{--                @lang('service/profile.congratulation.create.person_name')--}}
+{{--            </span>--}}
+{{--        </div>--}}
         <div>
             <input id="name"
                    type="text"
@@ -29,8 +29,8 @@
         </div>
     </div>
 </div>
-<div class="col-md-7">
-    <div class="d-flex flex-row align-items-center flex-grow-1">
+<div class="col-md-8">
+    <div class="profile-congratulation-user-inputs">
         <div>
             <span class="create-congratulation-label">
                 @lang('register.country')

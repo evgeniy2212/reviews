@@ -7,7 +7,7 @@ use App\Http\Requests\ShareRequest;
 use App\Mail\ShareMail;
 use App\Models\BadWord;
 use App\Notifications\GetInTouch;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class InfoController extends Controller

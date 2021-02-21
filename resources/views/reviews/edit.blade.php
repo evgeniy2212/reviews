@@ -128,8 +128,8 @@
                                    class="custom-radio"
                                    id="name1"
                                    name="user_sign"
-                                   value="{{ \App\User::NAME_SIGN }}"
-                                   {{ $review->user_sign == \App\User::NAME_SIGN ? 'checked' : '' }}>
+                                   value="{{ \App\Models\User::NAME_SIGN }}"
+                                   {{ $review->user_sign == \App\Models\User::NAME_SIGN ? 'checked' : '' }}>
                             <label for="name1">{{ auth()->user()->full_name }}</label>
                         </div>
                         <div class="col-md-4">
@@ -137,8 +137,8 @@
                                    class="custom-radio"
                                    id="name2"
                                    name="user_sign"
-                                   value="{{ \App\User::NICKNAME_SIGN }}"
-                                   {{ $review->user_sign == \App\User::NICKNAME_SIGN ? 'checked' : '' }}
+                                   value="{{ \App\Models\User::NICKNAME_SIGN }}"
+                                   {{ $review->user_sign == \App\Models\User::NICKNAME_SIGN ? 'checked' : '' }}
                                    @empty(auth()->user()->nickname) disabled @endempty>
                             <label for="name2">{{ empty(auth()->user()->nickname) ? __('service/index.review_nickname') : auth()->user()->nickname }}</label>
                         </div>
@@ -147,8 +147,8 @@
                                    class="custom-radio"
                                    id="name3"
                                    name="user_sign"
-                                   {{ $review->user_sign == \App\User::DEFAULT_SIGN ? 'checked' : '' }}
-                                   value="{{ \App\User::DEFAULT_SIGN }}">
+                                   {{ $review->user_sign == \App\Models\User::DEFAULT_SIGN ? 'checked' : '' }}
+                                   value="{{ \App\Models\User::DEFAULT_SIGN }}">
                             <label for="name3">@lang('service/index.default_nickname')</label>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 @section('profile_review_content')
     <div class="profile-review-place">
         <div class="adminFilters">
-            @foreach(\App\User::FILTERS as $filterName => $filters)
+            @foreach(\App\Models\User::FILTERS as $filterName => $filters)
                 <div class="adminFilterItem">
                     <div>
                         {{--<label for="userFilter">--}}

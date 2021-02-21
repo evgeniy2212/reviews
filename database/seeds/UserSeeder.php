@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use \App\Models\Region;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -100,7 +101,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach($users as $user){
-            \App\User::firstOrCreate($user);
+            User::firstOrCreate($user);
         }
     }
 }
