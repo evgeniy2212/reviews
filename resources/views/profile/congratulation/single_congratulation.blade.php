@@ -24,35 +24,35 @@
                     </div>
                 </div>
                 <div class="profile-single-review-review">
-                    @if($congratulation->category)
-                        <span>{{ $congratulation->category->title }}</span>
-                    @endif
-                        <p>
-                            @if($congratulation->video)
-                                <video class="videoPreview" controls>
-                                    <source src="{{ $congratulation->video->getVideoUrl() }}" type="video/mp4">
-                                    {{--<source src="movie.ogg" type="video/ogg">--}}
-                                    Your browser does not support the video tag.
-                                </video>
-                            @else
-                                <img src="{{ asset('storage/images/default_img_video.png') }}"
-                                     alt="photo"
-                                     class="videoPreview">
-                            @endif
-                            @if($congratulation->image)
-                                <img src="{{ $congratulation->image->getResizeImageUrl('congratulations') }}"
-                                     alt=""
-                                     data-full-size-src="{{ $congratulation->image->getImageUrl() }}"
-                                     class="reviewImage previewImage"
-                                     style="cursor: pointer;"
-                                     id="myImg">
-                            @else
-                                <img src="{{ asset('storage/images/default_img.png') }}"
-                                     alt=""
-                                    class="previewImage">
-                            @endif
-                            {{ $congratulation->body }}
-                        </p>
+                    <p>
+                        @if($congratulation->video)
+                            <video class="videoPreview" controls>
+                                <source src="{{ $congratulation->video->getVideoUrl() }}" type="video/mp4">
+                                {{--<source src="movie.ogg" type="video/ogg">--}}
+                                Your browser does not support the video tag.
+                            </video>
+                        @else
+                            <img src="{{ asset('storage/images/default_img_video.png') }}"
+                                 alt="photo"
+                                 class="videoPreview">
+                        @endif
+                        @if($congratulation->image)
+                            <img src="{{ $congratulation->image->getResizeImageUrl('congratulations') }}"
+                                 alt=""
+                                 data-full-size-src="{{ $congratulation->image->getImageUrl() }}"
+                                 class="reviewImage previewImage"
+                                 style="cursor: pointer;"
+                                 id="myImg">
+                        @else
+                            <img src="{{ asset('storage/images/default_img.png') }}"
+                                 alt=""
+                                class="previewImage">
+                        @endif
+                        @if($congratulation->category)
+                            {{ $congratulation->category->title }}<br>
+                        @endif
+                        {{ $congratulation->body }}
+                    </p>
                 </div>
             </div>
         </div>

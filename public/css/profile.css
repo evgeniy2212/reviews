@@ -80,13 +80,25 @@
     align-items: start;
     justify-content: space-around;
     width: 75%;
+    height: 100%;
     padding: 0 0 0 5px;
     line-height: 1.2rem;
     letter-spacing: 1px;
 }
-.profile-single-review-review span {
+.profile-single-review-review span, .profile-single-review-review p {
     text-align: left;
+    float: left;
+    width: 100%;
     padding-bottom: 5px;
+}
+.profile-single-review-review img {
+    float: right;
+    margin: 5px 5px 5px 5px;
+}
+.profile-single-review-review video {
+    float: right;
+    margin: 5px 5px 5px 5px;
+    object-fit: fill;
 }
 .profile-single-review-item{
     display: flex;
@@ -123,11 +135,6 @@
     resize: none;
     width: 100%;
     min-height: 100px;
-    /*height: calc(100vh - 360px);*/
-    /*margin: 1% 1% 2% 1%;*/
-    /*font-size: 0.8rem;*/
-    /*border: 1px solid rgb(118, 118, 118);*/
-    /*border-radius: 1px;*/
 }
 .banners{
     display: flex;
