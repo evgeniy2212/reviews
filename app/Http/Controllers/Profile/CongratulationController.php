@@ -38,7 +38,7 @@ class CongratulationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function create()
     {
@@ -49,7 +49,7 @@ class CongratulationController extends Controller
         return view('profile.congratulation.create', compact(
             'countries',
             'categories',
-            'defaultImages',
+            'defaultImages'
         ));
     }
 

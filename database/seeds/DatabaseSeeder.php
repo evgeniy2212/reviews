@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserImportantDateTypeSeeder::class);
         $this->call(UserCongratulationSeeder::class);
         $this->call(UserImportantDateSeeder::class);
+        $this->call(DefaultImageSeeder::class);
     }
 }
