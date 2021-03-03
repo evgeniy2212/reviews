@@ -247,15 +247,28 @@
     });
     $('[id^="profileMessageButton"]').click(function (event) {
       var review = $(this).parent().parent().parent();
+      var review_content = $(this).parent().parent();
       var comments = review.find('.message');
       comments.each(function (index) {
         if ($(this).text().trim()) {
-          $(this).toggle(750);
+          $(this).toggle(500);
           $(this).css('display', 'flex');
         }
       });
-      review.find('.review-textarea').toggle(750);
-      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
+      review.find('.review-textarea').toggle(500);
+      var is_open = $(this).text().trim() !== 'Close';
+      is_open ? $(this).text('Close') : $(this).text('Reply');
+
+      if (is_open) {
+        review_content.animate({
+          height: "50%"
+        }, 500);
+      } else {
+        review_content.animate({
+          height: "100%"
+        }, 500);
+      }
+
       $(this).closest('.single-review').removeClass('unread-profile-messages');
       var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       var reviewId = $(this).attr('data-review-id');

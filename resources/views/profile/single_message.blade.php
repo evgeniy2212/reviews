@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="profile-single-review-item">
-        <div class="w-100 d-flex flex-row">
+        <div class="w-100 d-flex flex-row" style="height: 100%">
             <div class="profile-single-review-content">
                 <div class="single-review-name">
                     <div>

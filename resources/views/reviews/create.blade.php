@@ -39,11 +39,11 @@
                         <span class="create-review-label">
                             @lang('service/index.review_rating_title')
                         </span>
-                        <div class="rating" data-rate-value=5>
+                        <div class="rating" data-rate-value=2>
                             <input type="hidden"
                                    id="rating"
                                    name="rating"
-                                   value="5">
+                                   value="2">
                         </div>
                     </div>
                     <div class="d-flex flex-row align-items-center review-info-container">
