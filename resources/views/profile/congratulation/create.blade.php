@@ -40,49 +40,26 @@
                         <i class="fa fa-cloud-upload"></i> <span>@lang('service/profile.congratulation.create.add_video')</span>
                     </label>
                     <label class="create-congratulation-image">
+                        <i class="fa fa-cloud-upload"></i> <span>@lang('service/profile.congratulation.create.add_default_image')</span>
                         <input type="button"
-                               style="opacity: 0;"
+                               style="opacity: 0;z-index: -10;max-width: 0;max-height: 0;"
                                id="imgDefaultCongratulation"
                                name="img_default">
                         <input type="hidden"
                                id="imgDefaultCongratulationValue"
                                name="img_default">
-                        <i class="fa fa-cloud-upload"></i> <span>@lang('service/profile.congratulation.create.add_default_image')</span>
                     </label>
                 </div>
             </div>
             <div class="congratulationDefaultImagesContainer">
                 <div class="congratulationDefaultImages">
-                    <div class="congratulationDefaultImagePreview" id="test">
-                        <img src="{{ asset('images/logo_new.jpg') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
-                    <div class="congratulationDefaultImagePreview">
-                        <img src="{{ asset('images/default_banner.png') }}" alt="your image" />
-                    </div>
+                    @foreach($defaultImages as $defaultImage)
+                        <div class="congratulationDefaultImagePreview" id="{{ $defaultImage->id }}">
+                            <img src="{{ asset($defaultImage->getImageUrl()) }}"
+                                 data-imageid="{{ $defaultImage->id }}"
+                                 alt="{{ $defaultImage->name }}" />
+                        </div>
+                    @endforeach
                 </div>
                 <div class="d-flex flex-row justify-content-center" style="width: 100%">
                     <div class="col-md-3">

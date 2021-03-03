@@ -95,7 +95,6 @@
 
 (function ($) {
   $(document).ready(function () {
-    // $(".multipleSelect").bsMultiSelect();
     $('.deleteReview').click(function () {
       var id = $(this).data("reviewId");
       var name = $(this).data("reviewName");
@@ -223,7 +222,8 @@
       $('.congratulationContentContainer').css('display', 'flex');
       $('.congratulationDefaultImagesContainer').hide();
       var src = $('.congratulationDefaultImages .congratulationHighlight').find('img').attr('src');
-      $('#imgDefaultCongratulationValue').val(src);
+      var saveImage = $('.congratulationDefaultImages .congratulationHighlight').find('img').data('imageid');
+      $('#imgDefaultCongratulationValue').val(saveImage);
       $('#blah').attr('src', src);
       $('#blah').data('src', src);
       $('#blah').data('defaultSrc', src);
@@ -260,10 +260,10 @@
         $('#importantDateType').removeClass("invalid-selector");
       }
 
-      if ($('#remindPeriod option:selected').val() == '') {
-        $('#remindPeriod').addClass('invalid-selector');
+      if ($('[name^="important_date_reminds"]:checkbox:checked').length == 0) {
+        $('#selectBox select').addClass('invalid-selector');
       } else {
-        $('#remindPeriod').removeClass("invalid-selector");
+        $('#selectBox select').removeClass("invalid-selector");
       }
 
       validation(form, event);
@@ -297,6 +297,24 @@
         });
       }
     });
+    var expanded = false;
+    $("#selectBox").click(function (event) {
+      var checkboxes = document.getElementById("checkboxes");
+
+      if (!expanded) {
+        checkboxes.style.display = "flex";
+        expanded = true;
+      } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+      }
+    });
+    $("#importantDateRemindsButton .otherButton").click(function (event) {
+      event.preventDefault();
+      var checkboxes = document.getElementById("checkboxes");
+      checkboxes.style.display = "none";
+      expanded = false;
+    });
   });
 
   function readImageURL(input) {
@@ -324,6 +342,8 @@
   }
 
   var validation = function validation(form, event) {
+    console.log(form, form[0].checkValidity());
+
     if (form[0].checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();

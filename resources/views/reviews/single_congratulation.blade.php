@@ -22,9 +22,6 @@
             </div>
         </div>
         <div class="single-review-review">
-            @if($review->category)
-                <span>{{ $review->category->title }}</span>
-            @endif
             <p>
                 @if($review->video)
                     <video class="videoPreview" controls>
@@ -38,7 +35,7 @@
                          class="videoPreview">
                 @endif
                 @if($review->image)
-                    <img src="{{ $review->image->getResizeImageUrl() }}"
+                    <img src="{{ $review->image->getResizeImageUrl('congratulations') }}"
                          alt=""
                          data-full-size-src="{{ $review->image->getImageUrl() }}"
                          class="reviewImage previewImage"
@@ -48,6 +45,9 @@
                     <img src="{{ asset('storage/images/default_img.png') }}"
                          alt=""
                         class="previewImage">
+                @endif
+                @if($review->category)
+                    {{ $review->category->title }}<br>
                 @endif
                 {{ $review->body }}
             </p>

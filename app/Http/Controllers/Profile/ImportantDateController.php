@@ -21,8 +21,6 @@ class ImportantDateController extends Controller
      */
     public function index()
     {
-        //todo Доделать мультиселект для периода напоминания
-        //todo Доделать деволтные картинки для прикрепления к поздравлению
         $filter_alias = ReviewFilter::DATE_FILTER;
         $sort_alias = ReviewFilter::SORT_BY_FILTER;
 

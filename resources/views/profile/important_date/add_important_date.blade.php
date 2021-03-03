@@ -31,25 +31,57 @@
         <span class="create-review-label">
             @lang('service/profile.important_date.create.remind_me')
         </span>
-        <select class="select"
-                id="remindPeriod"
-                name="important_date_reminds[]"
-                required>
-            <option disabled selected value="">@lang(trans('service/index.select_item', ['item' => '']))</option>
-            @foreach(\App\Models\UserImportantDate::REMIND_PERIODS as $period)
-                @if($period == 0)
-                    <option value="{{ $period }}">@lang('service/profile.important_date.create.same_day')</option>
-                @elseif(($period%7) == 0)
-                    <option value="{{ $period }}">{{ $period/7 }} @lang(trans_choice('service/profile.important_date.create.period_weeks', (($period/7) < 20 ? ($period/7) : ($period/7) % 10)))</option>
-                @else
-                    <option value="{{ $period }}">{{ $period }} @lang(trans_choice('service/profile.important_date.create.period_days', ($period < 20 ? $period : $period % 10)))</option>
-                @endif
-            @endforeach
-        </select>
+        <div class="multiselect">
+            <div class="selectBox" id="selectBox">
+                <select id="remindSelector">
+                    <option>@lang(trans('service/index.select_item', ['item' => '']))</option>
+                </select>
+                <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes">
+                @foreach(\App\Models\UserImportantDate::REMIND_PERIODS as $key => $period)
+                    @if($period == 0)
+                        <input type="checkbox"
+                               class="custom-checkbox checkImportantDate"
+                               name="important_date_reminds[{{ $key }}]"
+                               id="{{$key}}"
+                               value="{{ $period }}">
+                        <label for="{{ $key }}">
+                            @lang('service/profile.important_date.create.same_day')
+                        </label>
+                    @elseif(($period%7) == 0)
+                        <input type="checkbox"
+                               class="custom-checkbox checkImportantDate"
+                               name="important_date_reminds[{{ $key }}]"
+                               id="{{$key}}"
+                               value="{{ $period }}">
+                        <label for="{{ $key }}">
+                            {{ $period/7 }} @lang(trans_choice('service/profile.important_date.create.period_weeks', (($period/7) < 20 ? ($period/7) : ($period/7) % 10)))
+                        </label>
+                    @else
+                        <input type="checkbox"
+                               class="custom-checkbox checkImportantDate"
+                               name="important_date_reminds[{{ $key }}]"
+                               id="{{$key}}"
+                               value="{{ $period }}">
+                        <label for="{{ $key }}">
+                            {{ $period }} @lang(trans_choice('service/profile.important_date.create.period_days', ($period < 20 ? $period : $period % 10)))
+                        </label>
+                    @endif
+                @endforeach
+                <div id="importantDateRemindsButton">
+                    <button class="otherButton">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="d-flex flex-row justify-content-center" style="width: 100%">
-        <div class="col-md-3">
-            <button type="submit" id="importantDateButton" class="otherButton submitImportantDateButton">
+    <div class="d-flex flex-row justify-content-center" style="width: 30%">
+        <div class="col-md-12">
+            <button type="submit"
+                    id="importantDateButton"
+                    class="otherButton submitImportantDateButton">
                 Save
             </button>
         </div>

@@ -57,7 +57,7 @@ return [
     'touch_text_placeholder' => 'Your Message',
     'complain.success' => 'Your complain has been accepted.',
     'complain.msg' => 'complain message',
-    'congratulation.default_rating' => '- default congratulation',
+    'congratulation.default_rating' => '- default status',
     'congratulation.need_rating' => '- :count reviews',
     'datepicker_placeholder' => 'DD/MM/YEAR',
 ];

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\ContentImage;
 use App\Models\Country;
+use App\Models\DefaultImage;
 use App\Models\ReviewFilter;
 use App\Models\ReviewVideo;
 use App\Models\UserCongratulation;
@@ -32,6 +33,17 @@ class UserCongratulationService {
     public static function createCongratulation(Request $request){
         $request->merge(['user_id' => auth()->user()->id]);
         $userCongratulation = UserCongratulation::create($request->all());
+        if($request->has('img_default')){
+            $defaultImage = DefaultImage::findOrFail($request->img_default);
+            $imageDefaultInfo = [
+                'src' => $defaultImage->src,
+                'original_name' => $defaultImage->original_name,
+                'name' => $defaultImage->name,
+                'content_id' => $userCongratulation->id,
+                'content_type' => UserCongratulation::class,
+            ];
+            ContentImage::create($imageDefaultInfo);
+        }
         if($request->has('img')){
             $imageInfo = ImageService::uploadImage($request, 'congratulations');
             $imageInfo = array_merge($imageInfo, [

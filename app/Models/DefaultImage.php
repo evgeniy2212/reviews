@@ -11,4 +11,9 @@ class DefaultImage extends Model
         'name',
         'original_name',
     ];
+
+    public function getImageUrl()
+    {
+        return asset('storage/' . $this->src);
+    }
 }

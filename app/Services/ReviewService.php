@@ -11,6 +11,7 @@ use App\Models\ReviewImage;
 use App\Models\ReviewVideo;
 use App\Models\UserCongratulation;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,10 +45,11 @@ class ReviewService {
     {
         $sort_by = self::getSortMethod($sort);
         $result = collect([]);
-
+        $reviews = collect([]);
         if(empty($contentFilterType)
             ||$contentFilterType == ReviewFilter::REVIEWS_CONTENT_TYPE
             || $contentFilterType == ReviewFilter::ALL_CONTENT_TYPE){
+
             $reviews = Review::whereHas('category', function ($query) use($category) {
                 $query->where('slug', $category);
             })
@@ -57,7 +59,6 @@ class ReviewService {
             ->when(!empty($search), function($q) use ($search){
                 $q->where(DB::raw('CONCAT_WS(" ", name, second_name)'), '=', "{$search}");
             })
-//            ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
             ->whereIsPublished(true)
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
@@ -65,14 +66,33 @@ class ReviewService {
             ->with(['characteristics:name'])
             ->with(['comments'])
             ->with(['image'])
-            ->when(!empty($sort), function($q) use($sort_by){
-                $q->orderBy($sort_by, 'DESC');
+            ->when(!empty($sort), function($q) use($sort_by, $sort){
+                switch($sort){
+                    case ReviewFilter::SORT_BY_RATING:
+                        $q->orderBy($sort_by, 'DESC');
+                        break;
+                    case ReviewFilter::SORT_BY_ALPHABET:
+                        $q->orderBy($sort_by);
+                        break;
+                }
             })
             ->when(empty($sort), function($q){
                 $q->orderBy('created_at', 'DESC');
-            })->get();
+            })
+                ->get();
 
-            $result = $reviews;
+            if(!empty($sort)){
+                switch ($sort){
+                    case ReviewFilter::SORT_BY_RATING:
+                        $reviews = $reviews->groupBy(ReviewFilter::SORT_BY_RATING);
+                        break;
+                    case ReviewFilter::SORT_BY_ALPHABET:
+                        $reviews = $reviews->groupBy(function($item, $key){
+                            return $item['name'] . $item['second_name'];
+                        });
+                        break;
+                }
+            }
         }
 
         if(!empty($contentFilterType) && (
@@ -81,12 +101,48 @@ class ReviewService {
             ))
         {
             $congratulations = UserCongratulation::whereIsPublished(true)
+                ->when(!empty($filter), function($q) use ($filter){
+                    $q->whereYear('created_at', $filter);
+                })
                 ->orderBy('created_at', 'DESC')
                 ->get();
-
-            $result = $result->merge($congratulations);
+            if(!empty($reviews) && !empty($sort)){
+                $congratulations = $congratulations->groupBy('created_at');
+                foreach($reviews as $key => $review){
+                    $result = $result->concat($review);
+                    $congratulations->whenNotEmpty(function (&$congratulations) use (&$result){
+                        $result = $result->concat($congratulations->shift());
+                    });
+                }
+                if($congratulations->isNotEmpty()){
+                    $congratulations->map(function ($items, $key) use(&$result){
+                        foreach($items as $item){
+                            $result = $result->concat([$item]);
+                        }
+                    });
+                }
+            } elseif (!empty($reviews) && empty($sort)){
+                $result = $reviews->concat($congratulations);
+                $result = $result->sortByDesc(function ($product, $key) {
+                    return Carbon::createFromFormat('m-d-Y', $product['created_at']);
+                });
+            }
+            else {
+                $result = $congratulations;
+            }
+        } else {
+            if($reviews->isNotEmpty()){
+                $reviews->map(function ($items, $key) use(&$result) {
+                    if($items instanceof Collection){
+                        foreach ($items as $item) {
+                            $result = $result->concat([$item]);
+                        }
+                    } else {
+                        $result = $result->concat([$items]);
+                    }
+                });
+            }
         }
-//todo Сортировка, поздравления в выводе вместе с отзывами сортируются не по дате
         return $result->paginate($perPage);
     }
 

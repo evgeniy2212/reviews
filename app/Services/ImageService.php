@@ -26,7 +26,7 @@ class ImageService {
         $originalName = $file->getClientOriginalName();
         $originalName = str_replace(' ', '', $originalName);
         $fileName = time().'_'.$originalName;
-        Storage::disk('public')->putFileAs('images/upload_images/' . $path . DIRECTORY_SEPARATOR, $file, $fileName);
+        Storage::disk('public')->putFileAs('images/default_images/' . $path . DIRECTORY_SEPARATOR, $file, $fileName);
         Storage::disk('public')->makeDirectory('images/resize_images/' . $path . DIRECTORY_SEPARATOR);
         Image::make($file->getRealPath())
             ->resize(150, 150, function($img){
@@ -35,7 +35,7 @@ class ImageService {
             ->save(storage_path('app/public/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $fileName));
 
         return [
-            'src' => 'images/upload_images/' . $path . DIRECTORY_SEPARATOR . $fileName,
+            'src' => 'images/default_images/' . $path . DIRECTORY_SEPARATOR . $fileName,
             'original_name' => $originalName,
             'name' => $fileName
         ];
@@ -51,7 +51,7 @@ class ImageService {
     public static function updateImage($request, $item, $path = 'reviews'){
         $imageInfo = self::uploadImage($request);
         if($item->image){
-            $filePath = 'images/upload_images/' . $path . DIRECTORY_SEPARATOR . $item->image->name;
+            $filePath = 'images/default_images/' . $path . DIRECTORY_SEPARATOR . $item->image->name;
             $is_exist = Storage::disk('public')->exists($filePath);
             if($is_exist){
                 Storage::disk('public')->delete($filePath);
@@ -70,7 +70,7 @@ class ImageService {
         $originalName = $file->getClientOriginalName();
         $originalName = str_replace(' ', '', $originalName);
         $fileName = time().'_'.$originalName;
-        Storage::disk('public')->putFileAs('images/upload_images/banners/', $file, $fileName);
+        Storage::disk('public')->putFileAs('images/default_images/banners/', $file, $fileName);
 //        Storage::disk('public')->makeDirectory('images/resize_images/reviews/');
 //        Image::make($file->getRealPath())
 //            ->resize(150, 150, function($img){
@@ -79,7 +79,7 @@ class ImageService {
 //            ->save(storage_path('app/public/images/resize_images/reviews/' . $fileName));
 
         return [
-            'src' => 'images/upload_images/banners/' . $fileName,
+            'src' => 'images/default_images/banners/' . $fileName,
             'original_name' => $originalName,
             'name' => $fileName
         ];
@@ -88,7 +88,7 @@ class ImageService {
     public static function updateBanner(UpdateBannerRequest $request, Banner $banner){
         $imageInfo = self::uploadBanner($request);
         if($banner->src){
-            $filePath = 'images/upload_images/banners/' . $banner->name;
+            $filePath = 'images/default_images/banners/' . $banner->name;
             $is_exist = Storage::disk('public')->exists($filePath);
             if($is_exist){
                 Storage::disk('public')->delete($filePath);
@@ -107,7 +107,7 @@ class ImageService {
         $originalName = $file->getClientOriginalName();
         $originalName = str_replace(' ', '', $originalName);
         $fileName = time().'_'.$originalName;
-        Storage::disk('public')->putFileAs('images/upload_images/logos/', $file, $fileName);
+        Storage::disk('public')->putFileAs('images/default_images/logos/', $file, $fileName);
 //        Storage::disk('public')->makeDirectory('images/resize_images/reviews/');
 //        Image::make($file->getRealPath())
 //            ->resize(150, 150, function($img){
@@ -116,7 +116,7 @@ class ImageService {
 //            ->save(storage_path('app/public/images/resize_images/reviews/' . $fileName));
 
         return [
-            'src' => 'images/upload_images/logos/' . $fileName,
+            'src' => 'images/default_images/logos/' . $fileName,
 //            'original_name' => $originalName,
             'name' => $fileName
         ];
@@ -125,7 +125,7 @@ class ImageService {
     public static function updateLogo(Request $request, Logo $logo){
         $imageInfo = self::uploadLogo($request);
         if($logo->src){
-            $filePath = 'images/upload_images/logos/' . $logo->name;
+            $filePath = 'images/default_images/logos/' . $logo->name;
             $is_exist = Storage::disk('public')->exists($filePath);
             if($is_exist){
                 Storage::disk('public')->delete($filePath);
@@ -141,7 +141,7 @@ class ImageService {
 
     public static function deleteLogo(Logo $logo){
         if($logo->src){
-            $filePath = 'images/upload_images/logos/' . $logo->name;
+            $filePath = 'images/default_images/logos/' . $logo->name;
             $is_exist = Storage::disk('public')->exists($filePath);
             if($is_exist){
                 Storage::disk('public')->delete($filePath);
