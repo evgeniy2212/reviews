@@ -278,7 +278,7 @@ input[type="file"] {
     height: 100%;
     justify-content: space-between;
     font-size: 1rem;
-    padding-bottom: 5px;
+    padding: 0 5px 5px 0;
 }
 .single-review-logo-name {
     display: flex;

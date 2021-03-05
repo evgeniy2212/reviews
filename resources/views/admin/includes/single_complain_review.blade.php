@@ -52,9 +52,6 @@
                     </div>
                 </div>
                 <div class="profile-single-review-review">
-                    @if($review->characteristics->isNotEmpty())
-                        <span>{{ $review->characteristics->pluck('name')->implode(', ') }}</span>
-                    @endif
                     <p>
                         @if($review->video)
                             <video class="videoPreview" controls>
@@ -77,6 +74,9 @@
                             <img src="{{ asset('storage/images/default_img.png') }}"
                                  alt=""
                                  class="previewImage">
+                        @endif
+                        @if($review->characteristics->isNotEmpty())
+                            {{ $review->characteristics->pluck('name')->implode(', ') }}
                         @endif
                         {{ $review->review }}
                     </p>

@@ -60,35 +60,35 @@
                     </div>
                 </div>
                 <div class="profile-single-review-review">
-                    @if($review->characteristics->isNotEmpty())
-                        <span>{{ $review->characteristics->pluck('name')->implode(', ') }}</span>
-                    @endif
-                        <p>
-                            @if($review->video)
-                                <video class="videoPreview" controls>
-                                    <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
-                                    {{--<source src="movie.ogg" type="video/ogg">--}}
-                                    Your browser does not support the video tag.
-                                </video>
-                            @else
-                                <img src="{{ asset('storage/images/default_img_video.png') }}"
-                                     alt="photo"
-                                     class="videoPreview">
-                            @endif
-                            @if($review->image)
-                                <img src="{{ $review->image->getResizeImageUrl() }}"
-                                     alt=""
-                                     data-full-size-src="{{ $review->image->getImageUrl() }}"
-                                     class="reviewImage previewImage"
-                                     style="cursor: pointer;"
-                                     id="myImg">
-                            @else
-                                <img src="{{ asset('storage/images/default_img.png') }}"
-                                     alt=""
-                                    class="previewImage">
-                            @endif
-                            {{ $review->review }}
-                        </p>
+                    <p>
+                        @if($review->video)
+                            <video class="videoPreview" controls>
+                                <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
+                                {{--<source src="movie.ogg" type="video/ogg">--}}
+                                Your browser does not support the video tag.
+                            </video>
+                        @else
+                            <img src="{{ asset('storage/images/default_img_video.png') }}"
+                                 alt="photo"
+                                 class="videoPreview">
+                        @endif
+                        @if($review->image)
+                            <img src="{{ $review->image->getResizeImageUrl() }}"
+                                 alt=""
+                                 data-full-size-src="{{ $review->image->getImageUrl() }}"
+                                 class="reviewImage previewImage"
+                                 style="cursor: pointer;"
+                                 id="myImg">
+                        @else
+                            <img src="{{ asset('storage/images/default_img.png') }}"
+                                 alt=""
+                                class="previewImage">
+                        @endif
+                        @if($review->characteristics->isNotEmpty())
+                            {{ $review->characteristics->pluck('name')->implode(', ') }}
+                        @endif
+                        {{ $review->review }}
+                    </p>
                 </div>
             </div>
             <div class="profile-single-review-button {{ $review->is_published ?: 'profile-single-review-blocked' }}">

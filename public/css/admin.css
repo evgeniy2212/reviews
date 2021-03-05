@@ -187,6 +187,7 @@
     align-items: start;
     height: 150px;
     justify-content: flex-start;
+    margin: 5px 0 0 0;
 }
 .adminSingleReviewButton > *{
     margin: 5px 0 10px 0;

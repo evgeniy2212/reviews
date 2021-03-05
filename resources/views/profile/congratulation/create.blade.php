@@ -14,7 +14,7 @@
         </div>
         <div class="create-congratulation-media">
             <div class="congratulationContentContainer">
-                <textarea name="review"
+                <textarea name="body"
                           class="form-control"
                           type="text"
                           required
