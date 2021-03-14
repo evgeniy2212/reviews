@@ -4,6 +4,7 @@ namespace App\Services;
 
 
 use App\Http\Requests\Admin\UpdateBannerRequest;
+use App\Http\Requests\Profile\SaveCongratulationRequest;
 use App\Http\Requests\SaveReviewRequest;
 use App\Models\Banner;
 use App\Models\Congratulation;
@@ -16,7 +17,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageService {
     /**
-     * @param SaveReviewRequest|Request $request
+     * @param SaveCongratulationRequest|SaveReviewRequest|Request $request
      * @param string $path
      *
      * @return array
@@ -42,9 +43,9 @@ class ImageService {
     }
 
     /**
-     * @param SaveReviewRequest|Request $request
+     * @param SaveCongratulationRequest|SaveReviewRequest|Request $request
+     * @param $item
      * @param string $path
-     * @param Review|UserCongratulation $review
      *
      * @return array
      */

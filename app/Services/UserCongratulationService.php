@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Profile\SaveCongratulationRequest;
 use App\Models\ContentImage;
+use App\Models\ContentVideo;
 use App\Models\Country;
 use App\Models\DefaultImage;
 use App\Models\ReviewFilter;
-use App\Models\ReviewVideo;
 use App\Models\UserCongratulation;
 use App\Models\UserCongratulationCategory;
 use Carbon\Carbon;
@@ -30,10 +31,15 @@ class UserCongratulationService {
         return Carbon::now()->diffInDays(UserCongratulation::max('created_at'));
     }
 
-    public static function createCongratulation(Request $request){
+    /**
+     * @param SaveCongratulationRequest|Request $request
+     *
+     * @return UserCongratulation
+     */
+    public static function createCongratulation($request){
         $request->merge(['user_id' => auth()->user()->id]);
         $userCongratulation = UserCongratulation::create($request->all());
-        if($request->has('img_default')){
+        if($request->has('img_default') && $request->img_default){
             $defaultImage = DefaultImage::findOrFail($request->img_default);
             $imageDefaultInfo = [
                 'src' => $defaultImage->src,
@@ -58,7 +64,7 @@ class UserCongratulationService {
                 'content_id' => $userCongratulation->id,
                 'content_type' => UserCongratulation::class,
             ]);
-            ReviewVideo::create($videoInfo);
+            ContentVideo::create($videoInfo);
         }
 
         return $userCongratulation;

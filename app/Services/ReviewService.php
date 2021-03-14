@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\SaveReviewRequest;
 use App\Models\CategoryByReview;
 use App\Models\Country;
 use App\Models\Review;
@@ -310,17 +311,22 @@ class ReviewService {
         )->get();
     }
 
-    public static function createReview(Request $request){
+    /**
+     * @param SaveReviewRequest|Request $request
+     *
+     * @return Review
+     */
+    public static function createReview($request){
         $request->merge(['user_id' => auth()->user()->id]);
         $review = Review::create($request->all());
         $review->characteristics()->attach($request->characteristics);
         if($request->has('img')){
-            $imageInfo = ImageService::uploadImage($request, $review);
+            $imageInfo = ImageService::uploadImage($request);
             $imageInfo = array_merge($imageInfo, ['review_id' => $review->id]);
             ReviewImage::create($imageInfo);
         }
         if($request->has('video')){
-            $videoInfo = VideoService::uploadVideo($request, $review);
+            $videoInfo = VideoService::uploadVideo($request);
             $videoInfo = array_merge($videoInfo, ['review_id' => $review->id]);
             ReviewVideo::create($videoInfo);
         }

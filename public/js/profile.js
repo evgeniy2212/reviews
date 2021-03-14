@@ -192,9 +192,16 @@
       readImageURL(this);
     });
     $('#videoCongratulation').change(function () {
-      readVideoURL(this);
-      $('.videoPreview').hide();
-      $('.congratulationVideoPreview').show();
+      if (this.files[0].size > 100000000) {
+        alert("The file must be less than 100 MB!");
+        this.value = "";
+        var defaultDescription = $(this).data('defaultDescription');
+        $(this).parent().find('span').text(defaultDescription);
+      } else {
+        readVideoURL(this);
+        $('.videoPreview').hide();
+        $('.congratulationVideoPreview').show();
+      }
     });
     $('#imgDefaultCongratulation').click(function () {
       $('.congratulationContentContainer').hide();

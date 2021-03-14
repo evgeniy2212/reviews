@@ -35,8 +35,10 @@
                     <label class="create-congratulation-image">
                         <input type="file"
                                id="videoCongratulation"
-                               name="video[]"
-                               accept="video/*">
+                               name="video"
+                               size="100MB"
+                               accept="video/mp4"
+                               data-default-description="{{ __('service/profile.congratulation.create.add_video') }}">
                         <i class="fa fa-cloud-upload"></i> <span>@lang('service/profile.congratulation.create.add_video')</span>
                     </label>
                     <label class="create-congratulation-image">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Profile\SaveCongratulationRequest;
 use App\Models\DefaultImage;
 use App\Models\ReviewFilter;
 use App\Models\UserCongratulation;
@@ -56,10 +57,9 @@ class CongratulationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  SaveCongratulationRequest  $request
      */
-    public function store(Request $request)
+    public function store(SaveCongratulationRequest $request)
     {
         UserCongratulationService::createCongratulation($request);
 

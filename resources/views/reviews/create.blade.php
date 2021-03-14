@@ -98,7 +98,7 @@
                                            name="video"
                                            id="video"
                                            size="100MB"
-                                           accept="video/*"/>
+                                           accept="video/mp4"/>
                                     <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_video')</span>
                                 </label>
                             </div>

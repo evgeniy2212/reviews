@@ -3,12 +3,20 @@
 namespace App\Services;
 
 
+use App\Http\Requests\Profile\SaveCongratulationRequest;
 use App\Http\Requests\SaveReviewRequest;
 use App\Models\Review;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class VideoService {
-    public static function uploadVideo(SaveReviewRequest $request, $path = 'reviews'){
+    /**
+     * @param SaveCongratulationRequest|SaveReviewRequest|Request $request
+     * @param string $path
+     *
+     * @return array
+     */
+    public static function uploadVideo($request, $path = 'reviews'){
         $file = $request->file('video');
         $originalName = $file->getClientOriginalName();
         $originalName = str_replace(' ', '', $originalName);
@@ -28,7 +36,14 @@ class VideoService {
         ];
     }
 
-    public static function updateImage(SaveReviewRequest $request, Review $review, $path = 'reviews'){
+    /**
+     * @param SaveCongratulationRequest|SaveReviewRequest|Request $request
+     * @param $review
+     * @param string $path
+     *
+     * @return array
+     */
+    public static function updateImage($request, Review $review, $path = 'reviews'){
         $videoInfo = self::uploadVideo($request);
         if($review->video){
             $filePath = 'videos/upload_videos/' . $path . DIRECTORY_SEPARATOR . $review->video->name;
