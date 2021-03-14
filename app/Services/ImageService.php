@@ -27,7 +27,7 @@ class ImageService {
         $originalName = $file->getClientOriginalName();
         $originalName = str_replace(' ', '', $originalName);
         $fileName = time().'_'.$originalName;
-        Storage::disk('public')->putFileAs('images/default_images/' . $path . DIRECTORY_SEPARATOR, $file, $fileName);
+        Storage::disk('public')->putFileAs('images/upload_images/' . $path . DIRECTORY_SEPARATOR, $file, $fileName);
         Storage::disk('public')->makeDirectory('images/resize_images/' . $path . DIRECTORY_SEPARATOR);
         Image::make($file->getRealPath())
             ->resize(150, 150, function($img){
@@ -36,7 +36,7 @@ class ImageService {
             ->save(storage_path('app/public/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $fileName));
 
         return [
-            'src' => 'images/default_images/' . $path . DIRECTORY_SEPARATOR . $fileName,
+            'src' => 'images/upload_images/' . $path . DIRECTORY_SEPARATOR . $fileName,
             'original_name' => $originalName,
             'name' => $fileName
         ];
@@ -52,7 +52,7 @@ class ImageService {
     public static function updateImage($request, $item, $path = 'reviews'){
         $imageInfo = self::uploadImage($request);
         if($item->image){
-            $filePath = 'images/default_images/' . $path . DIRECTORY_SEPARATOR . $item->image->name;
+            $filePath = 'images/upload_images/' . $path . DIRECTORY_SEPARATOR . $item->image->name;
             $is_exist = Storage::disk('public')->exists($filePath);
             if($is_exist){
                 Storage::disk('public')->delete($filePath);

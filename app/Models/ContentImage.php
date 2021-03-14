@@ -24,6 +24,6 @@ class ContentImage extends Model
     {
         return Storage::disk('public')->has('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
             ? asset('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
-            : asset('storage/images/default_images/' . $path . DIRECTORY_SEPARATOR . $this->original_name);
+            : asset('storage/images/upload_images/' . $path . DIRECTORY_SEPARATOR . $this->original_name);
     }
 }
