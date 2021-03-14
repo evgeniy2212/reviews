@@ -23,7 +23,11 @@ class ContentImage extends Model
 
     public function getResizeImageUrl(string $path = '')
     {
-        Log::info('$this->name: ', [$this->name, $this->original_name]);
+        Log::info('$this->name: ', [
+            $this->name,
+            $this->original_name,
+            Storage::disk('public')->has('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name),
+            asset('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)]);
         return Storage::disk('public')->has('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
             ? asset('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
             : asset('storage/images/upload_images/' . $path . DIRECTORY_SEPARATOR . $this->original_name);
