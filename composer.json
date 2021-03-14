@@ -17,8 +17,7 @@
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "mcamara/laravel-localization": "^1.5",
-        "onecentlin/laravel-adminer": "4.7.7.1",
-        "pusher/pusher-php-server": "^4.1"
+        "onecentlin/laravel-adminer": "4.7.7.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
