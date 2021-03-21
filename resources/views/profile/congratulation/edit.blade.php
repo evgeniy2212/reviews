@@ -1,7 +1,8 @@
 @extends('profile.index')
 
 @section('profile_review_content')
-    <form method="POST" action="{{ route('profile-congratulations.store') }}" enctype="multipart/form-data" novalidate="" id="congratulationForm">
+    <form method="POST" action="{{ route('profile-congratulations.update', $congratulation->id) }}" enctype="multipart/form-data" novalidate="" id="congratulationForm">
+        @method('PATCH')
         @csrf
         <div class="congratulationTitle">
             <span>@lang('service/profile.congratulation.create.title')</span>
@@ -18,7 +19,7 @@
                           class="form-control"
                           type="text"
                           required
-                          placeholder="@lang('service/index.review_text_placeholder')"></textarea>
+                          placeholder="{{ empty($congratulation->body) ? __('service/index.review_text_placeholder') : '' }}">{!! $congratulation->body !!}</textarea>
                 <div class="congratulationContentUpload">
                     <label class="create-congratulation-image">
                         <input type="file"
@@ -81,20 +82,24 @@
                 <div class="congratulationImagePreviewContainer">
                     <div id="congratulationImagePreview">
                         <img id="blah"
-                             src="{{ asset('images/default_banner.png') }}"
+                             src="{{ empty($congratulation->image) ? asset('images/default_banner.png') : $congratulation->image->getResizeImageUrl('congratulations') }}"
                              data-src="{{ asset('images/default_banner.png') }}"
-                             data-default-src="{{ asset('images/default_banner.png') }}"
+                             data-default-src="{{ empty($congratulation->image) ? asset('images/default_banner.png') : $congratulation->image->getResizeImageUrl('congratulations') }}"
                              alt="your image" />
                     </div>
                 </div>
                 <div class="congratulationImagePreviewContainer">
-                    <img src="{{ asset('storage/images/default_img_video.png') }}"
-                         alt="photo"
-                         class="videoPreview">
-                    <video controls class="congratulationVideoPreview">
-                        <source src="" id="videoPreview">
-                        Your browser does not support HTML5 video.
-                    </video>
+                    @if($congratulation->video)
+                        <video class="videoPreview" controls>
+                            <source src="{{ $congratulation->video->getVideoUrl() }}" type="video/mp4">
+                            {{--<source src="movie.ogg" type="video/ogg">--}}
+                            Your browser does not support the video tag.
+                        </video>
+                    @else
+                        <img src="{{ asset('storage/images/default_img_video.png') }}"
+                             alt="video"
+                             class="videoPreview">
+                    @endif
                 </div>
             </div>
         </div>
@@ -104,6 +109,7 @@
                        class="custom-radio"
                        id="name1"
                        name="user_sign"
+                       {{ $congratulation->user_sign == \App\Models\User::NAME_SIGN ? 'checked' : '' }}
                        value="{{ \App\Models\User::NAME_SIGN }}"
                        checked>
                 <label for="name1">{{ auth()->user()->full_name }}</label>
@@ -113,6 +119,7 @@
                        class="custom-radio"
                        id="name2"
                        name="user_sign"
+                       {{ $congratulation->user_sign == \App\Models\User::NICKNAME_SIGN ? 'checked' : '' }}
                        value="{{ \App\Models\User::NICKNAME_SIGN }}"
                        @empty(auth()->user()->nickname) disabled @endempty>
                 <label for="name2">{{ empty(auth()->user()->nickname) ? __('service/index.review_nickname') : auth()->user()->nickname }}</label>
@@ -122,6 +129,7 @@
                        class="custom-radio"
                        id="name3"
                        name="user_sign"
+                       {{ $congratulation->user_sign == \App\Models\User::DEFAULT_SIGN ? 'checked' : '' }}
                        value="{{ \App\Models\User::DEFAULT_SIGN }}">
                 <label for="name3">@lang('service/index.default_nickname')</label>
             </div>

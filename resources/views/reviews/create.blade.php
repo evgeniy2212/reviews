@@ -93,7 +93,7 @@
                                            accept="image/*"/>
                                     <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_photo')</span>
                                 </label>
-                                <label class="custom-file-upload">
+                                <label class="custom-file-upload" title="{{ __('service/index.video_rules') }}">
                                     <input type="file"
                                            name="video"
                                            id="video"

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ContentImage extends Model
@@ -16,6 +15,8 @@ class ContentImage extends Model
         'original_name',
     ];
 
+    private $imageDefinition = 'default_images';
+
     public function getImageUrl()
     {
         return asset('storage/' . $this->src);
@@ -23,8 +24,11 @@ class ContentImage extends Model
 
     public function getResizeImageUrl(string $path = '')
     {
-        return Storage::disk('public')->has('images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
-            ? asset('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
-            : asset('storage/images/upload_images/' . $path . DIRECTORY_SEPARATOR . $this->original_name);
+        $isDefaultImage = str_contains($this->src, $this->imageDefinition);
+        return $isDefaultImage
+            ? $this->getImageUrl()
+            : (Storage::disk('public')->has('images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
+                ? asset('storage/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $this->name)
+                : asset('storage/images/upload_images/' . $path . DIRECTORY_SEPARATOR . $this->name));
     }
 }

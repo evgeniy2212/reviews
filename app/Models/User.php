@@ -105,6 +105,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class, 'user_id', 'id');
     }
 
+    /**
+     * Get user congratulations.
+     */
+    public function congratulations()
+    {
+        return $this->hasMany(UserCongratulation::class, 'user_id', 'id');
+    }
+
     public function banners()
     {
         return $this->hasMany(Banner::class, 'user_id', 'id');
@@ -126,6 +134,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getReviewsCountAttribute(){
         return $this->reviews->count();
+    }
+
+    public function getCongratulationsCountAttribute(){
+        return $this->congratulations->count();
     }
 
     public function getCommentsCountAttribute(){

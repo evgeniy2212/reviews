@@ -98,15 +98,14 @@
     $('.deleteReview').click(function () {
       var id = $(this).data("reviewId");
       var name = $(this).data("reviewName");
-      console.log(name);
-      var url = $("#deleteReviewForm").data('action');
+      var type = $(this).data("type");
+      var url = $(this).data('action');
       url = url.replace(':id', id);
       $("#deleteReviewForm").attr('action', url);
-      setModalData(name);
+      setModalData(name, type);
     });
     $('.deleteComment').click(function () {
       var id = $(this).data("reviewId");
-      console.log(id);
       var url = $("#deleteCommentForm").data('action');
       url = url.replace(':id', id);
       $("#deleteCommentForm").attr('action', url);
@@ -344,8 +343,9 @@
     $source.parent()[0].load();
   }
 
-  function setModalData(name) {
+  function setModalData(name, type = 'review') {
     $("#reviewName").text(name);
+    $("#reviewType").text(type);
   }
 
   var validation = function validation(form, event) {

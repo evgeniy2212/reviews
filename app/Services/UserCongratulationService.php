@@ -70,6 +70,53 @@ class UserCongratulationService {
         return $userCongratulation;
     }
 
+    /**
+     * @param SaveCongratulationRequest|Request $request
+     * @param UserCongratulation $userCongratulation
+     *
+     * @return UserCongratulation
+     */
+    public static function updateCongratulation($request, UserCongratulation $userCongratulation): UserCongratulation
+    {
+        $userCongratulation->update($request->all());
+        if($request->has('img_default') && $request->img_default){
+            $defaultImage = DefaultImage::findOrFail($request->img_default);
+            ContentImage::updateOrCreate(
+                [
+                    'content_id' => $userCongratulation->id,
+                    'content_type' => UserCongratulation::class,
+                ],
+                [
+                    'src' => $defaultImage->src,
+                    'original_name' => $defaultImage->original_name,
+                    'name' => $defaultImage->name,
+                ]
+            );
+        }
+        if($request->has('img')){
+            $imageInfo = ImageService::uploadImage($request, 'congratulations');
+            ContentImage::updateOrCreate(
+                [
+                    'content_id' => $userCongratulation->id,
+                    'content_type' => UserCongratulation::class,
+                ],
+                $imageInfo
+            );
+        }
+        if($request->has('video')){
+            $videoInfo = VideoService::uploadVideo($request, 'congratulations');
+            ContentVideo::updateOrCreate(
+                [
+                    'content_id' => $userCongratulation->id,
+                    'content_type' => UserCongratulation::class,
+                ],
+                $videoInfo
+            );
+        }
+
+        return $userCongratulation;
+    }
+
     public static function getUserFilteredCongratulations($user_id, $filter = '', $sort = '', $search = '', $perPage = 10) {
         $sort_by = self::getSortMethod($sort);
 

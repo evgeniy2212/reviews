@@ -27,7 +27,7 @@ class UserCongratulation extends Model
         'dislikes',
         'user_sign',
         'is_published',
-        'created_at'
+        'created_at',
     ];
 
     public function category(){

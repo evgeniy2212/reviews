@@ -11,9 +11,9 @@
                     name="congratulation_category_id"
                     data-country="{{ old('congratulation_category_id') }}"
                     required>
-                <option disabled {{ empty($category) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => 'category']) }}</option>
+                <option disabled {{ empty($congratulation) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => 'category']) }}</option>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{!! $category->title !!}</option>
+                    <option value="{{ $category->id }}" {{ (!empty($congratulation) && ($congratulation->congratulation_category_id == $category->id)) ? 'selected' : '' }}>{!! $category->title !!}</option>
                 @endforeach
             </select>
         </div>

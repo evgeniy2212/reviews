@@ -1,8 +1,8 @@
 <?php
 return [
-    'site_name' => 'Reviews4info.com',
+    'site_name' => 'Reviews4result.com',
     'delete' => 'Delete',
-    'header_site_name' => 'Reviews4info',
+    'header_site_name' => 'Reviews4result',
     'review_naming' => 'Review :name',
     'person' => 'Review Person',
     'company' => 'Review Company',
@@ -60,4 +60,5 @@ return [
     'congratulation.default_rating' => '- default status',
     'congratulation.need_rating' => '- :count reviews',
     'datepicker_placeholder' => 'DD/MM/YEAR',
+    'video_rules' => 'The video must be in mp4 format and the video size must be no more than 100 mb.'
 ];

@@ -57,6 +57,7 @@
                                 </div>
                                 <div class="user-activities">
                                     <span>Reviews: {{ auth()->user()->reviewsCount }}</span>
+                                    <span>Congratulations: {{ auth()->user()->congratulationsCount }}</span>
                                     <span>Replies: {{ auth()->user()->commentsCount }}</span>
                                     <span>Finger marks: {{ auth()->user()->reaction_count ?? 0 }}</span>
                                 </div>

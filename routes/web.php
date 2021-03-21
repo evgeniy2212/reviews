@@ -54,9 +54,7 @@ Route::group(
             Route::post('changePassword', 'Auth\ChangePasswordController@changePassword')->name('change-password');
             Route::patch('update-persona-info', 'Profile\PersonalInfoController@updatePersonalInfo')->name('updatePersonalInfo');
             Route::post('save-banner', 'Profile\BannerController@save')->name('saveBanner');
-            Route::resource('congratulations', 'Profile\CongratulationController')->only([
-                'index', 'create', 'store', 'destroy'
-            ])->names('profile-congratulations');
+            Route::resource('congratulations', 'Profile\CongratulationController')->names('profile-congratulations');
             Route::resource('important-date', 'Profile\ImportantDateController')->only([
                 'index', 'store'
             ])->names('profile-important-date');

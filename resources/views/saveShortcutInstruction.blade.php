@@ -49,32 +49,32 @@
                         <li>
                             <span class="shortcut">How to create a shortcut to the Chromebook</span>
                             <ol style="display: none">
-                                <li>Open web page (Reviews4Info.com) in your browser.</li>
+                                <li>Open web page (Reviews4result.com) in your browser.</li>
                                 <li>Click the three-dot icon in the top-right corner of your browser window.</li>
                                 <li>Go to <strong>“More Tools”</strong>.</li>
                                 <li>Click <strong>“Create shortcut”</strong>.</li>
-                                <li>Name your shortcut (Reviews4info).</li>
+                                <li>Name your shortcut (Reviews4result).</li>
                                 <li>Click <strong>“Create”</strong>.</li>
                             </ol>
                         </li>
                         <li>
                             <span class="shortcut">How to Create a shortcut to the Microsoft Edge Chromium</span>
                             <ol style="display: none">
-                                <li>Open web page Reviews4Info.com in your browser.</li>
+                                <li>Open web page Reviews4result.com in your browser.</li>
                                 <li>Select the web site address by holding left mouse button.</li>
                                 <li>Press and hold “ctrl” and “c” buttons.</li>
                                 <li>Minimize browser.</li>
                                 <li>Right click on the desktop select “New” and then click “Shortcut”.</li>
                                 <li>Press and hold “ctrl” and “v” buttons.</li>
                                 <li>Click “Next”.</li>
-                                <li>Name your shortcut (Reviews4info).</li>
+                                <li>Name your shortcut (Reviews4result).</li>
                                 <li>Click “Finish”.</li>
                             </ol>
                         </li>
                         <li>
                             <span class="shortcut">How to create a shortcut to the Windows 10 (Google Chrome browser)</span>
                             <ol style="display: none">
-                                <li>Open web page (Reviews4Info.com) in your browser.</li>
+                                <li>Open web page (Reviews4result.com) in your browser.</li>
                                 <li>Click the <strong>three-dot</strong> icon in the top-right corner of your browser window.</li>
                                 <li>Go to <strong>“More Tools”</strong>.</li>
                                 <li>Click <strong>“Create shortcut”</strong>.</li>
@@ -84,7 +84,7 @@
                         <li>
                             <span class="shortcut">How to create a shortcut to the Windows 10 (Explorer browser)</span>
                             <ol style="display: none">
-                                <li>Open web page Reviews4Info.com in your browser.</li>
+                                <li>Open web page Reviews4result.com in your browser.</li>
                                 <li>Right-click in any blank space on the <strong>web page</strong>.</li>
                                 <li>From the context menu which pops up, select <strong>Create shortcut</strong>.</li>
                                 <li>You will get a dialogue box asking you Do you want to put a <strong>shortcut</strong> to this <strong>website</strong> on your <strong>desktop</strong>?.</li>
@@ -94,7 +94,7 @@
                         <li>
                             <span class="shortcut">How to create a shortcut to the Windows 8 (Google Chrome browser)</span>
                             <ol style="display: none">
-                                <li>Open web page (Reviews4Info.com) in your browser.</li>
+                                <li>Open web page (Reviews4result.com) in your browser.</li>
                                 <li>Click the <strong>three-dot</strong> icon in the top-right corner of your browser window.</li>
                                 <li>Go to <strong>“More Tools”</strong>.</li>
                                 <li>Click <strong>“Create shortcut”</strong>.</li>
@@ -104,25 +104,25 @@
                         <li>
                             <span class="shortcut">How to create a shortcut to the Windows 8 (Explorer browser)</span>
                             <ol style="display: none">
-                                <li>Open web page Reviews4Info.com in your browser.</li>
+                                <li>Open web page Reviews4result.com in your browser.</li>
                                 <li>Select the web site address by holding left mouse button.</li>
                                 <li>Press and hold “ctrl” and “c” buttons.</li>
                                 <li>Minimize browser.</li>
                                 <li>Right click on the desktop select “New” and then click “Shortcut”.</li>
                                 <li>Press and hold “ctrl” and “v” buttons.</li>
                                 <li>Click “Next”.</li>
-                                <li>Name your shortcut (Reviews4info).</li>
+                                <li>Name your shortcut (Reviews4result).</li>
                                 <li>Click “Finish”.</li>
                             </ol>
                         </li>
                         <li>
                             <span class="shortcut">How to create a shortcut to the Windows 7 (Google Chrome browser)</span>
                             <ol style="display: none">
-                                <li>Open web page (Reviews4Info.com) in your browser.</li>
+                                <li>Open web page (Reviews4result.com) in your browser.</li>
                                 <li>Click the three-dot icon in the top-right corner of your browser window.</li>
                                 <li>Go to <strong>“More Tools”</strong>.</li>
                                 <li>Click <strong>“Create shortcut”</strong>.</li>
-                                <li>Name your shortcut (Reviews4info).</li>
+                                <li>Name your shortcut (Reviews4result).</li>
                                 <li>Click <strong>“Create”</strong>.</li>
                             </ol>
                         </li>

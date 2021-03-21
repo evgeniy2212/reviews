@@ -54,6 +54,22 @@
                         {{ $congratulation->body }}
                     </p>
                 </div>
+                <div class="profile-single-congratulation-button">
+                        <a type="button"
+                           href="{{ route('profile-congratulations.edit', $congratulation->id) }}">
+                            Edit
+                        </a>
+                        <a data-toggle="modal"
+                           type="button"
+                           class="deleteReview"
+                           data-review-id="{{ $congratulation->id }}"
+                           data-review-name="{{ $congratulation->full_name }}"
+                           data-type="congratulation"
+                           data-action="{{ route("profile-congratulations.destroy", ":id") }}"
+                           data-target="#deleteReviewModal">
+                            Delete
+                        </a>
+                </div>
             </div>
         </div>
     </div>

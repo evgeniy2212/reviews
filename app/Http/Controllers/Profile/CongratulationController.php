@@ -77,27 +77,27 @@ class CongratulationController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($congratulation)
     {
-        //
+        $congratulation = UserCongratulation::with(['category', 'region', 'image', 'video'])
+            ->findOrFail($congratulation);
+        $countries = UserCongratulationService::getCountries();
+        $categories = UserCongratulationService::getCategories();
+        $defaultImages = DefaultImage::all();
+
+        return view('profile.congratulation.edit', compact(
+            'countries',
+            'congratulation',
+            'categories',
+            'defaultImages'
+        ));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, UserCongratulation $congratulation)
     {
-        //
+        UserCongratulationService::updateCongratulation($request, $congratulation);
+
+        return redirect()->route('profile-congratulations.edit', $congratulation->id);
     }
 
     /**

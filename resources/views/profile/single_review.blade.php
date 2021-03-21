@@ -109,6 +109,8 @@
                        class="deleteReview"
                        data-review-id="{{ $review->id }}"
                        data-review-name="{{ $review->full_name }}"
+                       data-action="{{ route("profile-reviews.destroy", ":id") }}"
+                       data-type="review"
                        data-target="#deleteReviewModal">
                         Delete
                     </a>

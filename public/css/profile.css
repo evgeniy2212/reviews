@@ -29,13 +29,13 @@
     justify-content: flex-start;
     padding-left: 5px;
 }
-.profile-single-review-button {
+.profile-single-review-button, .profile-single-congratulation-button {
     width: 15%;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: flex-start;
-    padding: 10px 0;
+    padding: 3px 0;
 }
 .profile-single-comment-button{
     width: 15%;
@@ -45,7 +45,7 @@
     justify-content: flex-start;
     padding: 0 0;
 }
-.profile-single-review-button a, .profile-single-comment-button a {
+.profile-single-review-button a, .profile-single-comment-button a, .profile-single-congratulation-button a {
     border-color: #a0a3af;
     border-style: dashed;
     border-width: 1px;
@@ -61,7 +61,7 @@
     font-size: 0.8rem;
     font-weight: 500;
 }
-.profile-single-review-button a:hover, .profile-single-comment-button a:hover {
+.profile-single-review-button a:hover, .profile-single-comment-button a:hover, .profile-single-congratulation-button a:hover {
     text-decoration: none;
     color: #1b1e21;
 }
@@ -330,6 +330,10 @@
     white-space: nowrap; /* Запрещаем перенос строк */
     overflow: hidden; /* Обрезаем все, что не помещается в область */
     text-overflow: ellipsis; /* Добавляем многоточие */
+}
+.videoRules {
+    font-size: 10px;
+    max-width: 150px;
 }
 #congratulationImagePreview{
     width: 135px;
