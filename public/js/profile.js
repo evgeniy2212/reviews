@@ -98,11 +98,10 @@
     $('.deleteReview').click(function () {
       var id = $(this).data("reviewId");
       var name = $(this).data("reviewName");
-      var type = $(this).data("type");
-      var url = $(this).data('action');
+      var url = $("#deleteReviewForm").data('action');
       url = url.replace(':id', id);
       $("#deleteReviewForm").attr('action', url);
-      setModalData(name, type);
+      setModalData(name);
     });
     $('.deleteComment').click(function () {
       var id = $(this).data("reviewId");
@@ -343,9 +342,8 @@
     $source.parent()[0].load();
   }
 
-  function setModalData(name, type = 'review') {
+  function setModalData(name) {
     $("#reviewName").text(name);
-    $("#reviewType").text(type);
   }
 
   var validation = function validation(form, event) {
@@ -381,7 +379,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/resources/js/profile.js */"./resources/js/profile.js");
+module.exports = __webpack_require__(/*! /app/resources/js/profile.js */"./resources/js/profile.js");
 
 
 /***/ })

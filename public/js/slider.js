@@ -403,7 +403,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/resources/js/slider.js */"./resources/js/slider.js");
+module.exports = __webpack_require__(/*! /app/resources/js/slider.js */"./resources/js/slider.js");
 
 
 /***/ })

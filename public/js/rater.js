@@ -621,7 +621,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/resources/js/rater.js */"./resources/js/rater.js");
+module.exports = __webpack_require__(/*! /app/resources/js/rater.js */"./resources/js/rater.js");
 
 
 /***/ })

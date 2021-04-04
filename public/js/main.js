@@ -262,6 +262,18 @@
       review.find('.review-textarea').toggle(750);
       $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Complains (' + $(this).data('complains') + ')');
     });
+    $('#review-create-text').click(function (data) {
+      badWordsUpdate($('#review-create-text'));
+    });
+    $('#review-text').click(function () {
+      badWordsUpdate($('#review-text'));
+    });
+    $('#review-create-text').blur(function () {
+      badWordsUpdate($('#review-create-text'));
+    });
+    $('#review-text').blur(function () {
+      badWordsUpdate($('#review-text'));
+    });
 
     if ($("#review-create-text, #review-text").length) {
       var badWords = [];
@@ -269,9 +281,8 @@
         url: "/ajax/bad-words",
         dataType: "json",
         success: function success(data) {
-          badWords = data;
           $('#review-create-text, #review-text').highlightWithinTextarea({
-            highlight: badWords,
+            highlight: getBadWords(data),
             className: 'red'
           });
         },
@@ -284,6 +295,10 @@
       });
     }
   });
+
+  function getBadWords(data) {
+    return new RegExp('[\\s]' + data.join('[\\s]|[\\s]') + '[\\s]', 'gi');
+  }
 
   var validation = function validation(form, event) {
     var allPassRulesCnt = $('#password-rules').find("[type='checkbox']").length;
@@ -350,6 +365,21 @@
       $('#password, #new-password').removeClass('invalid-input');
     }
   }
+
+  function badWordsUpdate(input) {
+    var review = input.val();
+    var length = review.length;
+
+    if (length == 0 && review[0] != ' ') {
+      review = input.val(' ' + review);
+      input.highlightWithinTextarea('update');
+    }
+
+    if (length > 0 && review[length - 1] != ' ') {
+      input.val(review + ' ');
+      input.highlightWithinTextarea('update');
+    }
+  }
 })(jQuery);
 
 /***/ }),
@@ -361,7 +391,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/resources/js/main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /app/resources/js/main.js */"./resources/js/main.js");
 
 
 /***/ })

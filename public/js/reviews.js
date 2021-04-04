@@ -446,7 +446,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/resources/js/reviews.js */"./resources/js/reviews.js");
+module.exports = __webpack_require__(/*! /app/resources/js/reviews.js */"./resources/js/reviews.js");
 
 
 /***/ })

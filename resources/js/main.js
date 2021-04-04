@@ -179,6 +179,21 @@
             $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Complains (' + $(this).data('complains') + ')');
         });
 
+        $('#review-create-text').click(function(data){
+            badWordsUpdate($('#review-create-text'));
+        });
+        $('#review-text').click(function(){
+            badWordsUpdate($('#review-text'));
+        });
+
+        $('#review-create-text').blur(function() {
+            badWordsUpdate($('#review-create-text'));
+        });
+
+        $('#review-text').blur(function() {
+            badWordsUpdate($('#review-text'));
+        });
+
         if($( "#review-create-text, #review-text" ).length){
             let badWords = [];
             $.ajax({
@@ -186,9 +201,8 @@
                 dataType:"json",
                 success:function(data)
                 {
-                    badWords = data;
                     $('#review-create-text, #review-text').highlightWithinTextarea({
-                        highlight: badWords,
+                        highlight: getBadWords(data),
                         className: 'red'
                     });
                 },
@@ -201,6 +215,10 @@
             });
         }
     });
+
+    function getBadWords(data){
+        return new RegExp('[\\s]' + data.join('[\\s]|[\\s]') + '[\\s]', 'gi');
+    }
 
     var validation = function(form, event){
         let allPassRulesCnt = $('#password-rules').find("[type='checkbox']").length;
@@ -268,6 +286,21 @@
             $('#password, #new-password').addClass('invalid-input');
         } else {
             $('#password, #new-password').removeClass('invalid-input');
+        }
+    }
+
+    function badWordsUpdate(input){
+        let review = input.val();
+        let length = review.length;
+
+        if(length == 0 && review[0] != ' '){
+            review = input.val(' ' + review);
+            input.highlightWithinTextarea('update');
+        }
+
+        if(length > 0 && review[length - 1] != ' '){
+            input.val(review + ' ');
+            input.highlightWithinTextarea('update');
         }
     }
 })(jQuery);

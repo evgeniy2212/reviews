@@ -156,7 +156,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /app/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })
