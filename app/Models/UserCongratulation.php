@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -73,6 +72,10 @@ class UserCongratulation extends Model
     }
 
     public function getFullGeoposition(){
-        return $this->region->country->country . ', ' . $this->region->region . ', ' . $this->city;
+        return $this->region
+            ? $this->region->country->country . ', ' . $this->region->region . ', ' . $this->city
+            : ($this->country
+                ?$this->country->country
+                : '');
     }
 }

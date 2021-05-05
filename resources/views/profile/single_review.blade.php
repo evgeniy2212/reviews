@@ -62,11 +62,11 @@
                 <div class="profile-single-review-review">
                     <p>
                         @if($review->video)
-                            <video class="videoPreview" controls>
-                                <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
-                                {{--<source src="movie.ogg" type="video/ogg">--}}
-                                Your browser does not support the video tag.
-                            </video>
+                                <video class="videoPreview" controls>
+                                    <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
+                                    {{--<source src="movie.ogg" type="video/ogg">--}}
+                                    Your browser does not support the video tag.
+                                </video>
                         @else
                             <img src="{{ asset('storage/images/default_img_video.png') }}"
                                  alt="photo"

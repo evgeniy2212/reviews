@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-6">
             <select class="select"
-                    id="selectCategory"
+                    id="selectCategoryCongrats"
                     name="congratulation_category_id"
                     data-country="{{ old('congratulation_category_id') }}"
                     required>

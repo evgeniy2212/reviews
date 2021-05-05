@@ -20,6 +20,10 @@ class Review extends Model
 //        'day' => []
     ];
 
+    const SHOW_CONGRATULATION = [
+        'person'
+    ];
+
     const SHOW_GEO = [
     'person'
 ];
@@ -132,6 +136,10 @@ class Review extends Model
     }
 
     public function getFullGeoposition(){
-        return $this->region->country->country . ', ' . $this->region->region . ', ' . $this->city;
+        return $this->region
+            ? $this->region->country->country . ', ' . $this->region->region . ', ' . $this->city
+            : ($this->country
+                ?$this->country->country
+                : '');
     }
 }

@@ -8,12 +8,9 @@ use App\Http\Requests\SearchRequest;
 use App\Models\Review;
 use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
-use App\Models\ReviewImage;
-use App\Models\ReviewVideo;
 use App\Http\Repositories\ReviewFilterRepository;
-use App\Services\ImageService;
+use App\Notifications\ReviewCreateNotification;
 use App\Services\ReviewService;
-use App\Services\VideoService;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -51,8 +48,9 @@ class ReviewController extends Controller
             $contentType => request()->$contentType
         ];
         $filters = $this->reviewFilterRepository->getAllCategoryFilters($slug);
+        $showCongratulation = in_array($slug, Review::SHOW_CONGRATULATION);
 
-        return view('reviews.index', compact('reviews', 'slug', 'filters', 'paginateParams'));
+        return view('reviews.index', compact('reviews', 'slug', 'filters', 'paginateParams', 'showCongratulation'));
     }
 
     public function show(Review $review) {

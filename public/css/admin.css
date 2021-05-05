@@ -177,6 +177,12 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.adminFilterItem .input, .adminFilterItem select{
+    max-height: 22px;
+    min-height: 22px;
+    font-size: 0.8rem;
+}
 .adminFilterItem div {
     padding-right: 5px;
 }

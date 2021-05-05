@@ -2,10 +2,12 @@
 
 namespace App\Observers;
 
+use App\Mail\ReviewNotificationEmail;
 use App\Models\Review;
 use App\Notifications\ReviewCommentUpdate;
+use App\Notifications\ReviewCreateNotification;
 use App\Services\CongratsService;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ReviewObserver
 {
@@ -17,8 +19,14 @@ class ReviewObserver
      */
     public function created(Review $review)
     {
-//        $review->user->notify(new ReviewCreate());
         $review->user()->update(['congratulation_id' => CongratsService::checkUserCongratulation($review->user)]);
+
+        if($review->email){
+            Mail::to($review->email)
+                ->send(
+                    new ReviewNotificationEmail($review)
+                );;
+        }
     }
 
     /**

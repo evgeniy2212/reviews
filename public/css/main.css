@@ -837,6 +837,7 @@ button:disabled {
     width: 135px;
     height: 100px;
     border: 1px groove #4a92f8;
+    object-fit: cover;
 }
 .previewImage {
     width: 100px;

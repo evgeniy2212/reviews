@@ -12,7 +12,7 @@
                        class="form-control input adminReviewdatepicker"
                        name="from"
                        required
-                       placeholder="start date"
+                       placeholder="{{ __('service/profile.from') }}"
                        value="{{ empty($paginateParams['from']) ? old('from') : $paginateParams['from'] }}"
                        autocomplete="off">
                 <input type="hidden"
@@ -23,7 +23,7 @@
                        name="to"
                        required
                        value="{{ empty($paginateParams['to']) ? old('to') : $paginateParams['to'] }}"
-                       placeholder="end date"
+                       placeholder="{{ __('service/profile.to') }}"
                        autocomplete="off">
                 <input type="hidden"
                        id="adminDatepickerDifMaxRange"

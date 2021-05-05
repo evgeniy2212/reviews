@@ -47,6 +47,7 @@ return [
     'default_nickname' => 'User',
     'select_item' => 'Select :item',
     'select_review_category_good' => 'Select category of good',
+    'select_review_category_vocation' => 'Select category of vocation',
     'reviews.select_category' => 'Select category',
     'select_review_group_good' => 'Select group',
     'add_photo' => 'Add photo',

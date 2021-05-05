@@ -263,12 +263,14 @@
     border-style: solid;
     border-width: 1px;
     border-radius: 1px;
-    max-height: 20px;
+    max-height: 22px;
+    min-height: 22px;
     max-width: 100%;
     padding: 0 0;
     text-align: center;
     text-align-last: center;
     background: #fcfbfb;
+    font-size: 0.8rem;
 }
 .congratulation-info-container {
     display: flex;
@@ -284,7 +286,7 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     white-space: nowrap;
 }
 .profile-congratulation-user-inputs > * {
@@ -550,10 +552,10 @@
 }
 .create-review-label {
     white-space: nowrap;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 #importantDateForm select, #importantDateForm input {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     max-width: 25%;
 }
 

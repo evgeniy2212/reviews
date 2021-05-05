@@ -96,9 +96,9 @@
 (function ($) {
   $(document).ready(function () {
     $('.deleteReview').click(function () {
-      var id = $(this).data("reviewId");
-      var name = $(this).data("reviewName");
-      var url = $("#deleteReviewForm").data('action');
+      var id = $(this).attr("data-review-id");
+      var name = $(this).attr("data-review-name");
+      var url = $(this).attr('data-action');
       url = url.replace(':id', id);
       $("#deleteReviewForm").attr('action', url);
       setModalData(name);
@@ -178,10 +178,10 @@
         $('#selectCountry').removeClass("invalid-selector");
       }
 
-      if ($('#selectCategory option:selected').val() == '') {
-        $('#selectCategory').addClass('invalid-selector');
+      if ($('#selectCategoryCongrats option:selected').val() == '' || $('#selectCategoryCongrats option:selected').val() == 'Select') {
+        $('#selectCategoryCongrats').addClass('invalid-selector');
       } else {
-        $('#selectCategory').removeClass("invalid-selector");
+        $('#selectCategoryCongrats').removeClass("invalid-selector");
       }
 
       validation(form, event);

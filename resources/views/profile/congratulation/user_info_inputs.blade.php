@@ -54,7 +54,7 @@
             </span>
         </div>
         <div class="col-md-3">
-            <select class="select required"
+            <select class="select"
                     id="selectRegion"
                     name="region_id"
                     disabled

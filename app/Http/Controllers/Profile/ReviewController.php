@@ -9,8 +9,10 @@ use App\Models\Review;
 use App\Models\ReviewFilter;
 use App\Models\ReviewImage;
 use App\Http\Repositories\ReviewFilterRepository;
+use App\Models\ReviewVideo;
 use App\Services\ImageService;
 use App\Services\ReviewService;
+use App\Services\VideoService;
 
 class ReviewController extends Controller
 {
@@ -81,6 +83,11 @@ class ReviewController extends Controller
             $imageInfo = ImageService::updateImage($request, $review);
             ReviewImage::updateOrCreate(['review_id' => $review->id], $imageInfo);
         }
+
+        if($request->has('video')){
+            $videoInfo = VideoService::uploadVideo($request);
+            ReviewVideo::updateOrCreate(['review_id' => $review->id], $videoInfo);
+        }
         $slug = $review->category->slug;
 
         return $request->redirectToMain
@@ -96,6 +103,10 @@ class ReviewController extends Controller
         if($request->has('img')){
             $imageInfo = ImageService::updateImage($request, $review);
             ReviewImage::updateOrCreate(['review_id' => $review->id], $imageInfo);
+        }
+        if($request->has('video')){
+            $videoInfo = VideoService::uploadVideo($request);
+            ReviewVideo::updateOrCreate(['review_id' => $review->id], $videoInfo);
         }
 
         return redirect()->route('presavingShow-review', ['review' => $review->id]);

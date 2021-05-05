@@ -3,10 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
 
 class ReviewCreate extends Notification
 {
@@ -43,9 +41,8 @@ class ReviewCreate extends Notification
     {
         return (new MailMessage)
                     ->greeting('Hello, ' . $notifiable->full_name)
-                    ->line('ReviewsOnTheWeb.com informs you create the review at the ReviewsOnTheWeb.com')
-                    ->action('ReviewsOnTheWeb.com', url('/'));
-//                    ->line('Regards ReviewsOnTheWeb.com team!');
+                    ->line( config('app.name') . 'informs you create the review at the' . config('app.name'))
+                    ->action(config('app.name'), url('/'));
     }
 
     /**

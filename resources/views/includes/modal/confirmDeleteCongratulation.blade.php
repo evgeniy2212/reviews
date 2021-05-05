@@ -3,9 +3,9 @@
         <div class="modal-content">
             <div>
                 <!-- Modal content-->
-                <form action="{{ route("profile-reviews.destroy", ":id") }}"
-                      data-action="{{ route("profile-reviews.destroy", ":id") }}"
-                      id="deleteReviewForm"
+                <form action="{{ route("profile-congratulations.destroy", ":id") }}"
+                      data-action="{{ route("profile-congratulations.destroy", ":id") }}"
+                      id="deleteCongratulationForm"
                       method="post">
                     <div>
                         {{ csrf_field() }}
