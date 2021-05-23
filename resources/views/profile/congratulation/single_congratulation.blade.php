@@ -49,7 +49,7 @@
                                 class="previewImage">
                         @endif
                         @if($congratulation->category)
-                            {{ $congratulation->category->title }}<br>
+                            <span class="congratulation-category">{{ $congratulation->category->title }}</span><br>
                         @endif
                         {{ $congratulation->body }}
                     </p>

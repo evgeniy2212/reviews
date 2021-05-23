@@ -7,29 +7,33 @@
 @section('profile_review_content')
     <div class="profile-review-place">
         <div class="adminFilters">
-            <div class="adminFilterItem adminFilterDatepicker">
-                <input type="text"
-                       class="form-control input adminReviewdatepicker"
-                       name="from"
-                       required
-                       placeholder="{{ __('service/profile.from') }}"
-                       value="{{ empty($paginateParams['from']) ? old('from') : $paginateParams['from'] }}"
-                       autocomplete="off">
-                <input type="hidden"
-                       id="adminDatepickerDifMinRange"
-                       value="{{ \App\Services\CommentService::difToMinRangeDate() }}">
-                <input type="text"
-                       class="form-control input adminReviewdatepicker"
-                       name="to"
-                       required
-                       value="{{ empty($paginateParams['to']) ? old('to') : $paginateParams['to'] }}"
-                       placeholder="{{ __('service/profile.to') }}"
-                       autocomplete="off">
-                <input type="hidden"
-                       id="adminDatepickerDifMaxRange"
-                       value="{{ \App\Services\CommentService::difToMaxRangeDate() }}">
+            <div class="adminFilterDatepicker">
+                <div class="adminFilterItem">
+                    <input type="text"
+                           class="form-control input adminReviewdatepicker"
+                           name="from"
+                           required
+                           placeholder="{{ __('service/profile.from') }}"
+                           value="{{ empty($paginateParams['from']) ? old('from') : $paginateParams['from'] }}"
+                           autocomplete="off">
+                    <input type="hidden"
+                           id="adminDatepickerDifMinRange"
+                           value="{{ \App\Services\CommentService::difToMinRangeDate() }}">
+                    <input type="text"
+                           class="form-control input adminReviewdatepicker"
+                           name="to"
+                           required
+                           value="{{ empty($paginateParams['to']) ? old('to') : $paginateParams['to'] }}"
+                           placeholder="{{ __('service/profile.to') }}"
+                           autocomplete="off">
+                    <input type="hidden"
+                           id="adminDatepickerDifMaxRange"
+                           value="{{ \App\Services\CommentService::difToMaxRangeDate() }}">
+                </div>
+                <button
+                    class="btn btn-outline-primary my-2 my-sm-0 adminFilterButton"
+                    style="max-height: 100%">Sort</button>
             </div>
-            <button class="btn btn-outline-primary my-2 my-sm-0 adminFilterButton">Filter</button>
             <form method="GET"
                   action="{{ route('searchUserComments') }}"
                   class="form-inline"

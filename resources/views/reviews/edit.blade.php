@@ -88,6 +88,7 @@
                                       required
                                       placeholder="{{ empty($review->review) ? __('service/index.review_text_placeholder') : '' }}">{!! $review->review !!}</textarea>
                             <div class="review-upload-files">
+                                @include('includes.loading_animation')
                                 <label class="custom-file-upload">
                                     <input type="file"
                                            id="img"

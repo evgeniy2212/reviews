@@ -185,6 +185,11 @@
       }
 
       validation(form, event);
+
+      if ($('#congratulationForm #videoCongratulation').prop('files')[0] && form.hasClass('valid-form')) {
+        $('.create-congratulation-image').hide();
+        $('#inTurnFadingTextG').show(); // $('button[type=submit]').prop('disabled', true);
+      }
     });
     $('#imgCongratulation').change(function () {
       readImageURL(this);
@@ -347,9 +352,10 @@
   }
 
   var validation = function validation(form, event) {
-    console.log(form, form[0].checkValidity());
+    form.addClass('valid-form');
 
     if (form[0].checkValidity() === false) {
+      form.removeClass('valid-form');
       event.preventDefault();
       event.stopPropagation();
     }

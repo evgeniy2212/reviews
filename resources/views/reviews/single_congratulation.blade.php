@@ -47,9 +47,9 @@
                         class="previewImage">
                 @endif
                 @if($review->category)
-                    {{ $review->category->title }}<br>
+                    <span class="congratulation-category">{{ $review->category->title }}</span><br>
                 @endif
-                {{ $review->body }}
+                    {!! $review->body !!}
             </p>
         </div>
     </div>

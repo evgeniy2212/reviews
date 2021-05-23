@@ -1,7 +1,8 @@
 <form method="POST" action="{{ route('admin.banners.update', ['banner' => $banner->id]) }}" enctype="multipart/form-data" novalidate="" id="adminBannerForm{{ $banner->id }}" style="width: 100%">
     @method('PATCH')
     @csrf
-    <div class="singleBanner">
+    <div class="singleBanner"
+         id="banner-{{ $banner->id }}">
         <div class="singleBannerInfo">
             <div>
                 <span>@lang('service/admin.banner_user_name', ['name' => $banner->user->full_name])</span>
@@ -35,9 +36,29 @@
                 </div>
             </div>
         </div>
-        <div class="singleBannerContent">
+        <div class="singleBannerImageContent">
             <div class="bannerImagePreview">
-                <div class="w-100">
+                <div>
+                    <div>
+                        <span class="create-review-label">
+                            @lang('service/profile.banner_type')
+                        </span>
+                    </div>
+                    <select class="select"
+                            id="bannerType-{{ $banner->id }}"
+                            data-banner-id="{{ $banner->id }}"
+                            required>
+                        <option {{ !empty($body) ?: 'selected' }} value="{!! \App\Models\Banner::TYPE_IMAGE !!}">
+                            {!! \App\Models\Banner::TYPE_IMAGE !!}
+                        </option>
+                        <option {{ !empty($body) ? 'selected' : '' }} value="{!! \App\Models\Banner::TYPE_TEXT !!}">
+                            {!! \App\Models\Banner::TYPE_TEXT !!}
+                        </option>
+                    </select>
+                </div>
+                <div class="w-100"
+                     id="uploadBannerContainer"
+                     style="{{ !empty($body) ? 'display: none;' : '' }}">
                     <label class="bannerFileUpload">
                         <input type="file"
                                id="imgBanner"
@@ -49,52 +70,64 @@
                     </label>
                 </div>
                 <div>
-                <div>
-                    <span class="create-review-label">
-                        @lang('service/profile.banner_category')
-                    </span>
-                </div>
-                <select class="select"
-                        id="bannerCategory"
-                        name="banner_category_id"
-                        required>
-                    <option disabled selected value="">{!! $banner->category->title !!}</option>
-                    @foreach($bannerCategories as $id => $category)
-                        <option value="{{ $id }}">{!! $category !!}</option>
-                    @endforeach
-                </select>
+                    <div>
+                        <span class="create-review-label">
+                            @lang('service/profile.banner_category')
+                        </span>
+                    </div>
+                    <select class="select"
+                            id="bannerCategory"
+                            name="banner_category_id"
+                            required>
+                        <option disabled selected value="">{!! $banner->category->title !!}</option>
+                        @foreach($bannerCategories as $id => $category)
+                            <option value="{{ $id }}">{!! $category !!}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="bannerImagePreviewContainer">
-                <div id="bannerImagePreview">
-                    <img id="blah" src="{{ $banner->getImageUrl() }}" alt="your image" />
-                </div>
-                <input id="title"
-                       type="text"
-                       class="form-control input"
-                       name="title"
-                       maxlength="35"
-                       placeholder="@lang('service/profile.banner_title')"
-                       value="{{ $banner->title }}"
-                       autocomplete="off">
-                <input id="link"
-                       type="text"
-                       class="form-control input"
-                       name="link"
-                       maxlength="35"
-                       placeholder="@lang('service/profile.banner_link')"
-                       value="{{ $banner->link }}"
-                       autocomplete="off">
+                    <div id="bannerTextPreview"
+                         style="{{ !empty($body) ?: 'display: none;' }}">
+                        <textarea name="body"
+                                  type="text"
+                                  id="review-text"
+                                  placeholder="{{ empty($body) ? __('service/index.review_text_placeholder') : '' }}">{!! $body !!}</textarea>
+                    </div>
+                    <div id="bannerImagePreview"
+                         style="{{ !empty($body) ? 'display: none;' : '' }}">
+                        <img id="blah"
+                             src="{{ $banner->getImageUrl() }}"
+                             alt="your image" />
+                    </div>
+                    <input id="title"
+                           type="text"
+                           class="form-control input"
+                           name="title"
+                           maxlength="35"
+                           placeholder="@lang('service/profile.banner_title')"
+                           value="{{ $banner->title }}"
+                           style="{{ !empty($body) ? 'display: none;' : '' }}"
+                           autocomplete="off">
+                    <input id="link"
+                           type="text"
+                           class="form-control input"
+                           name="link"
+                           maxlength="35"
+                           placeholder="@lang('service/profile.banner_link')"
+                           value="{{ $banner->link }}"
+                           style="{{ !empty($body) ? 'display: none;' : '' }}"
+                           autocomplete="off">
             </div>
         </div>
         <div class="singleBannerControl">
             <div class="checkbox-item">
                 <input type="checkbox"
                        class="custom-checkbox"
-                       id="banner-{{ $banner->id }}"
+                       id="banner_publish_{{ $banner->id }}"
                        name="is_published"
                        {{ $banner->is_published ? 'checked' : '' }}>
-                <label for="banner-{{ $banner->id }}">@lang('service/profile.banner_published')</label>
+                <label for="banner_publish_{{ $banner->id }}">@lang('service/profile.banner_published')</label>
             </div>
             <button type="submit"
                     id="bannerPublishButton{{ $banner->id }}"
@@ -104,4 +137,9 @@
         </div>
     </div>
 </form>
-
+<script>
+    window.banner_types = {
+        image: '{{ \App\Models\Banner::TYPE_IMAGE }}',
+        text: '{{ \App\Models\Banner::TYPE_TEXT }}',
+    };
+</script>

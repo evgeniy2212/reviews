@@ -49,11 +49,11 @@
                             </a>
                         </li>
                         @if(auth()->user()->is_admin)
-                            <li class="{{ Request::url() == route('banners') ? 'active' : '' }}">
-                                <a href="{{ route('banners') }}">
-                                    <span>@lang('service/index.banners')</span>
-                                </a>
-                            </li>
+{{--                            <li class="{{ Request::url() == route('banners') ? 'active' : '' }}">--}}
+{{--                                <a href="{{ route('banners') }}">--}}
+{{--                                    <span>@lang('service/index.banners')</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                             <li class="{{ Request::url() == route('admin.banners.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.banners.index') }}">
                                     <span>@lang('service/admin.banners')</span>

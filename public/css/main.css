@@ -434,6 +434,18 @@ button:disabled {
     overflow: auto;
     overflow-y: auto;
 }
+.slider-body-modal-dialog {
+    position: absolute;
+    max-width: 650px;
+    max-height: 50%;
+    top: 15%;
+    right: 0;
+    bottom: 0;
+    left: 10%;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+}
 .review-items {
     padding: 10px;
     width: 100%;
@@ -624,7 +636,7 @@ button:disabled {
 }
 
 /* The Close Button */
-.closeImageModal {
+.closeImageModal, .closeSliderBodyModal {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -635,7 +647,9 @@ button:disabled {
 }
 
 .closeImageModal:hover,
-.closeImageModal:focus {
+.closeSliderBodyModal:hover,
+.closeImageModal:focus,
+.closeSliderBodyModal:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
@@ -720,7 +734,28 @@ button:disabled {
 #shareForm div{
     margin: 8px;
 }
-
+#sliderBodyModalContent {
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    font-size: 15px;
+    height: 100%;
+}
+.slider-body-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
 .successModalDialog .modal-dialog, .errorModalDialog .modal-dialog{
     position: absolute;
     top: 25%;
@@ -843,4 +878,208 @@ button:disabled {
     width: 100px;
     height: 100px;
     border: 1px groove #4a92f8;
+}
+
+/*loader*/
+#inTurnFadingTextG{
+    width:234px;
+    height: 100%;
+    margin:auto;
+    display: none;
+}
+
+.inTurnFadingTextG{
+    color:rgb(0,0,0);
+    font-family:Arial;
+    font-size:24px;
+    text-decoration:none;
+    font-weight:normal;
+    font-style:normal;
+    float:left;
+    animation-name:bounce_inTurnFadingTextG;
+    -o-animation-name:bounce_inTurnFadingTextG;
+    -ms-animation-name:bounce_inTurnFadingTextG;
+    -webkit-animation-name:bounce_inTurnFadingTextG;
+    -moz-animation-name:bounce_inTurnFadingTextG;
+    animation-duration:2.09s;
+    -o-animation-duration:2.09s;
+    -ms-animation-duration:2.09s;
+    -webkit-animation-duration:2.09s;
+    -moz-animation-duration:2.09s;
+    animation-iteration-count:infinite;
+    -o-animation-iteration-count:infinite;
+    -ms-animation-iteration-count:infinite;
+    -webkit-animation-iteration-count:infinite;
+    -moz-animation-iteration-count:infinite;
+    animation-direction:normal;
+    -o-animation-direction:normal;
+    -ms-animation-direction:normal;
+    -webkit-animation-direction:normal;
+    -moz-animation-direction:normal;
+}
+
+#inTurnFadingTextG_1{
+    animation-delay:0.75s;
+    -o-animation-delay:0.75s;
+    -ms-animation-delay:0.75s;
+    -webkit-animation-delay:0.75s;
+    -moz-animation-delay:0.75s;
+}
+#inTurnFadingTextG_2{
+    animation-delay:0.9s;
+    -o-animation-delay:0.9s;
+    -ms-animation-delay:0.9s;
+    -webkit-animation-delay:0.9s;
+    -moz-animation-delay:0.9s;
+}
+#inTurnFadingTextG_3{
+    animation-delay:1.05s;
+    -o-animation-delay:1.05s;
+    -ms-animation-delay:1.05s;
+    -webkit-animation-delay:1.05s;
+    -moz-animation-delay:1.05s;
+}
+#inTurnFadingTextG_4{
+    animation-delay:1.2s;
+    -o-animation-delay:1.2s;
+    -ms-animation-delay:1.2s;
+    -webkit-animation-delay:1.2s;
+    -moz-animation-delay:1.2s;
+}
+#inTurnFadingTextG_5{
+    animation-delay:1.35s;
+    -o-animation-delay:1.35s;
+    -ms-animation-delay:1.35s;
+    -webkit-animation-delay:1.35s;
+    -moz-animation-delay:1.35s;
+}
+#inTurnFadingTextG_6{
+    animation-delay:1.5s;
+    -o-animation-delay:1.5s;
+    -ms-animation-delay:1.5s;
+    -webkit-animation-delay:1.5s;
+    -moz-animation-delay:1.5s;
+}
+#inTurnFadingTextG_7{
+    animation-delay:1.64s;
+    -o-animation-delay:1.64s;
+    -ms-animation-delay:1.64s;
+    -webkit-animation-delay:1.64s;
+    -moz-animation-delay:1.64s;
+}
+#inTurnFadingTextG_8{
+    animation-delay:1.79s;
+    -o-animation-delay:1.79s;
+    -ms-animation-delay:1.79s;
+    -webkit-animation-delay:1.79s;
+    -moz-animation-delay:1.79s;
+}
+#inTurnFadingTextG_9{
+    animation-delay:1.94s;
+    -o-animation-delay:1.94s;
+    -ms-animation-delay:1.94s;
+    -webkit-animation-delay:1.94s;
+    -moz-animation-delay:1.94s;
+}
+#inTurnFadingTextG_10{
+    animation-delay:2.09s;
+    -o-animation-delay:2.09s;
+    -ms-animation-delay:2.09s;
+    -webkit-animation-delay:2.09s;
+    -moz-animation-delay:2.09s;
+}
+#inTurnFadingTextG_11{
+    animation-delay:2.24s;
+    -o-animation-delay:2.24s;
+    -ms-animation-delay:2.24s;
+    -webkit-animation-delay:2.24s;
+    -moz-animation-delay:2.24s;
+}
+#inTurnFadingTextG_12{
+    animation-delay:2.39s;
+    -o-animation-delay:2.39s;
+    -ms-animation-delay:2.39s;
+    -webkit-animation-delay:2.39s;
+    -moz-animation-delay:2.39s;
+}
+#inTurnFadingTextG_13{
+    animation-delay:2.54s;
+    -o-animation-delay:2.54s;
+    -ms-animation-delay:2.54s;
+    -webkit-animation-delay:2.54s;
+    -moz-animation-delay:2.54s;
+}
+#inTurnFadingTextG_14{
+    animation-delay:2.69s;
+    -o-animation-delay:2.69s;
+    -ms-animation-delay:2.69s;
+    -webkit-animation-delay:2.69s;
+    -moz-animation-delay:2.69s;
+}
+#inTurnFadingTextG_15{
+    animation-delay:2.84s;
+    -o-animation-delay:2.84s;
+    -ms-animation-delay:2.84s;
+    -webkit-animation-delay:2.84s;
+    -moz-animation-delay:2.84s;
+}
+#inTurnFadingTextG_16{
+    animation-delay:2.99s;
+    -o-animation-delay:2.99s;
+    -ms-animation-delay:2.99s;
+    -webkit-animation-delay:2.99s;
+    -moz-animation-delay:2.99s;
+}
+
+
+
+
+@keyframes bounce_inTurnFadingTextG{
+    0%{
+        color:rgb(0,0,0);
+    }
+
+    100%{
+        color:rgb(255,255,255);
+    }
+}
+
+@-o-keyframes bounce_inTurnFadingTextG{
+    0%{
+        color:rgb(0,0,0);
+    }
+
+    100%{
+        color:rgb(255,255,255);
+    }
+}
+
+@-ms-keyframes bounce_inTurnFadingTextG{
+    0%{
+        color:rgb(0,0,0);
+    }
+
+    100%{
+        color:rgb(255,255,255);
+    }
+}
+
+@-webkit-keyframes bounce_inTurnFadingTextG{
+    0%{
+        color:rgb(0,0,0);
+    }
+
+    100%{
+        color:rgb(255,255,255);
+    }
+}
+
+@-moz-keyframes bounce_inTurnFadingTextG{
+    0%{
+        color:rgb(0,0,0);
+    }
+
+    100%{
+        color:rgb(255,255,255);
+    }
 }

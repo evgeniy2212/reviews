@@ -14,30 +14,38 @@ class ReviewCategorySeeder extends Seeder
     {
         $categories = [
             [
-                'title' => 'PERSON',
+                'title' => 'People',
                 'slug' => \Illuminate\Support\Str::slug('person'),
                 'is_published' => true,
                 'enable_low_rating' => false
             ],
             [
-                'title' => 'COMPANY',
+                'title' => 'Companies',
                 'slug' => \Illuminate\Support\Str::slug('company'),
                 'is_published' => true,
             ],
             [
-                'title' => 'GOODS',
+                'title' => 'Goods',
                 'slug' => \Illuminate\Support\Str::slug('goods'),
                 'is_published' => true,
             ],
             [
-                'title' => 'VOCATIONS',
+                'title' => 'Vacations',
                 'slug' => \Illuminate\Support\Str::slug('vocations'),
                 'is_published' => true,
             ],
         ];
 
         foreach($categories as $category){
-            ReviewCategory::firstOrCreate($category);
+            ReviewCategory::updateOrCreate(
+                [
+                    'slug' => $category['slug']
+                ],
+                [
+                    'title' => $category['title'],
+                    'is_published' => $category['is_published']
+                ]
+            );
         }
     }
 }

@@ -28,7 +28,7 @@
             @endforeach
         </div>
         @forelse($banners as $banner)
-            @include('admin.includes.single_banner')
+            @include('admin.includes.single_banner', ['body' => optional($banner)->body])
         @empty
             <span>Ad is EMPTY.</span>
         @endforelse

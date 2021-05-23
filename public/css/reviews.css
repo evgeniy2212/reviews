@@ -341,6 +341,16 @@ input[type="file"] {
     margin: 5px 5px 5px 5px;
     object-fit: fill;
 }
+.single-review-review .congratulation-category {
+    text-align: left;
+    text-shadow: 1px 1px 5px #2f5496;
+    float: left;
+    width: auto;
+    font-family: "ImprintMTShadow";
+    font-weight: 500;
+    font-size: 1rem;
+    padding-bottom: 0px;
+}
 .profile-single-review-review p, .profile-single-review-review span {
     text-align: left;
     float: left;

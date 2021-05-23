@@ -39,6 +39,7 @@
     <div id="caption"></div>
 </div>
 @include('includes.share')
+@include('includes.modal.sliderBodyModal')
 </body>
 @include('includes.scripts')
 @include('includes.alerts')

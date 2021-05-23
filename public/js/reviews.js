@@ -117,19 +117,26 @@
         $('#submitFormAccept').val(1);
       }
     });
-    $(".submitReviewButton").click(function (event) {
-      if ($('#selectRegion option:selected').val() == '') {
-        $('#selectRegion').addClass('invalid-selector');
-      } else {
-        $('#selectRegion').removeClass("invalid-selector");
-      }
+    // $(".submitReviewButton").click(function(event) {
+    // if ($('#selectRegion option:selected').val() == ''){
+    //     $('#selectRegion').addClass('invalid-selector');
+    // } else {
+    //     $('#selectRegion').removeClass( "invalid-selector" )
+    // }
+    //
+    // if ($('#selectCountry option:selected').val() == ''){
+    //     $('#selectCountry').addClass('invalid-selector');
+    // } else {
+    //     $('#selectCountry').removeClass( "invalid-selector" )
+    // }
+    //
+    // if($('#createReviewForm #video, #editReviewForm #video').prop('files')[0]){
+    //     $('.custom-file-upload').hide();
+    //     $('#inTurnFadingTextG').show();
+    //     // $('button[type=submit]').prop('disabled', true);
+    // }
+    // });
 
-      if ($('#selectCountry option:selected').val() == '') {
-        $('#selectCountry').addClass('invalid-selector');
-      } else {
-        $('#selectCountry').removeClass("invalid-selector");
-      }
-    });
     $(".like-reaction").click(function (event) {
       var userReactionIncreased = 1;
       var reactionType = $(this).data('reactionName');
@@ -423,11 +430,10 @@
       // Get the image and insert it inside the modal - use its "alt" text as a caption
       // var img = document.getElementById("myImg");
       var modalImg = document.getElementById("img01");
-      var captionText = document.getElementById("caption"); // img.onclick = function(){
-
+      var captionText = document.getElementById("caption");
       modal.style.display = "block";
       modalImg.src = $(this).attr('data-full-size-src');
-      captionText.innerHTML = this.alt; // }
+      captionText.innerHTML = this.alt;
     });
     $('#congratulation-img').hover(function () {
       $('#congratulation-rules').show();

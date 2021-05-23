@@ -33,6 +33,7 @@
                             @lang('service/profile.congratulation.create.add_image')
                         </span>
                     </label>
+                    @include('includes.loading_animation_congratulation')
                     <label class="create-congratulation-image">
                         <input type="file"
                                id="videoCongratulation"

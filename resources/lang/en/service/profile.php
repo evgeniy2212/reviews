@@ -1,5 +1,6 @@
 <?php
 return [
+    'banner_type' => 'Type of Banner',
     'banner_category' => 'Category',
     'banner_another_email' => 'Another E-mail',
     'time_scale' => 'Time scale',

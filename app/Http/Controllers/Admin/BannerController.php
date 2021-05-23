@@ -83,13 +83,19 @@ class BannerController extends Controller
         if($request->is_published && BannerService::isPublishedMaxBanners()){
             return redirect()->back()->withErrors(['msg' => __('service/admin.max_banners_published', ['count' => Banner::MAX_BANNERS_COUNT])]);
         }
+
+        if($request->body){
+            $request->merge(['src' => '']);
+        }
+
         if($request->has('img')){
+            $request->merge(['body' => '']);
             $imageInfo = ImageService::updateBanner($request, $banner);
             $request->merge($imageInfo);
         }
         $data = $request->all();
         $data['title'] = $request->title ?? '';
-        $banner->update($request->all());
+        $banner->update($data);
 
         return redirect()->back();
     }

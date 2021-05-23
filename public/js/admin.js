@@ -138,6 +138,24 @@
       $("#reviewName").text(name);
       $("#reviewCategoryName").text(categoryName);
     });
+    $('select[id^="bannerType"]').change(function () {
+      var bannerId = $(this).data('bannerId');
+      var banner = $('#banner-' + bannerId);
+
+      if ($(this).val() == window.banner_types.text) {
+        banner.find('#bannerImagePreview').hide();
+        banner.find('#title').hide();
+        banner.find('#link').hide();
+        banner.find('#uploadBannerContainer').hide();
+        banner.find('#bannerTextPreview').show();
+      } else {
+        banner.find('#bannerTextPreview').hide();
+        banner.find('#title').show();
+        banner.find('#link').show();
+        banner.find('#uploadBannerContainer').show();
+        banner.find('#bannerImagePreview').show();
+      }
+    });
   });
 
   function replaceQueryParam(param, newval, search) {

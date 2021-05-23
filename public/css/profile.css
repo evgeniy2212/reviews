@@ -166,7 +166,9 @@
         margin: 0 0 1% 0;
     }
 }
-
+select[id*='bannerType']{
+    min-width: 100%;
+}
 .bannerInfo {
     display: flex;
     flex-direction: row;
@@ -192,6 +194,7 @@
     border-width: 1px;
     display: inline-block;
     padding: 3px 6px;
+    margin-top: 25px;
     cursor: pointer;
     background-color: #e7e6e6;
     height: 100%;
@@ -210,6 +213,11 @@
         margin: 0 0 5px 0;
         display: flex;
     }
+    #bannerTextPreview{
+        width: 310px;
+        height: 140px;
+        margin: 0 0 5px 0;
+    }
 }
 @media (min-width: 1400px) {
     #bannerImagePreview{
@@ -218,6 +226,11 @@
         border: 1px dashed #a0a3af;
         margin: 0 0 5px 0;
         display: flex;
+    }
+    #bannerTextPreview{
+        width: 310px;
+        height: 200px;
+        margin: 0 0 5px 0;
     }
 }
 #bannerImagePreview img{

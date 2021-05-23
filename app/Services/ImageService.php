@@ -32,7 +32,7 @@ class ImageService {
         Image::make($file->getRealPath())
             ->resize(150, 150, function($img){
                 $img->aspectRatio();
-            })->resizeCanvas(150, 150)
+            })->resizeCanvas(150, 150, 'center', false, '#f2f2f2')
             ->save(storage_path('app/public/images/resize_images/' . $path . DIRECTORY_SEPARATOR . $fileName));
 
         return [

@@ -21,19 +21,25 @@
             }
         });
 
-        $(".submitReviewButton").click(function(event) {
-            if ($('#selectRegion option:selected').val() == ''){
-                $('#selectRegion').addClass('invalid-selector');
-            } else {
-                $('#selectRegion').removeClass( "invalid-selector" )
-            }
-
-            if ($('#selectCountry option:selected').val() == ''){
-                $('#selectCountry').addClass('invalid-selector');
-            } else {
-                $('#selectCountry').removeClass( "invalid-selector" )
-            }
-        });
+        // $(".submitReviewButton").click(function(event) {
+            // if ($('#selectRegion option:selected').val() == ''){
+            //     $('#selectRegion').addClass('invalid-selector');
+            // } else {
+            //     $('#selectRegion').removeClass( "invalid-selector" )
+            // }
+            //
+            // if ($('#selectCountry option:selected').val() == ''){
+            //     $('#selectCountry').addClass('invalid-selector');
+            // } else {
+            //     $('#selectCountry').removeClass( "invalid-selector" )
+            // }
+            //
+            // if($('#createReviewForm #video, #editReviewForm #video').prop('files')[0]){
+            //     $('.custom-file-upload').hide();
+            //     $('#inTurnFadingTextG').show();
+            //     // $('button[type=submit]').prop('disabled', true);
+            // }
+        // });
 
         $(".like-reaction").click(function(event) {
             let userReactionIncreased = 1;
@@ -312,11 +318,9 @@
             // var img = document.getElementById("myImg");
             var modalImg = document.getElementById("img01");
             var captionText = document.getElementById("caption");
-            // img.onclick = function(){
             modal.style.display = "block";
             modalImg.src = $(this).attr('data-full-size-src');
             captionText.innerHTML = this.alt;
-            // }
         });
 
         $('#congratulation-img').hover(

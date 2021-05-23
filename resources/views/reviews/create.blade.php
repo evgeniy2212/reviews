@@ -86,6 +86,7 @@
                                       required
                                       placeholder="@lang('service/index.review_text_placeholder')"></textarea>
                             <div class="review-upload-files">
+                                @include('includes.loading_animation')
                                 <label class="custom-file-upload">
                                     <input type="file"
                                            id="img"
@@ -102,6 +103,10 @@
                                     <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_video')</span>
                                 </label>
                             </div>
+                        </div>
+                        <div class='progress' id="progressDivId">
+                            <div class='progress-bar' id='progressBar'></div>
+                            <div class='percent' id='percent'>0%</div>
                         </div>
                         <div class="col-md-4 checkbox-container">
                             @foreach($negativeCharacteristics as $characteristics)

@@ -415,3 +415,16 @@ body.mobile-nav-active #mobile-nav {
     text-underline: none;
     color: #2f5496;
 }
+.sliderBody {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    line-height: 24px;
+    max-height: 150px;
+    height: 150px;
+    background-color: #a7ccff82;
+    background-size: auto 150px;
+    padding: 5px;
+}

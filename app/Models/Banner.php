@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Banner extends Model
 {
     const MAX_BANNERS_COUNT = 11;
+    const TYPE_TEXT = 'text';
+    const TYPE_IMAGE = 'image';
 
     protected $fillable = [
         'id',
@@ -18,6 +19,7 @@ class Banner extends Model
         'name',
         'original_name',
         'title',
+        'body',
         'link',
         'is_published',
         'from',
@@ -53,6 +55,8 @@ class Banner extends Model
 
     public function getImageUrl()
     {
-        return asset('storage/' . $this->src);
+        return $this->src
+            ? asset('storage/' . $this->src)
+            : asset('storage/images/default_img.png');
     }
 }

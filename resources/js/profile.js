@@ -98,6 +98,12 @@
                 $('#selectCategoryCongrats').removeClass( "invalid-selector" )
             }
             validation(form, event);
+
+            if($('#congratulationForm #videoCongratulation').prop('files')[0]
+                && form.hasClass('valid-form')){
+                $('.create-congratulation-image').hide();
+                $('#inTurnFadingTextG').show();
+            }
         });
 
         $('#imgCongratulation').change(function() {
@@ -268,9 +274,10 @@
     }
 
     var validation = function(form, event){
-        console.log(form, form[0].checkValidity());
+        form.addClass('valid-form');
         if (form[0].checkValidity() === false)
         {
+            form.removeClass('valid-form');
             event.preventDefault();
             event.stopPropagation();
         }

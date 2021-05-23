@@ -53,7 +53,25 @@
                 $('#acceptFormModal').modal('show');
                 event.preventDefault();
             } else {
+                if ($('#selectRegion option:selected').val() == ''){
+                    $('#selectRegion').addClass('invalid-selector');
+                } else {
+                    $('#selectRegion').removeClass( "invalid-selector" )
+                }
+
+                if ($('#selectCountry option:selected').val() == ''){
+                    $('#selectCountry').addClass('invalid-selector');
+                } else {
+                    $('#selectCountry').removeClass( "invalid-selector" )
+                }
                 validation(form, event);
+            }
+
+            if($('#createReviewForm #video, #editReviewForm #video').prop('files')[0]
+                && form.hasClass('valid-form')){
+                $('.custom-file-upload').hide();
+                $('#inTurnFadingTextG').show();
+                // $('button[type=submit]').prop('disabled', true);
             }
         });
 
@@ -214,6 +232,12 @@
                 }
             });
         }
+
+        $("#slider_body").click(function(event) {
+            let data = $(this).data('body');
+            $('#sliderBodyModalContent span').html(data);
+            $('#sliderBodyModal').modal('show');
+        });
     });
 
     function getBadWords(data){
@@ -233,7 +257,7 @@
             // alert('Your review contain Bad Words! You must delete Bad Words!');
             $('#errorBadWords').modal('show');
         }
-
+        form.addClass('valid-form');
         if (form[0].checkValidity() === false
             || isCheckPassInvalid
             || !isCheckedTermOfCondition
@@ -242,6 +266,7 @@
             || !isCheckedCountryRegion
             || !isSubmitFormAccept)
         {
+            form.removeClass('valid-form');
             event.preventDefault();
             event.stopPropagation();
         }

@@ -29,7 +29,7 @@ class BannerService {
     }
 
     public static function getHeadBanners(){
-        $bannerInfo = ['title', 'src', 'to', 'from', 'link'];
+        $bannerInfo = ['title', 'src', 'to', 'from', 'link', 'body'];
         return Banner::select($bannerInfo)
             ->where('is_published', true)
             ->where('from', '<=', Carbon::now()->setTime(0,0)->format('Y-m-d H:i:s'))

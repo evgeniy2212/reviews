@@ -124,7 +124,7 @@
                         @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
                             <option {{ (isset($search_category) && $search_category == $review_category->slug) ? 'selected' : '' }}
                                     value="{{ $review_category->slug }}">
-                                @lang(trans('service/index.review_naming', ['name' => $review_category->lower_title]))
+                                @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
                             </option>
                         @endforeach
                     </select>
@@ -140,16 +140,32 @@
                             {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">1</div>--}}
                             {{--<div style="height: 120px; background-image: url(../images/post.jpg); background-repeat: no-repeat; background-size: cover;">1</div>--}}
                         {{--</div>--}}
+
                         @foreach(\App\Services\BannerService::getHeadBanners() as $banner)
-                            <div class="slider__item">
-                                <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '125' }}px;">
-                                    @if(empty($banner->link))
-                                        <span>{{ empty($banner->title) ? '' : $banner->title }}</span>
-                                    @else
-                                        <a href="{{ $banner->link }}" target="_blank">{{ empty($banner->title) ? $banner->link : $banner->title }}</a>
-                                    @endif
+                            @if(empty(optional($banner)->body))
+                                <div class="slider__item">
+                                    <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '125' }}px;">
+                                        @if(empty($banner->link))
+                                            <span>{{ empty($banner->title) ? '' : $banner->title }}</span>
+                                        @else
+                                            <a href="{{ $banner->link }}" target="_blank">{{ empty($banner->title) ? $banner->link : $banner->title }}</a>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="slider__item"
+                                     id="slider_body"
+                                     data-body="{{ $banner->body }}">
+                                    <div style="height: 150px;
+                                        cursor: pointer;
+                                        background-position: center top;
+                                        background-size: auto 150px;">
+                                        <span class="sliderBody">
+                                            {!! $banner->body !!}
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
                         @endforeach
                         {{--<div class="slider__item">--}}
                             {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">2</div>--}}
@@ -172,7 +188,7 @@
                         <li @if(str_contains(url()->current(), $review_category->slug) || str_contains(url()->full(), 'category=' . $review_category->slug))
                             class="menu-active"@endif>
                             <a href="{{ route('reviews', $review_category->slug) }}">
-                                @lang(trans('service/index.review_naming', ['name' => $review_category->lower_title]))
+                                @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
                             </a>
                         </li>
                     @endforeach
