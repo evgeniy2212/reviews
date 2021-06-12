@@ -113,7 +113,7 @@
                            type="text"
                            class="form-control input"
                            name="link"
-                           maxlength="35"
+                           maxlength="200"
                            placeholder="@lang('service/profile.banner_link')"
                            value="{{ $banner->link }}"
                            style="{{ !empty($body) ? 'display: none;' : '' }}"

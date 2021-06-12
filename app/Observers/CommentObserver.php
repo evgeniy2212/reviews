@@ -15,7 +15,7 @@ class CommentObserver
      */
     public function created(Comment $comment)
     {
-        $comment->review->user->notify(new ReviewCommentUpdate());
+//        $comment->review->user->notify(new ReviewCommentUpdate());
     }
 
     /**
@@ -26,7 +26,7 @@ class CommentObserver
      */
     public function updated(Comment $comment)
     {
-        $comment->review->user->notify(new ReviewCommentUpdate());
+//        $comment->review->user->notify(new ReviewCommentUpdate());
     }
 
     /**

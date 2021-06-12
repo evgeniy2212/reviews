@@ -136,8 +136,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->reviews->count();
     }
 
-    public function getCongratulationsCountAttribute(){
-        return $this->congratulations->count();
+    public function getCongratulationsCountAttribute(){;
+        return $this->congratulations()
+            ->whereIsPublished(true)
+            ->count();
     }
 
     public function getCommentsCountAttribute(){
