@@ -32,7 +32,7 @@ class ReviewNotificationEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Check Feedback about your company')
+        return $this->subject('You`ve Been Reviewed on' . config('app.name'))
             ->markdown(
             'mails.' . 'review_notification',
             [

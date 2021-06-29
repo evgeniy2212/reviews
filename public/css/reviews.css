@@ -450,7 +450,7 @@ input[type="file"] {
 .complain span {
     padding: 0 5px;
 }
-.message{
+.message, .visible-message{
     display: none;
     flex-direction: row;
     width: 100%;
@@ -462,6 +462,9 @@ input[type="file"] {
     margin-bottom: 10px;
     font-family: "ImprintMTShadow";
     font-size: 14px;
+}
+.visible-message {
+    display: flex;
 }
 .message .sender-name {
     margin-right: 5px;

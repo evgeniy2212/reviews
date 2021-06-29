@@ -10,14 +10,16 @@ class ReviewMessageCreate extends Notification
 {
     use Queueable;
 
+    private $message;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -40,9 +42,10 @@ class ReviewMessageCreate extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('Message Notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->greeting('Hello, ' . $notifiable->full_name)
+            ->line( config('app.name') . ' informs you create the review at the ' . config('app.name'))
+            ->line( '"' . $this->message->message . '"')
+            ->action(config('app.name'), url('/'));
     }
 
     /**

@@ -81,107 +81,102 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/admin.js":
-/*!*******************************!*\
-  !*** ./resources/js/admin.js ***!
-  \*******************************/
+/***/ "./resources/js/home.js":
+/*!******************************!*\
+  !*** ./resources/js/home.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 (function ($) {
-  $(document).ready(function () {
-    $(".admin-filter-select").change(function () {
-      var slug = $(this).attr('name');
-      var item = $(this).children("option:selected").val();
-      var str = window.location.search;
-      str = replaceQueryParam(slug, item, str);
-      str = replaceQueryParam('page', 1, str);
-      window.location = window.location.pathname + str;
-    });
-    $(".admin-complain").click(function () {
-      var slug = $(this).attr('name');
-      var item = $(this).attr('value');
-      var str = window.location.search;
-      str = replaceQueryParam(slug, item, str);
-      str = replaceQueryParam('page', 1, str);
-      window.location = window.location.pathname + str;
-    });
-    var minDate = $("#adminDatepickerDifMinRange").length > 0 ? $("#adminDatepickerDifMinRange").val() : 0;
-    var maxDate = $("#adminDatepickerDifMaxRange").length > 0 ? $("#adminDatepickerDifMaxRange").val() : 0;
-    $(function () {
-      $(".adminReviewdatepicker").datepicker({
-        minDate: -minDate,
-        maxDate: maxDate
+  window.onload = function () {
+    var loaded = sessionStorage.getItem('loaded');
+    sessionStorage.setItem('loaded', true); // $('.home').show();
+
+    if (loaded !== 'true') {
+      $('.home-title, .home-main-content').show();
+      $('.home-point img').each(function (index) {
+        $(this).delay(700 * (index + 1)).fadeTo(500, 1);
+      });
+      setTimeout(function () {
+        $('.home-point .home-point-title').each(function (index) {
+          $(this).delay(2500 * index).fadeTo(500, 1).fadeTo(500, 0).fadeTo(500, 1).fadeTo(500, 0).fadeTo(500, 1);
+        });
+      }, 8500);
+      setTimeout(function () {
+        var delay = 0;
+        $('.home .home-point-show').each(function (index) {
+          var item = $(this);
+          setTimeout(function () {
+            // item.show();
+            item.fadeTo(1000, 1);
+            item.animate_Text();
+
+            if (item.hasClass('home-list')) {
+              item.parent().fadeTo(1000, 1);
+            } else if ($('.home').height() > $('.home-content-place').height()) {
+              animateContent('down');
+            }
+          }, delay);
+          delay = item.text().length * 10 + delay;
+        });
+        setTimeout(function () {
+          if ($('.home').height() > $('.home-content-place').height()) {
+            animateContent('up');
+          }
+        }, delay + 1000);
+        setTimeout(function () {
+          if (localStorage.getItem('hideAlert') == 'false') {
+            $("#instructionModal").modal('show');
+          }
+        }, delay + 3000);
+      }, 38500);
+    } else {
+      $('.home *').show();
+    }
+  };
+
+  $.fn.animate_Text = function () {
+    var string = $.trim(this.text());
+    return this.each(function () {
+      var $this = $(this);
+      $this.html(string.replace(/./g, '<span class="new">$&</span>'));
+      $this.find('span.new').each(function (i, el) {
+        setTimeout(function () {
+          $(el).addClass('div_opacity');
+        }, 10 * i);
       });
     });
-    $(".adminFilterButton").click(function (event) {
-      var str = window.location.search;
-      str = replaceQueryParam($(".adminFilters .select").attr('name'), $(".adminFilters .select").val(), str);
-      str = replaceQueryParam('from', $(".adminFilterDatepicker [name='from']").val(), str);
-      str = replaceQueryParam('to', $(".adminFilterDatepicker [name='to']").val(), str);
-      str = replaceQueryParam('page', 1, str);
-      window.location = window.location.pathname + str;
-    });
-    $(".admin-data-filter-select").change(function () {
-      var slug = $(this).attr('name');
-      var item = $(this).children("option:selected").val();
-      var str = window.location.search;
-      str = replaceQueryParam(slug, item, str);
-      window.location = window.location.pathname + str;
-    });
-    $('.deleteLogo').click(function () {
-      var id = $(this).data("logoId");
-      var name = $(this).data("reviewName");
-      var categoryName = $(this).data("reviewCategoryName");
-      var url = $("#deleteLogoForm").data('action');
-      url = url.replace(':id', id);
-      console.log(id, name, categoryName, url);
-      $("#deleteLogoForm").attr('action', url);
-      $("#reviewName").text(name);
-      $("#reviewCategoryName").text(categoryName);
-    });
-    $('select[id^="bannerType"]').change(function () {
-      var bannerId = $(this).data('bannerId');
-      var banner = $('#banner-' + bannerId);
+  };
 
-      if ($(this).val() == window.banner_types.text) {
-        banner.find('#bannerImagePreview').hide();
-        banner.find('#title').hide();
-        banner.find('#link').hide();
-        banner.find('#uploadBannerContainer').hide();
-        banner.find('#bannerTextPreview').show();
-      } else {
-        banner.find('#bannerTextPreview').hide();
-        banner.find('#title').show();
-        banner.find('#link').show();
-        banner.find('#uploadBannerContainer').show();
-        banner.find('#bannerImagePreview').show();
-      }
-    });
-  });
+  function animateContent(direction) {
+    var animationOffset = $('.home-content-place').height() - $('.home').height();
 
-  function replaceQueryParam(param, newval, search) {
-    var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
-    var query = search.replace(regex, "$1").replace(/&$/, '');
-    return (query.length > 2 ? query + "&" : "?") + (newval ? param + "=" + newval : '');
+    if (direction == 'up') {
+      animationOffset = 0;
+    }
+
+    $('.home').animate({
+      "marginTop": animationOffset + "px"
+    }, 2000);
   }
 })(jQuery);
 
 /***/ }),
 
-/***/ 8:
-/*!*************************************!*\
-  !*** multi ./resources/js/admin.js ***!
-  \*************************************/
+/***/ 3:
+/*!************************************!*\
+  !*** multi ./resources/js/home.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /app/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /app/resources/js/home.js */"./resources/js/home.js");
 
 
 /***/ })

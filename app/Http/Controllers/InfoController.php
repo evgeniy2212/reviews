@@ -43,10 +43,18 @@ class InfoController extends Controller
         return redirect()->route('home');
     }
 
-    public function share(ShareRequest $request){
-        Mail::to($request->email)->send(new ShareMail());
+    public function shareSend(ShareRequest $request){
+        Mail::to($request->email)
+            ->send(new ShareMail(
+                $request->email,
+                $request->name
+            ));
 
         return redirect()->route('home');
+    }
+
+    public function share(){
+        return view('includes.shareForm');
     }
 
     public function getBadWords(){

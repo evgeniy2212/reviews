@@ -703,6 +703,8 @@ button:disabled {
     content: attr(data-tooltip); /* Выводим текст */
     position: absolute; /* Абсолютное позиционирование */
     width: 300px; /* Ширина подсказки */
+    min-height: 100%;
+    white-space: pre-wrap;
     right: 0px; top: 30px; /* Положение подсказки */
     padding: 3px;
     background-color: #f1f1f1;
@@ -879,6 +881,95 @@ button:disabled {
     height: 100px;
     border: 1px groove #4a92f8;
 }
+.previewInstructionImage {
+    width: 177px;
+    height: 100px;
+    border: 1px groove #4a92f8;
+}
+#instructionModal .modal-content {
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
+    background: rgba(242, 242, 242, 0.6)
+
+}
+#instructionModal .modal-dialog{
+    max-width: 800px;
+    left: 0%;
+    top: 17%;
+}
+#instructionModal .instruction-videos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+#instructionModal .instruction-preview{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#instructionModal .instruction-control{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+#instructionModal .modal-content div {
+    margin: 10px 0;
+}
+.instruction-preview > *{
+    margin: 10px;
+}
+.instruction-title{
+    color: red;
+    font-size: 1rem;
+    text-align: center;
+}
+.home-point-title {
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 5px #2f5496;
+}
+.home-point-content {
+    font-size: 0.9rem;
+    padding:0px 0px 0px 10px;
+    display:none;
+}
+.home-point-content .new {
+    opacity: 0;
+}
+.home-point-content .div_opacity {
+    -webkit-transition: opacity .1s ease-in-out;
+    -moz-transition: opacity .1s ease-in-out;
+    -ms-transition: opacity .1s ease-in-out;
+    -o-transition: opacity .1s ease-in-out;
+    transition: opacity .1s ease-in-out;
+    opacity: 1;}
+
+.home-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.home .home-main-content,  .home .home-main-content, .home p,.home .home-point > *{
+    font-size: 0.9rem;
+    line-height: 2em;
+    display: none;
+}
+.home-main-content {
+    margin: 2px 0!important;
+}
+.home p {
+    margin-top: 10px;
+}
+.home-point {
+    margin: 10px 0;
+}
+/*.home-list::before {*/
+/*    content: "•";*/
+/*}*/
 
 /*loader*/
 #inTurnFadingTextG{

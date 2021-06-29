@@ -24,6 +24,10 @@ class Review extends Model
         'person'
     ];
 
+    const DATA_FILTERS = [
+        'date' => 'years'
+    ];
+
     const SHOW_GEO = [
     'person'
 ];

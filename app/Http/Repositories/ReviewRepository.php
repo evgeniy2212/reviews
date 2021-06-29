@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 
+use App\Models\Message;
 use App\Models\Review as Model;
 use Illuminate\Support\Facades\DB;
 
@@ -111,6 +112,25 @@ class ReviewRepository extends CoreRepository {
                     ->orWhere('to', $userId);
             })
             ->paginate($perPage);
+
+        return $result;
+    }
+
+    /**
+     * @param $reviewId
+     * @return mixed
+     */
+    public function deleteAllUserMessagesByReview($reviewId)
+    {
+        $userId = auth()->user()->id;
+
+        //todo delete only your messages without another user
+        $result = Message::whereHas('review', function ($query) use($reviewId){
+            $query->whereId($reviewId);
+        })
+        ->where('from', $userId)
+        ->orWhere('to', $userId)
+        ->delete();
 
         return $result;
     }

@@ -5,6 +5,10 @@
     var isSubmitFormAccept = true;
     var isCheckedCountryRegion = true;
 
+    // console.log('loaded: ', sessionStorage.getItem('loaded'));
+    // if(sessionStorage.getItem('loaded') === 'true') {
+    //     $('.home').show();
+    // }
     setTimeout(function(){$('.close').click()}, 3000);
     $( document ).ready(function() {
         $(".submitLoginButton").click(function(event) {
@@ -237,6 +241,13 @@
             let data = $(this).data('body');
             $('#sliderBodyModalContent span').html(data);
             $('#sliderBodyModal').modal('show');
+        });
+
+        $( "#dontShowAgainInstruction" ).click(function() {
+            localStorage.setItem('hideAlert', true);
+        });
+        $('[id^="instruction-video"]').click(function(){
+            $(this).parent().hide();
         });
     });
 

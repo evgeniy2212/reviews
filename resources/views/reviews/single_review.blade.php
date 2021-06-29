@@ -19,20 +19,20 @@
                 <label for="like-{{ $review->id }}">{{ $review->likes }}</label>
                 <input data-review-id="{{ $review->id }}"
                        data-reaction-name="likes"
+                       data-reaction-href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::localizeUrl('/register') }}"
                        id="like-{{ $review->id }}"
-                       class="like-reaction"
+                       class="like-reaction {{ \Illuminate\Support\Facades\Auth::check() ? '' : 'only-auth' }}"
                        type="image"
-                       src="{{ asset('images/positive_like.png') }}"
-                       @auth @else disabled @endauth/>
+                       src="{{ asset('images/positive_like.png') }}"/>
             </div>
-            <div class="like-container-left">
+            <div class="like-containerF-left">
                 <input data-review-id="{{ $review->id }}"
                        data-reaction-name="dislikes"
+                       data-reaction-href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::localizeUrl('/register') }}"
                        id="dislike-{{ $review->id }}"
-                       class="like-reaction"
+                       class="like-reaction {{ \Illuminate\Support\Facades\Auth::check() ? '' : 'only-auth' }}"
                        type="image"
-                       src="{{ asset('images/negative_like.png') }}"
-                       @auth @else disabled @endauth/>
+                       src="{{ asset('images/negative_like.png') }}"/>
                 <label for="dislike-{{ $review->id }}">{{ $review->dislikes }}</label>
             </div>
         </div>
@@ -154,7 +154,7 @@
                                 Add Comment
                             </button>
                             @if(auth()->user()->id !== $review->user_id)
-                                <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}" data-tooltip="You have the option to send a private message to the author of the review.">
+                                <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}" data-tooltip="Send a private message to the original reviewer.">
                                     Send mail
                                 </button>
                             @endauth
@@ -182,8 +182,16 @@
                                class="otherButton" style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
                                id="complainButton-{{ $review->id }}"
                                data-review="{{ $review->id }}"
+                               data-tooltip="Click here to report any offensive language used in the review."
                                data-target="#complainModal">Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>
                         @endauth
+                    @else
+                        <a type="button"
+                           href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::localizeUrl('/register') }}"
+                           class="otherButton"
+                           style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
+                           data-tooltip="Click here to report any offensive language used in the review."
+                           id="complainButton-{{ $review->id }}">Complain</a>
                     @endauth
                 </div>
             </div>

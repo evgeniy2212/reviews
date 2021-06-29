@@ -42,42 +42,46 @@
         // });
 
         $(".like-reaction").click(function(event) {
-            let userReactionIncreased = 1;
-            let reactionType = $(this).data('reactionName');
-            let reviewId = $(this).data('reviewId');
-            let wasReaction = sessionStorage.getItem('wasReaction' + reviewId);
-            let wasReactionType = sessionStorage.getItem('wasReviewReactionType' + reviewId);
-            let wasReactionTypeCnt = sessionStorage.getItem('wasReviewTypeCnt' + reactionType + reviewId);
-            let label = $("label[for='"+this.id+"']");
-            let reviewLikes = Number.parseInt(label.text());
+            if(($(this)).hasClass('only-auth')){
+                window.location = $(this).data('reactionHref');
+            } else {
+                let userReactionIncreased = 1;
+                let reactionType = $(this).data('reactionName');
+                let reviewId = $(this).data('reviewId');
+                let wasReaction = sessionStorage.getItem('wasReaction' + reviewId);
+                let wasReactionType = sessionStorage.getItem('wasReviewReactionType' + reviewId);
+                let wasReactionTypeCnt = sessionStorage.getItem('wasReviewTypeCnt' + reactionType + reviewId);
+                let label = $("label[for='"+this.id+"']");
+                let reviewLikes = Number.parseInt(label.text());
 
-            if(wasReaction !== 'true'){
-                reviewLikes++;
-                label.text(reviewLikes);
-                sessionStorage.setItem('wasReviewReactionType' + reviewId, reactionType);
-                sessionStorage.setItem('wasReaction' + reviewId, true);
-                sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
-            } else if(wasReaction == 'true'){
-                if(wasReactionType === reactionType){
-                    reviewLikes--;
-                    userReactionIncreased = 0;
+                if(wasReaction !== 'true'){
+                    reviewLikes++;
                     label.text(reviewLikes);
                     sessionStorage.setItem('wasReviewReactionType' + reviewId, reactionType);
-                    sessionStorage.setItem('wasReaction' + reviewId, false);
+                    sessionStorage.setItem('wasReaction' + reviewId, true);
                     sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
-                }
-            }
-
-            if((reviewLikes - wasReactionTypeCnt) !== 0){
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    type:'POST',
-                    url:'/ajax/review-reaction',
-                    data: {_token: CSRF_TOKEN, reaction: reactionType, value: reviewLikes, id: reviewId, user_reaction_increase: userReactionIncreased},
-                    success:function(data){
-                        // console.log(data);
+                } else if(wasReaction == 'true'){
+                    if(wasReactionType === reactionType){
+                        reviewLikes--;
+                        userReactionIncreased = 0;
+                        label.text(reviewLikes);
+                        sessionStorage.setItem('wasReviewReactionType' + reviewId, reactionType);
+                        sessionStorage.setItem('wasReaction' + reviewId, false);
+                        sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
                     }
-                });
+                }
+
+                if((reviewLikes - wasReactionTypeCnt) !== 0){
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type:'POST',
+                        url:'/ajax/review-reaction',
+                        data: {_token: CSRF_TOKEN, reaction: reactionType, value: reviewLikes, id: reviewId, user_reaction_increase: userReactionIncreased},
+                        success:function(data){
+                            // console.log(data);
+                        }
+                    });
+                }
             }
         });
 
@@ -156,6 +160,8 @@
             let review = $(this).parent().parent().parent();
             let review_content = $(this).parent().parent();
             let comments = review.find('.message');
+            let firstComment = review.find('.visible-message');
+            firstComment.toggle(500);
             comments.each(function( index ) {
                 if($(this).text().trim()) {
                     $(this).toggle(500);

@@ -17,6 +17,7 @@ return [
     'enter_two_factor_code' => 'Please enter your code',
     'banner_user_name' => 'Name: :name',
     'publish' => 'Publish',
+    'data' => 'Data',
     'unpublish' => 'Unpublish',
     'update' => 'Update',
     'hold' => 'Hold',

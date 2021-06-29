@@ -17,6 +17,13 @@
             $("#deleteCommentForm").attr('action', url);
         });
 
+        $('.deleteMessage').click(function(){
+            var id = $(this).attr("data-review-id");
+            var url =  $(this).attr('data-action');
+            url = url.replace(':id', id);
+            $("#deleteMessageForm").attr('action', url);
+        });
+
         $('#editReview').click(function(){
             var name = $(this).data("reviewName");
             setModalData(name);

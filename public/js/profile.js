@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -105,9 +105,16 @@
     });
     $('.deleteComment').click(function () {
       var id = $(this).data("reviewId");
+      console.log(id);
       var url = $("#deleteCommentForm").data('action');
       url = url.replace(':id', id);
       $("#deleteCommentForm").attr('action', url);
+    });
+    $('.deleteMessage').click(function () {
+      var id = $(this).attr("data-review-id");
+      var url = $(this).attr('data-action');
+      url = url.replace(':id', id);
+      $("#deleteMessageForm").attr('action', url);
     });
     $('#editReview').click(function () {
       var name = $(this).data("reviewName");
@@ -188,7 +195,7 @@
 
       if ($('#congratulationForm #videoCongratulation').prop('files')[0] && form.hasClass('valid-form')) {
         $('.create-congratulation-image').hide();
-        $('#inTurnFadingTextG').show(); // $('button[type=submit]').prop('disabled', true);
+        $('#inTurnFadingTextG').show();
       }
     });
     $('#imgCongratulation').change(function () {
@@ -378,7 +385,7 @@
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /*!***************************************!*\
   !*** multi ./resources/js/profile.js ***!
   \***************************************/

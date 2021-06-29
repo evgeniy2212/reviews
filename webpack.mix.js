@@ -32,6 +32,7 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.js('resources/js/main.js', 'public/js');
 mix.js('resources/js/ticker.js', 'public/js');
+mix.js('resources/js/home.js', 'public/js');
 mix.js('resources/js/rater.js', 'public/js');
 mix.js('resources/js/reviews.js', 'public/js');
 mix.js('resources/js/profile.js', 'public/js');

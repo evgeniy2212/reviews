@@ -16,6 +16,7 @@ return [
     'email_enter' => 'Please enter your E-Mail',
     'password_enter' => 'Please enter your Password',
     'continue' => 'Continue',
+    'send' => 'Send',
     'close' => 'Close',
     'forgot_password_question' => 'Forgot your password?',
     'enter_email' => 'Please enter the email address you used up.',
@@ -61,5 +62,6 @@ return [
     'congratulation.default_rating' => '- default status',
     'congratulation.need_rating' => '- :count reviews',
     'datepicker_placeholder' => 'DD/MM/YEAR',
-    'video_rules' => 'The video must be in mp4 format and the video size must be no more than 100 mb.'
+    'video_rules' => 'The video must be in mp4 format and the video size must be no more than 100 mb.',
+    'enter_share_info' => 'To share this website, please enter an email address below.'
 ];

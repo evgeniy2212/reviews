@@ -16,3 +16,6 @@
         @endif
     </div>
 @endsection
+@section('modal_forms')
+    @include('includes.modal.confirmDeleteMessage')
+@endsection

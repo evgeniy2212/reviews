@@ -67,10 +67,25 @@
                    id="profileMessageButton-{{ $review->id }}">
                     Reply
                 </a>
+                <a data-toggle="modal"
+                   type="button"
+                   class="deleteMessage"
+                   data-review-id="{{ $review->id }}"
+                   data-action="{{ route("delete-profile-message", ":id") }}"
+                   data-type="review"
+                   data-target="#deleteMessageModal">
+                    Delete
+                </a>
             </div>
         </div>
         <div class="w-100 profile-review-item">
-            @foreach($review->messages as $message)
+            @foreach($review->messages as $key => $message)
+                @if($key === $review->messages->keys()->last())
+                    <div class="visible-message" data-is-read-messages="">
+                        <span class="sender-name">{!! $message->from()->first()->full_name !!}: </span>
+                        <span>{!! $message->message !!}</span>
+                    </div>
+                @endif
                 <div class="message" data-is-read-messages="" style="display: none">
                     <span class="sender-name">{!! $message->from()->first()->full_name !!}: </span>
                     <span>{!! $message->message !!}</span>

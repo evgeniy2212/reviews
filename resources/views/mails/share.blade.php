@@ -1,9 +1,12 @@
 @component('mail::message')
 
+Hi, my name is {{ $name }}.
+
+Check out this exciting new review site!
+
 @component('mail::button', ['url' => route('home')])
-GO
+    GO to the {{ config('app.name') }}
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+With best regards, {{ config('app.name') }}
 @endcomponent

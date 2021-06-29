@@ -48,6 +48,13 @@
             window.location = window.location.pathname + str
         });
 
+        $( ".admin-data-filter-select" ).change(function() {
+            let slug = $(this).attr('name');
+            let item = $(this).children("option:selected").val();
+            var str = window.location.search;
+            str = replaceQueryParam(slug, item, str);
+            window.location = window.location.pathname + str
+        });
 
         $('.deleteLogo').click(function(){
             let id = $(this).data("logoId");

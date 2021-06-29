@@ -98,7 +98,11 @@
   var isCheckedYearsOld = true;
   var isExistBadWords = false;
   var isSubmitFormAccept = true;
-  var isCheckedCountryRegion = true;
+  var isCheckedCountryRegion = true; // console.log('loaded: ', sessionStorage.getItem('loaded'));
+  // if(sessionStorage.getItem('loaded') === 'true') {
+  //     $('.home').show();
+  // }
+
   setTimeout(function () {
     $('.close').click();
   }, 3000);
@@ -315,7 +319,13 @@
     $("#slider_body").click(function (event) {
       var data = $(this).data('body');
       $('#sliderBodyModalContent span').html(data);
-      $('#sliderBodyModal').modal('show'); // modalImg.src = $(this).attr('data-full-size-src');
+      $('#sliderBodyModal').modal('show');
+    });
+    $("#dontShowAgainInstruction").click(function () {
+      localStorage.setItem('hideAlert', true);
+    });
+    $('[id^="instruction-video"]').click(function () {
+      $(this).parent().hide();
     });
   });
 

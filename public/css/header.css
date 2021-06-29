@@ -50,6 +50,12 @@ header {
     /*font-size: 15px;*/
     font-size: 1rem;
 }
+.first-menu-showing{
+    font-size: 1.1rem;
+}
+.nav-first-menu-showing{
+    background: linear-gradient(to top, #ececec 20%, #D4D5D5 50%, #ececec 80%)!important;
+}
 #nav-search-container {
     padding: 20px 0;
     float: right;
@@ -398,7 +404,7 @@ body.mobile-nav-active #mobile-nav {
     justify-content: flex-end;
     flex-direction: column;
     align-items: center;
-    background-color: #a7ccff82;
+    background-color: #f2f2f2;
     /*font-family: "utsaah";*/
     font-style: normal;
     font-weight: normal;
@@ -424,7 +430,7 @@ body.mobile-nav-active #mobile-nav {
     line-height: 24px;
     max-height: 150px;
     height: 150px;
-    background-color: #a7ccff82;
+    background-color: #f2f2f2;
     background-size: auto 150px;
     padding: 5px;
 }

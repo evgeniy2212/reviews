@@ -49,6 +49,7 @@ Route::group(
             ])->names('profile-comments');
             Route::get('search-comment', 'Profile\CommentController@search')->name('searchUserComments');
             Route::get('messages', 'Profile\MessageController@index')->name('profile-messages');
+            Route::delete('messages/{id}', 'Profile\MessageController@destroy')->name('delete-profile-message');
             Route::get('banners', 'Profile\BannerController@index')->name('banners');
             Route::get('changePassword', 'Auth\ChangePasswordController@showChangePasswordForm')->name('get-change-password');
             Route::post('changePassword', 'Auth\ChangePasswordController@changePassword')->name('change-password');
@@ -73,6 +74,7 @@ Route::group(
             Route::resource('/reviews', 'ReviewController')->only('index', 'update');
             Route::resource('/users_reviews', 'UserReviewController')->only('show', 'update');
             Route::resource('/complains', 'ComplainController')->only('index', 'update');
+            Route::resource('/data', 'DataController')->only('index');
             Route::patch('/complain-review/{review}', 'ComplainController@updateComplainReview')->name('update_complain_review');
             Route::get('search-user', 'UserController@search')->name('searchUsers');
             Route::get('search-review', 'ReviewController@search')->name('searchReviews');
@@ -112,7 +114,8 @@ Route::group(
         Route::get('get-in-touch', 'InfoController@getInTouch')->name('get-in-touch');
         Route::get('save-shortcut', 'InfoController@saveShortcutInstruction')->name('save-shortcut');
         Route::post('send-touch-info', 'InfoController@sendTouchInfo')->name('send-touch-info');
-        Route::post('share', 'InfoController@share')->name('share');
+        Route::get('share', 'InfoController@share')->name('share');
+        Route::post('share-form', 'InfoController@shareSend')->name('share-send');
         Route::post('/complain-review', 'ComplainController@addComplain')->name('complain_review');
 
         Route::get('verify/resend', 'Auth\TwoFactorController@resend')->name('verify.resend');

@@ -52,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'congratulation_id',
         'two_factor_code',
         'two_factor_expires_at',
+        'email_verified_at',
         'is_blocked',
     ];
 

@@ -2,7 +2,7 @@
     font-family: ImprintMTShadow;
     src: url('../fonts/ImprintMTShadow.ttf');
 }
-#deleteReviewForm, #editReviewForm, #deleteCommentForm {
+#deleteReviewForm, #editReviewForm, #deleteCommentForm, #deleteMessageForm {
     border: 3px solid #2f5496;
     padding: 30px 0;
     display: flex;

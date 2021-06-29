@@ -37,7 +37,7 @@ class ReviewObserver
      */
     public function updated(Review $review)
     {
-        $review->user->notify(new ReviewCommentUpdate());
+//        $review->user->notify(new ReviewCommentUpdate());
     }
 
     /**

@@ -135,7 +135,7 @@
                                                     Add Comment
                                                 </button>
                                                 @if(auth()->user()->id !== $review->user_id)
-                                                    <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}" data-tooltip="You have the option to send a private message to the author of the review.">
+                                                    <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}" data-tooltip="Send a private message to the original reviewer.">
                                                         Send mail
                                                     </button>
                                                 @endauth
@@ -167,6 +167,7 @@
                                                    class="otherButton" style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
                                                    id="complainButton-{{ $review->id }}"
                                                    data-review="{{ $review->id }}"
+                                                   data-tooltip="Send a private message to the original reviewer."
                                                    data-target="#complainModal"
                                                    disabled>Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>
                                             @endauth

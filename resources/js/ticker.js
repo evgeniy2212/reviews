@@ -4,6 +4,8 @@
         // console.log('Loaded: ', sessionStorage.getItem('loaded'));
         sessionStorage.setItem('loaded', true);
         if(loaded !== 'true') {
+            $('.nav-gradient').addClass('nav-first-menu-showing');
+            $('.navigate li a').addClass('first-menu-showing');
             for(let i = 0; i <= 2; i++){
                 setTimeout(function(){
                     $('.navigate li a').each(function(i)
@@ -13,6 +15,10 @@
                     });
                 }, 4750 * i);
             }
+            setTimeout(function(){
+                $('.nav-gradient').removeClass('nav-first-menu-showing');
+                $('.navigate li a').removeClass('first-menu-showing');
+            }, 900000);
         }
     };
 })(jQuery);

@@ -10,14 +10,19 @@ class ShareMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $name;
+
+    private $email;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $email, string $name)
     {
-        //
+        $this->name = $name;
+        $this->email = $email;
     }
 
     /**
@@ -27,6 +32,11 @@ class ShareMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.share');
+        return $this->markdown('mails.share',
+            [
+                'name' => $this->name,
+                'email' => $this->email
+            ]
+        );
     }
 }

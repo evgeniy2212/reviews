@@ -41,7 +41,8 @@ class ReviewCreate extends Notification
     {
         return (new MailMessage)
                     ->greeting('Hello, ' . $notifiable->full_name)
-                    ->line( config('app.name') . 'informs you create the review at the' . config('app.name'))
+                    ->line( config('app.name') . ' informs you create the review at the ' . config('app.name'))
+                    ->line( config('app.name') . ' informs you create the review at the ' . config('app.name'))
                     ->action(config('app.name'), url('/'));
     }
 

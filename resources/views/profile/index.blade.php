@@ -74,6 +74,11 @@
                                     <span>@lang('service/admin.complains')</span>
                                 </a>
                             </li>
+                            <li class="{{ Request::url() == route('admin.data.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.data.index') }}">
+                                    <span>@lang('service/admin.data')</span>
+                                </a>
+                            </li>
                             <li class="{{ Request::url() == route('admin.contacts.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.contacts.index') }}">
                                     <span>@lang('service/admin.contacts')</span>

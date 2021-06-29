@@ -40,6 +40,7 @@
 </div>
 @include('includes.share')
 @include('includes.modal.sliderBodyModal')
+@include('includes.modal.instructions')
 </body>
 @include('includes.scripts')
 @include('includes.alerts')
