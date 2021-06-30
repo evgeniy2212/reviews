@@ -29,4 +29,11 @@ class MessageController extends Controller
 
         return view('profile.messages', compact('reviews'));
     }
+
+    public function destroy($reviewId)
+    {
+        $this->reviewRepository->deleteAllUserMessagesByReview($reviewId);
+
+        return back();
+    }
 }

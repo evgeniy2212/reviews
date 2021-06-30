@@ -35,25 +35,34 @@
                     <th colspan="2">Vacations</th>
                     <th colspan="2">Congratulations</th>
                 </tr>
+                <tr>
+                    <td>Month</td>
+                    <td>quantity</td><td>%</td>
+                    <td>quantity</td><td>%</td>
+                    <td>quantity</td><td>%</td>
+                    <td>quantity</td><td>%</td>
+                    <td>quantity</td><td>%</td>
+                    <td>quantity</td><td>%</td>
+                </tr>
                 @for($i=1;$i<=12;$i++)
                     <tr>
                         <td>{{ \Carbon\Carbon::create()->month($i)->format('M') }}</td>
-                        <td>{{ $data['users'][$i]['count'] }}</td><td></td>
-                        <td>{{ $data['persons'][$i]['count'] }}</td><td></td>
-                        <td>{{ $data['companies'][$i]['count'] }}</td><td></td>
-                        <td>{{ $data['goods'][$i]['count'] }}</td><td></td>
-                        <td>{{ $data['vacations'][$i]['count'] }}</td><td></td>
-                        <td>{{ $data['congratulations'][$i]['count'] }}</td><td></td>
+                        <td>+{{ $data['users'][$i]['count'] }}</td><td>+{{ $data['users'][$i]['percent'] }}</td>
+                        <td>+{{ $data['persons'][$i]['count'] }}</td><td>+{{ $data['persons'][$i]['percent'] }}</td>
+                        <td>+{{ $data['companies'][$i]['count'] }}</td><td>+{{ $data['companies'][$i]['percent'] }}</td>
+                        <td>+{{ $data['goods'][$i]['count'] }}</td><td>+{{ $data['goods'][$i]['percent'] }}</td>
+                        <td>+{{ $data['vacations'][$i]['count'] }}</td><td>+{{ $data['vacations'][$i]['percent'] }}</td>
+                        <td>+{{ $data['congratulations'][$i]['count'] }}</td><td>+{{ $data['congratulations'][$i]['percent'] }}</td>
                     </tr>
                 @endfor
                 <tr>
                     <td>Total</td>
-                    <td>{{ $data['vacations']['total']['total_count'] }}</td><td></td>
-                    <td>{{ $data['vacations']['total']['total_count'] }}</td><td></td>
-                    <td>{{ $data['vacations']['total']['total_count'] }}</td><td></td>
-                    <td>{{ $data['vacations']['total']['total_count'] }}</td><td></td>
-                    <td>{{ $data['vacations']['total']['total_count'] }}</td><td></td>
-                    <td>{{ $data['vacations']['total']['total_count'] }}</td><td></td>
+                    <td>{{ $data['users']['total']['total_count'] }}</td><td>+{{ $data['users']['total']['total_percent'] }}</td>
+                    <td>{{ $data['persons']['total']['total_count'] }}</td><td>+{{ $data['persons']['total']['total_percent'] }}</td>
+                    <td>{{ $data['companies']['total']['total_count'] }}</td><td>+{{ $data['companies']['total']['total_percent'] }}</td>
+                    <td>{{ $data['goods']['total']['total_count'] }}</td><td>+{{ $data['goods']['total']['total_percent'] }}</td>
+                    <td>{{ $data['vacations']['total']['total_count'] }}</td><td>+{{ $data['vacations']['total']['total_percent'] }}</td>
+                    <td>{{ $data['congratulations']['total']['total_count'] }}</td><td>+{{ $data['congratulations']['total']['total_percent'] }}</td>
                 </tr>
             </table>
         </div>

@@ -341,6 +341,23 @@ class ReviewService {
      *
      * @return Review
      */
+    public static function getReviewRangeByYearMonth($year, $month, $category){
+        $category = ReviewCategory::whereSlug($category)->first();
+        $reviews = Review::whereYear('created_at', '<=', $year)
+            ->whereMonth('created_at', '<=', $month)
+            ->whereReviewCategoryId($category->id)
+            ->get();
+
+        return $reviews;
+    }
+
+    /**
+     * @param $year
+     * @param $month
+     * @param $category
+     *
+     * @return Review
+     */
     public static function getReviewByYearMonth($year, $month, $category){
         $category = ReviewCategory::whereSlug($category)->first();
         $reviews = Review::whereYear('created_at', '=', $year)
@@ -357,10 +374,25 @@ class ReviewService {
      *
      * @return Review
      */
+    public static function getReviewRangeByYear($year, $category){
+        $category = ReviewCategory::whereSlug($category)->first();
+        $reviews = Review::whereYear('created_at', '<=', $year)
+            ->whereReviewCategoryId($category->id)
+            ->get();
+
+        return $reviews;
+    }
+
+    /**
+     * @param $year
+     * @param $category
+     *
+     * @return Review
+     */
     public static function getReviewByYear($year, $category){
         $category = ReviewCategory::whereSlug($category)->first();
         $reviews = Review::whereYear('created_at', '=', $year)
-            ->whereReviewCategoryId($category)
+            ->whereReviewCategoryId($category->id)
             ->get();
 
         return $reviews;

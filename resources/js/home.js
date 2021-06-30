@@ -4,6 +4,22 @@
         sessionStorage.setItem('loaded', true);
         // $('.home').show();
         if(loaded !== 'true') {
+            $('.nav-gradient').addClass('nav-first-menu-showing');
+            $('.navigate li a').addClass('first-menu-showing');
+            for(let i = 0; i <= 2; i++){
+                setTimeout(function(){
+                    $('.navigate li a').each(function(i)
+                    {
+                        $(this).delay(700 * i).fadeTo( 500, 1 );
+                        $(this).delay(350 * i).not(".menu-active a").fadeTo( 300, 0 );
+                    });
+                }, 4750 * i);
+            }
+            setTimeout(function(){
+                $('.nav-gradient').removeClass('nav-first-menu-showing');
+                $('.navigate li a').removeClass('first-menu-showing');
+            }, 900000);
+
             $('.home-title, .home-main-content').show();
             $('.home-point img').each(function(index){
                 $(this).delay(700 * (index + 1)).fadeTo( 500, 1 );
