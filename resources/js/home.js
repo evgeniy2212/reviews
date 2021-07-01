@@ -41,7 +41,7 @@
                         .fadeTo( 500, 1 )
                         .fadeTo( 500, 0 )
                         .fadeTo( 500, 1 );
-                }, 79000 * index);
+                }, 80000 * index);
             });
 
             setTimeout(function(){
