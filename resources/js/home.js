@@ -51,12 +51,25 @@
             }, 5000);
             setTimeout(function(){
                 $('.home .home-point-title').each(function(index){
-                    $(this).delay(2500 * index)
-                        .fadeTo( 500, 1 )
-                        .fadeTo( 500, 0 )
-                        .fadeTo( 500, 1 )
-                        .fadeTo( 500, 0 )
-                        .fadeTo( 500, 1 );
+                    if(index > 0){
+                        $(this).delay(2500 * index)
+                            .fadeTo( 500, 1 )
+                            .fadeTo( 500, 0 )
+                            .fadeTo( 500, 1 )
+                            .fadeTo( 500, 0 )
+                            .fadeTo( 500, 1 );
+                    } else {
+                        $(this).delay(2500 * index)
+                            .fadeTo( 500, 1 )
+                            .fadeTo( 500, 0 )
+                            .fadeTo( 500, 1 )
+                            .fadeTo( 500, 0 )
+                            .fadeTo( 500, 1 )
+                            .fadeTo( 500, 0 )
+                            .fadeTo( 500, 1 )
+                            .fadeTo( 500, 0 )
+                            .fadeTo( 500, 1 );
+                    }
                 });
             }, 14500);
 
@@ -72,9 +85,9 @@
                         item.fadeTo( 1000, 1 );
                         item.animate_Text();
                         if(item.hasClass('home-list')) {
-                            setTimeout(function(){
-                                item.parent().fadeTo( 1000, 1 );
-                            }, 3000);
+                            // setTimeout(function(){
+                            //     item.parent().fadeTo( 1000, 1 );
+                            // }, 3000);
                         }else if ($('.home').height() > $('.home-content-place').height()) {
                             animateContent('down');
                         }
@@ -85,12 +98,12 @@
                     if ($('.home').height() > $('.home-content-place').height()) {
                         animateContent('up');
                     }
-                }, delay + 3000);
+                }, delay + 2000);
                 setTimeout(function() {
                     // if(localStorage.getItem('hideAlert') == 'false'){
                         $("#instructionModal").modal('show');
                     // }
-                }, delay + 3000);
+                }, delay + 5000);
             }, 44500);
         // } else {
         //     $('.home *').show();
