@@ -967,17 +967,18 @@ button:disabled {
     font-weight: 600;
     text-shadow: 1px 1px 5px #2f5496;
     margin-bottom: 10px;
+    display: none;
 }
 .home .home-main-content,  .home .home-main-content, .home p,.home .home-point > *{
     font-size: 0.9rem;
-    line-height: 2em;
+    line-height: 1.5em;
     display: none;
 }
 .home-main-content {
     margin: 2px 0!important;
 }
 .home p {
-    margin-top: 10px;
+    margin: 5px 0;
 }
 .home-point {
     margin: 10px 0;

@@ -1,8 +1,8 @@
 <?php
 return [
-    'site_name' => 'Reviews4result.com',
+    'site_name' => 'Reviews4results.com',
     'delete' => 'Delete',
-    'header_site_name' => 'Reviews4result',
+    'header_site_name' => 'Reviews4results',
     'review_naming' => 'Reviews :name',
     'person' => 'Review Person',
     'company' => 'Review Company',

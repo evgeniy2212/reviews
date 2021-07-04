@@ -3,10 +3,7 @@
 @section('content')
     <audio
         id="audio"
-        autoplay
-        src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3">
-        Your browser does not support the
-        <code>audio</code> element.
+        src="{{ asset('storage/sounds/keys.mp3') }}">
     </audio>
     <div class="container-fluid">
         <div class="container">
@@ -15,13 +12,13 @@
                     <span class="home-title">
                         Welcome to the @lang('service/index.site_name')!
                     </span>
-                    <p class="home-main-content">
+                    <p class="home-main-content home-point-content">
                         We’re excited to welcome you to our site! If this is your first visit, we hope you’ll find it useful, interesting, and worth coming back for time and time again.
                     </p>
-                    <p class="home-main-content">
+                    <p class="home-main-content home-point-content">
                         The goal of this site is to be a convenient and indispensable resource for your everyday life.
                     </p>
-                    <p class="home-main-content">
+                    <p class="home-main-content home-point-content">
                         Although there are other review sites on the web, Reviews4Results offers what no one else can. Our
                         innovative approach sets us apart as a one-stop site that delivers reviews on everything in your life, from
                         people and places to goods and governments. Here’s what sets us apart:
@@ -165,7 +162,7 @@
                             </span>
                         </div>
                     </div>
-                    <p class="home-point-show">
+                    <p class="home-point-content home-point-show">
                         We hope you find Reviews4Results to be the all-in-one review site you’ve been looking for! Thank you for sharing your time and opinions to help make the world a better place. Now get out there and start reviewing!
                     </p>
                     <p class="home-title">
