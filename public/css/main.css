@@ -900,9 +900,13 @@ button:disabled {
     outline: 1px solid #2f5496;
     outline-offset: -4px;
     background: rgba(242, 242, 242, 0.6)
-
 }
-#instructionModal .modal-dialog{
+#sliderBodyModal .modal-content {
+    border: 3px double #2f5496;
+    outline: 1px solid #2f5496;
+    outline-offset: -4px;
+}
+#instructionModal .modal-dialog, #sliderBodyModal .modal-dialog{
     max-width: 800px;
     left: 0%;
     top: 17%;
@@ -925,7 +929,7 @@ button:disabled {
     align-items: center;
     flex-direction: row;
 }
-#instructionModal .modal-content div {
+#instructionModal .modal-content div, #sliderBodyModal .modal-content div{
     margin: 10px 0;
 }
 .instruction-preview > *{
