@@ -24,7 +24,7 @@
                         people and places to goods and governments. Here’s what sets us apart:
                     </p>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Review Everything.
                         </span>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="home-point" id="test1">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Review People.
                         </span>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Review Companies.
                         </span>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Review Products.
                         </span>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Review Vacations.
                         </span>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Privacy.
                         </span>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Optional Communication.
                         </span>
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Congratulations.
                         </span>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Reminders.
                         </span>
@@ -121,16 +121,16 @@
                                 With a little help from Reviews4Results, you’ll never again forget to send congratulations on time! The process couldn’t be simpler — all you have to do is enter the name of the person being congratulated, as well as the date and type of congratulation. You’ll only need to do this once, and we’ll send you an automatic reminder via email at any of these intervals that you choose:
                             </span>
                             <ul>
-                                <li class="home-point-show home-list">1 week before</li>
-                                <li class="home-point-show home-list">3 days before</li>
-                                <li class="home-point-show home-list">1 day before</li>
-                                <li class="home-point-show home-list">the day of</li>
+                                <li class="home-point-content home-point-show home-list">1 week before</li>
+                                <li class="home-point-content home-point-show home-list">3 days before</li>
+                                <li class="home-point-content home-point-show home-list">1 day before</li>
+                                <li class="home-point-content home-point-show home-list">the day of</li>
                             </ul>
                             <span class="home-point-content home-point-show">or all of the above</span>
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Photo & Video.
                         </span>
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Complaint Process.
                         </span>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="home-point">
-                        <img src="{{ asset('storage/images/home_new_image.jpg') }}" height="30px" width="60px"/>
+                        <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                         <span class="home-point-title">
                             Editing & Deleting Reviews.
                         </span>

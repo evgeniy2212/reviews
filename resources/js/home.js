@@ -11,11 +11,11 @@
             $('.navigate li a').addClass('first-menu-showing');
             for(let i = 0; i <= 2; i++){
                 setTimeout(function(){
-                    if(i >= 1){
-                        setTimeout(function(){
-                            $('.nav-gradient').removeClass('nav-first-menu-showing');
-                        }, 1000);
-                    }
+                    // if(i >= 1){
+                    //     setTimeout(function(){
+                    //         $('.nav-gradient').removeClass('nav-first-menu-showing');
+                    //     }, 1000);
+                    // }
                     $('.navigate li a').each(function(i)
                     {
                         $(this).delay(700 * i).fadeTo( 500, 1 );
@@ -23,6 +23,9 @@
                     });
                 }, 4750 * i);
             }
+            setTimeout(function(){
+                $('.nav-gradient').removeClass('nav-first-menu-showing');
+            }, 15000);
             setTimeout(function(){
                 $('.navigate li a').removeClass('first-menu-showing');
             }, 900000);
@@ -72,6 +75,9 @@
             }, 22600);
             setTimeout(function(){
                 $('.home .home-point-title').each(function(index){
+                    if ($('.home').height() > $('.home-content-place').height()) {
+                        animateContent('down');
+                    }
                     if(index > 0){
                         $(this).delay(2500 * index)
                             .fadeTo( 500, 1 )
@@ -95,6 +101,9 @@
             }, 32000);
 
             setTimeout(function(){
+                if ($('.home').height() > $('.home-content-place').height()) {
+                    animateContent('up');
+                }
                 let delay = 0;
                 $('.home-point-show').each(function(index) {
                     let item = $(this);
@@ -102,11 +111,14 @@
                     setTimeout(function() {
                         $("#audio")[0].play();
                         item.parent().fadeTo( 1000, 1 );
-                        item.fadeTo( 1000, 1 );
+                        item.fadeTo( 500, 1 );
                         item.animate_Text();
                         if ($('.home').height() > $('.home-content-place').height()) {
+                            console.log('index: ', index);
                             if(index >= 10){
-                                animateContent('down', 5*(index-9))
+                                animateContent('down', 7*(index-9), 600)
+                            } else if(index <=1){
+
                             } else {
                                 animateContent('down');
                             }
@@ -141,15 +153,11 @@
         });
     };
 
-    function animateContent(direction, inputAddingHeight = 0) {
+    function animateContent(direction, inputAddingHeight = 0, animateSpeed = 1000) {
         var animationOffset = $('.home-content-place').height() - $('.home').height();
-        // var addingHeight = addingHeight - inputAddingHeight;
-        console.log('animationOffset: ', animationOffset);
-        // console.log('addingHeight: ', addingHeight);
-        console.log('animationOffset-inputAddingHeight: ', animationOffset - inputAddingHeight);
         if (direction == 'up') {
             animationOffset = 0;
         }
-        $('.home').animate({ "marginTop": (animationOffset-inputAddingHeight)+ "px" }, 1000);
+        $('.home').animate({ "marginTop": (animationOffset-inputAddingHeight)+ "px" }, animateSpeed);
     }
 })(jQuery);

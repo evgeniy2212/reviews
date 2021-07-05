@@ -145,13 +145,16 @@
                         @foreach(\App\Services\BannerService::getHeadBanners() as $banner)
                             @if(empty(optional($banner)->body))
                                 <div class="slider__item">
-                                    <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '125' }}px;">
+
                                         @if(empty($banner->link))
-                                            <span>{{ empty($banner->title) ? '' : $banner->title }}</span>
+                                            <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '130' }}px;">
+                                                <span style="font-size: 0.9rem">{{ empty($banner->title) ? '' : $banner->title }}</span>
+                                            </div>
                                         @else
-                                            <a href="{{ $banner->link }}" target="_blank">{{ empty($banner->title) ? $banner->link : $banner->title }}</a>
+                                            <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '130' }}px;">
+                                                <a style="font-size: 0.9rem" href="{{ $banner->link }}" target="_blank">{{ empty($banner->title) ? $banner->link : $banner->title }}</a>
+                                            </div>
                                         @endif
-                                    </div>
                                 </div>
                             @else
                                 <div class="slider__item"
