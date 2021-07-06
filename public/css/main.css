@@ -896,9 +896,9 @@ button:disabled {
     font-size: 0.8rem;
 }
 #instructionModal .modal-content {
-    border: 3px double #2f5496;
-    outline: 1px solid #2f5496;
-    outline-offset: -4px;
+    border: 5px double #2f5496;
+    outline: 4px solid #2f5496;
+    outline-offset: -7px;
     background: rgba(242, 242, 242, 0.6)
 }
 #sliderBodyModal .modal-content {
