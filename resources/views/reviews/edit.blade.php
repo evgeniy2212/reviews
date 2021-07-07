@@ -10,6 +10,7 @@
 
 @section('modal_forms')
     @include('includes.modal.twentyoneYearAccept')
+    @include('includes.modal.emptyReviewNotification')
     @include('includes.modal.errorBadWords')
 @endsection
 

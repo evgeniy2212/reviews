@@ -163,6 +163,14 @@
           $('#selectCountry').removeClass("invalid-selector");
         }
 
+        if ($('#review-create-text').val().length <= 1 && $('input:checkbox:checked').length <= 0) {
+          $('#review-create-text').addClass('invalid-textarea');
+          $('#emptyReviewNotificationModal').modal('show');
+          event.preventDefault();
+        } else {
+          $('#review-create-text').removeClass('invalid-textarea');
+        }
+
         validation(form, event);
       }
 

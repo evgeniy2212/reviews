@@ -424,6 +424,9 @@ button:disabled {
 .was-validated .form-control:invalid {
     border-color: #dc3545!important;
 }
+.invalid-textarea {
+    border-color: #dc3545!important;
+}
 .modal-dialog {
     position: absolute;
     top: 40%;
