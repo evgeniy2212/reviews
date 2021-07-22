@@ -296,7 +296,6 @@
         }
 
         $('[id^="slider_body"]').click(function(event) {
-            alert();
             let data = $(this).data('body');
             $('#sliderBodyModalContent span').html(data);
             $('#sliderBodyModal').modal('show');
