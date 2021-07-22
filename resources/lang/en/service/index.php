@@ -2,7 +2,7 @@
 return [
     'site_name' => 'Reviews4results.com',
     'delete' => 'Delete',
-    'header_site_name' => 'Reviews4results',
+    'header_site_name' => 'Reviews4Results',
     'review_naming' => 'Review :name',
     'person' => 'Review Person',
     'company' => 'Review Company',
