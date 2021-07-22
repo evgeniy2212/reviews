@@ -30,7 +30,7 @@ To read the review, click the link below:
 
 Thanks for your time!
 
-Respectfully
+Respectfully,
 
 The {{ config('app.name') }} Team
 @endcomponent

@@ -27,6 +27,7 @@
 <section class="section">
     @yield('content')
     @include('includes.modal.successReviewCreating')
+    @include('includes.modal.reviewOnModeration')
     @include('includes.modal.errorMessage')
     @include('includes.modal.successMessage')
     @include('includes.modal.addPostRedirect')

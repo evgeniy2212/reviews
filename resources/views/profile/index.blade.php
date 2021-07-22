@@ -40,6 +40,11 @@
                         </li>
                         <li class="{{ Request::url() == route('profile-congratulations.index') ? 'active' : '' }}">
                             <a href="{{ route('profile-congratulations.index') }}">
+                                <span>@lang('service/index.sent_congratulation')</span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::url() == route('profile-congratulations.index') ? 'active' : '' }}">
+                            <a href="{{ route('profile-congratulations.index') }}">
                                 <span>@lang('service/index.your_congratulation')</span>
                             </a>
                         </li>
@@ -72,6 +77,11 @@
                             <li class="{{ Request::url() == route('admin.complains.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.complains.index') }}">
                                     <span>@lang('service/admin.complains')</span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::url() == route('admin.moderations.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.moderations.index') }}">
+                                    <span>@lang('service/admin.moderations')</span>
                                 </a>
                             </li>
                             <li class="{{ Request::url() == route('admin.data.index') ? 'active' : '' }}">

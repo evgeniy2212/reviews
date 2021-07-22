@@ -14,6 +14,8 @@ class User extends Authenticatable implements MustVerifyEmail
     const NICKNAME_SIGN = 2;
     const DEFAULT_SIGN = 3;
 
+    const MAX_BLOCKED_ATTEMPTS = 2;
+
     const DEFAULT_NAME = 'User';
 
     const FILTERS = [
@@ -54,6 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_expires_at',
         'email_verified_at',
         'is_blocked',
+        'is_blocked_cnt',
     ];
 
     /**
@@ -122,6 +125,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function complains()
     {
         return $this->belongsToMany(Review::class, 'complains')
+            ->withPivot('msg', 'is_new');
+    }
+
+    public function moderationReviews()
+    {
+        return $this->belongsToMany(Review::class, 'review_moderations')
             ->withPivot('msg', 'is_new');
     }
 
@@ -204,5 +213,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeActiveUsers($query){
         return $query->where('is_admin', false)->whereNotNull('email_verified_at');
+    }
+
+    public function saveWithoutEvents(array $options=[])
+    {
+        return static::withoutEvents(function() use ($options) {
+            return $this->save($options);
+        });
     }
 }

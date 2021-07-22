@@ -40,7 +40,7 @@ class PersonalInfoController extends Controller
         $result = $profile->update($personal_info);
 
         if($result){
-            return redirect()->route('profile-info')->withSuccess(['Your Profile Info was changed.']);
+            return redirect()->route('profile-info')->withSuccess(['Your profile info was changed.']);
         } else {
             return back()->withErrors(['msg' => 'Updating ERROR!'])->withInput();
         }

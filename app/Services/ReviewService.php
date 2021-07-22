@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\SaveReviewRequest;
 use App\Models\CategoryByReview;
 use App\Models\Country;
+use App\Models\GroupByReview;
 use App\Models\Review;
 use App\Models\ReviewCategory;
 use App\Models\ReviewFilter;
@@ -187,6 +188,10 @@ class ReviewService {
                         $query->whereIsPublished(false)
                             ->whereHas('complains');
                     });
+//                    ->orWhere(function($query){
+//                        $query->whereIsPublished(false)
+//                            ->whereHas('moderationReviews');
+//                    });
             })
             ->paginate($perPage);
 
@@ -313,13 +318,25 @@ class ReviewService {
 
     /**
      * @param SaveReviewRequest|Request $request
+     * @param bool $createReviewGroup
      *
      * @return Review
      */
-    public static function createReview($request){
+    public static function createReview($request, bool $createReviewGroup = false){
+        if($createReviewGroup){
+            $reviewGroup = GroupByReview::create([
+                'category_id' => $request->category_by_review_id,
+                'name' => $request->new_review_group,
+                'is_published' => false,
+            ]);
+            $request->merge(['review_group_id' => $reviewGroup->id]);
+        }
         $request->merge(['user_id' => auth()->user()->id]);
         $review = Review::create($request->all());
         $review->characteristics()->attach($request->characteristics);
+        if($createReviewGroup){
+            auth()->user()->moderationReviews()->attach($review->id);
+        }
         if($request->has('img')){
             $imageInfo = ImageService::uploadImage($request);
             $imageInfo = array_merge($imageInfo, ['review_id' => $review->id]);

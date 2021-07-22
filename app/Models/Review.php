@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -54,6 +53,8 @@ class Review extends Model
         'dislikes',
         'user_sign',
         'is_published',
+        'is_communication_enable',
+        'is_blocked',
         'created_at'
     ];
 
@@ -76,6 +77,10 @@ class Review extends Model
     public function category_group(){
         return $this->belongsTo(GroupByReview::class, 'review_group_id', 'id');
     }
+
+//    public function published_category_group(){
+//        return $this->category_group()->whereIsPublished(true);
+//    }
 
     public function category_by_review(){
         return $this->belongsTo(CategoryByReview::class, 'category_by_review_id', 'id');
@@ -101,6 +106,17 @@ class Review extends Model
     {
         return $this->belongsToMany(User::class, 'complains')
             ->withPivot('msg', 'is_new');
+    }
+
+    public function moderationReviews()
+    {
+        return $this->belongsToMany(User::class, 'review_moderations')
+            ->withPivot('msg', 'is_new');
+    }
+
+    public function getOnModerationAttribute()
+    {
+        return $this->moderationReviews->where('pivot.is_new', 1);
     }
 
     /**

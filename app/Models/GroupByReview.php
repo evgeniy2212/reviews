@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupByReview extends Model
 {
+    const OTHER_GROUP_ALIAS = 'other';
+
     protected $fillable = [
         'id',
         'name',

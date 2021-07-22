@@ -2,15 +2,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div>
-                You are selected one a star and we respect your decision, but in this situation we must ask whether this person was 21 years old or not.
-                According to the existing rule ReviewsOnTheWeb.com with which you agreed upon registration, we are not welcome to put one or two stars to a person who is under 21 years old. We ask you to clarify the age of this person and only put one or two stars on this field. Users who violate this rule will be forgiven for the first time, but after the second such error your account will be closed.
-                Please pay attention.
-                Thank you.
+                Since you rated this person 1 or 2 stars, we need to confirm that this person is at least 21 years old.
+                <br>
+                <br>
+                According to our Terms of Service, you may not rate any person who is under 21 years old with less than 3 stars. Any user who violates this rule more than once will permanently lose access to their account.
             </div>
             <div class="d-flex flex-row justify-content-center">
                 <div class="col-md-5">
                     <button class="otherButton" type="button" id="acceptModal">
-                        Yes, I`m sure that person has 21 years
+                        Yes, that person is at least 21 years old
                     </button>
                 </div>
                 <div class="col-md-3">

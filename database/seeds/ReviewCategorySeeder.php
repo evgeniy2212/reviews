@@ -14,18 +14,18 @@ class ReviewCategorySeeder extends Seeder
     {
         $categories = [
             [
-                'title' => 'People',
+                'title' => 'Person',
                 'slug' => \Illuminate\Support\Str::slug('person'),
                 'is_published' => true,
                 'enable_low_rating' => false
             ],
             [
-                'title' => 'Companies',
+                'title' => 'Company',
                 'slug' => \Illuminate\Support\Str::slug('company'),
                 'is_published' => true,
             ],
             [
-                'title' => 'Goods',
+                'title' => 'Product',
                 'slug' => \Illuminate\Support\Str::slug('goods'),
                 'is_published' => true,
             ],

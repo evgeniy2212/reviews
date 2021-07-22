@@ -3,17 +3,21 @@
     @csrf
     <div class="singleUser {{ $user->is_blocked ? 'singleBlockedUser' : '' }}">
         <div class="singleUserControl">
-            <button type="submit"
-                    id="userPublishButton{{ $user->id }}"
-                    class="otherButton"
-                    name="is_blocked"
-                    value="{{ $user->is_blocked ? 0 : 1 }}">
-                @if($user->is_blocked)
-                    @lang('service/admin.unhold')
-                @else
-                    @lang('service/admin.hold')
-                @endif
-            </button>
+{{--            @if($user->is_blocked_cnt >= \App\Models\User::MAX_BLOCKED_ATTEMPTS)--}}
+{{--                <span>@lang('service/admin.blocked_forever')</span>--}}
+{{--            @else--}}
+                <button type="submit"
+                        id="userPublishButton{{ $user->id }}"
+                        class="otherButton"
+                        name="is_blocked"
+                        value="{{ $user->is_blocked ? 0 : 1 }}">
+                    @if($user->is_blocked)
+                        @lang('service/admin.unhold')
+                    @else
+                        @lang('service/admin.hold')
+                    @endif
+                </button>
+{{--            @endif--}}
             <a type="button"
                class="otherButton"
                href="{{ route('admin.users_reviews.show', $user->id) }}">@lang('service/admin.user.reviews')</a>

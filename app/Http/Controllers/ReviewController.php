@@ -41,7 +41,6 @@ class ReviewController extends Controller
                 : '';
 
         $reviews = ReviewService::getFilteredReviews($slug, $filter, $sort, '', $contentFilterType);
-
         $paginateParams = [
             $filter_alias => request()->$filter_alias,
             $sort_alias => request()->$sort_alias,
@@ -132,10 +131,13 @@ class ReviewController extends Controller
             return redirect()->back()->withErrors(['msg' => __('service/message.review_already_exist')]);
         }
         $request->merge(['is_published' => true]);
-        ReviewService::createReview($request);
+        ReviewService::createReview($request, ($request->has('new_review_group') && $request->new_review_group));
         $slug = $request->category_slug;
 
         return redirect()->route('reviews',['review_item' => $slug])->with(['success_review_creating' => 'Review Created']);
+//        return $request->has('new_review_group') && $request->new_review_group
+//            ? redirect()->route('reviews',['review_item' => $slug])->with(['review_moderation' => 'Review Created'])
+//            : redirect()->route('reviews',['review_item' => $slug])->with(['success_review_creating' => 'Review Created']);
     }
 
     public function presaving(SaveReviewRequest $request) {

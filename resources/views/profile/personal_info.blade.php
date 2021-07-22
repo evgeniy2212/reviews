@@ -167,7 +167,7 @@
                             </div>
                             <div class="d-flex flex-row">
                                 <span>
-                                    You are able to use that name when you want to be annonymous and your email address  also not will be visiable at your published review.
+                                    Using this name will allow you to remain anonymous. Your email address will not be visible in your published review.
                                 </span>
                             </div>
                         </div>

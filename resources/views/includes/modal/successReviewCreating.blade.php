@@ -2,14 +2,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <span>
-                Thank you for your review.
+                Thanks for your review!
             </span>
             <span>
-                We would like to inform you that you can always find this review in your account in the "Reviews" section, where you will be able to change, delete or reply if you want to do this.
-                We look forward to your next review on our website.
+                You can always find this review under the “Reviews” section of your account, where you’ll be able to change, delete, or reply whenever you like.
             </span>
             <span>
-                ReviewsOnTheWeb.com team.
+                We look forward to seeing your next review!
             </span>
             <div class="d-flex flex-row justify-content-center">
                 <div class="col-md-3">

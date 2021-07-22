@@ -12,7 +12,7 @@
                     @if($errors->any())
                         <div class="errorMessage">{!! $errors->first() !!}</div>
                     @else
-                        <div class="headFormName">Two Factor Verification</div>
+                        <div class="headFormName">Two-Factor Authentication</div>
                     @endif
                     {{--@if($errors->has('two_factor_code'))--}}
                         {{--<div class="invalid-feedback">--}}
@@ -20,8 +20,8 @@
                         {{--</div>--}}
                     {{--@endif--}}
                     <p class="text-muted">
-                        You have received an email which contains two factor login code.
-                        If you haven't received it, press <a href="{{ route('verify.resend') }}">here</a>.
+                        We have sent you an email which contains your two-factor login code. If you haven’t
+                        received it, <a href="{{ route('verify.resend') }}">click here</a>.
                     </p>
                     <form method="POST" action="{{ route('verify.store') }}" novalidate="" id="">
                         @csrf

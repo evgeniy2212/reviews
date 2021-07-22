@@ -33,7 +33,7 @@
                 <div class="review-content-place">
                     <div class="d-flex justify-content-center">
                         <span class="create-review-title">
-                            @lang(trans('service/index.create_review_title', ['title' => $reviewCategory->title]))
+                            @lang(trans('service/index.create_review_title', ['title' => strtoupper(trim($reviewCategory->title, 's'))]))
                         </span>
                     </div>
                     <div class="rating-container">
@@ -56,11 +56,37 @@
                                 @lang('service/index.review_positive_character')
                             </span>
                         </div>
-                        <div class="col-md-4 text-center offset-md-4">
-                            <span class="review-character-label">
-                                @lang('service/index.review_negative_character')
-                            </span>
-                        </div>
+                        @switch($slug)
+                            @case('person')
+                                <div class="col-md-4 offset-4 text-center">
+                                        <span class="review-character-label">
+                                            @lang('service/index.review_negative_character')
+                                        </span>
+                                </div>
+                            @default
+                                <div class="col-md-4">
+                                    <div class="form_review_toggle">
+                                        <div class="form_review_description">
+                                        <span>
+                                            Open for communication with reviewer
+                                        </span>
+                                        </div>
+                                        <div class="form_review_toggle-item item-1">
+                                            <input id="fid-1" type="radio" name="is_communication_enable" value="1" checked>
+                                            <label for="fid-1">Yes</label>
+                                        </div>
+                                        <div class="form_review_toggle-item item-2">
+                                            <input id="fid-2" type="radio" name="is_communication_enable" value="0">
+                                            <label for="fid-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <span class="review-character-label">
+                                        @lang('service/index.review_negative_character')
+                                    </span>
+                                </div>
+                        @endswitch
                     </div>
                     <div class="review-characteristics">
                         <div class="col-md-4 checkbox-container">
@@ -80,29 +106,40 @@
                             @endforeach
                         </div>
                         <div class="col-md-4">
-                            <textarea name="review"
-                                      class="form-control"
-                                      type="text"
-                                      id="review-create-text"
-                                      required
-                                      placeholder="@lang('service/index.review_text_placeholder')"></textarea>
-                            <div class="review-upload-files">
-                                @include('includes.loading_animation')
-                                <label class="custom-file-upload">
-                                    <input type="file"
-                                           id="img"
-                                           name="img"
-                                           accept="image/*"/>
-                                    <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_photo')</span>
-                                </label>
-                                <label class="custom-file-upload" title="{{ __('service/index.video_rules') }}">
-                                    <input type="file"
-                                           name="video"
-                                           id="video"
-                                           size="100MB"
-                                           accept="video/mp4"/>
-                                    <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_video')</span>
-                                </label>
+                            <div class="new-group-creating-container">
+                                <input id="new_group"
+                                       type="text"
+                                       class="form-control input"
+                                       name="new_review_group"
+                                       minlength="3"
+                                       value="{{ old('new_group') }}"
+                                       placeholder="@lang('service/index.review_new_group_placeholder')">
+                            </div>
+                            <div class="text-review-creating-container">
+                                <textarea name="review"
+                                          class="form-control"
+                                          type="text"
+                                          id="review-create-text"
+                                          required
+                                          placeholder="@lang('service/index.review_text_placeholder')"></textarea>
+                                <div class="review-upload-files">
+                                    @include('includes.loading_animation')
+                                    <label class="custom-file-upload">
+                                        <input type="file"
+                                               id="img"
+                                               name="img"
+                                               accept="image/*"/>
+                                        <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_photo')</span>
+                                    </label>
+                                    <label class="custom-file-upload" title="{{ __('service/index.video_rules') }}">
+                                        <input type="file"
+                                               name="video"
+                                               id="video"
+                                               size="100MB"
+                                               accept="video/mp4"/>
+                                        <i class="fa fa-cloud-upload"></i> <span>@lang('service/index.add_video')</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class='progress' id="progressDivId">

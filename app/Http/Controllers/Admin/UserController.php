@@ -76,6 +76,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        if(!$request->is_blocked){
+            $request->merge(['is_blocked_cnt' => 0]);
+        }
         $user->update($request->all());
 
         return redirect()->back()->withSuccess([__('service/admin.user_updated_successfully', ['name' => $user->full_name])]);

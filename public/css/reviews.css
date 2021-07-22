@@ -523,3 +523,88 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
     /*-webkit-box-shadow: 0 0 0 30px white inset !important;*/
 }
+
+/*start is_communication_enable*/
+.form_review_toggle {
+    display: flex;
+    flex-direction: row;
+    /*overflow: hidden;*/
+}
+.form_review_toggle-item {
+    float: left;
+    display: inline-block;
+}
+.form_review_toggle-item input[type=radio] {
+    display: none;
+}
+.form_review_description {
+    display: inline-block;
+    padding: 0px 2px;
+    line-height: 15px;
+    font-size: 0.8rem;
+    border: 1px solid #2f5496;
+    margin: 1px 0;
+    text-align: center;
+    min-width: 80%;
+    white-space: nowrap;
+}
+.form_review_toggle-item {
+    min-width: 10%;
+    min-height: 100%;
+}
+.form_review_toggle-item label {
+    display: inline-block;
+    padding: 0;
+    line-height: 15px;
+    border: 1px solid #2f5496;
+    border-right: none;
+    cursor: pointer;
+    min-width: 100%;
+    text-align: center;
+    user-select: none;
+    margin: 0;
+}
+
+.form_review_toggle .item-1 label {
+    /*border-radius: 6px 0 0 6px;*/
+}
+.form_review_toggle .item-2 label {
+    /*border-radius: 0 6px 6px 0;*/
+    border-right: 1px solid #2f5496;
+}
+
+/* Checked */
+.form_review_toggle input[type=radio]:checked + label {
+    background: white;
+}
+.form_review_toggle input[type=radio]:not(:checked) + label {
+    background: #d6d6d6;
+}
+/*.form_toggle .item-2 input[type=radio]:checked + label {*/
+/*    background: #bbffbb;*/
+/*}*/
+/*end is_communication_enable*/
+.new-group-creating-container {
+    display: none;
+    height: 27px;
+}
+.text-review-creating-container {
+    height: 100%;
+}
+#new_group{
+    border-color: #2f5496;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    max-height: 22px;
+    min-height: 22px;
+    max-width: 100%;
+    padding: 0 0 0 10px;
+    text-align: start;
+    text-align-last: start;
+    background: #fcfbfb;
+    font-size: 0.8rem!important;
+}
+.new-group-creating-container .hwt-highlights {
+    padding: 1px 0 1px 10px
+}

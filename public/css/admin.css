@@ -118,6 +118,10 @@
 .singleUserControl button {
     margin-bottom: 10px;
 }
+.singleUserControl span {
+    text-shadow: 1px 1px 5px red;
+    font-size: 0.9rem;
+}
 .singleUserControl a, .singleUserControl a:hover {
     text-decoration: none;
     color: #1b1e21;
@@ -309,4 +313,7 @@
     flex-direction: column;
     text-align: center;
     font-size: 1rem;
+}
+.moderation-title{
+    text-shadow: 1px 1px 5px red;
 }

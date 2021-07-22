@@ -1,6 +1,6 @@
 @component('mail::message')
 
-Hi, my name is {{ $name }}.
+Hi, this is {{ $name }}.
 
 Check out this exciting new review site!
 

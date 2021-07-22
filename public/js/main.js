@@ -140,6 +140,49 @@
 
       validation(form, event);
     });
+    $('#selectCategoryGood').change(function () {
+      $('.text-review-creating-container').css({
+        height: '100%'
+      });
+      $('.new-group-creating-container').css({
+        display: 'none'
+      });
+    });
+    $('#selectGroup').change(function () {
+      var selectedText = $("#selectGroup option:selected").text();
+
+      if (selectedText.toLowerCase() == 'other') {
+        var textReviewHeight = $('.text-review-creating-container').parent().height();
+        var groupCreatingHeight = $('.new-group-creating-container').height();
+        var newTextHeight = textReviewHeight - groupCreatingHeight;
+        $('.text-review-creating-container').css({
+          height: newTextHeight + 'px'
+        });
+        $('.new-group-creating-container').css({
+          display: 'block'
+        });
+        $('#new_group').animate({
+          borderColor: "#dc3545"
+        }, 500).delay(250).animate({
+          borderColor: "#2f5496"
+        }, 500).delay(250).animate({
+          borderColor: "#dc3545"
+        }, 500).delay(250).animate({
+          borderColor: "#2f5496"
+        }, 500).delay(250).animate({
+          borderColor: "#dc3545"
+        }, 500).delay(250).animate({
+          borderColor: "#2f5496"
+        }, 500);
+      } else {
+        $('.text-review-creating-container').css({
+          height: '100%'
+        });
+        $('.new-group-creating-container').css({
+          display: 'none'
+        });
+      }
+    });
     $(".submitReviewButton").click(function (event) {
       var form = $("#createReviewForm").length > 0 ? $("#createReviewForm") : $("#editReviewForm");
       var action = $(this).data('action');
@@ -169,6 +212,18 @@
           event.preventDefault();
         } else {
           $('#review-create-text').removeClass('invalid-textarea');
+        }
+
+        if ($("#selectGroup").is(":visible")) {
+          if ($("#selectGroup option:selected").text().toLowerCase() == 'other') {
+            if ($('#new_group').val().length <= 0) {
+              $('#new_group').addClass('invalid-input');
+            } else {
+              $('#new_group').removeClass('invalid-input');
+            }
+          } else {
+            $('#new_group').removeClass('invalid-input');
+          }
         }
 
         validation(form, event);
@@ -212,6 +267,7 @@
         url: "/ajax/groups/" + this.value,
         dataType: "json",
         success: function success(data) {
+          console.log('data: ', data);
           $('#selectGroup').empty();
           var length = data.length - 1;
 
@@ -294,6 +350,12 @@
     $('#review-create-text').click(function (data) {
       badWordsUpdate($('#review-create-text'));
     });
+    $('#new_group').click(function (data) {
+      badWordsUpdate($('#new_group'));
+    });
+    $('#new_group').blur(function () {
+      badWordsUpdate($('#new_group'));
+    });
     $('#review-text').click(function () {
       badWordsUpdate($('#review-text'));
     });
@@ -304,19 +366,19 @@
       badWordsUpdate($('#review-text'));
     });
 
-    if ($("#review-create-text, #review-text").length) {
+    if ($("#review-create-text, #review-text, #new_group").length) {
       var badWords = [];
       $.ajax({
         url: "/ajax/bad-words",
         dataType: "json",
         success: function success(data) {
-          $('#review-create-text, #review-text').highlightWithinTextarea({
+          $('#review-create-text, #review-text, #new_group').highlightWithinTextarea({
             highlight: getBadWords(data),
             className: 'red'
           });
         },
         error: function error() {
-          $('#review-create-text, #review-text').highlightWithinTextarea({
+          $('#review-create-text, #review-text, #new_group').highlightWithinTextarea({
             highlight: [],
             className: 'red'
           });
@@ -324,7 +386,8 @@
       });
     }
 
-    $("#slider_body").click(function (event) {
+    $('[id^="slider_body"]').click(function (event) {
+      alert();
       var data = $(this).data('body');
       $('#sliderBodyModalContent span').html(data);
       $('#sliderBodyModal').modal('show');

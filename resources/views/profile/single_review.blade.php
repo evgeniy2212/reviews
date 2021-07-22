@@ -92,8 +92,10 @@
                 </div>
             </div>
             <div class="profile-single-review-button {{ $review->is_published ?: 'profile-single-review-blocked' }}">
-                @if(!$review->is_published)
+                @if($review->is_blocked)
                     <span>Review blocked due to complaints.</span>
+{{--                @elseif($review->on_moderation)--}}
+{{--                    <span>Review on moderation.</span>--}}
                 @else
                     <a type="button"
                         href="{{ route('profile-reviews.edit', $review->id) }}">
@@ -117,7 +119,7 @@
                 @endif
             </div>
         </div>
-        @if(!$review->is_published)
+        @if($review->is_blocked)
             <div class="w-25">
                 <a type="button"
                    class="otherButton"

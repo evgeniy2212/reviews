@@ -92,7 +92,7 @@
                             <button type="submit"
                                         id="reviewPublishButton{{ $review->id }}"
                                         class="otherButton"
-                                        name="is_published"
+                                        name="is_blocked"
                                         value="0">
                                 @lang('service/admin.complain.block')
                             </button>
@@ -103,7 +103,7 @@
                             <button type="submit"
                                         id="reviewPublishButton{{ $review->id }}"
                                         class="otherButton"
-                                        name="is_published"
+                                        name="is_blocked"
                                         value="1">
                                 @lang('service/admin.complain.not_block')
                             </button>
@@ -115,9 +115,9 @@
                             <button type="submit"
                                     id="reviewPublishButton{{ $review->id }}"
                                     class="otherButton"
-                                    name="is_published"
-                                    value="{{ $review->is_published ? 0 : 1 }}">
-                                @if($review->is_published)
+                                    name="is_blocked"
+                                    value="{{ $review->is_blocked ? 0 : 1 }}">
+                                @if(!$review->is_blocked)
                                     @lang('service/admin.complain.block')
                                 @else
                                     @lang('service/admin.complain.not_block')

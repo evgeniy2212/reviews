@@ -13,12 +13,6 @@ class UserImportantDateTypeSeeder extends Seeder
     {
         $categories = [
             [
-                'title' => 'Birthday of Martin Luther King Jr.',
-                'name' => 'Birthday of Martin Luther King Jr.',
-                'slug' => \Illuminate\Support\Str::slug('Birthday of Martin Luther King Jr'),
-                'is_published' => true,
-            ],
-            [
                 'title' => 'Christmas',
                 'name' => 'Christmas',
                 'slug' => \Illuminate\Support\Str::slug('Christmas'),
@@ -49,6 +43,12 @@ class UserImportantDateTypeSeeder extends Seeder
                 'is_published' => true,
             ],
             [
+                'title' => 'Good Friday',
+                'name' => 'Good Friday',
+                'slug' => \Illuminate\Support\Str::slug('Good Friday'),
+                'is_published' => true,
+            ],
+            [
                 'title' => 'Graduation',
                 'name' => 'Graduation',
                 'slug' => \Illuminate\Support\Str::slug('Graduation'),
@@ -73,9 +73,21 @@ class UserImportantDateTypeSeeder extends Seeder
                 'is_published' => true,
             ],
             [
+                'title' => 'Juneteenth',
+                'name' => 'Juneteenth',
+                'slug' => \Illuminate\Support\Str::slug('Juneteenth'),
+                'is_published' => true,
+            ],
+            [
                 'title' => 'Labor Day',
                 'name' => 'Labor Day',
                 'slug' => \Illuminate\Support\Str::slug('Labor Day'),
+                'is_published' => true,
+            ],
+            [
+                'title' => 'Martin Luther King Jr. Day',
+                'name' => 'Martin Luther King Jr. Day',
+                'slug' => \Illuminate\Support\Str::slug('Martin Luther King Jr. Day'),
                 'is_published' => true,
             ],
             [
@@ -91,21 +103,21 @@ class UserImportantDateTypeSeeder extends Seeder
                 'is_published' => true,
             ],
             [
-                'title' => 'New born',
-                'name' => 'New born',
-                'slug' => \Illuminate\Support\Str::slug('New born'),
+                'title' => 'New Business',
+                'name' => 'New Business',
+                'slug' => \Illuminate\Support\Str::slug('New Business'),
                 'is_published' => true,
             ],
             [
-                'title' => 'New home',
-                'name' => 'New home',
-                'slug' => \Illuminate\Support\Str::slug('New home'),
+                'title' => 'New Year’s Day',
+                'name' => 'New Year’s Day',
+                'slug' => \Illuminate\Support\Str::slug('New Year’s Day'),
                 'is_published' => true,
             ],
             [
-                'title' => 'New year',
-                'name' => 'New year',
-                'slug' => \Illuminate\Support\Str::slug('New year'),
+                'title' => 'Newborn',
+                'name' => 'Newborn',
+                'slug' => \Illuminate\Support\Str::slug('Newborn'),
                 'is_published' => true,
             ],
             [
@@ -115,15 +127,15 @@ class UserImportantDateTypeSeeder extends Seeder
                 'is_published' => true,
             ],
             [
-                'title' => 'Starting a new business',
-                'name' => 'Starting a new business',
-                'slug' => \Illuminate\Support\Str::slug('Starting a new business'),
-                'is_published' => true,
-            ],
-            [
                 'title' => 'Thanksgiving',
                 'name' => 'Thanksgiving',
                 'slug' => \Illuminate\Support\Str::slug('Thanksgiving'),
+                'is_published' => true,
+            ],
+            [
+                'title' => 'Valentine’s Day',
+                'name' => 'Valentine’s Day',
+                'slug' => \Illuminate\Support\Str::slug('Valentine’s Day'),
                 'is_published' => true,
             ],
             [
@@ -139,6 +151,10 @@ class UserImportantDateTypeSeeder extends Seeder
                 'is_published' => true,
             ]
         ];
+
+        foreach(\App\Models\UserImportantDateType::all() as $importantType){
+            $importantType->delete();
+        }
 
         foreach($categories as $category){
             \App\Models\UserImportantDateType::firstOrCreate($category);

@@ -18,15 +18,19 @@ class CategoryByReview extends Model
     }
 
     public function groups(){
-        return $this->hasMany(GroupByReview::class, 'category_id', 'id')->orderByDesc('name');
+        return $this->hasMany(GroupByReview::class, 'category_id', 'id')->orderBy('name');
     }
 
     public function getGroupsByCategory($id){
-        return $this->whereId($id)
+        $sorted = $this->whereId($id)
             ->first()
             ->groups()
-            ->get(['name', 'id'])
-            ->toArray();
+            ->whereIsPublished(true)
+            ->get(['name', 'id']);
+        $sorted = $sorted->sort(function ($a, $b) {
+            return strtolower($a->name) == GroupByReview::OTHER_GROUP_ALIAS ? -1 : 1;
+        });
+        return $sorted->values();
     }
 
     public function getAllCategories(){

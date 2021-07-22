@@ -14,7 +14,7 @@
                         @endif
 
                         {{ __('Before proceeding, please check your email for a verification link.') }}<br>
-                        {{ __('If you did not receive the email, click "Request another"') }}.
+                        {{ __('If you did not receive the email, click "Request Another."') }}.
                     </div>
                     <div class="form-group verifyRegisterControl">
                         <div class="col-md-3">

@@ -74,8 +74,10 @@ Route::group(
             Route::resource('/reviews', 'ReviewController')->only('index', 'update');
             Route::resource('/users_reviews', 'UserReviewController')->only('show', 'update');
             Route::resource('/complains', 'ComplainController')->only('index', 'update');
+            Route::resource('/moderations', 'ReviewModerationController')->only('index');
             Route::resource('/data', 'DataController')->only('index');
             Route::patch('/complain-review/{review}', 'ComplainController@updateComplainReview')->name('update_complain_review');
+            Route::patch('/moderation-review/{review}', 'ReviewModerationController@updateModerationReview')->name('update_moderation_review');
             Route::get('search-user', 'UserController@search')->name('searchUsers');
             Route::get('search-review', 'ReviewController@search')->name('searchReviews');
             Route::get('/info_page/{info_page}', 'InfoPageController@index')->name('info_page');

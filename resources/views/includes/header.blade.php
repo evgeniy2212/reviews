@@ -12,7 +12,7 @@
                         <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="scrollto">@lang('service/index.header_site_name')<span>.com</span></a>
                     </span>
                     <p>
-                        Yours reviews makes our live better.
+                        Your reviews make our lives better.
                     </p>
                     {{--<script>--}}
                         {{--setTimeout(function() {--}}
@@ -142,7 +142,7 @@
                             {{--<div style="height: 120px; background-image: url(../images/post.jpg); background-repeat: no-repeat; background-size: cover;">1</div>--}}
                         {{--</div>--}}
 
-                        @foreach(\App\Services\BannerService::getHeadBanners() as $banner)
+                        @foreach(\App\Services\BannerService::getHeadBanners() as $key => $banner)
                             @if(empty(optional($banner)->body))
                                 <div class="slider__item">
 
@@ -158,7 +158,7 @@
                                 </div>
                             @else
                                 <div class="slider__item"
-                                     id="slider_body"
+                                     id="slider_body{{ $key }}"
                                      data-body="{{ $banner->body }}">
                                     <div style="height: 150px;
                                         cursor: pointer;

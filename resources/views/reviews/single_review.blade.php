@@ -153,7 +153,7 @@
                             <button class="otherButton" id="addCommentButton-{{ $review->id }}">
                                 Add Comment
                             </button>
-                            @if(auth()->user()->id !== $review->user_id)
+                            @if(auth()->user()->id !== $review->user_id && $review->is_communication_enable)
                                 <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}" data-tooltip="Send a private message to the original reviewer.">
                                     Send mail
                                 </button>
@@ -174,17 +174,18 @@
                 </div>
                 <div class="col-md-4 offset-8">
                     @auth()
-                        @if(auth()->user()->id !== $review->user_id)
+{{--                        @if(auth()->user()->id !== $review->user_id)--}}
                             <a type="button"
                                href=""
-                               {{ auth()->user()->complains->contains($review->id) ? 'disabled' : '' }}
+{{--                               {{ auth()->user()->complains->contains($review->id) ? 'disabled' : '' }}--}}
                                data-toggle="modal"
                                class="otherButton" style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
                                id="complainButton-{{ $review->id }}"
                                data-review="{{ $review->id }}"
                                data-tooltip="Click here to report any offensive language used in the review."
-                               data-target="#complainModal">Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>
-                        @endauth
+{{--                               data-target="#complainModal">Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>--}}
+                               data-target="#complainModal">Complain</a>
+{{--                        @endauth--}}
                     @else
                         <a type="button"
                            href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::localizeUrl('/register') }}"

@@ -5,7 +5,7 @@
         <div>
             {{ csrf_field() }}
             @method('PATCH')
-            <p >Are you sure that you want to <b>EDIT</b></p>
+            <p >Are you sure you want to <b>EDIT</b></p>
             <p>"<span id="reviewName"></span>" review?</p>
         </div>
         <div class="d-flex flex-row justify-content-center">

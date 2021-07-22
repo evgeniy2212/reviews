@@ -2,7 +2,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <span>
-               Sorry, but we cannot save your review in this review. We ask you to change the content of your review as some expressions do not adequately contain respect and culture. Thank you.
+               Sorry, but we cannot save or publish your review. Please remove any explicit, obscene, or disrespectful language and resubmit. If you have any questions, please contact info@reviews4results.com
+                <br>
+                <br>
+                Thank you!
             </span>
             <div class="d-flex flex-row justify-content-center">
                 <div class="col-md-3">

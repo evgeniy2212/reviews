@@ -51,6 +51,7 @@ class ComplainController extends Controller
     public function updateComplainReview(UpdateComplainRequest $request, Review $review)
     {
         Complain::whereReviewId($review->id)->update(['is_new' => 0]);
+        $request->merge(['is_published' => $request->is_blocked ? 0 : 1]);
         $review->update($request->all());
 
         return redirect()->back()->withSuccess([__('service/admin.review_updated_successfully')]);

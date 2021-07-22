@@ -24,7 +24,7 @@ class UpdateComplainRequest extends FormRequest
     public function rules()
     {
         return [
-            'is_published' => 'required'
+            'is_blocked' => 'required'
         ];
     }
 }

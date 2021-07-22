@@ -10,7 +10,7 @@
                     <div>
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <p >Are you sure that you want to <b>DELETE</b></p>
+                        <p >Are you sure you want to <b>DELETE</b></p>
                         <p>"<span id="reviewName"></span>" and the same "<span id="reviewCategoryName"></span>"?</p>
                     </div>
                     <div class="d-flex flex-row justify-content-center">
