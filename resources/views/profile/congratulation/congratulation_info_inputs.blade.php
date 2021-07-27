@@ -17,5 +17,23 @@
                 @endforeach
             </select>
         </div>
+        <div>
+            <span class="create-congratulation-label">
+                @lang('service/profile.congratulation.create.status')
+            </span>
+        </div>
+        <div class="col-md-6">
+            <select class="select"
+                    id="selectCongratulationStatus"
+                    name="is_private"
+                    data-base-url="{{ url('') }}"
+                    data-country="{{ old('is_private') }}"
+                    required>
+                <option disabled {{ empty($congratulation) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => 'status']) }}</option>
+                @foreach(\App\Models\UserCongratulation::TYPE_OF_CONGRATULATIONS as $type)
+                    <option value="{{ $type['value'] }}" {{ (!empty($congratulation) && ($congratulation->is_private == $type['value'])) ? 'selected' : '' }}>{!! $type['type_name'] !!}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
 </div>

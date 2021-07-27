@@ -149,3 +149,7 @@
         </div>
     </form>
 @endsection
+
+@section('modal_forms')
+    @include('includes.modal.errorUserExisting')
+@endsection

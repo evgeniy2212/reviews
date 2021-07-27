@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserCongratulation extends Model
 {
+    public const TYPE_OF_CONGRATULATIONS = [
+        [
+            'type_name' => 'Public',
+            'value_name' => 'is_private',
+            'value' => 0
+        ],
+        [
+            'type_name' => 'Private',
+            'value_name' => 'is_private',
+            'value' => 1
+        ],
+    ];
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -26,6 +39,11 @@ class UserCongratulation extends Model
         'dislikes',
         'user_sign',
         'is_published',
+        'is_private',
+        'is_read',
+        'to',
+        'deleted_by_to',
+        'deleted_by_from',
         'created_at',
     ];
 
@@ -43,6 +61,10 @@ class UserCongratulation extends Model
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function congratulatableUser(){
+        return $this->belongsTo(User::class, 'to', 'id');
     }
 
     public function image(){
@@ -77,5 +99,9 @@ class UserCongratulation extends Model
             : ($this->country
                 ?$this->country->country
                 : '');
+    }
+
+    public function scopeOnlyPublic($query){
+        return $query->where('is_private', false);
     }
 }

@@ -56,10 +56,16 @@ Route::group(
             Route::patch('update-persona-info', 'Profile\PersonalInfoController@updatePersonalInfo')->name('updatePersonalInfo');
             Route::post('save-banner', 'Profile\BannerController@save')->name('saveBanner');
             Route::resource('congratulations', 'Profile\CongratulationController')->names('profile-congratulations');
+            Route::get('index-private', 'Profile\CongratulationController@indexPrivate')->name('index-private');
+            Route::delete('delete-private/{is_owner}/{congratulation}', 'Profile\CongratulationController@destroyPrivate')->name('delete-private-congratulations');
             Route::resource('important-date', 'Profile\ImportantDateController')->only([
                 'index', 'store'
             ])->names('profile-important-date');
             Route::post('profile-important-dates-delete', 'Profile\ImportantDateController@deleteDates')->name('profile-important-dates-delete');
+            Route::group(['prefix' => 'ajax'], function() {
+                Route::get('check-user', 'Profile\CongratulationController@checkUser')->name('check-user');
+                Route::get('read-private-congratulation/{congratulation}', 'Profile\CongratulationController@readPrivate')->name('read-private-congratulation');
+            });
         });
 
         Route::group([
@@ -73,6 +79,7 @@ Route::group(
             Route::resource('/users', 'UserController')->only('index', 'update');
             Route::resource('/reviews', 'ReviewController')->only('index', 'update');
             Route::resource('/users_reviews', 'UserReviewController')->only('show', 'update');
+            Route::resource('/user_congratulations', 'UserCongratulationController')->only('show', 'update');
             Route::resource('/complains', 'ComplainController')->only('index', 'update');
             Route::resource('/moderations', 'ReviewModerationController')->only('index');
             Route::resource('/data', 'DataController')->only('index');

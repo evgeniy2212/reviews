@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\SaveCongratulationRequest;
 use App\Models\DefaultImage;
 use App\Models\ReviewFilter;
+use App\Models\User;
 use App\Models\UserCongratulation;
 use App\Http\Repositories\ReviewFilterRepository;
 use App\Services\UserCongratulationService;
@@ -26,7 +27,7 @@ class CongratulationController extends Controller
         $filter = request()->$filter_alias;
         $sort = request()->$sort_alias;
         $user_id = auth()->user()->id;
-        $congratulations = UserCongratulationService::getUserFilteredCongratulations($user_id, $filter, $sort);
+        $congratulations = UserCongratulationService::getUserFilteredCongratulations($user_id, false, $filter, $sort);
         $filters = (new ReviewFilterRepository())->getAllCategoryFilters();
         $paginateParams = [
             $filter_alias => request()->$filter_alias,
@@ -34,6 +35,29 @@ class CongratulationController extends Controller
         ];
 
         return view('profile.congratulation.index', compact('congratulations', 'filters', 'paginateParams'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexPrivate()
+    {
+        $filter_alias = ReviewFilter::DATE_FILTER;
+        $sort_alias = ReviewFilter::SORT_BY_FILTER;
+
+        $filter = request()->$filter_alias;
+        $sort = request()->$sort_alias;
+        $user_id = auth()->user()->id;
+        $congratulations = UserCongratulationService::getUserFilteredCongratulations($user_id, true, $filter, $sort);
+        $filters = (new ReviewFilterRepository())->getAllCategoryFilters();
+        $paginateParams = [
+            $filter_alias => request()->$filter_alias,
+            $sort_alias => request()->$sort_alias,
+        ];
+
+        return view('profile.congratulation.indexPrivate', compact('congratulations', 'filters', 'paginateParams'));
     }
 
     /**
@@ -93,7 +117,7 @@ class CongratulationController extends Controller
         ));
     }
 
-    public function update(Request $request, UserCongratulation $congratulation)
+    public function update(SaveCongratulationRequest $request, UserCongratulation $congratulation)
     {
         UserCongratulationService::updateCongratulation($request, $congratulation);
 
@@ -111,5 +135,44 @@ class CongratulationController extends Controller
         $congratulation->delete();
 
         return  redirect()->back()->withSuccess([__('service/profile.congratulation.delete_success')]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param bool $is_owner
+     * @param  UserCongratulation  $congratulation
+     */
+    public function destroyPrivate(bool $is_owner, UserCongratulation $congratulation)
+    {
+        $is_owner
+            ? $congratulation->deleted_by_from = auth()->id()
+            : $congratulation->deleted_by_to = auth()->id();
+        $congratulation->save();
+
+        return  redirect()->back()->withSuccess([__('service/profile.congratulation.delete_success')]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param  UserCongratulation  $congratulation
+     */
+    public function readPrivate(UserCongratulation $congratulation)
+    {
+        $congratulation->update(['is_read' => true]);
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function checkUser(Request $request)
+    {
+        if($request->name && $request->last_name){
+            $user = User::activeUsers()->where('name', $request->name)
+                ->where('last_name', $request->last_name)
+                ->first();
+            return response()->json(['is_exist' => !is_null($user)]);
+        }
+
+        return response()->json(['is_exist' => false]);
     }
 }

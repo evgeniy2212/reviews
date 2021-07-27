@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Jobs\SendEmailJob;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
 class SendNewYearMail extends Command
 {

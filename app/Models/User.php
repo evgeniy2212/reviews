@@ -89,6 +89,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class, 'to', 'id');
     }
 
+    public function unread_congratulations(){
+        return $this->hasMany(UserCongratulation::class, 'to', 'id')
+            ->whereNull('deleted_by_to')
+            ->whereIsRead(false);
+    }
+
     /**
      * Get comments for the reviews.
      */
@@ -195,20 +201,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->two_factor_code = null;
         $this->two_factor_expires_at = null;
         $this->save();
-    }
-
-    public function isUserReviewAlreadyExist(string $categoryId, string $name, string $region_id, string $city, string $secondName = null){
-        return $this->reviews()
-            ->whereReviewCategoryId($categoryId)
-            ->whereName($name)
-            ->when($secondName, function($q) use ($secondName){
-                return $q->whereSecondName($secondName);
-            })
-            ->whereRegionId($region_id)
-            ->whereCity($city)
-            ->whereIsPublished(true)
-            ->get()
-            ->count();
     }
 
     public function scopeActiveUsers($query){

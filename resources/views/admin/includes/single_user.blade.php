@@ -21,6 +21,10 @@
             <a type="button"
                class="otherButton"
                href="{{ route('admin.users_reviews.show', $user->id) }}">@lang('service/admin.user.reviews')</a>
+            <a type="button"
+               class="otherButton"
+               style="margin-top: 10px"
+               href="{{ route('admin.user_congratulations.show', $user->id) }}">@lang('service/admin.user.congrats')</a>
         </div>
         <div class="singleUserInfo">
             <div class="singleUserInfoColumn">

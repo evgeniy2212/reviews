@@ -29,6 +29,7 @@ return [
     'user.address' => 'Address: ',
     'user.email' => 'Email: ',
     'user.reviews' => 'User Reviews',
+    'user.congrats' => 'User Congrats',
     'max_banners_published' => 'The maximum number (:count) of banners has already been published',
     'user_updated_successfully' => 'User :name updated successfully!',
     'review_updated_successfully' => 'Review updated successfully!',

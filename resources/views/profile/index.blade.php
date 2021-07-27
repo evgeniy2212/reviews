@@ -43,9 +43,9 @@
                                 <span>@lang('service/index.sent_congratulation')</span>
                             </a>
                         </li>
-                        <li class="{{ Request::url() == route('profile-congratulations.index') ? 'active' : '' }}">
-                            <a href="{{ route('profile-congratulations.index') }}">
-                                <span>@lang('service/index.your_congratulation')</span>
+                        <li class="{{ Request::url() == route('index-private') ? 'active' : '' }}">
+                            <a href="{{ route('index-private') }}">
+                                <span>@lang('service/index.your_congratulation', ['count' => auth()->user()->unread_congratulations->count()])</span>
                             </a>
                         </li>
                         <li class="{{ Request::url() == route('profile-important-date.index') ? 'active' : '' }}">

@@ -8,6 +8,7 @@ use App\Models\ContentVideo;
 use App\Models\Country;
 use App\Models\DefaultImage;
 use App\Models\ReviewFilter;
+use App\Models\User;
 use App\Models\UserCongratulation;
 use App\Models\UserCongratulationCategory;
 use Carbon\Carbon;
@@ -38,6 +39,14 @@ class UserCongratulationService {
      */
     public static function createCongratulation($request){
         $request->merge(['user_id' => auth()->user()->id]);
+        if($request->is_private == true){
+            $user = User::activeUsers()->where('name', $request->name)
+                ->where('last_name', $request->second_name)
+                ->firstOrFail();
+            $request = $request->merge([
+                'to' => $user->id
+            ]);
+        }
         $userCongratulation = UserCongratulation::create($request->all());
         if($request->has('img_default') && $request->img_default){
             $defaultImage = DefaultImage::findOrFail($request->img_default);
@@ -78,6 +87,14 @@ class UserCongratulationService {
      */
     public static function updateCongratulation($request, UserCongratulation $userCongratulation): UserCongratulation
     {
+        if($request->is_private == true){
+            $user = User::activeUsers()->where('name', $request->name)
+                ->where('last_name', $request->second_name)
+                ->firstOrFail();
+            $request = $request->merge([
+                'to' => $user->id
+            ]);
+        }
         $userCongratulation->update($request->all());
         if($request->has('img_default') && $request->img_default){
             $defaultImage = DefaultImage::findOrFail($request->img_default);
@@ -117,7 +134,7 @@ class UserCongratulationService {
         return $userCongratulation;
     }
 
-    public static function getUserFilteredCongratulations($user_id, $filter = '', $sort = '', $search = '', $perPage = 10) {
+    public static function getUserFilteredCongratulations($user_id, $is_private = false, $filter = '', $sort = '', $search = '', $perPage = 10) {
         $sort_by = self::getSortMethod($sort);
 
         $result = UserCongratulation::whereUserId($user_id)
@@ -132,8 +149,17 @@ class UserCongratulationService {
             ->when(empty($sort), function($q){
                 $q->orderBy('created_at', 'DESC');
             })
+            ->when($is_private, function($q){
+                $q->whereIsPrivate(true)
+                    ->whereTo(auth()->id())
+                    ->whereDeletedByTo(null);
+            })
+            ->when(!$is_private, function($q){
+                $q->whereDeletedByFrom(null)
+                    ->whereDeletedByFrom(null);
+            })
             ->where(function($q){
-                $q->whereIsPublished(true);
+//                $q->whereIsPublished(true);
             })
             ->paginate($perPage);
 

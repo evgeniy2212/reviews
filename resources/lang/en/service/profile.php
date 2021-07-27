@@ -19,6 +19,7 @@ return [
     'congratulation.create.add_video' => 'Add Video',
     'congratulation.create.add_default_image' => 'Add Site Images',
     'congratulation.create.category' => 'Category',
+    'congratulation.create.status' => 'Category status',
     'congratulation.request_success' => 'Thank you for your congratulation.',
     'congratulation.delete_success' => 'Your congratulation was deleted.',
     'important_date.create.title' => 'ADD NEW DAY FOR CONGRATULATION',

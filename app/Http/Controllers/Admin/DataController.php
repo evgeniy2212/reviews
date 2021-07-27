@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Review;
 use App\Models\User;
 use App\Models\UserCongratulation;
 use App\Services\DataService;
 use App\Services\ReviewService;
-use Illuminate\Http\Request;
 
 class DataController extends Controller
 {

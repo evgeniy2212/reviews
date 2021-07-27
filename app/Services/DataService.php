@@ -6,7 +6,6 @@ use App\Models\Review;
 use App\Models\User;
 use App\Models\UserCongratulation;
 use Carbon\Carbon;
-use Carbon\CarbonPeriod;
 
 class DataService {
     public static function getDataYearsFilter() {

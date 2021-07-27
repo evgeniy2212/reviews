@@ -102,7 +102,8 @@ class ReviewService {
                 || $contentFilterType == ReviewFilter::ALL_CONTENT_TYPE
             ))
         {
-            $congratulations = UserCongratulation::whereIsPublished(true)
+            $congratulations = UserCongratulation::onlyPublic()
+                ->whereIsPublished(true)
                 ->when(!empty($filter), function($q) use ($filter){
                     $q->whereYear('created_at', $filter);
                 })
@@ -225,6 +226,9 @@ class ReviewService {
                     ->orWhere(function($query){
                         $query->whereIsPublished(false)
                             ->whereHas('complains');
+                    })
+                    ->orWhere(function($query){
+                        $query->whereIsPublished(false);
                     });
             })
             ->with(['characteristics:name'])

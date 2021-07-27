@@ -97,9 +97,11 @@
   $(document).ready(function () {
     $('.deleteReview').click(function () {
       var id = $(this).attr("data-review-id");
+      var is_owner = $(this).attr("data-review-is-owner");
       var name = $(this).attr("data-review-name");
       var url = $(this).attr('data-action');
       url = url.replace(':id', id);
+      url = url.replace(':is_owner', is_owner);
       $("#deleteReviewForm").attr('action', url);
       setModalData(name);
     });
@@ -179,7 +181,49 @@
         $('#selectRegion').removeClass("invalid-selector");
       }
 
-      if ($('#selectCountry option:selected').val() == '') {
+      if ($('#selectCongratulationStatus option:selected').val() == '') {
+        $('#selectCongratulationStatus').animate({
+          borderColor: "#de1529"
+        }, 250).delay(250).animate({
+          borderColor: "#2f5496"
+        }, 250).delay(250).animate({
+          borderColor: "#de1529"
+        }, 250).delay(250).animate({
+          borderColor: "#2f5496"
+        }, 250).delay(250).queue(function (next) {
+          $(this).addClass("invalid-selector");
+          next();
+        });
+      } else {
+        $('#selectCongratulationStatus').removeClass("invalid-selector");
+        $('#name').removeClass("invalid-selector");
+        $('#second_name').removeClass("invalid-selector");
+
+        if ($('#selectCongratulationStatus option:selected').val() == '1') {
+          var url = $('#selectCongratulationStatus').data('baseUrl');
+          var name = $('#name').val();
+          var last_name = $('#second_name').val();
+
+          if (url !== '', name !== '' && last_name !== '') {
+            $.ajax({
+              url: url + "/profile/ajax/check-user?name=" + name + '&last_name=' + last_name,
+              dataType: "json",
+              success: function success(data) {
+                if (data.is_exist !== true) {
+                  $('#errorUserExisting').modal('show');
+                  $('#name').addClass('invalid-input');
+                  $('#second_name').addClass('invalid-input');
+                } else {
+                  $('#name').removeClass("invalid-input");
+                  $('#second_name').removeClass("invalid-input");
+                }
+              }
+            });
+          }
+        }
+      }
+
+      if ($('#selectCountry optioSn:selected').val() == '') {
         $('#selectCountry').addClass('invalid-selector');
       } else {
         $('#selectCountry').removeClass("invalid-selector");
@@ -197,6 +241,50 @@
         $('.create-congratulation-image').hide();
         $('#inTurnFadingTextG').show();
       }
+    });
+    $('[id^="profilePrivateCongratulationButton"]').click(function (event) {
+      var congratulation = $(this).parent().parent().parent().parent().parent();
+      var review_content = $(this).parent().parent();
+      var url = $(this).attr('data-url');
+      var is_open = $(this).text().trim() !== 'Close';
+      is_open ? $(this).text('Close') : $(this).text('Show');
+
+      if (is_open) {
+        congratulation.css({
+          'overflow': 'visible'
+        });
+        var autoheight = congratulation.find('.profile-single-congratulation').height();
+        congratulation.animate({
+          height: autoheight
+        }, 500);
+        setTimeout(function () {
+          congratulation.css({
+            'overflow': 'visible'
+          });
+        }, 510);
+        $.ajax({
+          url: url,
+          dataType: "json",
+          success: function success(data) {
+            console.log('SUCCESS');
+          }
+        });
+        congratulation.removeClass('unread-single-congratulation-private'); // congratulation.slideUp();
+      } else {
+        congratulation.css({
+          'overflow': 'hidden'
+        });
+        congratulation.animate({
+          height: "130px"
+        }, 500);
+        setTimeout(function () {
+          congratulation.css({
+            'overflow': 'hidden'
+          });
+        }, 510); // congratulation.css({'overflow': 'hidden'});
+        // congratulation.slideDown();
+      } // $(this).closest('.single-review').removeClass('unread-private-congratulation');
+
     });
     $('#imgCongratulation').change(function () {
       readImageURL(this);

@@ -1,4 +1,4 @@
-<div class="single-review">
+<div class="single-review {{ $congratulation->is_published ? '' : 'singleBlockedCongratulation' }}">
     <div class="single-review-info">
         <div>
             <span>{{ $congratulation->created_at }}</span>
@@ -57,21 +57,36 @@
                     </p>
                 </div>
                 <div class="profile-single-congratulation-button">
-                        <a type="button"
-                           href="{{ route('profile-congratulations.edit', $congratulation->id) }}">
-                            Edit
-                        </a>
-                        <a data-toggle="modal"
-                           type="button"
-                           class="deleteReview"
-                           data-review-id="{{ $congratulation->id }}"
-                           data-review-is-owner="1"
-                           data-review-name="{{ $congratulation->full_name }}"
-                           data-type="congratulation"
-                           data-action="{{ $congratulation->is_private ? route("delete-private-congratulations", [":is_owner", ":id"]) : route("profile-congratulations.destroy", ":id") }}"
-                           data-target="#deleteReviewModal">
-                            Delete
-                        </a>
+                        <form method="POST" action="{{ route('admin.user_congratulations.update', ['user_congratulation' => $congratulation->id]) }}" enctype="multipart/form-data" novalidate="" id="adminReviewForm{{ $congratulation->id }}" style="width: 100%">
+                            @method('PATCH')
+                            @csrf
+                            <button type="submit"
+                                    id="reviewPublishButton{{ $congratulation->id }}"
+                                    class="otherButton"
+                                    name="is_published"
+                                    value="{{ $congratulation->is_published ? 0 : 1 }}">
+                                @if($congratulation->is_published)
+                                    @lang('service/admin.hold')
+                                @else
+                                    @lang('service/admin.unhold')
+                                @endif
+                            </button>
+                        </form>
+{{--                        <a type="button"--}}
+{{--                           href="{{ route('profile-congratulations.edit', $congratulation->id) }}">--}}
+{{--                            Hold--}}
+{{--                        </a>--}}
+{{--                        <a data-toggle="modal"--}}
+{{--                           type="button"--}}
+{{--                           class="deleteReview"--}}
+{{--                           data-review-id="{{ $congratulation->id }}"--}}
+{{--                           data-review-is-owner="1"--}}
+{{--                           data-review-name="{{ $congratulation->full_name }}"--}}
+{{--                           data-type="congratulation"--}}
+{{--                           data-action="{{ $congratulation->is_private ? route("delete-private-congratulations", [":is_owner", ":id"]) : route("profile-congratulations.destroy", ":id") }}"--}}
+{{--                           data-target="#deleteReviewModal">--}}
+{{--                            Delete--}}
+{{--                        </a>--}}
                     @if($congratulation->is_private)
                         <span style="text-shadow: 0px 0px 4px #ff0000;color: #5800008f;width: 100%">
                             PRIVATE

@@ -27,7 +27,7 @@ return [
     'mail' => 'Mail (:count)',
     'write_congratulation' => 'Write a Congratulation',
     'sent_congratulation' => 'Sent Congratulations',
-    'your_congratulation' => 'Your Congratulations',
+    'your_congratulation' => 'Your Congrats (:count)',
     'important_dates' => 'Important Dates',
     'banners' => 'Create Ad',
     'change_password' => 'Change Password',
