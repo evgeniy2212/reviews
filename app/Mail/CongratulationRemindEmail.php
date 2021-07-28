@@ -38,7 +38,8 @@ class CongratulationRemindEmail extends Mailable
                 'user' => $this->remind->importantDate->user->full_name,
                 'date' => $this->remind->importantDate->important_date,
                 'name' => $this->remind->importantDate->full_name,
-                'date_type' => $this->remind->importantDate->type->title
+                'date_type' => $this->remind->importantDate->type->title,
+                'date_remind' => $this->remind->importantDate->important_date_date,
             ]
         );
     }
