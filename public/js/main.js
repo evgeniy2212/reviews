@@ -397,6 +397,16 @@
     $('[id^="instruction-video"]').click(function () {
       $(this).parent().hide();
     });
+    $('#enable_share_message').change(function () {
+      if ($(this).is(":checked")) {
+        $('#share_message').removeAttr('disabled');
+      } else {
+        var placeholder = $('#share_message').attr('data-placeholder');
+        $('#share_message').prop('disabled', true);
+        $('#share_message').val('');
+        $('#share_message').attr("placeholder", placeholder);
+      }
+    });
   });
 
   function getBadWords(data) {

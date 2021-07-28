@@ -25,7 +25,7 @@
                         </div>
                     @elseif($errors->any())
                         <div class="errorMessage">{!! $errors->first() !!}</div>
-                        <form method="POST" action="{{ route('share-form') }}" novalidate="" id="loginForm">
+                        <form method="POST" action="{{ route('share-send') }}" novalidate="" id="loginForm">
                             @csrf
                             <div class="form-group d-flex flex-row align-items-center">
                                 <div class="col-md-3 text-right">
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group d-flex flex-row justify-content-center align-items-center">
                                 <div class="col-md-3">
-                                    <button type="submit" name="remember" value="1" class="rememberButton submitLoginButton">
+                                    <button type="submit" class="rememberButton submitLoginButton">
                                         @lang('service/index.continue')
                                     </button>
                                 </div>
@@ -68,6 +68,27 @@
                                 </div>
                             </div>
                             <div class="form-group d-flex flex-row align-items-center">
+                                    <div class="col-md-6 offset-3">
+                                        <textarea name="share_message"
+                                                  type="text"
+                                                  data-placeholder="{{ __('service/index.share.default_message') }}"
+                                                  class="share-message"
+                                                  id="share_message"
+                                                  disabled
+                                                  placeholder="@lang('service/index.share.default_message')"></textarea>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox"
+                                                   class="custom-checkbox"
+                                                   id="enable_share_message"
+                                                   value="1"
+                                                   name="enable_message">
+                                            <label for="enable_share_message">@lang('service/index.share.is_custom_message')</label>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="form-group d-flex flex-row align-items-center">
                                 <div class="col-md-3 text-right">
                                     <label for="email">Your Name</label>
                                 </div>
@@ -82,7 +103,7 @@
                             </div>
                             <div class="form-group d-flex flex-row justify-content-center align-items-center">
                                 <div class="col-md-3">
-                                    <button type="submit" name="remember" value="1" class="rememberButton submitLoginButton">
+                                    <button type="submit" class="rememberButton submitLoginButton">
                                         @lang('service/index.send')
                                     </button>
                                 </div>

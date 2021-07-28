@@ -14,15 +14,18 @@ class ShareMail extends Mailable
 
     private $email;
 
+    private $message;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(string $email, string $name)
+    public function __construct(string $email, string $name, $message)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->message = $message;
     }
 
     /**
@@ -35,6 +38,7 @@ class ShareMail extends Mailable
         return $this->markdown('mails.share',
             [
                 'name' => $this->name,
+                'message' => $this->message,
                 'email' => $this->email
             ]
         );

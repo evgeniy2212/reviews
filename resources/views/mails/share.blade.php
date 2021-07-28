@@ -2,7 +2,7 @@
 
 Hi, this is {{ $name }}.
 
-Check out this exciting new review site!
+{!! $message !!}
 
 @component('mail::button', ['url' => route('home')])
     GO to the {{ config('app.name') }}

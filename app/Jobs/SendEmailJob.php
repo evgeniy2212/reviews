@@ -16,15 +16,17 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $templateName;
+    private $subjectContent;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($templateName)
+    public function __construct($templateName, $subject = '')
     {
         $this->templateName = $templateName;
+        $this->subjectContent = $subject;
     }
 
     /**
@@ -36,7 +38,7 @@ class SendEmailJob implements ShouldQueue
     {
         foreach(User::activeUsers()->get()->chunk(100) as $users){
             foreach($users as $user){
-                Mail::to($user->email)->send(new CongratulationEmail($this->templateName));
+                Mail::to($user->email)->send(new CongratulationEmail($this->templateName, $this->subjectContent));
             }
         }
     }

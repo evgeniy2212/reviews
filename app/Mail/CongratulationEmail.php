@@ -11,15 +11,17 @@ class CongratulationEmail extends Mailable
     use Queueable, SerializesModels;
 
     private $tepmlate;
+    private $subjectContent;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($template)
+    public function __construct($template, $subject = '')
     {
         $this->tepmlate = $template;
+        $this->subjectContent = $subject;
     }
 
     /**
@@ -29,6 +31,7 @@ class CongratulationEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.' . $this->tepmlate);
+        return $this->markdown('mails.' . $this->tepmlate)
+            ->subject($this->subjectContent);
     }
 }

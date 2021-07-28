@@ -44,10 +44,14 @@ class InfoController extends Controller
     }
 
     public function shareSend(ShareRequest $request){
+        $message = $request->enable_message
+            ? $request->share_message
+            : __('service/index.share.default_message');
         Mail::to($request->email)
             ->send(new ShareMail(
                 $request->email,
-                $request->name
+                $request->name,
+                $message
             ));
 
         return redirect()->route('home');

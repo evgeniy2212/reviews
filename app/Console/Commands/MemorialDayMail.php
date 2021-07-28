@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Jobs\SendEmailJob;
 use Illuminate\Console\Command;
 
-class SendNewYearMail extends Command
+class MemorialDayMail extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'congratulation:new_year';
+    protected $signature = 'congratulation:memorial';
 
     /**
      * The console command description.
@@ -38,6 +38,6 @@ class SendNewYearMail extends Command
      */
     public function handle()
     {
-        dispatch(new SendEmailJob('new_year', __('service/mail.subject.happy_new_year')));
+        dispatch(new SendEmailJob('memorial_day', __('service/mail.subject.memorial_day')));
     }
 }

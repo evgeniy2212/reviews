@@ -739,6 +739,15 @@ button:disabled {
 #shareForm div{
     margin: 8px;
 }
+.share-message {
+    resize: none;
+    width: 100%;
+    height: 100px;
+    padding: 2%;
+    font-size: 0.8rem;
+    border: 1px solid #2f5496;
+    border-radius: 1px;
+}
 #sliderBodyModalContent {
     padding: 5px 0;
     display: flex;

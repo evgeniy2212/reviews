@@ -269,7 +269,7 @@
             console.log('SUCCESS');
           }
         });
-        congratulation.removeClass('unread-single-congratulation-private'); // congratulation.slideUp();
+        congratulation.removeClass('unread-single-congratulation-private');
       } else {
         congratulation.css({
           'overflow': 'hidden'
@@ -281,10 +281,8 @@
           congratulation.css({
             'overflow': 'hidden'
           });
-        }, 510); // congratulation.css({'overflow': 'hidden'});
-        // congratulation.slideDown();
-      } // $(this).closest('.single-review').removeClass('unread-private-congratulation');
-
+        }, 510);
+      }
     });
     $('#imgCongratulation').change(function () {
       readImageURL(this);

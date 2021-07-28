@@ -1,6 +1,15 @@
 @component('mail::message')
-    Happy New Year!
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    <b>New Year’s Day</b>
 
-With best regards,{{ config('app.name') }}
+    Happy New Year {{ \Carbon\Carbon::now()->year }}!
+
+    May this year bring peace, health, and happiness, along with plenty of exciting
+    experiences for you to tell us about. The entire Reviews4Results team is thrilled to hear
+    what {{ \Carbon\Carbon::now()->year }} has in store for you.
+
+    Thank you for your reviews — keep making the world a better place!
+
+    Respectfully.
+
+    The Reviews4Results Team
 @endcomponent

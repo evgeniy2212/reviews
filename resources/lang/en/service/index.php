@@ -65,5 +65,7 @@ return [
     'congratulation.need_rating' => '- :count reviews',
     'datepicker_placeholder' => 'DD/MM/YEAR',
     'video_rules' => 'The video must be in mp4 format and the video size must be no more than 100 mb.',
-    'enter_share_info' => 'If you want to share this website, please enter an email address below'
+    'enter_share_info' => 'If you want to share this website, please enter an email address below',
+    'share.is_custom_message' => 'custom message',
+    'share.default_message' => 'Check out this exciting new review site!',
 ];
