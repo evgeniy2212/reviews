@@ -15,7 +15,7 @@ class CreateImportantDateRemindsTable extends Migration
     {
         Schema::create('important_date_reminds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('important_date_remind');
+            $table->timestamp('important_date_remind')->useCurrent();
             $table->bigInteger('important_date_id')->unsigned();
 
             $table->foreign('important_date_id')->references('id')->on('user_important_dates')->onDelete('cascade');
