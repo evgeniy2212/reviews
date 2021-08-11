@@ -1,16 +1,12 @@
-<header>
-    <div class="container-fluid d-flex flex-row justify-content-between">
-        <div class="d-flex flex-row justify-content-start">
-            <div id="logo">
-                <img src="{{ asset('images/frame.png') }}" height="125px" width="150px"/>
-            </div>
+<header class="header">
+    <div class="container-fluid d-flex flex-wrap justify-content-between">
+        <div class="header__logo">
+            <img src="{{ asset('images/frame.png') }}" height="125px" width="150px"/>
         </div>
         <div class="middleHeadContainer d-flex flex-column justify-content-between">
-            <div class="d-flex flex-row justify-content-between align-items-start" >
-                <div class="d-flex flex-column justify-content-start" id="sitename">
-                    <span>
-                        <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="scrollto">@lang('service/index.header_site_name')<span>.com</span></a>
-                    </span>
+            <div class="d-flex justify-content-between align-items-start">
+                <div class="d-flex flex-column justify-content-start site-name">
+                    <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="site-name__link">@lang('service/index.header_site_name')<span>.com</span></a>
                     <p>
                         Your reviews make our lives better.
                     </p>
@@ -66,47 +62,48 @@
                     @endif
                 @endauth
             </div>
-            <div class="d-flex flex-row justify-content-between align-items-end">
-                <div class="d-flex flex-row justify-content-between">
-                    <nav id="nav-menu-container">
-                        <ul class="nav-menu">
-                            @if(auth()->user()
-                            && auth()->user()->email_verified_at
-                            && !auth()->user()->two_factor_code)
-                                <li>
-                                    <a href="{{ LaravelLocalization::localizeUrl('/logout') }}"
-                                       onclick="event.preventDefault();
+            <div class="d-md-flex flex-wrap justify-content-between align-items-md-end">
+                {{--<div class="d-flex flex-row justify-content-between">--}}
+                    {{----}}
+                {{--</div>--}}
+                <nav class="nav-menu-container">
+                    <ul class="nav-menu">
+                        @if(auth()->user()
+                        && auth()->user()->email_verified_at
+                        && !auth()->user()->two_factor_code)
+                            <li>
+                                <a href="{{ LaravelLocalization::localizeUrl('/logout') }}"
+                                   onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        Sign Out
-                                    </a>
-                                    <form id="logout-form" action="{{ LaravelLocalization::localizeUrl('/logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            @else
-                                <li>
-                                    <a href="{{ LaravelLocalization::localizeUrl('/login') }}">Sign In</a>
-                                </li>
-                                <li class="left-border">
-                                    <a href="{{ LaravelLocalization::localizeUrl('/register') }}">Sign Up</a>
-                                </li>
-                            @endif
-                            <li class="left-border">
-{{--                                <a href="{{ asset('files/reviews4info.zip') }}" download="reviews4info">Save</a>--}}
-                                <a href="{{ route('save-shortcut') }}">Save</a>
+                                    Sign Out
+                                </a>
+                                <form id="logout-form" action="{{ LaravelLocalization::localizeUrl('/logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ LaravelLocalization::localizeUrl('/login') }}">Sign In</a>
                             </li>
                             <li class="left-border">
-                                <a href="{{ route('share') }}"
-{{--                                   data-toggle="modal"--}}
-{{--                                   data-target="#shareModal"--}}
-                                >Share</a>
+                                <a href="{{ LaravelLocalization::localizeUrl('/register') }}">Sign Up</a>
                             </li>
-                        </ul>
-                    </nav>
-                </div>
+                        @endif
+                        <li class="left-border">
+                            {{--                                <a href="{{ asset('files/reviews4info.zip') }}" download="reviews4info">Save</a>--}}
+                            <a href="{{ route('save-shortcut') }}">Save</a>
+                        </li>
+                        <li class="left-border">
+                            <a href="{{ route('share') }}"
+                                {{--                                   data-toggle="modal"--}}
+                                {{--                                   data-target="#shareModal"--}}
+                            >Share</a>
+                        </li>
+                    </ul>
+                </nav>
                 <form method="GET"
                       action="{{ route('search') }}"
-                      class="form-inline"
+                      class="form-inline search-form"
                       novalidate=""
                       id="searchForm">
                     <input class="form-control mr-sm-2 input"
@@ -133,71 +130,67 @@
                 </form>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-between">
-            <div class="post">
-                <div class="slider">
-                    <div class="slider__wrapper">
-                        {{--<div class="slider__item">--}}
-                            {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">1</div>--}}
-                            {{--<div style="height: 120px; background-image: url(../images/post.jpg); background-repeat: no-repeat; background-size: cover;">1</div>--}}
-                        {{--</div>--}}
+        <div class="post">
+            <div class="slider">
+                <div class="slider__wrapper">
+                    {{--<div class="slider__item">--}}
+                    {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">1</div>--}}
+                    {{--<div style="height: 120px; background-image: url(../images/post.jpg); background-repeat: no-repeat; background-size: cover;">1</div>--}}
+                    {{--</div>--}}
 
-                        @foreach(\App\Services\BannerService::getHeadBanners() as $key => $banner)
-                            @if(empty(optional($banner)->body))
-                                <div class="slider__item">
+                    @foreach(\App\Services\BannerService::getHeadBanners() as $key => $banner)
+                        @if(empty(optional($banner)->body))
+                            <div class="slider__item">
 
-                                        @if(empty($banner->link))
-                                            <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '130' }}px;">
-                                                <span style="font-size: 0.9rem">{{ empty($banner->title) ? '' : $banner->title }}</span>
-                                            </div>
-                                        @else
-                                            <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '130' }}px;">
-                                                <a style="font-size: 0.9rem" href="{{ $banner->link }}" target="_blank">{{ empty($banner->title) ? $banner->link : $banner->title }}</a>
-                                            </div>
-                                        @endif
-                                </div>
-                            @else
-                                <div class="slider__item"
-                                     id="slider_body{{ $key }}"
-                                     data-body="{{ $banner->body }}">
-                                    <div style="height: 150px;
+                                @if(empty($banner->link))
+                                    <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '130' }}px;">
+                                        <span style="font-size: 0.9rem">{{ empty($banner->title) ? '' : $banner->title }}</span>
+                                    </div>
+                                @else
+                                    <div class="slider_content" style="height: 150px; background-position: center top; background-image: url('{{ $banner->getImageUrl() }}'); background-size: auto {{ empty($banner->title) ? '150' : '130' }}px;">
+                                        <a style="font-size: 0.9rem" href="{{ $banner->link }}" target="_blank">{{ empty($banner->title) ? $banner->link : $banner->title }}</a>
+                                    </div>
+                                @endif
+                            </div>
+                        @else
+                            <div class="slider__item"
+                                 id="slider_body{{ $key }}"
+                                 data-body="{{ $banner->body }}">
+                                <div style="height: 150px;
                                         cursor: pointer;
                                         background-position: center top;
                                         background-size: auto 150px;">
                                         <span class="sliderBody">
                                             {!! $banner->body !!}
                                         </span>
-                                    </div>
                                 </div>
-                            @endif
-                        @endforeach
-                        {{--<div class="slider__item">--}}
-                            {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">2</div>--}}
-                        {{--</div>--}}
-                    </div>
-                    <a class="slider__control slider__control_left" href="#" role="button"></a>
-                    <a class="slider__control slider__control_right" href="#" role="button"></a>
+                            </div>
+                        @endif
+                    @endforeach
+                    {{--<div class="slider__item">--}}
+                    {{--<div style="height: 120px; background: url(../images/post.jpg) 100% 100% no-repeat; background-size: cover;">2</div>--}}
+                    {{--</div>--}}
                 </div>
+                <a class="slider__control slider__control_left" href="#" role="button"></a>
+                <a class="slider__control slider__control_right" href="#" role="button"></a>
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="container">
-            <div class="nav-gradient">
-                <ul class="nav-menu navigate">
-                    <li @if(\Route::current()->getName() == 'home')class="menu-active"@endif>
-                        <a href="{{ route('home') }}">@lang('service/index.home')</a>
+    <div class="container">
+        <div class="nav-gradient">
+            <ul class="nav-menu navigate">
+                <li @if(\Route::current()->getName() == 'home')class="menu-active"@endif>
+                    <a href="{{ route('home') }}">@lang('service/index.home')</a>
+                </li>
+                @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
+                    <li @if(str_contains(url()->current(), $review_category->slug) || str_contains(url()->full(), 'category=' . $review_category->slug))
+                        class="menu-active"@endif>
+                        <a href="{{ route('reviews', $review_category->slug) }}">
+                            @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
+                        </a>
                     </li>
-                    @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
-                        <li @if(str_contains(url()->current(), $review_category->slug) || str_contains(url()->full(), 'category=' . $review_category->slug))
-                            class="menu-active"@endif>
-                            <a href="{{ route('reviews', $review_category->slug) }}">
-                                @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                @endforeach
+            </ul>
         </div>
     </div>
 </header>

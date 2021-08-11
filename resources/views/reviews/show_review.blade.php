@@ -5,16 +5,14 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="container">
-            <div class="content-place">
-                <div class="review-items">
-                    @forelse($reviews as $review)
-                        @include('reviews.single_review')
-                    @empty
-                        <span>You don`t have Reviews.</span>
-                    @endforelse
-                </div>
+    <div class="container">
+        <div class="content-place">
+            <div class="review-items">
+                @forelse($reviews as $review)
+                    @include('reviews.single_review')
+                @empty
+                    <span>You don`t have Reviews.</span>
+                @endforelse
             </div>
         </div>
     </div>

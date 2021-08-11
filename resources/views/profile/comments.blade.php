@@ -36,7 +36,7 @@
             </div>
             <form method="GET"
                   action="{{ route('searchUserComments') }}"
-                  class="form-inline"
+                  class="form-inline search-form"
                   novalidate=""
                   id="searchForm">
                 <input class="form-control mr-sm-2 input"

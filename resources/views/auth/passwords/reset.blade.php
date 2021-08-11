@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
     <div class="container">
-        <div class="content-place d-flex flex-column justify-content-center align-items-center">
-            <div class="container loginForm">
+        <div class="content-place d-md-flex flex-md-column justify-content-md-center align-items-md-center">
+            <div class="loginForm">
                 @if($errors->any())
                     <div class="errorMessage">{!! $errors->first() !!}</div>
                 @else
@@ -13,7 +12,7 @@
                 <form method="POST" action="{{ route('password.update') }}" novalidate="" id="loginForm">
                     @csrf
                     <input type="hidden" name="token" value="{{ $token }}">
-                    <div class="form-group d-flex flex-row align-items-center">
+                    <div class="form-group d-md-flex align-items-md-center">
                         <div class="col-md-3">
                             <label for="email">@lang('service/index.email_enter')</label>
                         </div>
@@ -26,7 +25,7 @@
                                    required autocomplete="email">
                         </div>
                     </div>
-                    <div class="form-group d-flex flex-row align-items-center">
+                    <div class="form-group d-md-flex align-items-md-center">
                         <div class="col-md-3">
                             <label for="password">@lang('service/index.password_enter')</label>
                         </div>
@@ -38,7 +37,7 @@
                                    required autocomplete="current-password">
                         </div>
                     </div>
-                    <div class="form-group d-flex flex-row align-items-center">
+                    <div class="form-group d-md-flex align-items-md-center">
                         <div class="col-md-3">
                             <label for="password-confirm">@lang('register.confirm_password')</label>
                         </div>
@@ -50,7 +49,7 @@
                                    required autocomplete="new-password">
                         </div>
                     </div>
-                    <div class="form-group d-flex flex-row justify-content-center align-items-center">
+                    <div class="form-group d-flex justify-content-center align-items-center">
                         <div class="col-md-6">
                             <button type="submit" name="remember" value="1" class="rememberButton submitLoginButton">
                                 @lang('service/index.reset_password')
@@ -61,5 +60,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection

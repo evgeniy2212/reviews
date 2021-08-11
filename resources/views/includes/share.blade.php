@@ -10,7 +10,7 @@
                     <div>
                         <span>If you want to shere this website please enter an email address below</span>
                     </div>
-                    <div class="d-flex flex-row justify-content-center">
+                    <div class="d-flex justify-content-center">
                         <div class="col-md-8">
                             <input id="email"
                                    type="email"
@@ -21,7 +21,7 @@
                                    autocomplete="email">
                         </div>
                     </div>
-                    <div class="d-flex flex-row justify-content-center align-items-center">
+                    <div class="d-flex justify-content-center align-items-center">
                         <div class="col-md-3">
                             <button class="otherButton" type="submit">
                                 Send

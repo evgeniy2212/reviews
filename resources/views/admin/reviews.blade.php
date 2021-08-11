@@ -58,7 +58,7 @@
             <button class="btn btn-outline-primary my-2 my-sm-0 adminFilterButton">Filter</button>
             <form method="GET"
                   action="{{ route('admin.searchReviews') }}"
-                  class="form-inline"
+                  class="form-inline search-form"
                   novalidate=""
                   id="searchForm">
                 <input class="form-control mr-sm-2 input"

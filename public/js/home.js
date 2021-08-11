@@ -254,7 +254,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /app/resources/js/home.js */"./resources/js/home.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\reviews.loc\resources\js\home.js */"./resources/js/home.js");
 
 
 /***/ })

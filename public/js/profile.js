@@ -267,6 +267,7 @@
           dataType: "json",
           success: function success(data) {
             console.log('SUCCESS');
+            console.log('data: ', data);
           }
         });
         congratulation.removeClass('unread-single-congratulation-private');
@@ -478,7 +479,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /app/resources/js/profile.js */"./resources/js/profile.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\reviews.loc\resources\js\profile.js */"./resources/js/profile.js");
 
 
 /***/ })

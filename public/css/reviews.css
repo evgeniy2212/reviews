@@ -1,7 +1,3 @@
-@font-face {
-    font-family: ImprintMTShadow;
-    src: url('../fonts/ImprintMTShadow.ttf');
-}
 
 /*Rating stars*/
 .rate-base-layer
@@ -190,6 +186,11 @@ input[type="file"] {
     height: 18px;
     box-sizing: border-box;
     max-width: 50%;
+}
+@media screen and (max-width: 767px) {
+    .checkbox-item {
+        max-width: 100%;
+    }
 }
 .review-content-place, .review-content-place:hover {
     height: calc(100vh - 260px);

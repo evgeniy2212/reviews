@@ -9,7 +9,7 @@ header {
     font-family: utsaah;
     src: url('../fonts/utsaah.ttf');
 }
-#sitename span {
+.site-name span {
     font-size: 43px;
     margin: 0;
     padding: 0;
@@ -18,13 +18,13 @@ header {
     font-weight: 300;
     letter-spacing: 5px;
 }
-#sitename span a, #sitename span a:hover {
+.site-name span a, .site-name span a:hover {
     color: #000;
     padding-left: 5px;
     text-decoration: none;
     /*border-left: 4px solid grey;*/
 }
-#sitename {
+.site-name {
     margin-top: 55px;
     padding: 0 0;
 }
@@ -33,7 +33,7 @@ header {
 /*padding-right: 0;*/
 /*!*min-width: 170px;*!*/
 /*}*/
-#sitename p {
+.site-name p {
     padding-left: 10px;
     margin-bottom: 0rem;
     font-weight: bolder;
