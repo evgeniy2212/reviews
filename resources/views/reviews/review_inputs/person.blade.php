@@ -1,5 +1,5 @@
 <div class="col-md-5">
-    <div class="d-flex flex-row align-items-center flex-grow-1">
+    <div class="d-flex align-items-center flex-grow-1">
         <div class="col-md-3">
             <span class="create-review-label text-center">
                 @lang('service/index.review_person_name_label')
@@ -30,7 +30,7 @@
     </div>
 </div>
 <div class="col-md-7">
-    <div class="d-flex flex-row align-items-center flex-grow-1">
+    <div class="d-flex align-items-center flex-grow-1">
         <div>
             <span class="create-review-label">
                 @lang('register.country')

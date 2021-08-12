@@ -605,9 +605,16 @@ button:disabled {
     background: #f2f2f2;
     font-size: 0.8rem;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     flex-direction: column;
     justify-content: space-around;
+}
+
+@media  screen and (max-width: 767px) {
+    .get-in-touch-content-place {
+        height: auto;
+        padding-bottom: 10px;
+    }
 }
 .touch-info-message {
     display: flex;
@@ -617,8 +624,15 @@ button:disabled {
 }
 .get-in-touch-info-place {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+}
+@media screen and (max-width: 767px) {
+    .get-in-touch-info-place {
+        flex-wrap: wrap;
+    }
+    .get-in-touch-info-item {
+        margin-bottom: 15px;
+    }
 }
 .get-in-touch-info-item {
     display: flex;
@@ -651,17 +665,27 @@ button:disabled {
     border-radius: 1px;
 }
 .touch-input-container {
-    /*d-flex flex-row justify-content-center*/
     display: flex;
-    flex-direction: row;
     justify-content: center;
 }
+
 .touch-input-container input {
     margin-left: 10px;
     font-size: 0.8rem;
     text-align: left;
     color: black;
     text-align-last: left;
+}
+@media screen and (max-width: 767px) {
+    .touch-input-container {
+        display: block;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 10px;
+    }
+    .touch-input-container input {
+        margin-left: 0;
+    }
 }
 /* The Modal (background) */
 .image-modal {
@@ -788,13 +812,19 @@ button:disabled {
     width: 300px; /* Ширина подсказки */
     min-height: 100%;
     white-space: pre-wrap;
-    right: 0px; top: 30px; /* Положение подсказки */
+    right: 0; top: 30px; /* Положение подсказки */
     padding: 3px;
     background-color: #f1f1f1;
     border: 2px solid #2f5496;
     border-radius: 5px;
     z-index: 50;
     font-size: 0.8rem;
+}
+
+@media screen and (max-width: 767px) {
+    [data-tooltip]:hover::after {
+        display: none;
+    }
 }
 .invalid-input {
     border-color: #e3342f!important;

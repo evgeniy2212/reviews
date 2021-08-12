@@ -24,7 +24,7 @@
                                 @endfor
                             </div>
                         </div>
-                        <div class="d-flex flex-row justify-content-around w-100">
+                        <div class="d-flex justify-content-around w-100">
                             <div class="like-container-right">
                                 <label for="like-{{ $review->id }}">{{ $review->likes }}</label>
                                 <input data-review-id="{{ $review->id }}"
@@ -96,7 +96,7 @@
                                 @foreach($review->comments as $comment)
                                     <div class="comment" style="display: none">
                                         <span>{!! $comment->body !!}</span>
-                                        <div class="d-flex flex-row justify-content-around w-25">
+                                        <div class="d-flex justify-content-around w-25">
                                             <div>
                                                 <label for="comment-like-{!! $comment->id !!}">{!! $comment->likes !!}</label>
                                                 <input id="comment-like-{!! $comment->id !!}"

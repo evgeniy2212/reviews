@@ -19,13 +19,13 @@
             </div>
             <div class="review-items">
                 @if($reviews->count())
-                    <div class="d-flex flex-row justify-content-center exist-review-title">
+                    <div class="d-flex justify-content-center exist-review-title">
                             <span>
                                {{ empty($search) ? '' : "\"$search\"" }} EXISTING REVIEWS
                             </span>
                     </div>
                     @if(!empty($avgRating))
-                        <div class="d-flex flex-row justify-content-center">
+                        <div class="d-flex justify-content-center">
                             <div class="middle-rating-star" data-rate-value="5" style="width: 91.6406px; height: 33px; position: relative; cursor: default; user-select: none;">
                                 <div class="rate-base-layer" style="width: 100%; height: 33px; overflow: hidden; position: absolute; top: 0px; display: block; white-space: nowrap;">
                                     <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
@@ -38,13 +38,13 @@
                     @endif
                     <div class="review-filters">
                         @foreach($filters as $filter)
-                            <div class="col-md-3 d-flex flex-row justify-content-around">
+                            <div class="col-sm-6 col-md-3 d-md-flex justify-content-md-around">
                                 <div>
                                     <label for="country">
                                         {!! $filter->format_name !!}
                                     </label>
                                 </div>
-                                <div>
+                                <div class="review-filters__select-wrap">
                                     <select class="select filter-select"
                                             id="filter-{!! $filter->slug !!}"
                                             name="{!! $filter->slug !!}">
@@ -62,13 +62,13 @@
                             </div>
                         @endforeach
                         @if(!empty($showCongratulation))
-                            <div class="col-md-4 d-flex flex-row justify-content-around">
+                            <div class="col-sm-6 col-md-5 col-lg-4 d-md-flex justify-content-md-around">
                                 <div>
                                     <label>
                                         @lang('service/index.reviews.select_category')
                                     </label>
                                 </div>
-                                <div>
+                                <div class="review-filters__select-wrap">
                                     <select class="select filter-select"
                                             id="filter-{!! \App\Models\ReviewFilter::CONTENT_TYPE_FILTER !!}"
                                             name="{!! \App\Models\ReviewFilter::CONTENT_TYPE_FILTER !!}">
@@ -86,7 +86,7 @@
                         @endif
                     </div>
                 @else
-                    <div class="d-flex flex-row justify-content-center exist-review-title">
+                    <div class="d-flex justify-content-center exist-review-title">
                             <span>
                                 SEARCH RESULT IS EMPTY
                             </span>
@@ -102,13 +102,9 @@
 
                 @endforelse
                 @if($reviews->total() > $reviews->count())
-                    <div class="container-fluid">
-                        <div class="pagination-container">
-                            <div class="col-md-12 d-flex align-items-center justify-content-center">
-                                {{ $reviews->appends($paginateParams)->links() }}
-                            </div>
-                        </div>
-                    </div>
+                      <div class="pagination-container">
+                              {{ $reviews->appends($paginateParams)->links() }}
+                      </div>
                 @endif
             </div>
         </div>

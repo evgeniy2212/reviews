@@ -229,22 +229,42 @@ input[type="file"] {
     text-align: center;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     height: 50px;
     outline-offset: -4px;
 }
+@media screen and (max-width: 767px) {
+    .review-filters {
+        justify-content: center;
+        height: auto;
+        text-align: left;
+    }
+    .review-filters input,
+    .review-filters select {
+        width: 100%;
+    }
+    .review-filters label {
+        margin-bottom: 0;
+    }
+    .review-filters__select-wrap {
+        margin-bottom: 10px;
+    }
+}
+
+
 .single-review {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: stretch;
     justify-content: space-around;
     border-bottom: 1px groove #4a92f8;
 }
+
+
 .review-stars {
     font-size: 20px;
     color: #2f5496;
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: space-around;
@@ -256,9 +276,32 @@ input[type="file"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     width: 15%;
 }
+.like-reaction :active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.comment-like-reaction :active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.like-reaction, .comment-like-reaction {
+    background-image: url("../images/positive_like.png");
+    cursor:pointer;
+    border: none;
+    width: 22px;
+    height: 22px;
+}
+.like-container-right {
+    width: 35%;
+    text-align: right;
+}
+.like-container-left {
+    width: 35%;
+    text-align: left;
+}
+
 .single-comment-info span {
     font-size: 15px;
 }
@@ -279,6 +322,7 @@ input[type="file"] {
     width: 85%;
     justify-content: flex-start;
 }
+
 .single-review-name {
     display: flex;
     flex-direction: column;
@@ -360,6 +404,72 @@ input[type="file"] {
     font-size: 1rem;
     padding-bottom: 0px;
 }
+@media screen and (max-width: 992px) {
+    .single-review-info {
+        width: 23%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .like-container-right label,
+    .like-container-left label {
+        margin-bottom: 0;
+    }
+    .single-review {
+        display: block;
+    }
+    .single-review-info {
+        width: 100%;
+        flex-direction: row;
+    }
+    .review-stars,
+    .single-review-info__date {
+        flex-shrink: 0;
+    }
+    .single-review-info__date {
+        position: relative;
+        top: 1px;
+        margin-right: 10px;
+    }
+    .single-review-review,
+    .single-review-name,
+    .single-review-content {
+        width: 100%;
+    }
+    .single-review-content {
+        display: block;
+    }
+    .single-review-name {
+        padding-right: 0;
+    }
+    .review-textarea ~ [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media screen and (max-width: 480px) {
+    .single-review {
+        display: block;
+    }
+    .single-review-info {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .like-container-right,
+    .like-container-left {
+        text-align: left;
+    }
+    .single-review-review p {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .review-filters [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+
 .profile-single-review-review p, .profile-single-review-review span {
     text-align: left;
     float: left;
@@ -375,29 +485,7 @@ input[type="file"] {
     object-fit: fill;
     float: right;
 }
-.like-reaction :active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
-}
-.comment-like-reaction :active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
-}
-.like-reaction, .comment-like-reaction {
-    background-image: url("../images/positive_like.png");
-    cursor:pointer;
-    border: none;
-    width: 22px;
-    height: 22px;
-}
-.like-container-right {
-    width: 35%;
-    text-align: right;
-}
-.like-container-left {
-    width: 35%;
-    text-align: left;
-}
+
 .comment-buttons {
     display: flex;
     flex-direction: column;
@@ -408,13 +496,17 @@ input[type="file"] {
     margin-bottom: 15px;
 }
 .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 1%;
+}
+@media screen and (max-width: 767px) {
+    .pagination-container {
+        padding-top: 10px;
+    }
 }
 .pagination {
     margin: 0;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .page-link {
     color: #2f5496;

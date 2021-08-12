@@ -4,7 +4,7 @@
             <img src="{{ asset('images/frame.png') }}" height="125px" width="150px"/>
         </div>
         <div class="middleHeadContainer d-flex flex-column justify-content-between">
-            <div class="d-flex justify-content-between align-items-start">
+            <div class="middleHeadContainer__logo d-flex justify-content-between align-items-start">
                 <div class="d-flex flex-column justify-content-start site-name">
                     <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="site-name__link">@lang('service/index.header_site_name')<span>.com</span></a>
                     <p>
@@ -35,12 +35,12 @@
                 </div>
                 @auth
                     @if(auth()->user()->email_verified_at && !auth()->user()->two_factor_code)
-                        <div class="d-flex flex-row">
+                        <div class="d-flex middleHeadContainer__greet">
                             <div style="height: auto; margin-top: 5px">
                                 <a href="{{ route('profile-info') }}" style="text-decoration: none;color: black;"><span class="text">@lang('service/index.hello', ['name' => Auth::user()->name])</span></a>
                             </div>
-                            <div class="d-flex flex-column">
-                                <div class="user-info d-flex flex-row justify-content-between align-items-center">
+                            <div class="header__user-info d-flex">
+                                <div class="user-info d-flex justify-content-between align-items-center">
                                     <div class="message-count">
                                         {{--<div class="bg"></div>--}}
                                         <a href="{{ route('profile-messages') }}">

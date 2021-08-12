@@ -1,20 +1,16 @@
 <div class="single-review">
     <div class="single-review-info">
-        <div>
-            <span>{{ $review->created_at }}</span>
+        <span class="single-review-info__date">{{ $review->created_at }}</span>
+        <div class="review-stars">
+            @for($i=1;$i < 6; $i++)
+                @if($i <= $review->rating)
+                    &#9733;
+                @else
+                    &#9734;
+                @endif
+            @endfor
         </div>
-        <div>
-            <div class="review-stars">
-                @for($i=1;$i < 6; $i++)
-                    @if($i <= $review->rating)
-                        &#9733;
-                    @else
-                        &#9734;
-                    @endif
-                @endfor
-            </div>
-        </div>
-        <div class="d-flex flex-row justify-content-around w-100">
+        <div class="d-flex justify-content-around w-100">
             <div class="like-container-right">
                 <label for="like-{{ $review->id }}">{{ $review->likes }}</label>
                 <input data-review-id="{{ $review->id }}"
@@ -117,7 +113,7 @@
                 @endforeach
                 <div class="comment-example" style="display: none">
                     <span></span>
-                    <div class="d-flex flex-row justify-content-around w-25">
+                    <div class="d-flex justify-content-around w-25">
                         <div>
                             <label for="comment-like"></label>
                             <input id="comment-like"
@@ -167,12 +163,12 @@
                             </div>
                         </div>
                 @endauth
-                <div class="col-md-4 offset-8">
+                <div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
                     <button class="otherButton" style="white-space: nowrap" id="commentButton-{{ $review->id }}" data-comments="{{ $review->comments->count() }}">
                         Show Comments ({!! $review->comments->count() !!})
                     </button>
                 </div>
-                <div class="col-md-4 offset-8">
+                <div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
                     @auth()
 {{--                        @if(auth()->user()->id !== $review->user_id)--}}
                             <a type="button"
