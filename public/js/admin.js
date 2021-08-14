@@ -95,6 +95,13 @@
 
 (function ($) {
   $(document).ready(function () {
+    // admin navigation menu handler
+    $('.js_navigation-btn').on('click', function () {
+      $('body').addClass('profile-navigation--active').addClass('no--scroll');
+    });
+    $('.js_page-overlay').on('click', function () {
+      $('body').removeClass('profile-navigation--active').removeClass('no--scroll');
+    });
     $(".admin-filter-select").change(function () {
       var slug = $(this).attr('name');
       var item = $(this).children("option:selected").val();

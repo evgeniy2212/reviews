@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    {{--<audio--}}
-        {{--id="audio"--}}
-        {{--src="{{ asset('storage/sounds/keys.mp3') }}">--}}
-    {{--</audio>--}}
+    <audio
+        id="audio"
+        src="{{ asset('storage/sounds/keys.mp3') }}">
+    </audio>
     <div class="container">
         <div class="content-place home-content-place">
             <div class="home">

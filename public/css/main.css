@@ -123,7 +123,7 @@ html, body {
 @media screen and (max-width: 480px) {
     .content-place {
         /*height: calc(100vh - 180px);*/
-        height: auto;
+        height: 300px;
         padding: 20px 5px;
     }
 }
@@ -352,6 +352,7 @@ html, body {
     align-items: center;
     width: 170px;
 }
+
 .profile-navigation a {
     text-decoration: none;
     color: grey;
@@ -389,6 +390,72 @@ html, body {
     flex-direction: column;
     justify-content: center;
     padding: 2px;
+}
+
+.navigation-btn {
+    display: none;
+}
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0, .7);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s, visibility .3s;
+    z-index: 99;
+}
+@media screen and (max-width: 767px) {
+    .profile-navigation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100vh;
+        background-color: #f2f2f2;
+        overflow: auto;
+        transition: transform .4s;
+        touch-action: pan-y;
+        transform: translateX(-100%);
+        z-index: 999;
+    }
+    .profile-place {
+        width: 100%;
+    }
+
+    .profile-navigation--active .profile-navigation {
+        transform: translateX(0);
+    }
+    .profile-navigation--active .page-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .navigation-btn {
+        display: block;
+        position: fixed;
+        bottom: 24px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        font-size: 10px;
+        color: #fff;
+        border-radius: 50%;
+        background-color: #2f5496;
+        z-index: 98;
+    }
+    .navigation-btn:focus {
+        outline: 0;
+        background-color: #244580;
+    }
+    .no--scroll {
+        overflow: hidden;
+    }
 }
 #personalForm {
     height: 45vh;
@@ -439,6 +506,10 @@ button:disabled {
     align-items: center;
     user-select: none;
     white-space: nowrap;
+}
+.custom-checkbox+label+a {
+    position: relative;
+    top: -2px;
 }
 .custom-checkbox+label::before {
     content: '';
@@ -1033,6 +1104,11 @@ button:disabled {
     left: 0%;
     top: 17%;
 }
+@media screen and (max-width: 767px) {
+    #instructionModal .modal-dialog, #sliderBodyModal .modal-dialog {
+        top: 0;
+    }
+}
 #instructionModal .instruction-videos {
     display: flex;
     justify-content: center;
@@ -1054,6 +1130,11 @@ button:disabled {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+}
+@media screen and (max-width: 640px) {
+    #instructionModal .instruction-control{
+        display: block;
+    }
 }
 #instructionModal .modal-content div, #sliderBodyModal .modal-content div{
     margin: 10px 0;

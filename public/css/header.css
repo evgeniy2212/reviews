@@ -162,6 +162,10 @@
     .nav-menu a {
         line-height: 24px;
     }
+    .nav-menu > .menu-active {
+        border-left: 0;
+        border-right: 0;
+    }
 }
 .nav-menu:not(.navigate) a {
     line-height: 1;
@@ -318,7 +322,9 @@ body.mobile-nav-active #mobile-nav {
 }
 @media screen and (max-width: 480px) {
     .search-form button {
-        padding-right: 15px;
+        padding-left: 5px;
+        text-align: left;
+        text-align-last: left;
     }
 }
 
@@ -337,8 +343,13 @@ body.mobile-nav-active #mobile-nav {
         width: 100%;
     }
     .form-inline.search-form input {
-        padding-right: 15px;
         margin-bottom: 10px;
+        padding-left: 5px;
+        text-align: left;
+    }
+    .input, .select {
+        text-align: left;
+        text-align-last: left;
     }
 }
 .middleHeadContainer {
@@ -410,15 +421,15 @@ body.mobile-nav-active #mobile-nav {
     opacity: 0; /*Элемент полностью прозрачный (невидимый)*/
     transition: 0.8s; /*Скорость перехода состояния элемента*/
 }
-@media screen and (max-width: 1200px) {
-    .navigate a {
-        opacity: 1 !important;
-    }
-}
 
 @media screen and (max-width: 767px) {
     .navigate a {
         min-width: 140px;
+    }
+
+    /* delete for row direction */
+    .navigate {
+        flex-direction: column;
     }
 }
 .navbar-nav,

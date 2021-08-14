@@ -4,7 +4,7 @@
             <img src="{{ asset('images/frame.png') }}" height="125px" width="150px"/>
         </div>
         <div class="middleHeadContainer d-flex flex-column justify-content-between">
-            <div class="middleHeadContainer__logo d-flex justify-content-between align-items-start">
+            <div class="middleHeadContainer__logo d-flex justify-content-center justify-content-sm-between align-items-start">
                 <div class="d-flex flex-column justify-content-start site-name">
                     <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="site-name__link">@lang('service/index.header_site_name')<span>.com</span></a>
                     <p>

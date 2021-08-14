@@ -6,6 +6,7 @@
         <li class="left-border"><a class="footer__link" href="{{ route('term-of-service') }}">Term of Service</a></li>
     </ul>
     <div class="footer__copyright">
-        <p>Copyright © 2020 @lang('service/index.site_name'), All rights reserved</p>
+        <p>Copyright © <span class="yearN">2020</span> @lang('service/index.site_name'), All rights reserved</p>
     </div>
 </footer>
+
