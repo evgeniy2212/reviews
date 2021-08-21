@@ -217,7 +217,6 @@ input[type="file"] {
 }
 .create-review-buttons, .edit-review-buttons {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -225,7 +224,6 @@ input[type="file"] {
 }
 .review-filters {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: space-between;
@@ -238,6 +236,7 @@ input[type="file"] {
         justify-content: center;
         height: auto;
         text-align: left;
+        margin-bottom: 10px;
     }
     .review-filters input,
     .review-filters select {
@@ -417,9 +416,11 @@ input[type="file"] {
     .single-review {
         display: block;
     }
+    .review-items .single-review-info {
+        flex-direction: row;
+    }
     .single-review-info {
         width: 100%;
-        flex-direction: row;
     }
     .review-stars,
     .single-review-info__date {
@@ -447,9 +448,6 @@ input[type="file"] {
     }
 }
 @media screen and (max-width: 480px) {
-    .single-review {
-        display: block;
-    }
     .single-review-info {
         flex-wrap: wrap;
         justify-content: space-around;
@@ -568,7 +566,6 @@ input[type="file"] {
 }
 .review-textarea {
     display: none;
-    flex-direction: row;
     min-height: 100px;
 }
 .review-textarea[style*='display: block'], .comment[style*='display: block'] {

@@ -7,7 +7,7 @@
                 <br>
                 Thank you!
             </span>
-            <div class="d-flex flex-row justify-content-center">
+            <div class="d-flex justify-content-center">
                 <div class="col-md-3">
                     <button class="otherButton" type="button" data-dismiss="modal">
                         Cancel

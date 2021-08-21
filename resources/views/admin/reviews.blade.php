@@ -55,7 +55,7 @@
                        id="adminDatepickerDifMaxRange"
                        value="{{ \App\Services\ReviewService::difToMaxRangeDate() }}">
             </div>
-            <button class="btn btn-outline-primary my-2 my-sm-0 adminFilterButton">Filter</button>
+            <button class="btn btn-outline-primary my-md-2 adminFilterButton">Filter</button>
             <form method="GET"
                   action="{{ route('admin.searchReviews') }}"
                   class="form-inline search-form"

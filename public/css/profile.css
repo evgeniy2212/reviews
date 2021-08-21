@@ -19,13 +19,13 @@
 }
 .profile-single-review-content {
     display: flex;
-    flex-direction: row;
     align-items: start;
     width: 85%;
     height: 100%;
     justify-content: flex-start;
     padding-left: 5px;
 }
+
 .profile-single-review-button, .profile-single-congratulation-button {
     width: 15%;
     display: flex;
@@ -33,6 +33,26 @@
     align-items: center;
     justify-content: flex-start;
    padding: 3px 0;
+}
+
+
+@media screen and (max-width: 767px) {
+    .profile-single-review-content {
+        width: 100%;
+        flex-direction: column;
+        padding-left: 0;
+        align-items: center;
+    }
+    .profile-single-review-button,
+    .profile-single-congratulation-button {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .profile-single-review-button,
+    .profile-single-congratulation-button {
+        width: 100%;
+    }
 }
 .profile-single-comment-button{
     width: 15%;
@@ -57,6 +77,12 @@
     color: #1b1e21;
     font-size: 0.8rem;
     font-weight: 500;
+}
+
+@media screen and (max-width: 375px) {
+    .profile-single-congratulation-button a {
+        width: 100%;
+    }
 }
 .profile-single-review-button a:hover, .profile-single-comment-button a:hover, .profile-single-congratulation-button a:hover {
     text-decoration: none;
@@ -83,6 +109,14 @@
     line-height: 1.2rem;
     letter-spacing: 1px;
 }
+@media screen and (max-width: 767px) {
+    .profile-single-review-review,
+    .profile-single-congratulation {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
 .profile-single-congratulation .congratulation-category {
     text-align: left;
     text-shadow: 1px 1px 5px #2f5496;
@@ -93,9 +127,26 @@
     font-size: 1rem;
     padding-bottom: 0px;
 }
+
 .profile-single-congratulation p {
     text-align: left;
     width: 100%;
+}
+@media screen and (max-width: 560px) {
+    .profile-single-congratulation {
+        padding-right: 5px;
+    }
+    .profile-single-congratulation p {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .profile-single-congratulation .congratulation-category {
+        width: 100%;
+        margin-bottom: 5px;
+        float: none;
+        text-align: center;
+    }
 }
 .profile-single-congratulation .congratulation-text {
     text-align: justify!important;
@@ -117,7 +168,6 @@
 }
 .single-congratulation-private {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: stretch;
     justify-content: space-around;
@@ -148,6 +198,18 @@
     flex-direction: column;
     width: 85%;
     padding-bottom: 10px;
+}
+@media screen and (max-width: 767px) {
+    .profile-single-review-item {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .profile-single-review-review p {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 .profile-single-comment-item{
     display: flex;
@@ -261,6 +323,11 @@ select[id*='bannerType']{
         margin: 0 0 5px 0;
     }
 }
+@media (max-width: 576px) {
+    #bannerTextPreview {
+        width: 100%;
+    }
+}
 @media (min-width: 1400px) {
     #bannerImagePreview{
         width: 310px;
@@ -329,9 +396,14 @@ select[id*='bannerType']{
 }
 .congratulation-info-container {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+@media screen and (max-width: 767px) {
+    .congratulation-info-container {
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
 }
 #congratulationForm, .congratulation-info-container div {
     padding: 0 1px;
@@ -344,20 +416,36 @@ select[id*='bannerType']{
     font-size: 0.8rem;
     white-space: nowrap;
 }
+
 .profile-congratulation-user-inputs > * {
     margin: 0 2px;
 }
 .create-congratulation-name {
     display: flex;
-    flex-direction: row;
     text-align: center;
     padding: 3px 0 0 0;
     width: 100%;
 }
 .create-congratulation-media {
     display: flex;
-    flex-direction: row;
     width: 100%;
+}
+@media screen and (max-width: 767px) {
+    .profile-congratulation-user-inputs {
+        width: 100%;
+    }
+    .profile-congratulation-user-inputs div {
+        width: 50%;
+    }
+    .create-congratulation-media {
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 576px) {
+    .create-congratulation-name {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 }
 .congratulationContentContainer textarea {
     resize: none;
@@ -484,7 +572,6 @@ select[id*='bannerType']{
 }
 .profile-congratulation-filters {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: space-between;
@@ -493,7 +580,20 @@ select[id*='bannerType']{
     margin-bottom: 10px;
     padding-bottom: 10px;
 }
-#importantDateForm{
+@media screen and (max-width: 576px) {
+    .profile-congratulation-filters {
+        flex-wrap: wrap;
+        height: auto;
+        text-align: left;
+    }
+    .profile-congratulation-filters select {
+        width: 100%;
+    }
+    .profile-congratulation-filters label {
+        margin-bottom: 0;
+    }
+}
+.important-date-form {
     width: 100%;
     max-height: 20%;
     min-height: 180px;
@@ -505,6 +605,12 @@ select[id*='bannerType']{
     margin-bottom: 20px;
     padding-bottom: 30px;
 }
+
+@media screen and (max-width: 640px) {
+    .important-date-form {
+        align-items: stretch;
+    }
+}
 .importantDateTitle{
     font-size: 1.6rem;
     color: #454545c7;
@@ -513,9 +619,21 @@ select[id*='bannerType']{
     font-family: "ImprintMTShadow";
     font-weight: 300;
 }
+
+
+.submitImportantDateButton {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media screen and (max-width: 640px) {
+    .submitImportantDateButton {
+        width: 100%;
+    }
+}
+
 .importantDateInfo {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-around;
     flex-grow: 1;
@@ -526,7 +644,6 @@ select[id*='bannerType']{
 }
 .profile-important-date-filters {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: space-between;
@@ -535,27 +652,55 @@ select[id*='bannerType']{
     margin-bottom: 10px;
     padding-bottom: 10px;
 }
+
 .profile-important-date-control {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: start;
 }
+
 .profile-important-date-control button{
     width: 150px;
 }
 .profile-single-important-date {
     display: flex;
-    flex-direction: row;
     align-items: start;
     width: 100%;
     justify-content: flex-start;
     margin: 10px 0;
 }
+@media screen and (max-width: 767px) {
+
+    .profile-single-important-date {
+        align-items: center;
+    }
+    .importantDateTitle {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 640px) {
+    .importantDateInfo {
+        display: block;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .importantDateInfo > * {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .importantDateTitle {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+}
 .profile-single-important-date-info {
     display: flex;
-    flex-direction: row;
     align-items: start;
     width: 95%;
     justify-content: flex-start;
@@ -575,6 +720,35 @@ select[id*='bannerType']{
 .profile-single-important-date-date{
     width: 19%;
 }
+@media screen and (max-width: 575px) {
+    .profile-important-date-filters {
+        height: auto;
+        flex-direction: column;
+        justify-content: stretch;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        text-align: left;
+    }
+    .profile-important-date-filters select {
+        width: 100%;
+    }
+    .profile-important-date-control .otherButton {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .profile-important-date-control {
+        margin-bottom: 15px;
+    }
+    .profile-single-important-date-info {
+        flex-direction: column;
+        justify-content: stretch;
+    }
+    .profile-single-important-date-date,
+    .profile-single-important-date-type,
+    .profile-single-important-date-name {
+        width: 100%;
+    }
+}
 
 .profile-single-important-date .custom-checkbox+label {
     display: inline-flex;
@@ -590,10 +764,10 @@ select[id*='bannerType']{
     flex-grow: 0;
     border: 1px solid #2F5496;
     border-radius: 0;
-    margin-right: 0.5em;
+    margin-right: .5em;
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
+    background-position: center;
+    background-size: 50%;
     background: #fcfbfb;
 }
 .profile-single-important-date .custom-checkbox:checked+label::before {
@@ -602,18 +776,24 @@ select[id*='bannerType']{
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
 }
 .profile-single-important-date .custom-checkbox:disabled+label::before {
-    border-color: rgba(115, 115, 131, 0.92);
-    background-color: rgba(190, 208, 214, 0.78);
+    border-color: rgba(115, 115, 131, .92);
+    background-color: rgba(190, 208, 214, .78);
 }
 .create-review-label {
     white-space: nowrap;
-    font-size: 0.8rem;
+    font-size: .8rem;
 }
 #importantDateForm select, #importantDateForm input {
-    font-size: 0.8rem;
+    font-size: .8rem;
     max-width: 25%;
 }
-
+@media screen and (max-width: 640px) {
+    #importantDateForm select {
+        max-width: 100%;
+        width: 100%;
+        margin-right: 0;
+    }
+}
 .multiselect {
     border-width: 1px;
     border-radius: 1px;

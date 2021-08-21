@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 mb-2 mb-md-0">
     <div class="profile-congratulation-user-inputs">
 {{--        <div class="col-md-3">--}}
 {{--            <span class="create-congratulation-label text-center">--}}

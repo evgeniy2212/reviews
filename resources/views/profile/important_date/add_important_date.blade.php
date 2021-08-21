@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('profile-important-date.store') }}" enctype="multipart/form-data" novalidate="" id="importantDateForm">
+<form method="POST" class="important-date-form" action="{{ route('profile-important-date.store') }}" enctype="multipart/form-data" novalidate="" id="importantDateForm">
     @csrf
     <div class="importantDateTitle">
         <span>@lang('service/profile.important_date.create.title')</span>
@@ -77,8 +77,8 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-row justify-content-center" style="width: 30%">
-        <div class="col-md-12">
+    <div class="d-flex w-100 align-items-center justify-content-center">
+        <div class="col-12">
             <button type="submit"
                     id="importantDateButton"
                     class="otherButton submitImportantDateButton">

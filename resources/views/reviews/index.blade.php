@@ -11,7 +11,7 @@
                     <span>
                         WRITE A NEW REVIEW
                     </span>
-                <div class="col-md-2">
+                <div class="col-sm-4 col-md-3 col-lg-2">
                     <a role="button" href="{{ route('create-review', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
                         Start
                     </a>

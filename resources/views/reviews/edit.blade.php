@@ -29,8 +29,7 @@
                id="submitFormAccept"
                data-enable-low-rating="{{ $review->category->enable_low_rating ? 1 : 0 }}"
                value="1">
-        <div class="container-fluid">
-            <div class="container">
+        <div class="container">
                 <div class="review-content-place">
                     <div class="d-flex justify-content-center">
                         <span class="create-review-title">
@@ -48,10 +47,10 @@
                                    value="{{ $review->rating }}">
                         </div>
                     </div>
-                    <div class="d-flex flex-row align-items-center review-info-container">
+                    <div class="d-flex align-items-center review-info-container">
                         @include('reviews.review_inputs.' . $review->category->slug)
                     </div>
-                    <div class="d-flex flex-row">
+                    <div class="d-flex">
                         <div class="col-md-4 text-center">
                             <span class="review-character-label">
                                 @lang('service/index.review_negative_character')
@@ -194,6 +193,5 @@
                     @include('reviews.control_buttons.' . (empty($controlButtons) ? '' : $controlButtons . '_') .'edit_buttons')
                 </div>
             </div>
-        </div>
     </form>
 @endsection

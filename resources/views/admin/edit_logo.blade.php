@@ -24,7 +24,7 @@
                     </label>
                 </div>
             </div>
-            <div class="d-flex flex-row justify-content-center" style="width: 100%">
+            <div class="d-flex justify-content-center" style="width: 100%">
                 <div class="col-md-3">
                     <button type="submit" id="bannerButton" class="otherButton submitCreateLogoButton">
                         Save

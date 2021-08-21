@@ -4,7 +4,7 @@
     <div class="profile-review-place">
         <div class="review-filters">
             @foreach($filters as $filter)
-                <div class="col-md-3 d-flex flex-row justify-content-around">
+                <div class="col-md-3 d-sm-flex justify-content-sm-around">
                     <div>
                         <label for="country">
                             {!! $filter->format_name !!}
@@ -32,12 +32,8 @@
             @include('profile.single_review')
         @endforeach
         @if($reviews->total() > $reviews->count())
-            <div class="container-fluid">
-                <div class="pagination-container">
-                    <div class="col-md-12 d-flex align-items-center justify-content-center">
-                        {{ $reviews->appends($paginateParams)->links() }}
-                    </div>
-                </div>
+            <div class="pagination-container">
+                {{ $reviews->appends($paginateParams)->links() }}
             </div>
         @endif
     </div>

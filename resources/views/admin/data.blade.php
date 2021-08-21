@@ -24,8 +24,8 @@
                 </div>
             </div>
         </div>
-        <div style="height: 100%" class="d-flex justify-content-center align-items-stretch">
-            <table border="1" style="table-layout: fixed;width: 100%;text-align: center;font-size: 0.9rem">
+        <div style="height: 100%" class="overflow-auto  d-md-flex justify-content-md-center align-items-md-stretch">
+            <table class="data-table" border="1">
                 <tr>
                     <th>{{ $currentFilter['year'] }}</th>
                     <th colspan="2">Users</th>
