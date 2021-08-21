@@ -401,7 +401,7 @@ input[type="file"] {
     font-family: "ImprintMTShadow";
     font-weight: 500;
     font-size: 1rem;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 @media screen and (max-width: 992px) {
     .single-review-info {
@@ -464,6 +464,10 @@ input[type="file"] {
     .review-filters [class^="col-"] {
         padding-left: 0;
         padding-right: 0;
+    }
+    .single-review-review .congratulation-category {
+        width: 100%;
+        text-align: center;
     }
 }
 

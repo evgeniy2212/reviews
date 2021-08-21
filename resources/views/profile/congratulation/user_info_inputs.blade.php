@@ -5,7 +5,7 @@
 {{--                @lang('service/profile.congratulation.create.person_name')--}}
 {{--            </span>--}}
 {{--        </div>--}}
-        <div>
+        <div class="mb-2 mb-sm-0">
             <input id="name"
                    type="text"
                    class="form-control input"
@@ -16,7 +16,7 @@
                    required
                    autocomplete="name">
         </div>
-        <div>
+        <div class="mb-2 mb-sm-0">
             <input id="second_name"
                    type="text"
                    class="form-control input"
@@ -36,7 +36,7 @@
                 @lang('register.country')
             </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-sm-3">
             <select class="select"
                     id="selectCountry"
                     name="country_id"
@@ -53,7 +53,7 @@
                 {{ empty($congratulation) ? __('register.state') : $congratulation->region->region_naming }}
             </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-sm-3 mb-2 mb-sm-0">
             <select class="select"
                     id="selectRegion"
                     name="region_id"
@@ -66,7 +66,7 @@
                 <option value="3">@lang('service/index.vacations')</option>
             </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-12 col-sm-3">
             <input id="city"
                    type="text"
                    class="form-control input"

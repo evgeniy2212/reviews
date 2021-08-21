@@ -1,11 +1,11 @@
-<div class="col-md-12">
+<div class="col-12">
     <div class="profile-congratulation-user-inputs">
         <div>
             <span class="create-congratulation-label">
                 @lang('service/profile.congratulation.create.category')
             </span>
         </div>
-        <div class="col-md-6">
+        <div class="col-12 col-sm-6">
             <select class="select"
                     id="selectCategoryCongrats"
                     name="congratulation_category_id"
@@ -22,7 +22,7 @@
                 @lang('service/profile.congratulation.create.status')
             </span>
         </div>
-        <div class="col-md-6">
+        <div class="col-12 col-sm-6">
             <select class="select"
                     id="selectCongratulationStatus"
                     name="is_private"

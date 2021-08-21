@@ -375,8 +375,8 @@ body.mobile-nav-active #mobile-nav {
         padding-left: 5px;
     }
     .input, .select {
-        text-align: left;
-        text-align-last: left;
+        text-align: left !important;
+        text-align-last: left !important;
     }
 }
 .middleHeadContainer {
@@ -411,7 +411,6 @@ body.mobile-nav-active #mobile-nav {
 }
 @media screen and (max-width: 576px) {
     .post {
-        height: 120px;
         margin-bottom: 10px;
     }
 }
@@ -449,6 +448,7 @@ body.mobile-nav-active #mobile-nav {
     }
     .navigate a {
         min-width: 140px;
+        opacity: 1 !important;
     }
     .navigate li {
         width: 50%;

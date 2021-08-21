@@ -399,9 +399,13 @@ select[id*='bannerType']{
     align-items: center;
     justify-content: center;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1024px) {
     .congratulation-info-container {
         margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .congratulation-info-container {
         flex-wrap: wrap;
     }
 }
@@ -439,12 +443,35 @@ select[id*='bannerType']{
     }
     .create-congratulation-media {
         margin-bottom: 10px;
+        flex-wrap: wrap;
     }
 }
 @media screen and (max-width: 576px) {
     .create-congratulation-name {
         flex-wrap: wrap;
         justify-content: space-around;
+    }
+    .profile-congratulation-user-inputs {
+        flex-wrap: wrap;
+    }
+    .profile-congratulation-user-inputs div {
+        width: calc(50% - 4px);
+    }
+    #congratulationForm .input, #congratulationForm select, #importantDateForm .input, #importantDateForm select {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .congratulationTitle {
+        font-size: 1rem;
+    }
+    .profile-congratulation-user-inputs div {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    #congratulationForm .input {
+        padding-left: 5px;
     }
 }
 .congratulationContentContainer textarea {
@@ -530,8 +557,8 @@ select[id*='bannerType']{
 .congratulationContentContainer {
     width: 80%;
     display: flex;
-    flex-direction: row;
 }
+
 .congratulationDefaultImagesContainer{
     display: none;
     flex-direction: column;
@@ -554,6 +581,33 @@ select[id*='bannerType']{
 .congratulationImagePreviewContainer{
     display: flex;
     flex-direction: column;
+}
+@media screen and (max-width: 767px) {
+    .congratulationContentContainer,
+    .congratulationContentContainer textarea,
+    .congratulationControlContainer,
+    .congratulationContentUpload {
+        width: 100%;
+    }
+    .congratulationContentContainer {
+        flex-wrap: wrap;
+    }
+    .congratulationContentContainer textarea {
+        margin: 0 3px 15px;
+        min-height: 150px;
+        height: auto;
+    }
+    .congratulationContentUpload {
+    }
+    .congratulationControlContainer {
+        flex-direction: row;
+    }
+    #congratulationImagePreview {
+        margin-right: 10px;
+    }
+    .create-congratulation-image {
+        height: 50px;
+    }
 }
 .congratulationImagePreviewContainer input{
     margin-top: 5px;
@@ -822,11 +876,13 @@ select[id*='bannerType']{
 }
 
 #checkboxes {
+    position: relative;
     display: none;
     border: 1px #dadada solid;
     background-color: white;
     flex-direction: column;
     justify-content: center;
+    z-index: 99;
 }
 
 #checkboxes label {

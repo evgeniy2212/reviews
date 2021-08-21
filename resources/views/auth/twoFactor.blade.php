@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <div class="content-place profile-content-place d-flex flex-column justify-content-center align-items-center">
-            <div class="container twoFactorForm">
+            <div class="twoFactorForm">
                 @if($errors->any())
                     <div class="errorMessage">{!! $errors->first() !!}</div>
                 @else

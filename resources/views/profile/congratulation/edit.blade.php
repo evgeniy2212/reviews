@@ -66,7 +66,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="d-flex justify-content-center" style="width: 100%">
+                <div class="d-flex justify-content-center w-100">
                     <div class="col-md-3">
                         <a type="button" id="imgDefaultCongratulationSave" class="otherButton">
                             Save
