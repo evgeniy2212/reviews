@@ -14,7 +14,7 @@
                 @endfor
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-around w-100">
+        <div class="d-flex justify-content-around w-100">
             <div>
                 <label for="like-{{ $review->id }}">{{ $review->likes }}</label>
                 <input data-review-id="{{ $review->id }}"
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="profile-single-review-item">
-        <div class="w-100 d-flex flex-row">
+        <div class="w-100 d-flex flex-wrap justify-content-center">
             <div class="profile-single-review-content">
                 <div class="single-review-name">
                     <div class="single-review-logo-name">
@@ -188,14 +188,14 @@
                         </div>
                     </div>
                 </div>
-            <div class="review-textarea" data-review-id="{{ $review->id }}">
-                <div class="col-md-9">
+            <div class="review-textarea flex-wrap" data-review-id="{{ $review->id }}">
+                <div class="col-12 col-md-9 mb-3 mb-md-0">
                         <textarea name="review"
                                   type="text"
                                   id="review-text"
                                   placeholder="@lang('service/index.review_text_placeholder')"></textarea>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md-3">
                     <button class="otherButton" id="addCommentButton-{{ $review->id }}">
                         Add Comment
                     </button>

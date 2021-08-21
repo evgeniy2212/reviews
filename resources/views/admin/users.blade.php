@@ -2,7 +2,7 @@
 
 @section('profile_review_content')
     <div class="profile-review-place">
-        <div class="adminFilters">
+        <div class="adminFilters adminFiltersUsers">
             @foreach(\App\Models\User::FILTERS as $filterName => $filters)
                 <div class="adminFilterItem">
                     <div>
@@ -49,13 +49,9 @@
             <span>Users is EMPTY.</span>
         @endforelse
         @if($users->total() > $users->count())
-            <div class="container-fluid">
-                <div class="pagination-container">
-                    <div class="col-md-12 d-flex align-items-center justify-content-center">
-                        {{ $users->appends($paginateParams)->links() }}
-                    </div>
-                </div>
-            </div>
+              <div class="pagination-container">
+                    {{ $users->appends($paginateParams)->links() }}
+              </div>
         @endif
     </div>
 @endsection

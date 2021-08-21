@@ -1,20 +1,20 @@
 @extends('profile.index')
 
 @section('profile_content')
-    <form method="POST" action="{{ route('updatePersonalInfo') }}" novalidate="" id="personalForm">
+    <form method="POST" class="personal-form" action="{{ route('updatePersonalInfo') }}" novalidate="" id="personalForm">
         @method('PATCH')
         @csrf
         <div class="personalFormContent">
             <div class="d-flex flex-column justify-content-around">
-                <div class="d-flex flex-row align-items-center">
-                    <div class="col-md-6">
-                        <div class="d-flex flex-row align-items-center registerFields">
-                            <div class="col-md-3">
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="col-md-6 mb-2 mb-lg-0">
+                        <div class="d-sm-flex align-items-center registerFields">
+                            <div class="col-sm-3">
                                 <label for="name">
                                     @lang('register.first_name')
                                 </label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
                                 <input id="name"
                                        type="text"
                                        class="form-control input"
@@ -27,14 +27,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="d-flex flex-row align-items-center registerFields">
+                    <div class="col-md-6 mb-2 mb-lg-0">
+                        <div class="d-sm-flex align-items-center registerFields">
                             <div class="col-md-2">
                                 <label for="country">
                                     @lang('register.country')
                                 </label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-2 mb-sm-0">
                                 <select class="select"
                                         id="selectCountry"
                                         name="country"
@@ -46,7 +46,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-2 text-center">
+                            <div class="col-md-2 text-left text-sm-center">
                                 <label for="region_id" id="registerLabel">
                                     {!! $user_info->region->region_naming !!}
                                 </label>
@@ -67,15 +67,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-row align-items-center">
-                    <div class="col-md-6">
-                        <div class="d-flex flex-row align-items-center registerFields">
-                            <div class="col-md-3">
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="col-md-6 mb-2 col-sm-0">
+                        <div class="d-sm-flex align-items-center registerFields">
+                            <div class="col-sm-3">
                                 <label for="last_name">
                                     @lang('register.last_name')
                                 </label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
                                 <input id="last_name"
                                        type="text"
                                        class="form-control input"
@@ -88,8 +88,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="d-flex flex-row align-items-center registerFields">
+                    <div class="col-md-6 mb-2 col-sm-0">
+                        <div class="d-flex align-items-center registerFields">
                             <div class="col-md-2">
                                 <label for="zip_code">
                                     @lang('register.zip_code')
@@ -125,15 +125,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-row align-items-center">
+                <div class="d-flex flex-wrap align-items-center mb-2 mb-lg-0">
                     <div class="col-md-6">
-                        <div class="d-flex flex-row align-items-center registerFields">
-                            <div class="col-md-3 registerLabel">
+                        <div class="d-flex align-items-center registerFields">
+                            <div class="col-sm-3 registerLabel">
                                 <label for="email">
                                     @lang('register.e-mail') address
                                 </label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-sm-9">
                                 <input id="email"
                                        type="email"
                                        class="form-control input"
@@ -146,10 +146,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-row align-items-start">
-                    <div class="col-md-6">
+                <div class="d-flex flex-wrap align-items-start mb-2 mb-lg-0">
+                    <div class="col-sm-8 col-md-6">
                         <div class="d-flex flex-column">
-                            <div class="d-flex flex-row registerFields">
+                            <div class="d-flex registerFields">
                                 <div class="col-md-6">
                                     <label for="nickname">
                                         @lang('register.nickname')
@@ -165,14 +165,14 @@
                                            autocomplete="nickname">
                                 </div>
                             </div>
-                            <div class="d-flex flex-row">
+                            <div class="d-flex mb-2 mb-md-0">
                                 <span>
                                     Using this name will allow you to remain anonymous. Your email address will not be visible in your published review.
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-4 col-md-6">
                         <a role="button" href="{{ route('get-change-password') }}" disabled id="cancelButton">
                             @lang('service/index.change_password')
                         </a>
@@ -180,18 +180,18 @@
                 </div>
             </div>
         </div>
-        <div class="form-group d-flex flex-row justify-content-center align-items-center">
-            <div class="col-md-2">
+        <div class="form-group d-flex flex-wrap justify-content-center align-items-center">
+            <div class="col-sm-3 mb-3 mb-sm-0">
                 <a role="button" id="editProfileButton">
                     Edit Profile
                 </a>
             </div>
-            <div class="col-md-2">
+            <div class="col-sm-3 mb-3 mb-sm-0">
                 <button type="submit" id="saveButton" class="loginButton submitRegisterButton" disabled>
                     Save
                 </button>
             </div>
-            <div class="col-md-2">
+            <div class="col-sm-3 mb-3 mb-sm-0">
                 <a role="button" href="{{ route('profile-info') }}" id="cancelButton">
                     Cancel
                 </a>

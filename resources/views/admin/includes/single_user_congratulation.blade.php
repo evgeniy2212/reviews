@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="profile-single-review-item">
-        <div class="w-100 d-flex flex-row">
+        <div class="w-100 d-flex">
             <div class="w-100 profile-single-review-content">
                 <div class="single-review-name">
                     <div class="single-review-logo-name">

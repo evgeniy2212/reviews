@@ -4,13 +4,13 @@
     <div class="profile-review-place">
         <div class="profile-congratulation-filters">
             @foreach($filters as $filter)
-                <div class="col-md-3 d-flex flex-row justify-content-around">
+                <div class="col-md-3 d-sm-flex justify-content-around">
                     <div>
                         <label for="country">
                             {!! $filter->format_name !!}
                         </label>
                     </div>
-                    <div>
+                    <div class="review-filters__select-wrap">
                         <select class="select filter-select"
                                 id="filter-{!! $filter->slug !!}"
                                 name="{!! $filter->slug !!}">

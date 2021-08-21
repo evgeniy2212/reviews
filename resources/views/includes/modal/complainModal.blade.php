@@ -8,7 +8,7 @@
                       method="POST">
                     <input type="hidden" name="review_id" value="1">
                     @csrf
-                    <div class="d-flex flex-row justify-content-center">
+                    <div class="d-flex justify-content-center">
                         <div class="col-md-10">
                                 <textarea name="msg"
                                           type="text"
@@ -17,7 +17,7 @@
                                           placeholder="@lang('service/index.review_complain_placeholder')"></textarea>
                         </div>
                     </div>
-                    <div class="d-flex flex-row justify-content-center align-items-center">
+                    <div class="d-flex justify-content-center align-items-center">
                         <div class="col-md-3">
                             <button class="otherButton" type="submit">
                                 Send

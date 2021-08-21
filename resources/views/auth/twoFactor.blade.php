@@ -36,7 +36,7 @@
                                    required>
                         </div>
                     </div>
-                    <div class="form-group d-flex flex-row justify-content-center align-items-center">
+                    <div class="form-group d-flex justify-content-center align-items-center">
                         <div class="col-md-3">
                             <button type="submit" class="loginButton submitLoginButton">
                                 Verify

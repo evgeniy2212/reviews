@@ -14,7 +14,7 @@
                 @endfor
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-around w-100">
+        <div class="d-flex justify-content-around w-100">
             <div>
                 <label for="like-{{ $review->id }}">{{ $review->likes }}</label>
                 <input data-review-id="{{ $review->id }}"
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="profile-single-review-item">
-        <div class="w-100 d-flex flex-row">
+        <div class="w-100 d-flex">
             <div class="adminSingleReviewContent">
                 <div class="single-review-name">
                     <div>

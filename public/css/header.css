@@ -8,11 +8,16 @@
     }
 }
 
-@media screen and (max-width: 480px) {
-    .header__logo {
-        margin: 0 auto 15px;
+@media screen and (max-width: 576px) {
+    .header__logo img {
+        display: block;
+        width: 100px;
+        height: 75px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
+
 
 .header__user-info {
     flex-direction: column;
@@ -44,9 +49,16 @@
     padding: 0;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1024px) {
     .site-name {
         margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .site-name {
+        margin-top: 15px;
+        margin-bottom: 5px;
     }
 }
 
@@ -72,21 +84,33 @@
     .site-name__link {
         font-size: 28px;
     }
+    .site-name__link span {
+        font-size: 24px;
+    }
 }
 @media screen and (max-width: 1024px) {
     .site-name__link {
         font-size: 43px;
     }
+    .site-name__link span {
+        font-size: 30px;
+    }
 }
 
 @media screen and (max-width: 767px) {
     .site-name__link {
-        font-size: 26px;
+        font-size: 24px;
+    }
+    .site-name__link span {
+        font-size: 20px;
     }
 }
 @media screen and (max-width: 375px) {
     .site-name__link {
-        font-size: 20px;
+        font-size: 18px;
+    }
+    .site-name__link span {
+        font-size: 14px;
     }
 }
 .site-name p {
@@ -99,7 +123,7 @@
 }
 
 .nav-menu-container {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     font-size: 1rem;
 }
 
@@ -320,32 +344,35 @@ body.mobile-nav-active #mobile-nav {
     font-size: 0.8rem;
     font-weight: 500;
 }
-@media screen and (max-width: 480px) {
-    .search-form button {
-        padding-left: 5px;
-        text-align: left;
-        text-align-last: left;
-    }
+
+
+.form-inline.search-form select:not(.select-lang), .form-inline.search-form input {
+    width: 170px;
 }
 
-.form-inline.search-form select, .form-inline.search-form input {
-    width: 170px;
+.header .search-form select, .form-inline.search-form input {
     margin-bottom: 0;
     font-size: 0.8rem;
     color: #78828a;
 }
 
-@media screen and (max-width: 480px) {
-    .search-form button {
+
+@media screen and (max-width: 575px) {
+    .header .search-form button {
         width: 100%;
-    }
-    .form-inline.search-form select, .form-inline.search-form input {
-        width: 100%;
-    }
-    .form-inline.search-form input {
-        margin-bottom: 10px;
         padding-left: 5px;
         text-align: left;
+        text-align-last: left;
+    }
+    .header .search-form select:not(.select-lang), .header .search-form input {
+        width: 100%;
+    }
+    .header .search-form select,
+    .header .search-form input {
+        margin-bottom: 10px;
+    }
+    .header .search-form input {
+        padding-left: 5px;
     }
     .input, .select {
         text-align: left;
@@ -373,11 +400,6 @@ body.mobile-nav-active #mobile-nav {
         padding-right: 20px;
     }
 }
-@media screen and (min-width: 1200px) {
-    .middleHeadContainer {
-        order: initial;
-    }
-}
 
 .post {
     width: 310px;
@@ -387,10 +409,10 @@ body.mobile-nav-active #mobile-nav {
     outline-offset: -4px;
     background-color: #a0a0a0;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 576px) {
     .post {
-        margin-left: auto;
-        margin-right: auto;
+        height: 120px;
+        margin-bottom: 10px;
     }
 }
 
@@ -407,7 +429,6 @@ body.mobile-nav-active #mobile-nav {
 .navbar-nav,
 .navigate {
     margin-top: 5px;
-    overflow: auto hidden;
 }
 .navbar-nav,
 .navigate li {
@@ -423,13 +444,23 @@ body.mobile-nav-active #mobile-nav {
 }
 
 @media screen and (max-width: 767px) {
+    .navigate {
+        flex-wrap: wrap;
+    }
     .navigate a {
         min-width: 140px;
     }
-
-    /* delete for row direction */
-    .navigate {
-        flex-direction: column;
+    .navigate li {
+        width: 50%;
+        flex: initial;
+    }
+    .navigate li:first-child {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 575px) {
+    .header .nav-menu {
+        justify-content: center;
     }
 }
 .navbar-nav,

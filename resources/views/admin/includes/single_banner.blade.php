@@ -16,7 +16,7 @@
                 <div>
                     <input type="text"
                            class="form-control input datepicker"
-                           name="from"
+                           name="from"changePassForm
                            required
                            value="{{ \Carbon\Carbon::parse($banner->from)->format('m/d/Y') }}"
                            autocomplete="off">

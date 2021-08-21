@@ -66,7 +66,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="d-flex flex-row justify-content-center" style="width: 100%">
+                <div class="d-flex justify-content-center" style="width: 100%">
                     <div class="col-md-3">
                         <a type="button" id="imgDefaultCongratulationSave" class="otherButton">
                             Save
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="create-congratulation-name">
-            <div class="col-md-4">
+            <div class="col-6 col-sm-4">
                 <input type="radio"
                        class="custom-radio"
                        id="name1"
@@ -115,7 +115,7 @@
                        checked>
                 <label for="name1">{{ auth()->user()->full_name }}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-6 col-sm-4">
                 <input type="radio"
                        class="custom-radio"
                        id="name2"
@@ -125,7 +125,7 @@
                        @empty(auth()->user()->nickname) disabled @endempty>
                 <label for="name2">{{ empty(auth()->user()->nickname) ? __('service/index.review_nickname') : auth()->user()->nickname }}</label>
             </div>
-            <div class="col-md-4">
+            <div class="col-6 col-smd-4">
                 <input type="radio"
                        class="custom-radio"
                        id="name3"
@@ -135,7 +135,7 @@
                 <label for="name3">@lang('service/index.default_nickname')</label>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-center" style="width: 100%">
+        <div class="d-flex justify-content-center" style="width: 100%">
             <div class="col-md-3">
                 <button type="submit" id="congratulationButton" class="otherButton submitCongratulationButton">
                     Publish

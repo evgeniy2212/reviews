@@ -1,11 +1,17 @@
 <header class="header">
-    <div class="container-fluid d-flex flex-wrap justify-content-between">
+    <div class="container-fluid d-flex flex-wrap justify-content-center justify-content-sm-between">
         <div class="header__logo">
             <img src="{{ asset('images/frame.png') }}" height="125px" width="150px"/>
+            <div class="d-flex d-sm-none flex-column justify-content-start site-name site-name--mobile">
+                <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="site-name__link">@lang('service/index.header_site_name')<span>.com</span></a>
+                <p>
+                    Your reviews make our lives better.
+                </p>
+            </div>
         </div>
         <div class="middleHeadContainer d-flex flex-column justify-content-between">
             <div class="middleHeadContainer__logo d-flex justify-content-center justify-content-sm-between align-items-start">
-                <div class="d-flex flex-column justify-content-start site-name">
+                <div class="d-none d-sm-flex flex-column justify-content-start site-name site-name--desktop">
                     <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="site-name__link">@lang('service/index.header_site_name')<span>.com</span></a>
                     <p>
                         Your reviews make our lives better.
@@ -62,7 +68,7 @@
                     @endif
                 @endauth
             </div>
-            <div class="d-md-flex flex-wrap justify-content-between align-items-md-end">
+            <div class="d-md-flex flex-wrap justify-content-between align-items-lg-center align-items-lg-end">
                 {{--<div class="d-flex flex-row justify-content-between">--}}
                     {{----}}
                 {{--</div>--}}
@@ -106,6 +112,13 @@
                       class="form-inline search-form"
                       novalidate=""
                       id="searchForm">
+                    <select class="form-control mr-sm-2 select select-lang"
+                            id="selectLang"
+                            name="lang"
+                            required>
+                        <option disabled selected>ru</option>
+                        <option value="eng">en</option>
+                    </select>
                     <input class="form-control mr-sm-2 input"
                            id="searchCategory"
                            type="text"
@@ -126,7 +139,7 @@
                             </option>
                         @endforeach
                     </select>
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Go</button>
+                    <button class="btn btn-outline-primary mb-2 mb-sm-0" type="submit">Go</button>
                 </form>
             </div>
         </div>

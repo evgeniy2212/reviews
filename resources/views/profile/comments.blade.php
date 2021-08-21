@@ -31,7 +31,7 @@
                            value="{{ \App\Services\CommentService::difToMaxRangeDate() }}">
                 </div>
                 <button
-                    class="btn btn-outline-primary my-2 my-sm-0 adminFilterButton"
+                    class="btn btn-outline-primary my-md-0 adminFilterButton"
                     style="max-height: 100%">Sort</button>
             </div>
             <form method="GET"
