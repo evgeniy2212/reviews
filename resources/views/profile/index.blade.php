@@ -138,7 +138,7 @@
     @if(auth()->user()->is_admin)
         <script src="{{ asset('js/admin.js') }}"></script>
     @endif
-    <scriptnavigation-btn src="{{ asset('js/profile.js') }}"></scriptnavigation-btn>
+    <script src="{{ asset('js/profile.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <div class="page-overlay js_page-overlay"></div>
     <button class="navigation-btn js_navigation-btn" type="button">menu</button>

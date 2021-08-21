@@ -1,5 +1,13 @@
 (function($) {
     $( document ).ready(function() {
+        // admin navigation menu handler
+        $('.js_navigation-btn').on('click', function () {
+            $('body').addClass('profile-navigation--active').addClass('no--scroll');
+        });
+        $('.js_page-overlay').on('click', function () {
+            $('body').removeClass('profile-navigation--active').removeClass('no--scroll');
+        });
+
         $('.deleteReview').click(function(){
             var id = $(this).attr("data-review-id");
             var is_owner = $(this).attr("data-review-is-owner");

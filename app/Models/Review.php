@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ReviewService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,8 +29,8 @@ class Review extends Model
     ];
 
     const SHOW_GEO = [
-    'person'
-];
+        'person'
+    ];
 
     /**
      * The attributes that aren't mass assignable.
@@ -144,6 +145,11 @@ class Review extends Model
         return $this->second_name
             ? $this->name . ' ' . $this->second_name
             : $this->name;
+    }
+
+    public function getCategoryByReviewId(){
+        return optional($this->category_by_review)->id
+            ?? ReviewService::getReviewCategoriesBySlug($this->category->slug)->keys()->first();
     }
 
     public function isHasUnreadMessages(){
