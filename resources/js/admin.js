@@ -1,14 +1,5 @@
 (function($) {
     $( document ).ready(function() {
-        // admin navigation menu handler
-        $('.js_navigation-btn').on('click', function () {
-            $('body').addClass('profile-navigation--active').addClass('no--scroll');
-        });
-        $('.js_page-overlay').on('click', function () {
-            $('body').removeClass('profile-navigation--active').removeClass('no--scroll');
-        });
-
-
         $( ".admin-filter-select" ).change(function() {
             let slug = $(this).attr('name');
             let item = $(this).children("option:selected").val();

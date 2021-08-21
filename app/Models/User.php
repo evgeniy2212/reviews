@@ -213,4 +213,18 @@ class User extends Authenticatable implements MustVerifyEmail
             return $this->save($options);
         });
     }
+
+    public function isUserReviewAlreadyExist(string $categoryId, string $name, string $region_id, string $city, string $secondName = null){
+        return $this->reviews()
+            ->whereReviewCategoryId($categoryId)
+            ->whereName($name)
+            ->when($secondName, function($q) use ($secondName){
+                return $q->whereSecondName($secondName);
+            })
+            ->whereRegionId($region_id)
+            ->whereCity($city)
+            ->whereIsPublished(true)
+            ->get()
+            ->count();
+    }
 }

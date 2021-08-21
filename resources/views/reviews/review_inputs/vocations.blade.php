@@ -45,7 +45,7 @@
                     required>
                 <option disabled {{ empty($review) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => 'category']) }}</option>
                 @foreach($categories as $id => $category)
-                    <option value="{{ $id }}" {{ (!empty($review) && ($review->category_by_review->id == $id)) ? 'selected' : '' }}>{!! $category !!}</option>
+                    <option value="{{ $id }}" {{ (!empty($review) && ($review->getCategoryByReviewId() == $id)) ? 'selected' : '' }}>{!! $category !!}</option>
                 @endforeach
             </select>
         </div>

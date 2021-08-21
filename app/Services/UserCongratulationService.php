@@ -137,7 +137,9 @@ class UserCongratulationService {
     public static function getUserFilteredCongratulations($user_id, $is_private = false, $filter = '', $sort = '', $search = '', $perPage = 10) {
         $sort_by = self::getSortMethod($sort);
 
-        $result = UserCongratulation::whereUserId($user_id)
+        $result = UserCongratulation::when(!empty($user_id), function($q) use($user_id){
+                $q->whereUserId($user_id);
+            })
             ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
