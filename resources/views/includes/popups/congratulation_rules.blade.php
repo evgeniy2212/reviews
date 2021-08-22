@@ -1,4 +1,4 @@
-<div id="congratulation-rules" style="display: none;">
+<div id="congratulation-rules">
     <span>
         <img src="{{ App\Services\CongratsService::getCongratulationSrcByCount(0) }}" height="35px" width="30px">
         <span>@lang('service/index.congratulation.default_rating')</span>

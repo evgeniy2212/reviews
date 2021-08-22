@@ -1,11 +1,11 @@
-<div class="col-md-5">
-    <div class="d-flex align-items-center flex-grow-1">
-        <div class="col-md-3">
+<div class="col-12 col-lg-5 mb-2 mb-lg-0">
+    <div class="d-flex align-items-center flex-grow-1 flex-wrap flex-lg-nowrap">
+        <div class="col-12 col-sm-3">
             <span class="create-review-label text-center">
                 @lang('service/index.review_person_name_label')
             </span>
         </div>
-        <div>
+        <div class="input-wrap">
             <input id="name"
                    type="text"
                    class="form-control input"
@@ -16,7 +16,7 @@
                    required
                    autocomplete="name">
         </div>
-        <div>
+        <div class="input-wrap">
             <input id="second_name"
                    type="text"
                    class="form-control input"
@@ -29,14 +29,14 @@
         </div>
     </div>
 </div>
-<div class="col-md-7">
-    <div class="d-flex align-items-center flex-grow-1">
+<div class="col-12 col-lg-7">
+    <div class="d-flex align-items-center flex-grow-1 flex-wrap flex-lg-nowrap">
         <div>
             <span class="create-review-label">
                 @lang('register.country')
             </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-2 mb-md-0">
             <select class="select"
                     id="selectCountry"
                     name="country"
@@ -53,7 +53,7 @@
                 {{ empty($review) ? __('register.state') : $review->region->region_naming }}
             </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-2 mb-md-0">
             <select class="select required"
                     id="selectRegion"
                     name="region_id"

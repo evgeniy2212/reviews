@@ -8,7 +8,7 @@
                   type="text"
                   disabled
                   required>{!! $content !!}</textarea>
-        <div class="form-group d-flex flex-row justify-content-center align-items-center">
+        <div class="form-group d-flex justify-content-center align-items-center">
             <div class="col-md-3">
                 <button type="submit" class="otherButton">
                     Save

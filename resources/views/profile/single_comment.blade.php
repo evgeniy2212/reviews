@@ -3,7 +3,7 @@
         <div>
             <span>{{ $comment->created_at }}</span>
         </div>
-        <div class="w-75">
+        <div class="w-100 w-75-md">
             <a href="{{ route('show-review', ['review' => $comment->review->id]) }}"
                type="button"
                class="otherButton">
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="profile-single-comment-item">
-        <div class="w-100 d-flex">
+        <div class="w-100 d-flex flex-wrap">
             <div class="profile-single-review-content">
                 <div class="profile-single-comment-body">
                     <form class="form-horizontal w-100 h-100" method="POST" id="commentForm-{{ $comment->id }}" novalidate="" action="{{ route('profile-comments.update', $comment->id) }}">

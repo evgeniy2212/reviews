@@ -87,7 +87,7 @@
                 @foreach($review->comments as $comment)
                     <div class="comment" style="display: none">
                         <span>{!! $comment->body !!}</span>
-                        <div class="d-flex flex-row justify-content-around w-25">
+                        <div class="d-flex justify-content-around comment__inner">
                             <div>
                                 <label for="comment-like-{!! $comment->id !!}">{!! $comment->likes !!}</label>
                                 <input id="comment-like-{!! $comment->id !!}"
@@ -113,7 +113,7 @@
                 @endforeach
                 <div class="comment-example" style="display: none">
                     <span></span>
-                    <div class="d-flex justify-content-around w-25">
+                    <div class="d-flex justify-content-around comment__inner">
                         <div>
                             <label for="comment-like"></label>
                             <input id="comment-like"
@@ -137,15 +137,15 @@
                     </div>
                 </div>
                 @auth()
-                    <div class="review-textarea" data-review-id="{{ $review->id }}">
-                        <div class="col-md-8">
+                    <div class="review-textarea flex-wrap" data-review-id="{{ $review->id }}">
+                        <div class="col-12 col-md-8 mb-2 mb-md-0">
                             <textarea name="review"
                                       type="text"
                                       id="review-text"
                                       placeholder="@lang('service/index.review_text_placeholder')"
                                       style="overflow:hidden"></textarea>
                         </div>
-                        <div class="col-md-4 comment-buttons">
+                        <div class="col-12 col-md-4 comment-buttons">
                             <button class="otherButton" id="addCommentButton-{{ $review->id }}">
                                 Add Comment
                             </button>

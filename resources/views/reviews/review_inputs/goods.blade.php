@@ -1,11 +1,11 @@
-<div class="col-md-5">
-    <div class="d-flex align-items-center flex-grow-1">
+<div class="col-12 col-lg-5 mb-2 mb-lg-0">
+    <div class="d-flex align-items-center flex-grow-1 flex-wrap reviews-heading flex-lg-nowrap">
         <div style="white-space:nowrap">
             <span class="create-review-label text-center">
                 @lang('service/index.review_goods_name_label')
             </span>
         </div>
-        <div>
+        <div class="mb-2 mb-sm-0">
             <input id="name"
                    type="text"
                    class="form-control input"
@@ -32,14 +32,14 @@
         </div>
     </div>
 </div>
-<div class="col-md-7">
-    <div class="d-flex align-items-center flex-grow-1">
+<div class="col-12 col-lg-7">
+    <div class="d-flex reviews-heading align-items-center flex-grow-1 flex-wrap  flex-lg-nowrap">
         <div style="white-space:nowrap">
             <span class="create-review-label">
                 @lang('service/index.select_review_category_good')
             </span>
         </div>
-        <div>
+        <div class="mb-2 mb-sm-0">
             <select class="select"
                     id="selectCategoryGood"
                     name="category_by_review_id"
@@ -55,7 +55,7 @@
                 @lang('service/index.select_review_group_good')
             </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-sm-3">
             <select class="select required"
                     id="selectGroup"
                     name="review_group_id"

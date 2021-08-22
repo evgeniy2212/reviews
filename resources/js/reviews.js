@@ -329,12 +329,12 @@
             captionText.innerHTML = this.alt;
         });
 
-        $('#congratulation-img').hover(
-            function(){
-                $('#congratulation-rules').show();
-            },
-            function(){
-                $('#congratulation-rules').hide();
-            });
+        // $('#congratulation-img').hover(
+        //     function(){
+        //         $('#congratulation-rules').show();
+        //     },
+        //     function(){
+        //         $('#congratulation-rules').hide();
+        //     });
     });
 })(jQuery);

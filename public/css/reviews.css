@@ -35,7 +35,7 @@
         letter-spacing: 1px;
     }
     .create-review-label {
-        font-size: 10px;
+        /*font-size: 10px;*/
         color: #636363;
         font-weight: normal;
     }
@@ -47,12 +47,11 @@
     }
     .create-review-name {
         display: flex;
-        flex-direction: row;
         text-align: center;
         padding: 3px 0 0 0;
     }
 }
-@media (min-width: 1400px) {
+@media (min-width: 1367px) {
     /*createReviewForm*/
     .create-review-title {
         font-size: 20px;
@@ -75,12 +74,12 @@
     }
     .create-review-name {
         display: flex;
-        flex-direction: row;
         padding: 10px 0;
         text-align: center;
     }
 }
 .review-character-label {
+    display: block;
     font-size: 13px;
     color: #636363;
     font-weight: bold;
@@ -102,6 +101,13 @@
 .review-info-container {
     padding-bottom: calc(calc(100vh - 330px)*0.05);
 }
+@media screen and (max-width: 1024px) {
+    .review-info-container {
+        flex-wrap: wrap;
+        padding-bottom: 10px;
+    }
+}
+
 #createReviewForm .review-info-container div, #editReviewForm .review-info-container div {
     padding: 0 3px;
 }
@@ -112,10 +118,22 @@
     border-radius: 1px;
     max-height: 20px;
     max-width: 100%;
-    padding: 0 0;
+    padding: 0;
     text-align: center;
     text-align-last: center;
     background: #fcfbfb;
+}
+@media screen and (max-width: 767px) {
+    .review-info-container .input {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .review-info-container .select,
+    .review-info-container .input {
+        width: 100%;
+    }
 }
 /* Change the white to any color */
 input:-webkit-autofill,
@@ -132,12 +150,11 @@ input:-webkit-autofill:active
     font-size: 0.8rem;
     border: 1px solid rgb(118, 118, 118);
     border-radius: 1px;
-}
-#review-create-text , #review-text{
     padding: 10px;
 }
 .hwt-container{
-    height: 85%;
+    flex-grow: 1;
+    /*height: 85%;*/
     width: 100%;
     background-color: white;
 }
@@ -150,10 +167,17 @@ input:-webkit-autofill:active
 }
 .review-upload-files{
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     height: 15%;
     margin-top: 1%;
+}
+@media screen and (max-width: 767px) {
+    .review-upload-files{
+        height: auto;
+    }
+    #review-text, #review-create-text {
+        min-height: 180px;
+    }
 }
 input[type="file"] {
     display: none;
@@ -174,8 +198,8 @@ input[type="file"] {
 .checkbox-container {
     height: 28vh;
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
+    padding-top: 5px;
 }
 .checkbox-items {
     display: flex;
@@ -190,6 +214,9 @@ input[type="file"] {
 @media screen and (max-width: 767px) {
     .checkbox-item {
         max-width: 100%;
+    }
+    .checkbox-container {
+        margin-bottom: 10px;
     }
 }
 .review-content-place, .review-content-place:hover {
@@ -207,14 +234,22 @@ input[type="file"] {
     justify-content: center;
     flex-direction: column;
 }
+@media screen and (max-width: 1024px) {
+    .review-content-place, .review-content-place:hover {
+        padding-top: 5px;
+        padding-bottom: 10px;
+        justify-content: initial;
+        height: auto;
+    }
+}
 .createReviewButton {
     max-height: 20px;
 }
 .review-characteristics {
     display: flex;
-    flex-direction: row;
     padding: 5px 0;
 }
+
 .create-review-buttons, .edit-review-buttons {
     display: flex;
     text-align: center;
@@ -232,6 +267,9 @@ input[type="file"] {
     outline-offset: -4px;
 }
 @media screen and (max-width: 767px) {
+    .review-characteristics {
+        flex-wrap: wrap;
+    }
     .review-filters {
         justify-content: center;
         height: auto;
@@ -314,6 +352,17 @@ input[type="file"] {
     justify-content: flex-start;
     width: 15%;
 }
+@media screen and (max-width: 767px) {
+    .single-comment-info {
+        width: 80%;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 480px) {
+    .single-comment-info {
+        width: 100%;
+    }
+}
 .single-review-content {
     display: flex;
     flex-direction: row;
@@ -384,6 +433,16 @@ input[type="file"] {
     width: 100%;
     padding-bottom: 5px;
 }
+@media screen and (max-width: 1024px) {
+    .single-review-review span {
+        width: 75%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .single-review-review span {
+        width: 50%;
+    }
+}
 .single-review-review img {
     float: right;
     margin: 5px 5px 5px 5px;
@@ -392,6 +451,11 @@ input[type="file"] {
     float: right;
     margin: 5px 5px 5px 5px;
     object-fit: fill;
+}
+@media screen and (max-width: 767px) {
+    .single-review-review video {
+        object-fit: contain;
+    }
 }
 .single-review-review .congratulation-category {
     text-align: left;
@@ -415,6 +479,7 @@ input[type="file"] {
     }
     .single-review {
         display: block;
+        padding-top: 10px;
     }
     .review-items .single-review-info {
         flex-direction: row;
@@ -454,12 +519,13 @@ input[type="file"] {
     }
     .like-container-right,
     .like-container-left {
-        text-align: left;
+        text-align: center;
     }
     .single-review-review p {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        text-align: center;
     }
     .review-filters [class^="col-"] {
         padding-left: 0;
@@ -522,7 +588,6 @@ input[type="file"] {
 }
 .comment {
     display: none;
-    flex-direction: row;
     width: 100%;
     text-align: start;
     justify-content: space-between;
@@ -533,7 +598,6 @@ input[type="file"] {
 }
 .complain {
     display: none;
-    flex-direction: row;
     width: 100%;
     text-align: start;
     justify-content: start;
@@ -547,7 +611,6 @@ input[type="file"] {
 }
 .message, .visible-message{
     display: none;
-    flex-direction: row;
     width: 100%;
     text-align: start;
     justify-content: start;
@@ -562,9 +625,14 @@ input[type="file"] {
     display: flex;
 }
 .message .sender-name {
-    margin-right: 5px;
     white-space: nowrap; /* Запрещаем перенос строк */
 }
+
+.sender-name {
+    margin-right: 5px;
+}
+
+
 .unread-profile-messages{
     background-color: #f5fcb3;
 }
@@ -572,8 +640,20 @@ input[type="file"] {
     display: none;
     min-height: 100px;
 }
+@media screen and (max-width: 767px) {
+    .review-textarea [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
 .review-textarea[style*='display: block'], .comment[style*='display: block'] {
     display: flex !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .review-textarea {
+        margin-bottom: 10px;
+    }
 }
 #review-for-guest {
     min-height: 50px;
@@ -621,7 +701,7 @@ input:-webkit-autofill:active  {
 /*start is_communication_enable*/
 .form_review_toggle {
     display: flex;
-    flex-direction: row;
+    margin-bottom: 5px;
     /*overflow: hidden;*/
 }
 .form_review_toggle-item {
@@ -639,12 +719,18 @@ input:-webkit-autofill:active  {
     border: 1px solid #2f5496;
     margin: 1px 0;
     text-align: center;
-    min-width: 80%;
+    flex-grow: 1;
     white-space: nowrap;
+    overflow: hidden;
 }
 .form_review_toggle-item {
     min-width: 10%;
     min-height: 100%;
+}
+@media screen and (max-width: 992px) {
+    .form_review_toggle-item {
+        min-width: 13%;
+    }
 }
 .form_review_toggle-item label {
     display: inline-block;
@@ -683,7 +769,10 @@ input:-webkit-autofill:active  {
     height: 27px;
 }
 .text-review-creating-container {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /*height: 100%;*/
+    flex-grow: 1;
 }
 #new_group{
     border-color: #2f5496;
@@ -701,4 +790,32 @@ input:-webkit-autofill:active  {
 }
 .new-group-creating-container .hwt-highlights {
     padding: 1px 0 1px 10px
+}
+
+.comment__inner {
+    width: 25%;
+}
+@media screen and (max-width: 767px) {
+    .comment__inner {
+        width: 50%;
+    }
+    .text-review-creating-container {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .input-wrap {
+        width: 50%;
+    }
+    .reviews-heading div {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .input-wrap {
+        width: 100%;
+        margin-bottom: 5px;
+    }
 }

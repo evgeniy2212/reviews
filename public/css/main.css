@@ -118,7 +118,7 @@ html, body {
     border: 3px double #2f5496;
     outline: 1px solid #2f5496;
     outline-offset: -4px;
-    overflow: auto;
+    overflow: hidden auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -400,6 +400,7 @@ html, body {
 .profile-place {
     width: calc(100% - 170px);
     height: 100%;
+    min-height: 350px;
     border: 3px double #2f5496;
     outline: 1px solid #2f5496;
     outline-offset: -4px;
@@ -474,6 +475,11 @@ html, body {
     }
     .no--scroll {
         overflow: hidden;
+    }
+}
+@media screen and (max-width: 767px) {
+    .profile-place {
+        min-height: 200px;
     }
 }
 .personal-form {
@@ -626,8 +632,7 @@ button:disabled {
     bottom: 0;
     left: 10%;
     z-index: 10040;
-    overflow: auto;
-    overflow-y: auto;
+    overflow: hidden;
 }
 .review-items {
     padding: 10px;
@@ -883,20 +888,37 @@ button:disabled {
     border-radius: 5px;
     z-index: 50;
 }
+
 #congratulation-rules{
     position: absolute;
-    left: 55%;
-    display: flex;
+    /*left: 55%;*/
+    display: none;
     flex-direction: column;
+    right: 45px;
+    top: 5px;
+    min-width: 195px;
     width: auto;
     height: auto;
-    margin-top: 195px;
+    /*margin-top: 195px;*/
     padding: 3px;
     background-color: #f1f1f1;
     border: 2px solid #2f5496;
     border-radius: 5px;
     z-index: 50;
     font-size: 0.8rem;
+}
+@media screen and (max-width: 767px) {
+    #congratulation-rules {
+        right: 50%;
+        top: 40px;
+        transform: translateX(50%);
+    }
+}
+.congratulation-img-wrap {
+    position: relative;
+}
+.congratulation-img-wrap:hover #congratulation-rules {
+    display: block;
 }
 #congratulation-rules span {
     margin: 0 1em;
@@ -923,7 +945,7 @@ button:disabled {
 
 @media screen and (max-width: 767px) {
     [data-tooltip]:hover::after {
-        display: none;
+        /*display: none;*/
     }
 }
 .invalid-input {
@@ -959,14 +981,14 @@ button:disabled {
     border-radius: 1px;
 }
 #sliderBodyModalContent {
-    padding: 5px 0;
+    padding: 5px;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     text-align: center;
     font-size: 15px;
-    height: 100%;
 }
+
 .slider-body-modal-content {
     position: relative;
     display: flex;
@@ -980,7 +1002,7 @@ button:disabled {
     border-radius: 0.3rem;
     outline: 0;
 }
-.successModalDialog .modal-dialog, .errorModalDialog .modal-dialog{
+.successModalDialog .modal-dialog, .errorModalDialog .modal-dialog {
     position: absolute;
     top: 25%;
     width: 50%;
@@ -992,6 +1014,13 @@ button:disabled {
     overflow: auto;
     overflow-y: auto;
     text-align: center;
+}
+@media screen and (max-width: 767px) {
+    .successModalDialog .modal-dialog, .errorModalDialog .modal-dialog {
+        left: 15px;
+        right: 15px;
+        width: auto;
+    }
 }
 .successModalDialog .modal-content{
     padding: 10px;
@@ -1138,10 +1167,18 @@ button:disabled {
     left: 0;
     top: 17%;
 }
+#sliderBodyModal .slider-body-modal-content {
+    max-height: 100%;
+    overflow: hidden auto;
+}
 @media screen and (max-width: 767px) {
     #instructionModal .modal-dialog, #sliderBodyModal .modal-dialog {
         top: 0;
         overflow: visible;
+    }
+    #sliderBodyModal .modal-dialog {
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 #instructionModal .instruction-videos {

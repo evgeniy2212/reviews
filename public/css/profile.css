@@ -60,7 +60,14 @@
     flex-direction: column;
     align-items: start;
     justify-content: flex-start;
-    padding: 0 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .profile-single-comment-button {
+        width: 100%;
+        align-items: center;
+    }
 }
 .profile-single-review-button a, .profile-single-comment-button a, .profile-single-congratulation-button a {
     border-color: #a0a3af;
@@ -77,6 +84,11 @@
     color: #1b1e21;
     font-size: 0.8rem;
     font-weight: 500;
+}
+@media screen and (max-width: 480px) {
+    .profile-single-review-button a, .profile-single-comment-button a, .profile-single-congratulation-button a {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 375px) {
@@ -175,6 +187,12 @@
     overflow: hidden;
     height: 130px;
 }
+@media screen and (max-width: 767px) {
+    .single-congratulation-private {
+        height: 400px;
+        flex-wrap: wrap;
+    }
+}
 .unread-single-congratulation-private {
     background-color: #f5fcb3;
 }
@@ -199,9 +217,15 @@
     width: 85%;
     padding-bottom: 10px;
 }
+
+
 @media screen and (max-width: 767px) {
     .profile-single-review-item {
         width: 100%;
+    }
+    .profile-single-review-item__inner {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
 @media screen and (max-width: 480px) {
@@ -209,14 +233,28 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        text-align: center;
     }
+
+    .profile-single-review-item__inner .profile-single-review-button {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
 }
-.profile-single-comment-item{
+.profile-single-comment-item {
     display: flex;
     flex-direction: column;
     width: 85%;
-    margin: 0 0;
+    margin: 0;
 }
+
+@media screen and (max-width: 767px) {
+    .profile-single-comment-item {
+        width: 100%;
+    }
+}
+
 .profile-single-comment-body{
     display: flex;
     flex-direction: column;
@@ -226,15 +264,34 @@
     line-height: 1.2rem;
     letter-spacing: 1px;
 }
+
 .profile-single-comment {
     display: flex;
-    flex-direction: row;
     text-align: center;
     align-items: stretch;
     justify-content: space-around;
     border-bottom: 1px groove #4a92f8;
     padding: 10px 0;
     min-height: 125px;
+}
+
+@media screen and (max-width: 767px) {
+    .profile-single-comment {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-single-comment-body {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .profile-single-comment-body {
+        width: 100%;
+    }
+    .profile-single-comment {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 .comment-textarea {
     resize: none;
@@ -409,6 +466,12 @@ select[id*='bannerType']{
         flex-wrap: wrap;
     }
 }
+@media screen and (max-width: 575px) {
+    #importantDateForm select {
+        text-align-last: left;
+        text-align: left;
+    }
+}
 #congratulationForm, .congratulation-info-container div {
     padding: 0 1px;
 }
@@ -460,6 +523,9 @@ select[id*='bannerType']{
     #congratulationForm .input, #congratulationForm select, #importantDateForm .input, #importantDateForm select {
         width: 100%;
     }
+    #congratulationForm .input {
+        padding-left: 5px;
+    }
 }
 @media screen and (max-width: 480px) {
     .congratulationTitle {
@@ -469,9 +535,6 @@ select[id*='bannerType']{
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-    }
-    #congratulationForm .input {
-        padding-left: 5px;
     }
 }
 .congratulationContentContainer textarea {
@@ -523,19 +586,30 @@ select[id*='bannerType']{
 }
 .congratulationDefaultImages {
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    max-height: calc(235px - 20%);
+    /*max-height: calc(235px - 20%);*/
     max-width: 100%;
+}
+@media screen and (max-width: 767px) {
+    .congratulationDefaultImages {
+        margin-bottom: 15px;
+    }
 }
 .congratulationDefaultImagePreview{
     width: 75px;
     height: 75px;
     border: 1px solid rgba(44, 45, 49, 0.87);
-    margin: 0 0 5px 0;
+    margin: 5px 25px;
     display: flex;
+}
+@media screen and (max-width: 560px) {
+    .congratulationDefaultImagePreview {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 .congratulationHighlight {
     border: 2px solid #2f5496;
@@ -554,6 +628,7 @@ select[id*='bannerType']{
     justify-content: center;
     align-items: center;
 }
+
 .congratulationContentContainer {
     width: 80%;
     display: flex;
@@ -570,6 +645,14 @@ select[id*='bannerType']{
     padding: 5px 0;
     background-color: white;
     margin: 0 0 0 2%;
+    overflow: hidden auto;
+}
+@media screen and (max-width: 767px) {
+    .congratulationDefaultImagesContainer {
+        width: 100%;
+        margin: 0 5px 10px;
+        padding-bottom: 10px;
+    }
 }
 .congratulationContentUpload {
     display: flex;
@@ -728,6 +811,8 @@ select[id*='bannerType']{
 
     .profile-single-important-date {
         align-items: center;
+        padding-left: 15px;
+        padding-right: 12px;
     }
     .importantDateTitle {
         font-size: 1.2rem;

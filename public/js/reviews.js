@@ -439,12 +439,13 @@
       modal.style.display = "block";
       modalImg.src = $(this).attr('data-full-size-src');
       captionText.innerHTML = this.alt;
-    });
-    $('#congratulation-img').hover(function () {
-      $('#congratulation-rules').show();
-    }, function () {
-      $('#congratulation-rules').hide();
-    });
+    }); // $('#congratulation-img').hover(
+    //     function(){
+    //         $('#congratulation-rules').show();
+    //     },
+    //     function(){
+    //         $('#congratulation-rules').hide();
+    //     });
   });
 })(jQuery);
 

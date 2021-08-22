@@ -50,21 +50,78 @@
                     <div class="d-flex align-items-center review-info-container">
                         @include('reviews.review_inputs.' . $review->category->slug)
                     </div>
-                    <div class="d-flex">
-                        <div class="col-md-4 text-center">
+                    {{--<div class="d-flex">--}}
+                        {{--<div class="col-md-4 text-center">--}}
+                            {{--<span class="review-character-label">--}}
+                                {{--@lang('service/index.review_negative_character')--}}
+                            {{--</span>--}}
+                        {{--</div>--}}
+                        {{--@switch($slug)--}}
+                            {{--@case('person')--}}
+                            {{--<div class="col-md-4 text-center">--}}
+                                        {{--<span class="review-character-label">--}}
+                                            {{--@lang('service/index.review_negative_character')--}}
+                                        {{--</span>--}}
+                            {{--</div>--}}
+                            {{--@default--}}
+                            {{--<div class="col-md-4">--}}
+                                {{--<div class="form_review_toggle">--}}
+                                    {{--<div class="form_review_description">--}}
+                                        {{--<span>--}}
+                                            {{--Open for communication with reviewer--}}
+                                        {{--</span>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="form_review_toggle-item item-1">--}}
+                                        {{--<input id="fid-1" type="radio" name="is_communication_enable" value="1" {{ !$review->is_communication_enable ?: 'checked' }}>--}}
+                                        {{--<label for="fid-1">Yes</label>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="form_review_toggle-item item-2">--}}
+                                        {{--<input id="fid-2" type="radio" name="is_communication_enable" value="0" {{ $review->is_communication_enable ?: 'checked' }}>--}}
+                                        {{--<label for="fid-2">No</label>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-4 text-center">--}}
+                                    {{--<span class="review-character-label">--}}
+                                        {{--@lang('service/index.review_negative_character')--}}
+                                    {{--</span>--}}
+                            {{--</div>--}}
+                        {{--@endswitch--}}
+                    {{--</div>--}}
+                    <div class="review-characteristics">
+                        <div class="col-md-4 mb-2 mb-md-0">
                             <span class="review-character-label">
-                                @lang('service/index.review_negative_character')
+                                @lang('service/index.review_positive_character')
                             </span>
-                        </div>
-                        @switch($slug)
-                            @case('person')
-                            <div class="col-md-4 offset-4 text-center">
-                                        <span class="review-character-label">
-                                            @lang('service/index.review_negative_character')
-                                        </span>
+                            <div class="checkbox-container">
+                                @foreach($positiveCharacteristics as $characteristics)
+                                    <div class="col-md-6 checkbox-items">
+                                        @foreach($characteristics as $characteristic)
+                                            <div class="checkbox-item">
+                                                <input type="checkbox"
+                                                       class="custom-checkbox"
+                                                       id="positive-{{ $characteristic->id }}"
+                                                       name="characteristics[]"
+                                                       value="{{ $characteristic->id }}"
+                                                    {{ $checkedCharacteristics->contains($characteristic->id) ? 'checked' : '' }}>
+                                                <label for="positive-{{ $characteristic->id }}">{!! $characteristic->name !!}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endforeach
                             </div>
-                            @default
-                            <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4 mb-2 mb-md-0 d-flex flex-column">
+                            <div class="new-group-creating-container">
+                                <input id="new_group"
+                                       type="text"
+                                       class="form-control input"
+                                       name="new_review_group"
+                                       minlength="3"
+                                       value="{{ old('new_group') }}"
+                                       placeholder="@lang('service/index.review_new_group_placeholder')">
+                            </div>
+                            <div class="text-review-creating-container">
                                 <div class="form_review_toggle">
                                     <div class="form_review_description">
                                         <span>
@@ -80,43 +137,6 @@
                                         <label for="fid-2">No</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                    <span class="review-character-label">
-                                        @lang('service/index.review_negative_character')
-                                    </span>
-                            </div>
-                        @endswitch
-                    </div>
-                    <div class="review-characteristics">
-                        <div class="col-md-4 checkbox-container">
-                            @foreach($positiveCharacteristics as $characteristics)
-                                <div class="col-md-6 checkbox-items">
-                                    @foreach($characteristics as $characteristic)
-                                        <div class="checkbox-item">
-                                            <input type="checkbox"
-                                                   class="custom-checkbox"
-                                                   id="positive-{{ $characteristic->id }}"
-                                                   name="characteristics[]"
-                                                   value="{{ $characteristic->id }}"
-                                                   {{ $checkedCharacteristics->contains($characteristic->id) ? 'checked' : '' }}>
-                                            <label for="positive-{{ $characteristic->id }}">{!! $characteristic->name !!}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="col-md-4">
-                            <div class="new-group-creating-container">
-                                <input id="new_group"
-                                       type="text"
-                                       class="form-control input"
-                                       name="new_review_group"
-                                       minlength="3"
-                                       value="{{ old('new_group') }}"
-                                       placeholder="@lang('service/index.review_new_group_placeholder')">
-                            </div>
-                            <div class="text-review-creating-container">
                                 <textarea name="review"
                                           class="form-control"
                                           type="text"
@@ -142,26 +162,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 checkbox-container">
-                            @foreach($negativeCharacteristics as $characteristics)
-                                <div class="col-md-6 checkbox-items">
-                                    @foreach($characteristics as $characteristic)
-                                        <div class="checkbox-item">
-                                            <input type="checkbox"
-                                                   class="custom-checkbox"
-                                                   id="negative-{{ $characteristic->id }}"
-                                                   name="characteristics[]"
-                                                   value="{{ $characteristic->id }}"
+                        <div class="col-md-4">
+                            <span class="review-character-label">
+                                @lang('service/index.review_negative_character')
+                            </span>
+                           <div class="checkbox-container">
+                               @foreach($negativeCharacteristics as $characteristics)
+                                   <div class="col-md-6 checkbox-items">
+                                       @foreach($characteristics as $characteristic)
+                                           <div class="checkbox-item">
+                                               <input type="checkbox"
+                                                      class="custom-checkbox"
+                                                      id="negative-{{ $characteristic->id }}"
+                                                      name="characteristics[]"
+                                                      value="{{ $characteristic->id }}"
                                                    {{ $checkedCharacteristics->contains($characteristic->id) ? 'checked' : '' }}>
-                                            <label for="negative-{{ $characteristic->id }}">{!! $characteristic->name !!}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endforeach
+                                               <label for="negative-{{ $characteristic->id }}">{!! $characteristic->name !!}</label>
+                                           </div>
+                                       @endforeach
+                                   </div>
+                               @endforeach
+                           </div>
                         </div>
                     </div>
-                    <div class="create-review-name">
-                        <div class="col-md-4">
+                    <div class="create-review-name justify-content-center flex-wrap">
+                        <div class="col-6 col-sm-4">
                             <input type="radio"
                                    class="custom-radio"
                                    id="name1"
@@ -170,7 +195,7 @@
                                    {{ $review->user_sign == \App\Models\User::NAME_SIGN ? 'checked' : '' }}>
                             <label for="name1">{{ auth()->user()->full_name }}</label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-6 col-sm-4">
                             <input type="radio"
                                    class="custom-radio"
                                    id="name2"
@@ -180,7 +205,7 @@
                                    @empty(auth()->user()->nickname) disabled @endempty>
                             <label for="name2">{{ empty(auth()->user()->nickname) ? __('service/index.review_nickname') : auth()->user()->nickname }}</label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-6 col-sm-4">
                             <input type="radio"
                                    class="custom-radio"
                                    id="name3"

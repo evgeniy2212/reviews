@@ -156,13 +156,13 @@
                 </div>
             </div>
             <div class="review-textarea" data-review-id="{{ $review->id }}">
-                <div class="col-md-9">
+                <div class="col-12 col-md-9">
                         <textarea name="review"
                                   type="text"
                                   id="review-text"
                                   placeholder="@lang('service/index.review_text_placeholder')"></textarea>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md-3">
                     <button class="otherButton" id="addCommentButton-{{ $review->id }}">
                         Add Comment
                     </button>

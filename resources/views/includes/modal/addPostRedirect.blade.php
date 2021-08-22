@@ -4,7 +4,7 @@
             <span>
                 ReviewsOnTheWeb.com provides a free window for your congratulations or advertising.
             </span>
-            <div class="d-flex flex-row justify-content-center">
+            <div class="d-sm-flex justify-content-center">
                 <div class="col-md-5">
                     <a role="button" href="{{ route('home') }}" class="otherButton">
                         For more information

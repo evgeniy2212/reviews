@@ -54,8 +54,10 @@
                                             <span class="{{ (auth()->user()->getNewMessagesCount() > 0) ? 'message-accounting' : '' }}">{!! (auth()->user()->getNewMessagesCount() > 0) ? auth()->user()->getNewMessagesCount() : '' !!}</span>
                                         </a>
                                     </div>
-                                    <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="35px" width="30px"/>
-                                    @include('includes.popups.congratulation_rules')
+                                    <div class="congratulation-img-wrap">
+                                        <img id="congratulation-img" src="{{ App\Services\CongratsService::getUserCongratulation(auth()->user()) }}" height="35px" width="30px"/>
+                                        @include('includes.popups.congratulation_rules')
+                                    </div>
                                 </div>
                                 <div class="user-activities">
                                     <span>Reviews: {{ auth()->user()->reviewsCount }}</span>

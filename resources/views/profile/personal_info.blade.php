@@ -191,7 +191,7 @@
                     Save
                 </button>
             </div>
-            <div class="col-sm-3 mb-3 mb-sm-0">
+            <div class="col-sm-3">
                 <a role="button" href="{{ route('profile-info') }}" id="cancelButton">
                     Cancel
                 </a>

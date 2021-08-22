@@ -96,7 +96,7 @@
                                 @foreach($review->comments as $comment)
                                     <div class="comment" style="display: none">
                                         <span>{!! $comment->body !!}</span>
-                                        <div class="d-flex justify-content-around w-25">
+                                        <div class="d-flex comment__inner justify-content-around">
                                             <div>
                                                 <label for="comment-like-{!! $comment->id !!}">{!! $comment->likes !!}</label>
                                                 <input id="comment-like-{!! $comment->id !!}"
@@ -121,15 +121,15 @@
                                     </div>
                                 @endforeach
                                 @auth()
-                                    <div class="review-textarea" data-review-id="{{ $review->id }}">
-                                        <div class="col-md-8">
+                                    <div class="review-textarea flex-wrap" data-review-id="{{ $review->id }}">
+                                        <div class="col-12 col-md-8 mb-2 mb-md-0">
                                                 <textarea name="review"
                                                           type="text"
                                                           id="review-text"
                                                           placeholder="@lang('service/index.review_text_placeholder')"
                                                           style="overflow:hidden"></textarea>
                                         </div>
-                                        <div class="col-md-4 comment-buttons">
+                                        <div class="col-12 col-md-4 comment-buttons">
                                             <button class="otherButton" id="addCommentButton-{{ $review->id }}">
                                                 Add Comment
                                             </button>
@@ -147,7 +147,7 @@
                                         </div>
                                     </div>
                                 @endauth
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-5 col-lg-4 offset-md-7 offset-lg-8">
                                     <button class="otherButton"
                                             style="white-space: nowrap"
                                             id="commentButton-{{ $review->id }}"
@@ -156,7 +156,7 @@
                                         Show Comments ({!! $review->comments->count() !!})
                                     </button>
                                 </div>
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-4 offset-md-8">
                                     @auth()
                                         @if(auth()->user()->id !== $review->user_id)
                                             <a type="button"

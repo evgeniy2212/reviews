@@ -1,11 +1,11 @@
-<div class="col-md-5">
-    <div class="d-flex align-items-center flex-grow-1">
+<div class="col-12 col-lg-5 mb-2 mb-lg-0">
+    <div class="d-flex align-items-center flex-grow-1 flex-wrap reviews-heading flex-lg-nowrap">
         <div style="white-space:nowrap">
             <span class="create-review-label text-center">
                 @lang('service/index.review_company_name_label')
             </span>
         </div>
-        <div>
+        <div class="mb-2 mb-sm-0">
             <input id="name"
                    type="text"
                    class="form-control input"
@@ -32,14 +32,14 @@
         </div>
     </div>
 </div>
-<div class="col-md-7">
-    <div class="d-flex align-items-center flex-grow-1">
+<div class="col-12 col-lg-7">
+    <div class="d-flex align-items-center flex-grow-1 flex-wrap flex-lg-nowrap">
         <div>
             <span class="create-review-label">
                 @lang('register.country')
             </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-2 mb-md-0">
             <select class="select"
                     id="selectCountry"
                     name="country"
@@ -56,7 +56,7 @@
                 @lang('register.state')
             </span>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-2 mb-md-0">
             <select class="select required"
                     id="selectRegion"
                     name="region_id"
