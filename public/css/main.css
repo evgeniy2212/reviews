@@ -522,6 +522,7 @@ html, body {
 @media screen and (max-width: 767px) {
     .profile-place {
         min-height: 200px;
+        justify-content: initial;
     }
 }
 .personal-form {

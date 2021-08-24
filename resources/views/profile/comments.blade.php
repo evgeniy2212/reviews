@@ -10,7 +10,7 @@
             <div class="adminFilterDatepicker">
                 <div class="adminFilterItem">
                     <input type="text"
-                           class="form-control input adminReviewdatepicker"
+                           class="form-control input adminReviewdatepicker mr-1 mr-sm-0"
                            name="from"
                            required
                            placeholder="{{ __('service/profile.from') }}"
@@ -20,7 +20,7 @@
                            id="adminDatepickerDifMinRange"
                            value="{{ \App\Services\CommentService::difToMinRangeDate() }}">
                     <input type="text"
-                           class="form-control input adminReviewdatepicker"
+                           class="form-control input adminReviewdatepicker mr-1 mr-sm-0"
                            name="to"
                            required
                            value="{{ empty($paginateParams['to']) ? old('to') : $paginateParams['to'] }}"
@@ -39,7 +39,7 @@
                   class="form-inline search-form"
                   novalidate=""
                   id="searchForm">
-                <input class="form-control mr-sm-2 input"
+                <input class="form-control mr-sm-2 input  mr-1 mr-sm-0"
                        id="searchCategory"
                        type="text"
                        name="search"
