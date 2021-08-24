@@ -42,12 +42,8 @@
             @include('profile.important_date.single_important_date')
         @endforeach
         @if($importantDates->total() > $importantDates->count())
-            <div class="container-fluid">
-                <div class="pagination-container">
-                    <div class="col-md-12 d-flex align-items-center justify-content-center">
-                        {{ $importantDates->appends($importantDates)->links() }}
-                    </div>
-                </div>
+            <div class="pagination-container">
+                {{ $importantDates->appends($importantDates)->links() }}
             </div>
         @endif
     </div>

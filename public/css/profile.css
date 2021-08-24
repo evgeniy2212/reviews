@@ -137,14 +137,14 @@
     font-family: "ImprintMTShadow";
     font-weight: 500;
     font-size: 1rem;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 .profile-single-congratulation p {
     text-align: left;
     width: 100%;
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 768px) {
     .profile-single-congratulation {
         padding-right: 5px;
     }
@@ -187,12 +187,23 @@
     overflow: hidden;
     height: 130px;
 }
+@media screen and (max-width: 860px) {
+    .single-congratulation-private {
+        height: auto;
+        overflow: visible;
+    }
+    .congratulation-text-wrap {
+        overflow: hidden;
+        height: 35px;
+        transition: height .5s;
+    }
+}
 @media screen and (max-width: 767px) {
     .single-congratulation-private {
-        height: 400px;
         flex-wrap: wrap;
     }
 }
+
 .unread-single-congratulation-private {
     background-color: #f5fcb3;
 }

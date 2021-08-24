@@ -452,9 +452,10 @@ input[type="file"] {
     margin: 5px 5px 5px 5px;
     object-fit: fill;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1024px) {
     .single-review-review video {
         object-fit: contain;
+        border-color: transparent;
     }
 }
 .single-review-review .congratulation-category {
@@ -671,6 +672,7 @@ input[type="file"] {
     overflow-y: auto;
     text-align: center;
 }
+
 /*@media (min-width: 1500px){*/
     /*.acceptModalDialog .modal-dialog {*/
         /*max-width: 35%;*/
@@ -707,17 +709,18 @@ input:-webkit-autofill:active  {
 .form_review_toggle-item {
     float: left;
     display: inline-block;
+    line-height: 15px;
 }
 .form_review_toggle-item input[type=radio] {
     display: none;
 }
 .form_review_description {
     display: inline-block;
-    padding: 0px 2px;
+    padding: 0 2px;
     line-height: 15px;
     font-size: 0.8rem;
     border: 1px solid #2f5496;
-    margin: 1px 0;
+    margin: 0;
     text-align: center;
     flex-grow: 1;
     white-space: nowrap;
@@ -797,10 +800,13 @@ input:-webkit-autofill:active  {
 }
 @media screen and (max-width: 767px) {
     .comment__inner {
-        width: 50%;
+        width: 45%;
     }
     .text-review-creating-container {
         margin-bottom: 10px;
+    }
+    .progress {
+        height: 0;
     }
 }
 

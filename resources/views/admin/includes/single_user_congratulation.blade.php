@@ -52,8 +52,9 @@
                             <span class="congratulation-category">{{ $congratulation->category->title }}</span><br>
                         @endif
                         <span class="congratulation-text">
-                            {{ $congratulation->body }}
+                          {{ $congratulation->body }}
                         </span>
+
                     </p>
                 </div>
                 <div class="profile-single-congratulation-button">

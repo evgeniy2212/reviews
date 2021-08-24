@@ -51,8 +51,10 @@
                         @if($congratulation->category)
                             <span class="congratulation-category">{{ $congratulation->category->title }}</span><br>
                         @endif
-                        <span class="congratulation-text">
-                            {{ $congratulation->body }}
+                        <span class="congratulation-text-wrap">
+                          <span class="congratulation-text">
+                              {{ $congratulation->body }}
+                          </span>
                         </span>
                     </p>
                 </div>

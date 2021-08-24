@@ -7,13 +7,13 @@
                 <br>
                 According to our Terms of Service, you may not rate any person who is under 21 years old with less than 3 stars. Any user who violates this rule more than once will permanently lose access to their account.
             </div>
-            <div class="d-flex justify-content-center">
-                <div class="col-md-5">
+            <div class="d-flex justify-content-center flex-wrap">
+                <div class="col-12 col-md-5">
                     <button class="otherButton" type="button" id="acceptModal">
                         Yes, that person is at least 21 years old
                     </button>
                 </div>
-                <div class="col-md-3">
+                <div class="col-12 col-md-3">
                     <button class="otherButton" type="button" data-dismiss="modal">
                         Cancel
                     </button>

@@ -161,10 +161,10 @@
                                 </div>
                             </div>
                         </div>
-                        {{--<div class='progress' id="progressDivId">--}}
-                            {{--<div class='progress-bar' id='progressBar'></div>--}}
-                            {{--<div class='percent' id='percent'>0%</div>--}}
-                        {{--</div>--}}
+                        <div class='progress' id="progressDivId">
+                            <div class='progress-bar' id='progressBar'></div>
+                            <div class='percent' id='percent'>0%</div>
+                        </div>
                         <div class="col-md-4">
                             <span class="review-character-label">
                                 @lang('service/index.review_negative_character')

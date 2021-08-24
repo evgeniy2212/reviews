@@ -165,37 +165,81 @@
             }
         });
 
-        $('[id^="profilePrivateCongratulationButton"]').click(function(event) {
-            let congratulation = $(this).parent().parent().parent().parent().parent();
-            let review_content = $(this).parent().parent();
-            let url = $(this).attr('data-url');
-            let is_open =  $(this).text().trim() !== 'Close';
-            is_open ? $(this).text('Close') : $(this).text('Show');
-            if(is_open){
-                congratulation.css({'overflow': 'visible'});
-                let autoheight = congratulation.find('.profile-single-congratulation').height();
-                congratulation.animate({
-                    height: autoheight,
-                }, 500 );
-                setTimeout(function(){congratulation.css({'overflow': 'visible'})}, 510);
-                $.ajax({
-                    url : url,
-                    dataType:"json",
-                    success:function(data)
-                    {
-                        console.log('SUCCESS');
-                        console.log('data: ', data);
+        if ($(window).width() >= 860) {
+            $('[id^="profilePrivateCongratulationButton"]').click(function(event) {
+                let congratulation = $(this).parent().parent().parent().parent().parent();
+                let review_content = $(this).parent().parent();
+                let url = $(this).attr('data-url');
+                let is_open =  $(this).text().trim() !== 'Close';
+                is_open ? $(this).text('Close') : $(this).text('Show');
+                if(is_open){
+                    congratulation.css({'overflow': 'visible'});
+                    let autoheight = congratulation.find('.profile-single-congratulation').height();
+                    congratulation.animate({
+                        height: autoheight,
+                    }, 500 );
+                    setTimeout(function(){congratulation.css({'overflow': 'visible'})}, 510);
+                    $.ajax({
+                        url : url,
+                        dataType:"json",
+                        success:function(data)
+                        {
+                            console.log('SUCCESS');
+                            console.log('data: ', data);
+                        }
+                    });
+                    congratulation.removeClass('unread-single-congratulation-private');
+                } else {
+                    congratulation.css({'overflow': 'hidden'})
+                    congratulation.animate({
+                        height: "130px",
+                    }, 500 );
+                    setTimeout(function(){congratulation.css({'overflow': 'hidden'})}, 510);
+                }
+            });
+        } else {
+            // const singlePrivate = document.querySelectorAll('.single-congratulation-private');
+            // singlePrivate.forEach(function (item) {
+            //    const height = item.querySelector('.congratulation-text').offsetHeight;
+            //     item.querySelector('.congratulation-text').style.height = '130px';
+            // });
+            // $('.single-congratulation-private').find('.congratulation-text').css('height', '130px');
+            $('[id^="profilePrivateCongratulationButton"]').click(function(event) {
+                let congratulation = $(this).parent().parent().parent().parent().parent();
+                let review_content = $(this).parent().parent();
+                let url = $(this).attr('data-url');
+                let is_open =  $(this).text().trim() !== 'Close';
+                const height = $(this).closest('.single-congratulation-private').find('.congratulation-text').height();
+
+                is_open ? $(this).text('Close') : $(this).text('Show');
+                if(is_open){
+                    $.ajax({
+                        url : url,
+                        dataType:"json",
+                        success:function(data)
+                        {
+                            console.log('SUCCESS');
+                            console.log('data: ', data);
+                        }
+                    });
+                    congratulation.removeClass('unread-single-congratulation-private');
+                    // $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').animate({
+                    //     height: height,
+                    // }, 300 );
+                    if ($(this).closest('.single-congratulation-private').find('.congratulation-text').height() >= '35') {
+                        $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').css('height', `${height}px`);
                     }
-                });
-                congratulation.removeClass('unread-single-congratulation-private');
-            } else {
-                congratulation.css({'overflow': 'hidden'})
-                congratulation.animate({
-                    height: "130px",
-                }, 500 );
-                setTimeout(function(){congratulation.css({'overflow': 'hidden'})}, 510);
-            }
-        });
+                } else {
+                    // $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').animate({
+                    //     height: '130px',
+                    // }, 300 );
+
+                    if ($(this).closest('.single-congratulation-private').find('.congratulation-text').height() >= '35') {
+                        $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').css('height', '35px');
+                    }
+                }
+            });
+        }
 
         $('#imgCongratulation').change(function() {
             readImageURL(this);

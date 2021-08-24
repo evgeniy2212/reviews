@@ -121,7 +121,7 @@ html, body {
     overflow: hidden auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .content-place {
         height: auto;
     }
@@ -241,6 +241,7 @@ html, body {
     width: 100%;
     /*white-space: nowrap;*/
 }
+
 /*.otherButton :active, :hover, :focus {*/
     /*outline: 0;*/
     /*border: 0;*/
@@ -283,6 +284,47 @@ html, body {
     -webkit-transform:scale(0.90, 0.70);
     transform-origin:0 0;
     -webkit-transform-origin:0 0;
+}
+@media screen and (max-width: 767px) {
+    .loginButton, .rememberButton, #cancelButton, #editProfileButton, .otherButton {
+        height: auto;
+    }
+    .g-recaptcha {
+        margin-bottom: 15px;
+    }
+    .g-recaptcha div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media screen and (max-width: 414px) {
+    .g-recaptcha {
+        transform:scale(1, 0.9);
+    }
+    .register-form .g-recaptcha {
+        transform:scale(1.1, 0.8);
+    }
+    .g-recaptcha div {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+@media screen and (max-width: 375px) {
+    .g-recaptcha {
+        transform:scale(0.88, 0.8);
+    }
+    .register-form .g-recaptcha {
+        transform:scale(0.99, 0.8);
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .g-recaptcha {
+        transform:scale(0.83, 0.8);
+    }
+    .register-form .g-recaptcha {
+        transform:scale(0.94, 0.8);
+    }
 }
 .register-form {
     width: 100%;
@@ -619,8 +661,15 @@ button:disabled {
     overflow-y: auto;
 }
 @media screen and (max-width: 767px) {
-    .modal-dialog {
-        left: 0;
+    /*.modal-dialog {*/
+        /*left: 0;*/
+    /*}*/
+    .modal .modal-dialog{
+        left: 10px;
+        right: 10px;
+        width: auto;
+        bottom: auto;
+        top: 20%;
     }
 }
 .slider-body-modal-dialog {
@@ -1001,6 +1050,9 @@ button:disabled {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.3rem;
     outline: 0;
+}
+#sliderBodyModal .slider-body-modal-content {
+    height: auto;
 }
 .successModalDialog .modal-dialog, .errorModalDialog .modal-dialog {
     position: absolute;

@@ -56,12 +56,8 @@
             <span>Review is EMPTY.</span>
         @endforelse
         @if($comments->total() > $comments->count())
-            <div class="container-fluid">
-                <div class="pagination-container">
-                    <div class="col-md-12 d-flex align-items-center justify-content-center">
-                        {{ $comments->appends($paginateParams)->links() }}
-                    </div>
-                </div>
+            <div class="pagination-container">
+                {{ $comments->appends($paginateParams)->links() }}
             </div>
         @endif
     </div>

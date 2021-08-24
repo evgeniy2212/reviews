@@ -33,13 +33,9 @@
             <span>Ad is EMPTY.</span>
         @endforelse
         @if($banners->total() > $banners->count())
-            <div class="container-fluid">
-                <div class="pagination-container">
-                    <div class="col-md-12 d-flex align-items-center justify-content-center">
-                        {{ $banners->appends($paginateParams)->links() }}
-                    </div>
-                </div>
-            </div>
+              <div class="pagination-container">
+                    {{ $banners->appends($paginateParams)->links() }}
+              </div>
         @endif
     </div>
 @endsection

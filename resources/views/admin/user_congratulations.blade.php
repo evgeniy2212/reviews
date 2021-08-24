@@ -55,12 +55,8 @@
             <span>Review is EMPTY.</span>
         @endforelse
         @if($congratulations->total() > $congratulations->count())
-            <div class="container-fluid">
-                <div class="pagination-container">
-                    <div class="col-md-12 d-flex align-items-center justify-content-center">
-                        {{ $congratulations->appends($paginateParams)->links() }}
-                    </div>
-                </div>
+            <div class="pagination-container">
+                {{ $congratulations->appends($paginateParams)->links() }}
             </div>
         @endif
     </div>

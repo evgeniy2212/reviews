@@ -106,7 +106,7 @@
             @foreach($review->comments as $comment)
                 <div class="comment" style="display: none">
                     <span>{!! $comment->body !!}</span>
-                    <div class="d-flex flex-row justify-content-around w-25">
+                    <div class="d-flex justify-content-around w-25 flex-shrink-0">
                         <div>
                             <label for="comment-like-{!! $comment->id !!}">{!! $comment->likes !!}</label>
                             <input id="comment-like-{!! $comment->id !!}"
@@ -132,7 +132,7 @@
             @endforeach
             <div class="comment-example" style="display: none">
                 <span></span>
-                <div class="d-flex flex-row justify-content-around w-25">
+                <div class="d-flex justify-content-around w-25 flex-shrink-0">
                     <div>
                         <label for="comment-like"></label>
                         <input id="comment-like"
