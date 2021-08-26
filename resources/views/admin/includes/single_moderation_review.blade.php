@@ -54,28 +54,30 @@
                 <div class="profile-single-review-review">
                     <span class="moderation-title">NEW GROUP NAME: {!! $review->category_group->name !!}</span>
                     <p>
-                        @if($review->video)
+                        <span class="single-review-holder">
+                          @if($review->video)
                             <video class="videoPreview" controls>
                                 <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                        @else
+                          @else
                             <img src="{{ asset('storage/images/default_img_video.png') }}"
                                  alt="photo"
                                  class="videoPreview">
-                        @endif
-                        @if($review->image)
+                          @endif
+                          @if($review->image)
                             <img src="{{ $review->image->getResizeImageUrl() }}"
                                  alt=""
                                  data-full-size-src="{{ $review->image->getImageUrl() }}"
                                  class="reviewImage previewImage"
                                  style="cursor: pointer;"
                                  id="myImg">
-                        @else
+                          @else
                             <img src="{{ asset('storage/images/default_img.png') }}"
                                  alt=""
                                  class="previewImage">
-                        @endif
+                          @endif
+                        </span>
                         @if($review->characteristics->isNotEmpty())
                             {{ $review->characteristics->pluck('name')->implode(', ') }}
                         @endif

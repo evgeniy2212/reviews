@@ -427,20 +427,21 @@ input[type="file"] {
     letter-spacing: 1px;
     padding-bottom: 10px;
 }
-.single-review-review p, .single-review-review span{
+.single-review-review p, .single-review-review span:not(.single-review-holder):not(.congratulation-category) {
     text-align: left;
     float: left;
     width: 100%;
     padding-bottom: 5px;
 }
 @media screen and (max-width: 1024px) {
-    .single-review-review span {
+    .single-review-review span:not(.single-review-holder) {
         width: 75%;
     }
 }
 @media screen and (max-width: 767px) {
-    .single-review-review span {
-        width: 50%;
+    .single-review-review span:not(.single-review-holder) {
+        width: 100%;
+        text-align: center;
     }
 }
 .single-review-review img {

@@ -222,6 +222,12 @@
     margin: 5px 5px 5px 5px;
     object-fit: fill;
 }
+@media screen and (max-width: 1024px) {
+    .profile-single-review-review video {
+        object-fit: contain;
+        border-color: transparent;
+    }
+}
 .profile-single-review-item{
     display: flex;
     flex-direction: column;

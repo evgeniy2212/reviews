@@ -25,29 +25,31 @@
                 </div>
                 <div class="profile-single-congratulation">
                     <p>
-                        @if($congratulation->video)
+                        <span class="single-review-holder">
+                          @if($congratulation->video)
                             <video class="videoPreview" controls>
                                 <source src="{{ $congratulation->video->getVideoUrl() }}" type="video/mp4">
                                 {{--<source src="movie.ogg" type="video/ogg">--}}
                                 Your browser does not support the video tag.
                             </video>
-                        @else
+                          @else
                             <img src="{{ asset('storage/images/default_img_video.png') }}"
                                  alt="photo"
                                  class="videoPreview">
-                        @endif
-                        @if($congratulation->image)
+                          @endif
+                          @if($congratulation->image)
                             <img src="{{ $congratulation->image->getResizeImageUrl('congratulations') }}"
                                  alt=""
                                  data-full-size-src="{{ $congratulation->image->getImageUrl() }}"
                                  class="reviewImage previewImage"
                                  style="cursor: pointer;"
                                  id="myImg">
-                        @else
+                          @else
                             <img src="{{ asset('storage/images/default_img.png') }}"
                                  alt=""
-                                class="previewImage">
-                        @endif
+                                 class="previewImage">
+                          @endif
+                        </span>
                         @if($congratulation->category)
                             <span class="congratulation-category">{{ $congratulation->category->title }}</span><br>
                         @endif

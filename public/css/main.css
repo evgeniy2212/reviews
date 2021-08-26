@@ -1185,9 +1185,19 @@ button:disabled {
     height: 100px;
     border: 1px groove #4a92f8;
 }
-@media screen and (max-width: 480px) {
+.content-place .single-review-holder {
+    width: auto;
+    float: right;
+}
+@media screen and (max-width: 767px) {
     .previewImage {
         order: -1;
+    }
+    .content-place .single-review-holder {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        float: initial;
     }
 }
 .previewInstructionImage {
