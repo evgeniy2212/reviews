@@ -110,6 +110,23 @@
     justify-content: center;
     margin: 5px 5px 0 0;
 }
+.profile-complain-btn {
+    width: 25%;
+}
+@media screen and (max-width: 767px) {
+    .profile-complain-btn {
+        width: 50%;
+        margin: 0 auto 10px;
+    }
+    .profile-single-review-blocked {
+        margin: 0 0 10px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .profile-complain-btn {
+        width: 100%;
+    }
+}
 .profile-single-review-review, .profile-single-congratulation {
     display: flex;
     flex-direction: column;
@@ -704,9 +721,22 @@ select[id*='bannerType']{
     }
     #congratulationImagePreview {
         margin-right: 10px;
+        height: 100px;
+        margin-bottom: 0;
+    }
+    #congratulationImagePreview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     .create-congratulation-image {
         height: 50px;
+    }
+}
+@media screen and (max-width: 350px) {
+    .congratulationImagePreviewContainer .videoPreview,
+    #congratulationImagePreview {
+        width: 120px;
     }
 }
 .congratulationImagePreviewContainer input{

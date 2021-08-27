@@ -99,16 +99,13 @@
 
 @media screen and (max-width: 767px) {
     .site-name__link {
-        font-size: 24px;
+        font-size: 25px;
     }
     .site-name__link span {
         font-size: 20px;
     }
 }
 @media screen and (max-width: 375px) {
-    .site-name__link {
-        font-size: 18px;
-    }
     .site-name__link span {
         font-size: 14px;
     }
@@ -356,6 +353,22 @@ body.mobile-nav-active #mobile-nav {
     color: #78828a;
 }
 
+.select-lang {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.8rem;
+}
+.header__form-wrap,
+.header__select-wrap {
+    flex-grow: 1;
+}
+
+.header__form-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 @media screen and (max-width: 575px) {
     .header .search-form button {
@@ -364,12 +377,21 @@ body.mobile-nav-active #mobile-nav {
         text-align: left;
         text-align-last: left;
     }
+    .header__form-wrap {
+        display: block;
+    }
+
     .header .search-form select:not(.select-lang), .header .search-form input {
         width: 100%;
     }
+    .header__select-wrap,
     .header .search-form select,
     .header .search-form input {
         margin-bottom: 10px;
+    }
+    .select-lang {
+        margin: 0;
+        width: 100%;
     }
     .header .search-form input {
         padding-left: 5px;

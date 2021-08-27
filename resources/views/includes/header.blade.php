@@ -109,40 +109,44 @@
                         </li>
                     </ul>
                 </nav>
-                <form method="GET"
-                      action="{{ route('search') }}"
-                      class="form-inline search-form"
-                      novalidate=""
-                      id="searchForm">
-                    <select class="form-control mr-sm-2 select select-lang"
-                            id="selectLang"
-                            name="lang"
-                            required>
-                        <option disabled selected>ru</option>
-                        <option value="eng">en</option>
-                    </select>
-                    <input class="form-control mr-sm-2 input"
-                           id="searchCategory"
-                           type="text"
-                           name="search"
-                           placeholder="Search"
-                           aria-label="Search"
-                           value="{{ isset($search) ? $search : '' }}"
-                           required>
-                    <select class="form-control mr-sm-2 select"
-                            id="selectCategory"
-                            name="category"
-                            required>
-                        <option disabled selected>@lang('service/index.head_select')</option>
-                        @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
-                            <option {{ (isset($search_category) && $search_category == $review_category->slug) ? 'selected' : '' }}
-                                    value="{{ $review_category->slug }}">
-                                @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
-                            </option>
-                        @endforeach
-                    </select>
-                    <button class="btn btn-outline-primary mb-2 mb-sm-0" type="submit">Go</button>
-                </form>
+                <div class="header__form-wrap">
+                    <div class="header__select-wrap">
+                        <select class="form-control select select-lang"
+                                id="selectLang"
+                                name="lang"
+                                required>
+                            <option disabled selected>ru</option>
+                            <option value="eng">en</option>
+                        </select>
+                    </div>
+                    <form method="GET"
+                          action="{{ route('search') }}"
+                          class="form-inline search-form"
+                          novalidate=""
+                          id="searchForm">
+                        <input class="form-control mr-sm-2 input"
+                               id="searchCategory"
+                               type="text"
+                               name="search"
+                               placeholder="Search"
+                               aria-label="Search"
+                               value="{{ isset($search) ? $search : '' }}"
+                               required>
+                        <select class="form-control mr-sm-2 select"
+                                id="selectCategory"
+                                name="category"
+                                required>
+                            <option disabled selected>@lang('service/index.head_select')</option>
+                            @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
+                                <option {{ (isset($search_category) && $search_category == $review_category->slug) ? 'selected' : '' }}
+                                        value="{{ $review_category->slug }}">
+                                    @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
+                                </option>
+                            @endforeach
+                        </select>
+                        <button class="btn btn-outline-primary mb-2 mb-sm-0" type="submit">Go</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="post">

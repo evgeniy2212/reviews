@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="profile-single-review-item">
-        <div class="w-100 d-flex flex-wrap justify-content-center">
+        <div class="w-100 d-flex flex-wrap flex-md-nowrap justify-content-center">
             <div class="profile-single-review-content">
                 <div class="single-review-name">
                     <div class="single-review-logo-name">
@@ -122,7 +122,7 @@
             </div>
         </div>
         @if($review->is_blocked)
-            <div class="w-25">
+            <div class="profile-complain-btn">
                 <a type="button"
                    class="otherButton"
                    id="profileComplaintButton-{{ $review->id }}"
