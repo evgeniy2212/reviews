@@ -1,9 +1,15 @@
-
 #deleteReviewForm, #editReviewForm, #deleteCommentForm, #deleteMessageForm {
     border: 3px solid #2f5496;
     padding: 30px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     text-align: center;
     font-size: 1rem;
@@ -13,34 +19,59 @@
     overflow: auto;
     height: 100%;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     padding: 1% 1% 0;
 }
 .profile-single-review-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: start;
     width: 85%;
     height: 100%;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
     padding-left: 5px;
 }
 
 .profile-single-review-button, .profile-single-congratulation-button {
     width: 15%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
-   padding: 3px 0;
+    padding: 3px 0;
 }
 
 
 @media screen and (max-width: 767px) {
     .profile-single-review-content {
         width: 100%;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
         padding-left: 0;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
     }
     .profile-single-review-button,
@@ -56,9 +87,18 @@
 }
 .profile-single-comment-button{
     width: 15%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
     padding: 0;
 }
@@ -66,6 +106,8 @@
 @media screen and (max-width: 767px) {
     .profile-single-comment-button {
         width: 100%;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
     }
 }
@@ -78,6 +120,7 @@
     margin: 3px 0;
     padding: 0 0;
     text-align: center;
+    -moz-text-align-last: center;
     text-align-last: center;
     background: #e7e6e6;
     width: 80%;
@@ -104,9 +147,18 @@
     background-color: rgba(255, 0, 0, 0.53);
     max-height: 80px;
     text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     margin: 5px 5px 0 0;
 }
@@ -128,9 +180,18 @@
     }
 }
 .profile-single-review-review, .profile-single-congratulation {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     width: 75%;
     height: 100%;
@@ -150,6 +211,8 @@
     text-align: left;
     text-shadow: 1px 1px 5px #2f5496;
     float: left;
+    width: -webkit-min-content;
+    width: -moz-min-content;
     width: min-content;
     font-family: "ImprintMTShadow";
     font-weight: 500;
@@ -166,8 +229,13 @@
         padding-right: 5px;
     }
     .profile-single-congratulation p {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
     }
     .profile-single-congratulation .congratulation-category {
@@ -184,6 +252,7 @@
     width: 135px;
     height: 100px;
     border: 1px groove #4a92f8;
+    -o-object-fit: cover;
     object-fit: cover;
     float: right;
     margin: 5px 5px 5px 0;
@@ -196,9 +265,14 @@
     margin: 5px 5px 5px 10px;
 }
 .single-congratulation-private {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: center;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
     align-items: stretch;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     border-bottom: 1px groove #4a92f8;
     overflow: hidden;
@@ -212,11 +286,14 @@
     .congratulation-text-wrap {
         overflow: hidden;
         height: 35px;
+        -webkit-transition: height .5s;
+        -o-transition: height .5s;
         transition: height .5s;
     }
 }
 @media screen and (max-width: 767px) {
     .single-congratulation-private {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
 }
@@ -237,16 +314,23 @@
 .profile-single-review-review video {
     float: right;
     margin: 5px 5px 5px 5px;
+    -o-object-fit: fill;
     object-fit: fill;
 }
 @media screen and (max-width: 1024px) {
     .profile-single-review-review video {
+        -o-object-fit: contain;
         object-fit: contain;
         border-color: transparent;
     }
 }
 .profile-single-review-item{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 85%;
     padding-bottom: 10px;
@@ -258,14 +342,22 @@
         width: 100%;
     }
     .profile-single-review-item__inner {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
     }
 }
 @media screen and (max-width: 480px) {
     .profile-single-review-review p {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
         text-align: center;
     }
@@ -277,7 +369,12 @@
 
 }
 .profile-single-comment-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 85%;
     margin: 0;
@@ -290,9 +387,17 @@
 }
 
 .profile-single-comment-body{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: start;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     width: 98%;
     line-height: 1.2rem;
@@ -300,9 +405,14 @@
 }
 
 .profile-single-comment {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: center;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
     align-items: stretch;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     border-bottom: 1px groove #4a92f8;
     padding: 10px 0;
@@ -311,7 +421,12 @@
 
 @media screen and (max-width: 767px) {
     .profile-single-comment {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
     }
     .profile-single-comment-body {
@@ -333,9 +448,18 @@
     min-height: 100px;
 }
 .banners{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     /*text-align: center;*/
     padding: 5% 2%;
@@ -365,9 +489,18 @@ select[id*='bannerType']{
     min-width: 100%;
 }
 .bannerInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
     margin: 0 0 0.8em 0;
 }
@@ -375,9 +508,18 @@ select[id*='bannerType']{
     padding: 0 5px 0 10px;
 }
 .bannerImageContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: 100%;
     padding: 0 0 2% 0;
@@ -398,6 +540,7 @@ select[id*='bannerType']{
     text-align: center;
     white-space: nowrap; /* Запрещаем перенос строк */
     overflow: hidden; /* Обрезаем все, что не помещается в область */
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
 @media (max-width: 1366px) {
@@ -406,6 +549,8 @@ select[id*='bannerType']{
         height: 90px;
         border: 1px dashed #a0a3af;
         margin: 0 0 5px 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
     #bannerTextPreview{
@@ -425,6 +570,8 @@ select[id*='bannerType']{
         height: 150px;
         border: 1px dashed #a0a3af;
         margin: 0 0 5px 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
     }
     #bannerTextPreview{
@@ -441,16 +588,30 @@ select[id*='bannerType']{
     margin: auto;
 }
 .bannerImagePreviewContainer{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 .bannerImagePreviewContainer input{
     margin-top: 5px;
 }
 .create-congratulation{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     /*text-align: center;*/
     font-size: 12px;
@@ -458,9 +619,17 @@ select[id*='bannerType']{
 #congratulationForm{
     width: 100%;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 .congratulationTitle{
@@ -481,13 +650,20 @@ select[id*='bannerType']{
     max-width: 100%;
     padding: 0 0;
     text-align: center;
+    -moz-text-align-last: center;
     text-align-last: center;
     background: #fcfbfb;
     font-size: 0.8rem;
 }
 .congratulation-info-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 @media screen and (max-width: 1024px) {
@@ -497,11 +673,13 @@ select[id*='bannerType']{
 }
 @media screen and (max-width: 767px) {
     .congratulation-info-container {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
 }
 @media screen and (max-width: 575px) {
     #importantDateForm select {
+        -moz-text-align-last: left;
         text-align-last: left;
         text-align: left;
     }
@@ -511,8 +689,14 @@ select[id*='bannerType']{
 }
 .profile-congratulation-user-inputs {
     /*d-flex flex-row align-items-center flex-grow-1*/
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
     font-size: 0.8rem;
     white-space: nowrap;
@@ -522,12 +706,16 @@ select[id*='bannerType']{
     margin: 0 2px;
 }
 .create-congratulation-name {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: center;
     padding: 3px 0 0 0;
     width: 100%;
 }
 .create-congratulation-media {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
 }
@@ -540,15 +728,19 @@ select[id*='bannerType']{
     }
     .create-congratulation-media {
         margin-bottom: 10px;
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
 }
 @media screen and (max-width: 576px) {
     .create-congratulation-name {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+        -ms-flex-pack: distribute;
         justify-content: space-around;
     }
     .profile-congratulation-user-inputs {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
     .profile-congratulation-user-inputs div {
@@ -583,9 +775,18 @@ select[id*='bannerType']{
 }
 .create-congratulation-image {
     border: 1px solid #2f5496;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
     padding: 3px 6px;
     cursor: pointer;
@@ -598,6 +799,7 @@ select[id*='bannerType']{
     vertical-align: middle!important;
     white-space: nowrap; /* Запрещаем перенос строк */
     overflow: hidden; /* Обрезаем все, что не помещается в область */
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
 .videoRules {
@@ -609,6 +811,8 @@ select[id*='bannerType']{
     height: 135px;
     border: 1px solid #2f5496;
     margin: 0 0 5px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 #congratulationImagePreview img{
@@ -619,10 +823,16 @@ select[id*='bannerType']{
     margin: auto;
 }
 .congratulationDefaultImages {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     /*flex-direction: column;*/
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     /*max-height: calc(235px - 20%);*/
     max-width: 100%;
@@ -637,6 +847,8 @@ select[id*='bannerType']{
     height: 75px;
     border: 1px solid rgba(44, 45, 49, 0.87);
     margin: 5px 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 @media screen and (max-width: 560px) {
@@ -656,21 +868,37 @@ select[id*='bannerType']{
     margin: auto;
 }
 .congratulationControlContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 25%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
 .congratulationContentContainer {
     width: 80%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
 .congratulationDefaultImagesContainer{
     display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     width: 78%;
     height: 100%;
@@ -689,14 +917,27 @@ select[id*='bannerType']{
     }
 }
 .congratulationContentUpload {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 35%;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 .congratulationImagePreviewContainer{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 @media screen and (max-width: 767px) {
@@ -707,6 +948,7 @@ select[id*='bannerType']{
         width: 100%;
     }
     .congratulationContentContainer {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
     .congratulationContentContainer textarea {
@@ -717,6 +959,9 @@ select[id*='bannerType']{
     .congratulationContentUpload {
     }
     .congratulationControlContainer {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
     }
     #congratulationImagePreview {
@@ -727,6 +972,7 @@ select[id*='bannerType']{
     #congratulationImagePreview img {
         width: 100%;
         height: 100%;
+        -o-object-fit: cover;
         object-fit: cover;
     }
     .create-congratulation-image {
@@ -755,9 +1001,15 @@ select[id*='bannerType']{
     border-color: #dc3545!important;
 }
 .profile-congratulation-filters {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     height: 50px;
     border-bottom: 1px solid #2f5496;
@@ -766,6 +1018,7 @@ select[id*='bannerType']{
 }
 @media screen and (max-width: 575px) {
     .profile-congratulation-filters {
+        -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         height: auto;
         text-align: left;
@@ -781,9 +1034,17 @@ select[id*='bannerType']{
     width: 100%;
     max-height: 20%;
     min-height: 180px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     border-bottom: 1px solid #2f5496;
     margin-bottom: 20px;
@@ -792,6 +1053,8 @@ select[id*='bannerType']{
 
 @media screen and (max-width: 640px) {
     .important-date-form {
+        -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
         align-items: stretch;
     }
 }
@@ -817,9 +1080,16 @@ select[id*='bannerType']{
 }
 
 .importantDateInfo {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
     margin: 0 0 0.8em 0;
 }
@@ -827,9 +1097,15 @@ select[id*='bannerType']{
     margin: 0 5px;
 }
 .profile-important-date-filters {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     height: 50px;
     /*border-bottom: 1px solid #2f5496;*/
@@ -838,9 +1114,15 @@ select[id*='bannerType']{
 }
 
 .profile-important-date-control {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: start;
 }
 
@@ -848,15 +1130,23 @@ select[id*='bannerType']{
     width: 150px;
 }
 .profile-single-important-date {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: start;
     width: 100%;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
     margin: 10px 0;
 }
 @media screen and (max-width: 767px) {
 
     .profile-single-important-date {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         padding-left: 15px;
         padding-right: 12px;
@@ -886,9 +1176,15 @@ select[id*='bannerType']{
     }
 }
 .profile-single-important-date-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: start;
     width: 95%;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
     border: 1px solid #2f5496;
     padding: 2px 10px;
@@ -909,7 +1205,12 @@ select[id*='bannerType']{
 @media screen and (max-width: 575px) {
     .profile-important-date-filters {
         height: auto;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-pack: stretch;
+        -ms-flex-pack: stretch;
         justify-content: stretch;
         padding-bottom: 0;
         margin-bottom: 0;
@@ -926,7 +1227,12 @@ select[id*='bannerType']{
         margin-bottom: 15px;
     }
     .profile-single-important-date-info {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-pack: stretch;
+        -ms-flex-pack: stretch;
         justify-content: stretch;
     }
     .profile-single-important-date-date,
@@ -937,8 +1243,15 @@ select[id*='bannerType']{
 }
 
 .profile-single-important-date .custom-checkbox+label {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     white-space: nowrap;
     margin: 0 0 0 10px;
@@ -946,7 +1259,10 @@ select[id*='bannerType']{
 .profile-single-important-date .custom-checkbox+label::before {
     width: 2.1em;
     height: 2.1em;
+    -ms-flex-negative: 0;
     flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
     flex-grow: 0;
     border: 1px solid #2F5496;
     border-radius: 0;
@@ -987,6 +1303,7 @@ select[id*='bannerType']{
     width: 100%;
     padding: 0 0;
     text-align: center;
+    -moz-text-align-last: center;
     text-align-last: center;
     background: #fcfbfb;
 }
@@ -1012,7 +1329,12 @@ select[id*='bannerType']{
     display: none;
     border: 1px #dadada solid;
     background-color: white;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     z-index: 99;
 }
@@ -1026,8 +1348,15 @@ select[id*='bannerType']{
 }
 
 #checkboxes .custom-checkbox+label {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     white-space: nowrap;
     margin: 0 0 0 10px;
@@ -1035,7 +1364,10 @@ select[id*='bannerType']{
 #checkboxes .custom-checkbox+label::before {
     width: 1.2em;
     height: 1.2em;
+    -ms-flex-negative: 0;
     flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
     flex-grow: 0;
     border: 1px solid #2F5496;
     border-radius: 0;
