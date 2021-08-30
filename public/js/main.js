@@ -507,7 +507,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\reviews.loc\resources\js\main.js */"./resources/js/main.js");
+module.exports = __webpack_require__(/*! /app/resources/js/main.js */"./resources/js/main.js");
 
 
 /***/ })

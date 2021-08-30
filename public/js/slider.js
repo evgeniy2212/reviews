@@ -386,11 +386,19 @@
           }
         };
       };
-    }();
+    }(); //todo delete after test period
 
+
+    sessionStorage.setItem('slider_enable', false);
+    console.log('slider_enable: ', sessionStorage.getItem('slider_enable') == true, sessionStorage.getItem('slider_enable') == true, sessionStorage.getItem('slider_enable') == 'false');
     var slider = multiItemSlider('.slider', {
-      isCycling: true
+      isCycling: sessionStorage.getItem('slider_enable') == 'true'
     });
+    setTimeout(function () {
+      multiItemSlider('.slider', {
+        isCycling: sessionStorage.getItem('slider_enable') == 'true'
+      });
+    }, 42000);
   });
 })(jQuery);
 
@@ -403,7 +411,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\reviews.loc\resources\js\slider.js */"./resources/js/slider.js");
+module.exports = __webpack_require__(/*! /app/resources/js/slider.js */"./resources/js/slider.js");
 
 
 /***/ })

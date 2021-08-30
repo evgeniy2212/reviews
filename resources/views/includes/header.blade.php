@@ -115,8 +115,32 @@
                                 id="selectLang"
                                 name="lang"
                                 required>
-                            <option disabled selected>ru</option>
-                            <option value="eng">en</option>
+                            <option selected value="Bosanski">Bosanski</option>
+                            <option value="Català">Català</option>
+                            <option value="Česky">Česky</option>
+                            <option value="Deens">Deens</option>
+                            <option value="Deutsche">Deutsche</option>
+                            <option value="Eestlane">Eestlane</option>
+                            <option value="English">English</option>
+                            <option value="Français">Français</option>
+                            <option value="Hrvatski">Hrvatski</option>
+                            <option value="Íslenska">Íslenska</option>
+                            <option value="Latine">Latine</option>
+                            <option value="Latvietis">Latvietis</option>
+                            <option value="Lëtzebuergesch">Lëtzebuergesch</option>
+                            <option value="lietuvių">lietuvių</option>
+                            <option value="Magyar">Magyar</option>
+                            <option value="Nederlands">Nederlands</option>
+                            <option value="Norsk">Norsk</option>
+                            <option value="Polskie">Polskie</option>
+                            <option value="Română">Română</option>
+                            <option value="Romansh">Romansh</option>
+                            <option value="Shqiptare">Shqiptare</option>
+                            <option value="Slovák">Slovák</option>
+                            <option value="Suomalainen">Suomalainen</option>
+                            <option value="Svenska">Svenska</option>
+                            <option value="Ελληνικά">Ελληνικά</option>
+                            <option value="Български">Български</option>
                         </select>
                     </div>
                     <form method="GET"

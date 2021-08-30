@@ -8,9 +8,9 @@
     <div class="container">
         <div class="content-place home-content-place">
             <div class="home">
-                    <span class="home-title">
-                        Welcome to the @lang('service/index.site_name')!
-                    </span>
+                <span class="home-title">
+                    Welcome to the @lang('service/index.site_name')!
+                </span>
                 <p class="home-main-content home-point-content">
                     We’re excited to welcome you to our site! If this is your first visit, we hope you’ll find it useful, interesting, and worth coming back for time and time again.
                 </p>
@@ -28,9 +28,9 @@
                             Review Everything.
                         </span>
                     <div>
-                            <span class="home-point-content home-point-show">
-                                Reviews4Results is the only site of its kind where you can leave or find feedback about everything in your life, without exception. By reading and writing reviews on such a massive scale all in one place, you’ll save yourself from making dozens of accounts, remembering credentials, wasting time, and tabbing back-and-forth. Why not get it all in one place!?
-                            </span>
+                        <span class="home-point-content home-point-show">
+                            Reviews4Results is the only site of its kind where you can leave or find feedback about everything in your life, without exception. By reading and writing reviews on such a massive scale all in one place, you’ll save yourself from making dozens of accounts, remembering credentials, wasting time, and tabbing back-and-forth. Why not get it all in one place!?
+                        </span>
                     </div>
                 </div>
                 <div class="home-point" id="test1">
@@ -113,12 +113,12 @@
                 <div class="home-point">
                     <img src="{{ asset('storage/images/home_new_image.png') }}" height="30px" width="60px"/>
                     <span class="home-point-title">
-                            Reminders.
-                        </span>
+                        Reminders.
+                    </span>
                     <div>
-                            <span class="home-point-content home-point-show">
-                                With a little help from Reviews4Results, you’ll never again forget to send congratulations on time! The process couldn’t be simpler — all you have to do is enter the name of the person being congratulated, as well as the date and type of congratulation. You’ll only need to do this once, and we’ll send you an automatic reminder via email at any of these intervals that you choose:
-                            </span>
+                        <span class="home-point-content home-point-show">
+                            With a little help from Reviews4Results, you’ll never again forget to send congratulations on time! The process couldn’t be simpler — all you have to do is enter the name of the person being congratulated, as well as the date and type of congratulation. You’ll only need to do this once, and we’ll send you an automatic reminder via email at any of these intervals that you choose:
+                        </span>
                         <ul>
                             <li class="home-point-content home-point-show home-list">1 week before</li>
                             <li class="home-point-content home-point-show home-list">3 days before</li>
