@@ -379,7 +379,7 @@ body.mobile-nav-active #mobile-nav {
 }
 
 .select-lang {
-    width: auto;
+    width: 40px;
     margin-left: auto;
     margin-right: auto;
     font-size: 0.8rem;
