@@ -21,6 +21,7 @@ Route::group(
         Auth::routes(['verify' => true]);
 
         Route::get('/', 'HomeController@index')->name('home');
+        Route::get('test-creation-review/{review_item}', 'ReviewController@testCreate')->name('test-creation-review');
 
         Route::get('/test', 'HomeController@test');
         Route::get('/send-message', 'HomeController@sendMessage');

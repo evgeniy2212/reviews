@@ -8,13 +8,20 @@
     <div class="container">
         <div class="content-place">
             <div class="create-review-button">
-                    <span>
-                        WRITE A NEW REVIEW
-                    </span>
+                <span>
+                    WRITE A NEW REVIEW
+                </span>
                 <div class="col-sm-4 col-md-3 col-lg-2">
-                    <a role="button" href="{{ route('create-review', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
-                        Start
-                    </a>
+                    @guest()
+                        <a role="button" href="{{ route('test-creation-review', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
+                            Start
+                        </a>
+                    @else
+                        <a role="button" href="{{ route('create-review', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
+                            Start
+                        </a>
+                    @endguest
+
                 </div>
             </div>
             <div class="review-items">

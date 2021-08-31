@@ -118,6 +118,28 @@ class ReviewController extends Controller
         ));
     }
 
+    public function testCreate($slug) {
+        $countries = ReviewService::getReviewCountriesBySlug($slug);
+        $reviewCategory = new ReviewCategory();
+        $reviewCategory = $reviewCategory->whereSlug($slug)->first();
+        $categories = ReviewService::getReviewCategoriesBySlug($slug);
+        $positiveCharacteristics = $reviewCategory
+            ->getCharacteristicsByCategorySlug($slug, true)
+            ->chunk($this->half);
+        $negativeCharacteristics = $reviewCategory
+            ->getCharacteristicsByCategorySlug($slug, false)
+            ->chunk($this->half);
+
+        return view('reviews.create', compact(
+            'countries',
+            'positiveCharacteristics',
+            'negativeCharacteristics',
+            'reviewCategory',
+            'slug',
+            'categories'
+        ));
+    }
+
     public function save(SaveReviewRequest $request) {
         if($request->has('category_slug')
             && $request->category_slug == 'person'

@@ -1,5 +1,12 @@
 (function($) {
     $( document ).ready(function() {
+        $('.testCreationReview *').on('click', function (e){
+            if(e.target.id !== 'cancelButton'){
+                e.preventDefault();
+                $('#testReviewCreation').modal('show');
+            }
+        });
+
         // Rating stars options
         var options = {
             max_value: 5,
@@ -20,26 +27,6 @@
                 $('#submitFormAccept').val(1);
             }
         });
-
-        // $(".submitReviewButton").click(function(event) {
-            // if ($('#selectRegion option:selected').val() == ''){
-            //     $('#selectRegion').addClass('invalid-selector');
-            // } else {
-            //     $('#selectRegion').removeClass( "invalid-selector" )
-            // }
-            //
-            // if ($('#selectCountry option:selected').val() == ''){
-            //     $('#selectCountry').addClass('invalid-selector');
-            // } else {
-            //     $('#selectCountry').removeClass( "invalid-selector" )
-            // }
-            //
-            // if($('#createReviewForm #video, #editReviewForm #video').prop('files')[0]){
-            //     $('.custom-file-upload').hide();
-            //     $('#inTurnFadingTextG').show();
-            //     // $('button[type=submit]').prop('disabled', true);
-            // }
-        // });
 
         $(".like-reaction").click(function(event) {
             if(($(this)).hasClass('only-auth')){
@@ -328,13 +315,5 @@
             modalImg.src = $(this).attr('data-full-size-src');
             captionText.innerHTML = this.alt;
         });
-
-        // $('#congratulation-img').hover(
-        //     function(){
-        //         $('#congratulation-rules').show();
-        //     },
-        //     function(){
-        //         $('#congratulation-rules').hide();
-        //     });
     });
 })(jQuery);
