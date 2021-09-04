@@ -79,6 +79,8 @@ html, body {
     background-color: #ebecf0; /* Цвет фона */
     background-size: cover;
     background-position: center center;
+    -webkit-text-size-adjust: none;
+    -webkit-overflow-scrolling:touch;
 }
 
 .wrapper {
@@ -536,12 +538,12 @@ html, body {
 @media screen and (max-width: 992px) {
     .profile-navigation {
         position: fixed;
-        top: 0;
+        top: -70px;
         left: 0;
+        bottom: 0;
         width: 200px;
-        height: 100vh;
         background-color: #f2f2f2;
-        padding-bottom: 10px;
+        padding-bottom: 90px;
         overflow: auto;
         -webkit-transition: -webkit-transform .4s;
         transition: -webkit-transform .4s;
@@ -552,7 +554,7 @@ html, body {
         touch-action: pan-y;
         -webkit-transform: translateX(-100%);
         -ms-transform: translateX(-100%);
-        transform: translateX(-100%);
+        transform: translate(-100%, 70px);
         z-index: 999;
     }
     .profile-place {
@@ -561,9 +563,9 @@ html, body {
     }
 
     .profile-navigation--active .profile-navigation {
-        -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
-        transform: translateX(0);
+        -webkit-transform: translate(0, 70px);
+        -ms-transform: translate(0, 70px);
+        transform: translate(0, 70px);
     }
     .profile-navigation--active .page-overlay {
         opacity: 1;
