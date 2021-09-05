@@ -229,7 +229,7 @@
                                 Save
                             </button>
                         </div>
-                        <div class="col-md-2 mb-2 mb-md-0">
+                        <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
                             <button type="submit"
                                     class="createReviewButton loginButton submitReviewButton"
                                     data-action="{{ route('presaving-review') }}"

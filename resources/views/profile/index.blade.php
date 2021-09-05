@@ -126,6 +126,8 @@
                 @yield('profile_review_content')
                 @yield('profile_message_content')
             </div>
+            <div class="page-overlay js_page-overlay"></div>
+            <button class="navigation-btn js_navigation-btn" type="button">menu</button>
         </div>
     </div>
 @endsection
@@ -140,7 +142,5 @@
     @endif
     <script src="{{ asset('js/profile.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <div class="page-overlay js_page-overlay"></div>
-    <button class="navigation-btn js_navigation-btn" type="button">menu</button>
 {{--    <script src="{{ asset('js/BsMultiSelect.js') }}"></script>--}}
 @endsection

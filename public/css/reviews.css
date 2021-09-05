@@ -235,6 +235,7 @@ input[type="file"] {
     justify-content: flex-start;
     padding-top: 5px;
 }
+
 .checkbox-items {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -251,6 +252,15 @@ input[type="file"] {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     max-width: 50%;
+}
+@media screen and (max-width: 1025px) {
+    .checkbox-container {
+        height: auto;
+    }
+    .checkbox-item {
+        height: auto;
+        line-height: 1;
+    }
 }
 @media screen and (max-width: 767px) {
     .checkbox-item {
@@ -300,6 +310,13 @@ input[type="file"] {
     display: -ms-flexbox;
     display: flex;
     padding: 5px 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .review-characteristics [class^="col-"] {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
 .create-review-buttons, .edit-review-buttons {
@@ -761,6 +778,7 @@ input[type="file"] {
     border-color: #2f5496;
 }
 .comment {
+    position: relative;
     display: none;
     width: 100%;
     text-align: start;
@@ -770,11 +788,23 @@ input[type="file"] {
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
-    border-bottom: 1px groove #4a92f8;
-    -o-border-image: -o-linear-gradient(left, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;
-    border-image: -webkit-gradient(linear, left top, right top, from(rgba(242, 242, 242, 0.56)), color-stop(#2f5496), color-stop(#2f5496), to(#f2f2f2)) 47% 0%;
-    border-image: linear-gradient(to right, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;
+    /*border-bottom: 1px groove #4a92f8;*/
+    /*-o-border-image: -o-linear-gradient(left, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;*/
+    /*border-image: -webkit-gradient(linear, left top, right top, from(rgba(242, 242, 242, 0.56)), color-stop(#2f5496), color-stop(#2f5496), to(#f2f2f2)) 47% 0%;*/
+    /*border-image: linear-gradient(to right, rgba(242, 242, 242, 0.56), #2f5496, #2f5496, #f2f2f2) 47% 0%;*/
     margin-bottom: 10px;
+}
+
+.comment:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(242, 242, 242, .56)), color-stop(#2f5496), color-stop(#2f5496), to(#f2f2f2)) 47% 0;
+    background: -o-linear-gradient(left, rgba(242, 242, 242, .56), #2f5496, #2f5496, #f2f2f2) 47% 0;
+    background: linear-gradient(to right, rgba(242, 242, 242, .56), #2f5496, #2f5496, #f2f2f2) 47% 0;
 }
 .complain {
     display: none;
