@@ -83,6 +83,7 @@ html, body {
     -webkit-overflow-scrolling:touch;
 }
 
+
 .wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -523,16 +524,18 @@ html, body {
 }
 .page-overlay {
     position: fixed;
-    top: 0;
+    top: -70px;
     left: 0;
     width: 100%;
-    height: 100vh;
+    bottom: 0;
+    padding-bottom: 70px;
     background-color: rgba(0,0,0, .7);
     opacity: 0;
     visibility: hidden;
     -webkit-transition: opacity .3s, visibility .3s;
     -o-transition: opacity .3s, visibility .3s;
     transition: opacity .3s, visibility .3s;
+    transform: translateY(70px);
     z-index: 99;
 }
 @media screen and (max-width: 992px) {
@@ -548,14 +551,14 @@ html, body {
         -webkit-transition: -webkit-transform .4s;
         transition: -webkit-transform .4s;
         -o-transition: transform .4s;
-        transition: transform .4s;
+        transition: transform .4s, left .4s;
         transition: transform .4s, -webkit-transform .4s;
         -ms-touch-action: pan-y;
         touch-action: pan-y;
-        -webkit-transform: translateX(-100%);
-        -ms-transform: translateX(-100%);
+        -webkit-transform: translate(-100%, 70px);
+        -ms-transform: translate(-100%, 70px);
         transform: translate(-100%, 70px);
-        z-index: 999;
+        z-index: 9999;
     }
     .profile-place {
         width: 100%;
@@ -566,6 +569,7 @@ html, body {
         -webkit-transform: translate(0, 70px);
         -ms-transform: translate(0, 70px);
         transform: translate(0, 70px);
+        left: 0;
     }
     .profile-navigation--active .page-overlay {
         opacity: 1;
@@ -593,9 +597,9 @@ html, body {
         background-color: #244580;
     }
     .no--scroll {
-        overflow-x: hidden;
-        overflow-y: hidden;
+        overflow: hidden;
     }
+
 }
 @media screen and (max-width: 767px) {
     .profile-place {
@@ -669,7 +673,6 @@ button:disabled {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    white-space: nowrap;
 }
 .custom-checkbox+label+a {
     position: relative;
@@ -827,7 +830,7 @@ button:disabled {
     position: relative;
     height: 25px;
     width: 35px;
-    z-index: 5;
+    z-index: 0;
     margin-left: 10px;
 }
 .message-count .bg {

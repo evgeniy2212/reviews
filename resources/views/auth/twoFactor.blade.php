@@ -24,7 +24,7 @@
                 </p>
                 <form method="POST" action="{{ route('verify.store') }}" novalidate="" id="">
                     @csrf
-                    <div class="form-group d-flex flex-row align-items-center">
+                    <div class="form-group d-md-flex align-items-md-center">
                         <div class="col-md-3">
                             <label for="email">@lang('service/admin.enter_two_factor_code')</label>
                         </div>
