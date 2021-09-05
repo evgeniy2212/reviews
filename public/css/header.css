@@ -518,7 +518,7 @@ body.mobile-nav-active #mobile-nav {
     }
     .navigate a {
         min-width: 140px;
-        opacity: 1 !important;
+        opacity: 1;
     }
     .navigate li {
         width: 50%;
