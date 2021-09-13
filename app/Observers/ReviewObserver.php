@@ -21,19 +21,19 @@ class ReviewObserver
     {
         $review->user()->update(['congratulation_id' => CongratsService::checkUserCongratulation($review->user)]);
 
-        if($review->email){
-            if($review->is_communication_enable){
-                Mail::to($review->email)
-                    ->send(
-                        new ReviewNotificationEmail($review)
-                    );
-            } else {
-                Mail::to($review->email)
-                    ->send(
-                        new ReviewDisableNotificationEmail($review)
-                    );
-            }
-        }
+//        if($review->email){
+//            if($review->is_communication_enable){
+//                Mail::to($review->email)
+//                    ->send(
+//                        new ReviewNotificationEmail($review)
+//                    );
+//            } else {
+//                Mail::to($review->email)
+//                    ->send(
+//                        new ReviewDisableNotificationEmail($review)
+//                    );
+//            }
+//        }
     }
 
     /**
