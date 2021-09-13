@@ -24,6 +24,7 @@ class Banner extends Model
         'is_published',
         'from',
         'to',
+        'locale',
     ];
 
 //    protected $dates = ['created_at'];

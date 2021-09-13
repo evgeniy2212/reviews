@@ -18,7 +18,8 @@ class Congratulation extends Model
         'name',
         'original_name',
         'alt',
-        'id'
+        'id',
+        'locale'
     ];
 
     /**

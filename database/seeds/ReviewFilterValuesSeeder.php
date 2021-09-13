@@ -46,7 +46,17 @@ class ReviewFilterValuesSeeder extends Seeder
         ];
 
         foreach($filter_values as $filter_value){
-            ReviewFilterValue::firstOrCreate($filter_value);
+            $filterValueData = [];
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $filterValueData[$localeKey] = [
+                    'value' => $filter_value['value']
+                ];
+            }
+            ReviewFilterValue::updateOrCreate(
+                [
+                    'slug' => $filter_value['slug'],
+                    'filter_id' => $filter_value['filter_id'],
+                ],$filterValueData);
         }
     }
 }

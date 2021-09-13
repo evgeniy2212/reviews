@@ -55,6 +55,7 @@ class ReviewService {
             $reviews = Review::whereHas('category', function ($query) use($category) {
                 $query->where('slug', $category);
             })
+            ->whereLocale(app('laravellocalization')->getCurrentLocale())
             ->whereHas('user', function ($query) {
                 $query->where('is_blocked', false);
             })
@@ -65,7 +66,7 @@ class ReviewService {
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
             })
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['comments'])
             ->with(['image'])
             ->when(!empty($sort), function($q) use($sort_by, $sort){
@@ -104,6 +105,7 @@ class ReviewService {
         {
             $congratulations = UserCongratulation::onlyPublic()
                 ->whereIsPublished(true)
+                ->whereLocale(app('laravellocalization')->getCurrentLocale())
                 ->when(!empty($filter), function($q) use ($filter){
                     $q->whereYear('created_at', $filter);
                 })
@@ -153,6 +155,7 @@ class ReviewService {
         $result = Review::whereHas('category', function ($query) use($category) {
             $query->where('slug', $category);
         })
+        ->whereLocale(app('laravellocalization')->getCurrentLocale())
         ->whereHas('user', function ($query) {
             $query->where('is_blocked', false);
         })
@@ -174,7 +177,7 @@ class ReviewService {
             ->when(!empty($filter), function($q) use ($filter){
                 $q->whereYear('created_at', $filter);
             })
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['comments'])
             ->with(['image'])
             ->when(!empty($sort), function($q) use($sort_by){
@@ -231,7 +234,7 @@ class ReviewService {
                         $query->whereIsPublished(false);
                     });
             })
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['comments'])
             ->with(['image'])
             ->when(empty($sort), function($q){
@@ -286,7 +289,7 @@ class ReviewService {
                 });
         })
         ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['comments'])
             ->with(['image'])
             ->orderBy('created_at', 'DESC')
@@ -335,7 +338,12 @@ class ReviewService {
             ]);
             $request->merge(['review_group_id' => $reviewGroup->id]);
         }
-        $request->merge(['user_id' => auth()->user()->id]);
+        $request->merge(
+            [
+                'user_id' => auth()->id(),
+                'locale' => app('laravellocalization')->getCurrentLocale()
+            ]
+        );
         $review = Review::create($request->all());
         $review->characteristics()->attach($request->characteristics);
         if($createReviewGroup){

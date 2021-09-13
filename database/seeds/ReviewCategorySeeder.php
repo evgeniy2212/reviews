@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use \App\Models\ReviewCategory;
+use Illuminate\Support\Arr;
 
 class ReviewCategorySeeder extends Seeder
 {
@@ -14,37 +15,56 @@ class ReviewCategorySeeder extends Seeder
     {
         $categories = [
             [
-                'title' => 'Person',
+                'title' => [
+                    'en' => 'Person',
+                    'ru' => 'Людях',
+                ],
                 'slug' => \Illuminate\Support\Str::slug('person'),
                 'is_published' => true,
                 'enable_low_rating' => false
             ],
             [
-                'title' => 'Company',
+                'title' => [
+                    'en' => 'Company',
+                    'ru' => 'Компаниях',
+                ],
                 'slug' => \Illuminate\Support\Str::slug('company'),
                 'is_published' => true,
             ],
             [
-                'title' => 'Product',
+                'title' => [
+                    'en' => 'Product',
+                    'ru' => 'Товарах',
+                ],
                 'slug' => \Illuminate\Support\Str::slug('goods'),
                 'is_published' => true,
             ],
             [
-                'title' => 'Vacations',
+                'title' => [
+                    'en' => 'Vacations',
+                    'ru' => 'Курортах',
+                ],
                 'slug' => \Illuminate\Support\Str::slug('vocations'),
                 'is_published' => true,
             ],
         ];
 
         foreach($categories as $category){
+            $data = [
+                'is_published' => $category['is_published'],
+                'enable_low_rating' => Arr::get($category, 'enable_low_rating', true),
+            ];
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $data[$localeKey] = [
+                    'title' => Arr::get($category['title'], $localeKey, app('laravellocalization')->getDefaultLocale())
+                ];
+            }
+
             ReviewCategory::updateOrCreate(
                 [
-                    'slug' => $category['slug']
+                    'slug' => $category['slug'],
                 ],
-                [
-                    'title' => $category['title'],
-                    'is_published' => $category['is_published']
-                ]
+                $data
             );
         }
     }

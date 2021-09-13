@@ -15,10 +15,24 @@ class CreateServiceInfosTable extends Migration
     {
         Schema::create('service_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable();
-            $table->text('value')->nullable();
+            $table->text('name');
 
             $table->timestamps();
+        });
+
+        Schema::create('service_info_translations', function(Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('service_info_id');
+            $table->text('value');
+            $table->string('locale')->index();
+
+            $table->unique(['service_info_id', 'locale']);
+
+            $table->foreign('service_info_id')
+                ->references('id')
+                ->on('service_infos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -29,6 +43,7 @@ class CreateServiceInfosTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('service_info_translations');
         Schema::dropIfExists('service_infos');
     }
 }

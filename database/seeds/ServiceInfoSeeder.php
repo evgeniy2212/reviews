@@ -52,13 +52,17 @@ class ServiceInfoSeeder extends Seeder
         ];
 
         foreach($serviceInfo as $info){
+            $serviceData = [];
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $serviceData[$localeKey] = [
+                    'value' => $info['value']
+                ];
+            }
             ServiceInfo::updateOrCreate(
                 [
                     'name' => $info['name']
                 ],
-                [
-                    'value' => $info['value']
-                ]
+                $serviceData
             );
         }
     }

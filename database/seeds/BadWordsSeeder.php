@@ -20,11 +20,21 @@ class BadWordsSeeder extends Seeder
          ];
 
 
+         foreach(BadWord::all() as $badWord){
+             $badWord->delete();
+         }
          foreach($characteristics as $characteristic_category => $words){
              $category_id = ReviewCategory::where('slug','=', $characteristic_category)->first()->id;
-             BadWord::truncate();
              foreach($words as $word){
-                 BadWord::create(['word' => $word,'review_category_id' => $category_id]);
+                 $data = [
+                     'review_category_id' => $category_id
+                 ];
+                 foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                     $data[$localeKey] = [
+                         'word' => $word
+                     ];
+                 }
+                 BadWord::create($data);
              }
          }
      }

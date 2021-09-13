@@ -14,6 +14,7 @@ use Faker\Generator as Faker;
     $category_id = rand(1, 4);
     $review_group_id = $category_id == 3 ? rand(1, 40) : null;
     $category_by_review_id = $category_id == 4 ? rand(4, 11) : null;
+    $locale = array_rand(app('laravellocalization')->getSupportedLocales(), 1);
 
     return [
         'user_id' => $user->id,
@@ -30,6 +31,7 @@ use Faker\Generator as Faker;
         'dislikes' =>rand(1, 100),
         'user_sign' => rand(1, 3),
         'is_published' => rand(0, 1),
+        'locale' => $locale,
         'created_at' => $date->addWeeks(rand(1, 52))->format('Y-m-d H:i:s')
     ];
 });

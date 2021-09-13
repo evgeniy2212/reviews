@@ -9,12 +9,15 @@ use Carbon\Carbon;
 
 class BannerService {
 
-    public static function getAdminFilteredBanners($filter = [], $perPage = 5) {
+    public static function getAdminFilteredBanners($filter = [], $allLocaleBanners = false, $perPage = 5) {
         $bannerFilter = self::getFilterMethod($filter);
 
         $result = Banner::when(!empty($bannerFilter), function($q) use ($bannerFilter){
                 $key = key($bannerFilter);
                 $q->where($key, $bannerFilter[$key]);
+            })
+            ->when(!$allLocaleBanners, function($q){
+                $q->whereLocale(app('laravellocalization')->getCurrentLocale());
             })
             ->paginate($perPage);
 
@@ -34,6 +37,7 @@ class BannerService {
             ->where('is_published', true)
             ->where('from', '<=', Carbon::now()->setTime(0,0)->format('Y-m-d H:i:s'))
             ->where('to', '>=', Carbon::now()->setTime(0,0, 0)->format('Y-m-d H:i:s'))
+            ->whereLocale(app('laravellocalization')->getCurrentLocale())
 //            ->orWhereHas('user', function ($query) {
 //                $query->where('is_admin', true);
 //            })

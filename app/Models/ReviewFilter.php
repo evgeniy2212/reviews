@@ -2,10 +2,22 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class ReviewFilter extends Model
+class ReviewFilter extends Model implements TranslatableContract
 {
+    use Translatable;
+
+    public $translatedAttributes = [
+        'name'
+    ];
+
+    public $with = [
+        'translations',
+    ];
+
     const DATE_FILTER = 'filter-by-date';
     const SORT_BY_FILTER = 'sort-by';
     const CONTENT_TYPE_FILTER = 'content_type';
@@ -26,7 +38,6 @@ class ReviewFilter extends Model
     ];
 
     protected $fillable = [
-        'name',
         'slug',
         'review_category_id'
     ];
@@ -36,7 +47,8 @@ class ReviewFilter extends Model
     }
 
     public function filter_values(){
-        return $this->hasMany(ReviewFilterValue::class, 'filter_id', 'id')->orderByDesc('value');
+        return $this->hasMany(ReviewFilterValue::class, 'filter_id', 'id')
+            ->orderByTranslation('value');
     }
 
     public function getFormatNameAttribute(){

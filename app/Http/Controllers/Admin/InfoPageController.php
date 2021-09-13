@@ -24,7 +24,16 @@ class InfoPageController extends Controller
     public function store(Request $request)
     {
         foreach($request->input() as $key => $contact){
-            ServiceInfo::whereName($key)->update(['value' => $contact]);
+            if(ServiceInfo::firstWhere('name', $key)){
+                ServiceInfo::firstWhere('name', $key)
+                    ->update(
+                        [
+                            app('laravellocalization')->getCurrentLocale() => [
+                                'value' => $contact,
+                            ]
+                        ]
+                    );
+            }
         }
 
         return redirect()->back();

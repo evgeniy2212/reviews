@@ -5,7 +5,7 @@
             <div class="d-flex d-sm-none flex-column justify-content-start site-name site-name--mobile">
                 <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="site-name__link">@lang('service/index.header_site_name')<span>.com</span></a>
                 <p>
-                    Your reviews make our lives better.
+                    @lang('service/index.header.tagline')
                 </p>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <div class="d-none d-sm-flex flex-column justify-content-start site-name site-name--desktop">
                     <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="site-name__link">@lang('service/index.header_site_name')<span>.com</span></a>
                     <p>
-                        Your reviews make our lives better.
+                        @lang('service/index.header.tagline')
                     </p>
                     {{--<script>--}}
                         {{--setTimeout(function() {--}}
@@ -60,10 +60,10 @@
                                     </div>
                                 </div>
                                 <div class="user-activities">
-                                    <span>Reviews: {{ auth()->user()->reviewsCount }}</span>
-                                    <span>Congratulations: {{ auth()->user()->congratulationsCount }}</span>
-                                    <span>Replies: {{ auth()->user()->commentsCount }}</span>
-                                    <span>Finger marks: {{ auth()->user()->reaction_count ?? 0 }}</span>
+                                    <span>@lang('service/index.reviews'): {{ auth()->user()->reviewsCount }}</span>
+                                    <span>@lang('service/index.congratulations'): {{ auth()->user()->congratulationsCount }}</span>
+                                    <span>@lang('service/index.replies'): {{ auth()->user()->commentsCount }}</span>
+                                    <span>@lang('service/index.finger_marks'): {{ auth()->user()->reaction_count ?? 0 }}</span>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                 <a href="{{ LaravelLocalization::localizeUrl('/logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    Sign Out
+                                    @lang('service/index.sign_out')
                                 </a>
                                 <form id="logout-form" action="{{ LaravelLocalization::localizeUrl('/logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -91,21 +91,21 @@
                             </li>
                         @else
                             <li>
-                                <a href="{{ LaravelLocalization::localizeUrl('/login') }}">Sign In</a>
+                                <a href="{{ LaravelLocalization::localizeUrl('/login') }}">@lang('service/index.sign_in')</a>
                             </li>
                             <li class="left-border">
-                                <a href="{{ LaravelLocalization::localizeUrl('/register') }}">Sign Up</a>
+                                <a href="{{ LaravelLocalization::localizeUrl('/register') }}">@lang('service/index.sign_up')</a>
                             </li>
                         @endif
                         <li class="left-border">
                             {{--                                <a href="{{ asset('files/reviews4info.zip') }}" download="reviews4info">Save</a>--}}
-                            <a href="{{ route('save-shortcut') }}">Save</a>
+                            <a href="{{ route('save-shortcut') }}">@lang('service/index.save')</a>
                         </li>
                         <li class="left-border">
                             <a href="{{ route('share') }}"
                                 {{--                                   data-toggle="modal"--}}
                                 {{--                                   data-target="#shareModal"--}}
-                            >Share</a>
+                            >@lang('service/index.share')</a>
                         </li>
                     </ul>
                 </nav>
@@ -113,34 +113,43 @@
                     <div class="header__select-wrap">
                         <select class="form-control select select-lang"
                                 id="selectLang"
-                                name="lang"
-                                required>
-                            <option selected value="Bosanski">Bosanski</option>
-                            <option value="Català">Català</option>
-                            <option value="Česky">Česky</option>
-                            <option value="Deens">Deens</option>
-                            <option value="Deutsche">Deutsche</option>
-                            <option value="Eestlane">Eestlane</option>
-                            <option value="English">English</option>
-                            <option value="Français">Français</option>
-                            <option value="Hrvatski">Hrvatski</option>
-                            <option value="Íslenska">Íslenska</option>
-                            <option value="Latine">Latine</option>
-                            <option value="Latvietis">Latvietis</option>
-                            <option value="Lëtzebuergesch">Lëtzebuergesch</option>
-                            <option value="lietuvių">lietuvių</option>
-                            <option value="Magyar">Magyar</option>
-                            <option value="Nederlands">Nederlands</option>
-                            <option value="Norsk">Norsk</option>
-                            <option value="Polskie">Polskie</option>
-                            <option value="Română">Română</option>
-                            <option value="Romansh">Romansh</option>
-                            <option value="Shqiptare">Shqiptare</option>
-                            <option value="Slovák">Slovák</option>
-                            <option value="Suomalainen">Suomalainen</option>
-                            <option value="Svenska">Svenska</option>
-                            <option value="Ελληνικά">Ελληνικά</option>
-                            <option value="Български">Български</option>
+                                onchange="location = this.value;">
+                            @foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale)
+                                @if(App::getLocale() === $localeKey)
+                                    <option selected>{!! $locale['name'] !!}</option>
+                                @else
+                                    <option value="{{ LaravelLocalization::getLocalizedURL($localeKey, null, [], false) }}">{!! $locale['name'] !!}</option>
+{{--                                    <a href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true) }}">--}}
+{{--                                        {{ $locale }}--}}
+{{--                                    </a>--}}
+                                @endif
+                            @endforeach
+{{--                            <option selected value="Bosanski">Bosanski</option>--}}
+{{--                            <option value="Català">Català</option>--}}
+{{--                            <option value="Česky">Česky</option>--}}
+{{--                            <option value="Deens">Deens</option>--}}
+{{--                            <option value="Deutsche">Deutsche</option>--}}
+{{--                            <option value="Eestlane">Eestlane</option>--}}
+{{--                            <option value="English">English</option>--}}
+{{--                            <option value="Français">Français</option>--}}
+{{--                            <option value="Hrvatski">Hrvatski</option>--}}
+{{--                            <option value="Íslenska">Íslenska</option>--}}
+{{--                            <option value="Latine">Latine</option>--}}
+{{--                            <option value="Latvietis">Latvietis</option>--}}
+{{--                            <option value="Lëtzebuergesch">Lëtzebuergesch</option>--}}
+{{--                            <option value="lietuvių">lietuvių</option>--}}
+{{--                            <option value="Magyar">Magyar</option>--}}
+{{--                            <option value="Nederlands">Nederlands</option>--}}
+{{--                            <option value="Norsk">Norsk</option>--}}
+{{--                            <option value="Polskie">Polskie</option>--}}
+{{--                            <option value="Română">Română</option>--}}
+{{--                            <option value="Romansh">Romansh</option>--}}
+{{--                            <option value="Shqiptare">Shqiptare</option>--}}
+{{--                            <option value="Slovák">Slovák</option>--}}
+{{--                            <option value="Suomalainen">Suomalainen</option>--}}
+{{--                            <option value="Svenska">Svenska</option>--}}
+{{--                            <option value="Ελληνικά">Ελληνικά</option>--}}
+{{--                            <option value="Български">Български</option>--}}
                         </select>
                     </div>
                     <form method="GET"
@@ -152,7 +161,7 @@
                                id="searchCategory"
                                type="text"
                                name="search"
-                               placeholder="Search"
+                               placeholder="{{ __('service/index.search') }}"
                                aria-label="Search"
                                value="{{ isset($search) ? $search : '' }}"
                                required>
@@ -161,14 +170,14 @@
                                 name="category"
                                 required>
                             <option disabled selected>@lang('service/index.head_select')</option>
-                            @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
+                            @foreach($reviewCategories as $review_category)
                                 <option {{ (isset($search_category) && $search_category == $review_category->slug) ? 'selected' : '' }}
                                         value="{{ $review_category->slug }}">
                                     @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
                                 </option>
                             @endforeach
                         </select>
-                        <button class="btn btn-outline-primary mb-2 mb-sm-0" type="submit">Go</button>
+                        <button class="btn btn-outline-primary mb-2 mb-sm-0" type="submit">@lang('service/index.go')</button>
                     </form>
                 </div>
             </div>
@@ -225,7 +234,7 @@
                 <li @if(\Route::current()->getName() == 'home')class="menu-active"@endif>
                     <a href="{{ route('home') }}">@lang('service/index.home')</a>
                 </li>
-                @foreach(\App\Models\ReviewCategory::all('title', 'slug') as $review_category)
+                @foreach($reviewCategories as $review_category)
                     <li @if(str_contains(url()->current(), $review_category->slug) || str_contains(url()->full(), 'category=' . $review_category->slug))
                         class="menu-active"@endif>
                         <a href="{{ route('reviews', $review_category->slug) }}">

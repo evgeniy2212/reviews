@@ -78,6 +78,7 @@ class Kernel extends HttpKernel
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'adminer' => \App\Http\Middleware\Authenticate::class,
         'twofactor' => \App\Http\Middleware\TwoFactor::class,
+        'cache-control' => \App\Http\Middleware\CacheControl::class
     ];
 
     /**

@@ -27,6 +27,7 @@ class CreateBannersTable extends Migration
             $table->dateTime('from')->useCurrent();
             $table->dateTime('to')->useCurrent();
             $table->string('email')->default('');
+            $table->string('locale')->index();
 
             $table->foreign('banner_category_id')->references('id')->on('banner_categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

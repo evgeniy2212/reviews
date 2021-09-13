@@ -2,14 +2,25 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class ReviewCharacteristic extends Model
+class ReviewCharacteristic extends Model implements TranslatableContract
 {
+    use Translatable;
+
+    public $translatedAttributes = [
+        'name'
+    ];
+
+    public $with = [
+        'translations',
+    ];
+
     protected $fillable = [
         'id',
         'review_category_id',
-        'name',
         'is_positive',
         'is_published'
     ];

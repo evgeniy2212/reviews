@@ -175,7 +175,17 @@ class ReviewCharacteristicsSeeder extends Seeder
              $category_id = ReviewCategory::where('slug', '=', $characteristic_category)->first()->id;
              foreach($characteristics as $characteristic){
                  $characteristic['review_category_id'] = $category_id;
-                 ReviewCharacteristic::firstOrCreate($characteristic);
+                 $charactData = [
+                     'review_category_id' => $category_id,
+                     'is_positive' => $characteristic['is_positive'],
+                     'is_published' => $characteristic['is_published'],
+                 ];
+                 foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                     $charactData[$localeKey] = [
+                         'name' => $characteristic['name']
+                     ];
+                 }
+                 ReviewCharacteristic::create($charactData);
              }
          }
      }

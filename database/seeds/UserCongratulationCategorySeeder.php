@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\UserCongratulationCategory;
 
 class UserCongratulationCategorySeeder extends Seeder
 {
@@ -147,7 +148,20 @@ class UserCongratulationCategorySeeder extends Seeder
         ];
 
         foreach($categories as $category){
-            \App\Models\UserCongratulationCategory::firstOrCreate($category);
+            $userCongratData = [];
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $userCongratData[$localeKey] = [
+                    'title' => $category['title'],
+                    'name' => $category['name'],
+                ];
+            }
+            UserCongratulationCategory::updateOrCreate(
+                [
+                    'slug' => $category['slug'],
+                    'is_published' => $category['is_published'],
+                ],
+                $userCongratData
+            );
         }
     }
 }

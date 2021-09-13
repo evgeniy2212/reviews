@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\CategoryByReview;
 use App\Models\GroupByReview;
+use App\Models\ReviewCategory;
 
 class CategoryGroupByReviewSeeder extends Seeder
 {
@@ -34,21 +35,31 @@ class CategoryGroupByReviewSeeder extends Seeder
             'Other' => [],
         ];
 
-        $reviewCategory = \App\Models\ReviewCategory::whereSlug('goods')->first();
+        $reviewCategory = ReviewCategory::whereSlug('goods')->first();
         foreach($categories as $category => $groups){
             $isNotRegionEmpty = !empty($groups);
             $reviewCategoryId = $isNotRegionEmpty ? $reviewCategory->id : null;
 
-            $category = CategoryByReview::firstOrCreate([
-                'name' => $category,
+            $data = [
                 'review_category_id' => $reviewCategoryId
-            ]);
+            ];
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $data[$localeKey] = [
+                    'name' => $category
+                ];
+            }
+            $category = CategoryByReview::create($data);
             if($isNotRegionEmpty){
                 foreach($groups as $group){
-                    GroupByReview::firstOrCreate([
-                        'name' => $group,
+                    $groupData = [
                         'category_id' => $category->id,
-                    ]);
+                    ];
+                    foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                        $groupData[$localeKey] = [
+                            'name' => $group
+                        ];
+                    }
+                    GroupByReview::create($groupData);
                 }
             }
         }

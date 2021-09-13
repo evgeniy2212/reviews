@@ -9,16 +9,16 @@
         <div class="content-place">
             <div class="create-review-button">
                 <span>
-                    WRITE A NEW REVIEW
+                    {{ strtoupper(__('service/index.reviews.write_new')) }}
                 </span>
                 <div class="col-sm-4 col-md-3 col-lg-2">
                     @guest()
                         <a role="button" href="{{ route('test-creation-review', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
-                            Start
+                            @lang('service/index.start')
                         </a>
                     @else
                         <a role="button" href="{{ route('create-review', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
-                            Start
+                            @lang('service/index.start')
                         </a>
                     @endguest
 
@@ -28,7 +28,7 @@
                 @if($reviews->count())
                     <div class="d-flex justify-content-center exist-review-title">
                             <span>
-                               {{ empty($search) ? '' : "\"$search\"" }} EXISTING REVIEWS
+                               {{ empty($search) ? '' : "\"$search\"" }} @lang('service/index.reviews.existing')
                             </span>
                     </div>
                     @if(!empty($avgRating))
@@ -95,7 +95,7 @@
                 @else
                     <div class="d-flex justify-content-center exist-review-title">
                             <span>
-                                SEARCH RESULT IS EMPTY
+                                @lang('service/index.reviews.empty_search_result')
                             </span>
                     </div>
                 @endif

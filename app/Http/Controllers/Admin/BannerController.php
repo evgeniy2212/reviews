@@ -79,7 +79,11 @@ class BannerController extends Controller
      */
     public function update(UpdateBannerRequest $request, Banner $banner)
     {
-        $request->merge(['is_published' => $request->is_published ? 1 : 0]);
+        $request->merge(
+            [
+                'is_published' => $request->is_published ? 1 : 0
+            ]
+        );
         if($request->is_published && BannerService::isPublishedMaxBanners()){
             return redirect()->back()->withErrors(['msg' => __('service/admin.max_banners_published', ['count' => Banner::MAX_BANNERS_COUNT])]);
         }

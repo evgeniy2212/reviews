@@ -2,13 +2,24 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class ReviewCategory extends Model
+class ReviewCategory extends Model implements TranslatableContract
 {
+    use Translatable;
+
+    public $translatedAttributes = [
+        'title'
+    ];
+
+    public $with = [
+        'translations',
+    ];
+
     protected $fillable = [
         'id',
-        'title',
         'slug',
         'is_published',
         'enable_low_rating',
@@ -24,7 +35,8 @@ class ReviewCategory extends Model
     }
 
     public function filters() {
-        return $this->hasMany(ReviewFilter::class, 'review_category_id', 'id')->orderByDesc('value');
+        return $this->hasMany(ReviewFilter::class, 'review_category_id', 'id')
+            ->orderByDesc('value');
     }
 
     public function getCharacteristicsByCategorySlug($slug, $is_positive = null){
@@ -35,7 +47,7 @@ class ReviewCategory extends Model
             ->when(!is_null($is_positive), function ($q) use($is_positive) {
                 return $q->where('is_positive', $is_positive);
             })
-            ->get(['name', 'id', 'is_positive']);
+            ->get();
     }
 
     public function getLowerTitleAttribute(){

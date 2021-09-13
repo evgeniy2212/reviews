@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +16,7 @@
 
 Route::group(
     [
-        'prefix' => LaravelLocalization::setLocale(),
+        'prefix' => \Mcamara\LaravelLocalization\Facades\LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
         Auth::routes();
@@ -29,11 +32,6 @@ Route::group(
             Route::get('regions/{country}', 'RegionController');
             Route::get('groups/{group}', 'ReviewCategoryGroupController');
             Route::get('bad-words', 'InfoController@getBadWords')->name('bad-words');
-            Route::post('review-reaction', 'ReviewController@reviewReaction')->name('review-reaction');
-            Route::post('review-message-read', 'ReviewController@reviewReadMessages')->name('review-message-read');
-            Route::post('review-comment-reaction', 'CommentController@commentReaction')->name('review-comment-reaction');
-            Route::post('review-add-comment', 'CommentController@addReviewComment')->name('review-add-comment');
-            Route::post('review-send-message', 'MessageController@addReviewMessage')->name('review-send-message');
         });
 
         Route::group([
@@ -130,6 +128,14 @@ Route::group(
 
         Route::get('verify/resend', 'Auth\TwoFactorController@resend')->name('verify.resend');
         Route::resource('verify', 'Auth\TwoFactorController')->only(['index', 'store']);
+});
+
+Route::group(['prefix' => 'ajax'], function() {
+    Route::post('review-reaction', 'ReviewController@reviewReaction')->name('review-reaction');
+    Route::post('review-message-read', 'ReviewController@reviewReadMessages')->name('review-message-read');
+    Route::post('review-comment-reaction', 'CommentController@commentReaction')->name('review-comment-reaction');
+    Route::post('review-add-comment', 'CommentController@addReviewComment')->name('review-add-comment');
+    Route::post('review-send-message', 'MessageController@addReviewMessage')->name('review-send-message');
 });
 
 //Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerAutologinController@index');

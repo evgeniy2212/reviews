@@ -18,6 +18,7 @@ class CreateDefaultImagesTable extends Migration
             $table->string('src', 200);
             $table->string('name', 200)->default('');
             $table->string('original_name', 200)->default('');
+            $table->string('locale')->nullable();
             $table->boolean('is_published')->default(true);
 
             $table->timestamps();

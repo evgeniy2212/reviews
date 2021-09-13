@@ -63,10 +63,7 @@ class UserImportantDateService {
 
     static public function getImportantDateTypes()
     {
-        $selectValues = ['id', 'name'];
-
-        return UserImportantDateType::select($selectValues)
-            ->whereIsPublished(true)
+        return UserImportantDateType::whereIsPublished(true)
             ->get();
     }
 

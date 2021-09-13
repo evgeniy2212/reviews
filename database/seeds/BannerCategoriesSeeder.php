@@ -46,7 +46,17 @@ class BannerCategoriesSeeder extends Seeder
         ];
 
         foreach($categories as $category){
-            BannerCategory::firstOrCreate($category);
+            $data = [
+                'is_published' => $category['is_published']
+            ];
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $data[$localeKey] = [
+                    'title' => $category['title']
+                ];
+            }
+            BannerCategory::updateOrCreate([
+                'slug' => $category['slug']
+            ], $data);
         }
     }
 }
