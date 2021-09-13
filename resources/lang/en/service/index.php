@@ -86,4 +86,5 @@ return [
     'search' => 'Search',
     'share' => 'Share',
     'go' => 'Go',
+    'start' => 'Start',
 ];
