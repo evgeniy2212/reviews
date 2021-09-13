@@ -46,6 +46,7 @@ class UserCongratulation extends Model
         'deleted_by_from',
         'created_at',
         'locale',
+        'content_type'
     ];
 
     public function category(){
