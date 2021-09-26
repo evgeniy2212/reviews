@@ -1,6 +1,6 @@
 <div class="col-12 col-lg-5 mb-2 mb-lg-0">
     <div class="d-flex align-items-center flex-grow-1 flex-wrap flex-lg-nowrap">
-        <div class="col-12 col-sm-3">
+        <div class="col-12 col-sm-3 col-md-4">
             <span class="create-review-label text-center">
                 @lang('service/index.review_person_name_label')
             </span>

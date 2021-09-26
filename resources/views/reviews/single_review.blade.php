@@ -21,7 +21,7 @@
                        type="image"
                        src="{{ asset('images/positive_like.png') }}"/>
             </div>
-            <div class="like-containerF-left">
+            <div class="like-container-left">
                 <input data-review-id="{{ $review->id }}"
                        data-reaction-name="dislikes"
                        data-reaction-href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::localizeUrl('/register') }}"

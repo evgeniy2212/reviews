@@ -89,7 +89,7 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: row;
         flex-direction: row;
-        margin-bottom: 3%;
+        margin-bottom: 1%;
     }
     .create-review-name {
         display: -webkit-box;
@@ -236,29 +236,15 @@ input[type="file"] {
     padding-top: 5px;
 }
 
-.checkbox-items {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-}
 .checkbox-item {
-    height: 18px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    max-width: 50%;
 }
 @media screen and (max-width: 1025px) {
     .checkbox-container {
         height: auto;
     }
     .checkbox-item {
-        height: auto;
         line-height: 1;
     }
 }
@@ -433,11 +419,11 @@ input[type="file"] {
     height: 22px;
 }
 .like-container-right {
-    width: 35%;
+    /*width: 35%;*/
     text-align: right;
 }
 .like-container-left {
-    width: 35%;
+    /*width: 35%;*/
     text-align: left;
 }
 
@@ -526,6 +512,13 @@ input[type="file"] {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+    .single-review-logo-name {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
 .single-review-logo-name > *{
     margin-bottom: 5px;
@@ -945,7 +938,7 @@ input:-webkit-autofill:active  {
     display: inline-block;
     padding: 0 2px;
     line-height: 15px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     border: 1px solid #2f5496;
     margin: 0;
     text-align: center;
@@ -964,6 +957,11 @@ input:-webkit-autofill:active  {
         min-width: 13%;
     }
 }
+@media screen and (max-width: 480px) {
+    .form_review_description {
+        font-size: 0.75rem;
+    }
+}
 .form_review_toggle-item label {
     display: inline-block;
     padding: 0;
@@ -980,11 +978,7 @@ input:-webkit-autofill:active  {
     margin: 0;
 }
 
-.form_review_toggle .item-1 label {
-    /*border-radius: 6px 0 0 6px;*/
-}
 .form_review_toggle .item-2 label {
-    /*border-radius: 0 6px 6px 0;*/
     border-right: 1px solid #2f5496;
 }
 

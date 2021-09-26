@@ -1081,22 +1081,35 @@ button:disabled {
 
 #password-rules{
     position: absolute;
-    left: 15%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    left: 5%;
     width: auto;
     height: auto;
-    margin-top: -115px;
+    min-width: 290px;
     padding: 3px;
     background-color: #f1f1f1;
     border: 2px solid #2f5496;
     border-radius: 5px;
+    -webkit-transform: translateY(-105%);
+    -moz-transform: translateY(-105%);
+    -ms-transform: translateY(-105%);
+    -o-transform: translateY(-105%);
+    transform: translateY(-105%);
     z-index: 50;
+}
+
+@media screen and (max-width: 992px) {
+    #password-rules{
+        min-width: 285px;
+        left: auto;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #password-rules{
+        min-width: auto;
+        left: 0;
+    }
 }
 
 #congratulation-rules{
