@@ -28,6 +28,7 @@ class CreateUserCongratulationsTable extends Migration
             $table->integer('dislikes')->default(0);
             $table->string('user_sign')->nullable();
             $table->boolean('is_published')->default(true);
+            $table->string('locale')->index();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('region_id')->references('id')->on('regions');

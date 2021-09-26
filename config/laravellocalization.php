@@ -222,7 +222,7 @@ return [
         //'mk'          => ['name' => 'Macedonian',             'script' => 'Cyrl', 'native' => 'македонски', 'regional' => 'mk_MK'],
         //'mn'          => ['name' => 'Mongolian (Cyrillic)',   'script' => 'Cyrl', 'native' => 'монгол', 'regional' => 'mn_MN'],
         //'ce'          => ['name' => 'Chechen',                'script' => 'Cyrl', 'native' => 'нохчийн мотт', 'regional' => 'ce_RU'],
-        //'ru'          => ['name' => 'Russian',                'script' => 'Cyrl', 'native' => 'русский', 'regional' => 'ru_RU'],
+        'ru'          => ['name' => 'Russian',                'script' => 'Cyrl', 'native' => 'русский', 'regional' => 'ru_RU'],
         //'sah'         => ['name' => 'Yakut',                  'script' => 'Cyrl', 'native' => 'саха тыла', 'regional' => ''],
         //'tt'          => ['name' => 'Tatar',                  'script' => 'Cyrl', 'native' => 'татар теле', 'regional' => 'tt_RU'],
         //'tg'          => ['name' => 'Tajik (Cyrillic)',       'script' => 'Cyrl', 'native' => 'тоҷикӣ', 'regional' => 'tg_TJ'],
@@ -309,7 +309,7 @@ return [
     // again if the session expires.
     //
     // If false, system will take app.php locale attribute
-    'useAcceptLanguageHeader' => true,
+    'useAcceptLanguageHeader' => false,
 
     // If `hideDefaultLocaleInURL` is true, then a url without locale
     // is identical with the same url with default locale.
@@ -326,7 +326,7 @@ return [
     // If `useAcceptLanguageHeader` is true, then the first time
     // the locale will be determined from browser and redirect to that language.
     // After that, `hideDefaultLocaleInURL` behaves as usual.
-    'hideDefaultLocaleInURL' => true,
+    'hideDefaultLocaleInURL' => false,
 
     // If you want to display the locales in particular order in the language selector you should write the order here.
     //CAUTION: Please consider using the appropriate locale code otherwise it will not work

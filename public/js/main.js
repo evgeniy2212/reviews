@@ -94,6 +94,7 @@
 /***/ (function(module, exports) {
 
 (function ($) {
+  sessionStorage.setItem('slider_enable', true);
   var isCheckedTermOfCondition = true;
   var isCheckedYearsOld = true;
   var isExistBadWords = false;
@@ -149,6 +150,7 @@
       });
     });
     $('#selectGroup').change(function () {
+      console.log('selectGroup');
       var selectedText = $("#selectGroup option:selected").text();
 
       if (selectedText.toLowerCase() == 'other') {
@@ -204,6 +206,18 @@
           $('#selectCountry').addClass('invalid-selector');
         } else {
           $('#selectCountry').removeClass("invalid-selector");
+        }
+
+        if ($('#selectCategoryGood option:selected').val() == '') {
+          $('#selectCategoryGood').addClass('invalid-selector');
+        } else {
+          $('#selectCategoryGood').removeClass("invalid-selector");
+        }
+
+        if ($('#selectGroup option:selected').val() == '') {
+          $('#selectGroup').addClass('invalid-selector');
+        } else {
+          $('#selectGroup').removeClass("invalid-selector");
         }
 
         if ($('#review-create-text').val().length <= 1 && $('input:checkbox:checked').length <= 0) {

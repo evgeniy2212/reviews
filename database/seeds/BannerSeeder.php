@@ -104,7 +104,10 @@ class BannerSeeder extends Seeder
         ];
 
         foreach($banners as $banner){
-            Banner::firstOrCreate($banner);
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $banner['locale'] = $localeKey;
+                Banner::firstOrCreate($banner);
+            }
         }
     }
 }

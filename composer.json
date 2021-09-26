@@ -11,6 +11,7 @@
         "php": "^7.2|^8.0",
         "ext-gd": "*",
         "anhskohbo/no-captcha": "^3.2",
+        "astrotomic/laravel-translatable": "^11.9",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.9.1",
         "intervention/image": "^2.5",
@@ -20,7 +21,6 @@
         "onecentlin/laravel-adminer": "4.7.7.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.3",
         "facade/ignition": "^1.4",
         "laravel/ui": "^1.2",
         "mockery/mockery": "^1.0",

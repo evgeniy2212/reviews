@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="profile-single-review-review">
-                    <span class="moderation-title">NEW GROUP NAME: {!! $review->category_group->name !!}</span>
+                    <span class="moderation-title">NEW GROUP NAME: {!! optional($review->category_group)->name !!}</span>
                     <p>
                         <span class="single-review-holder">
                           @if($review->video)

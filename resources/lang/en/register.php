@@ -7,7 +7,6 @@ return [
     'city' => 'City',
     'country' => 'Country',
     'city_town' => 'City/Town',
-    'state' => 'State',
     'state' => 'Region',
     'zip_code' => 'Zip Code',
     'e-mail' => 'E-mail',

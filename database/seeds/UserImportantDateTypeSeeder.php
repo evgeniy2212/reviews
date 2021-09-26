@@ -157,7 +157,19 @@ class UserImportantDateTypeSeeder extends Seeder
         }
 
         foreach($categories as $category){
-            \App\Models\UserImportantDateType::firstOrCreate($category);
+            $userCongratData = [
+                'is_published' => true,
+            ];
+            foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
+                $userCongratData[$localeKey] = [
+                    'title' => $category['title'],
+                    'name' => $category['name'],
+                ];
+            }
+            \App\Models\UserImportantDateType::updateOrCreate(
+                [
+                    'slug' => $category['slug']
+                ], $userCongratData);
         }
     }
 }

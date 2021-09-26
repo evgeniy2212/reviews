@@ -38,7 +38,12 @@ class UserCongratulationService {
      * @return UserCongratulation
      */
     public static function createCongratulation($request){
-        $request->merge(['user_id' => auth()->user()->id]);
+        $request->merge(
+            [
+                'user_id' => auth()->id(),
+                'locale' => app('laravellocalization')->getCurrentLocale()
+            ]
+        );
         if($request->is_private == true){
             $user = User::activeUsers()->where('name', $request->name)
                 ->where('last_name', $request->second_name)

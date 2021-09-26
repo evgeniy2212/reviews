@@ -2,10 +2,22 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class BannerCategory extends Model
+class BannerCategory extends Model implements TranslatableContract
 {
+    use Translatable;
+
+    public $translatedAttributes = [
+        'title'
+    ];
+
+    public $with = [
+        'translations',
+    ];
+
     const FILTERS = [
         'ACTIVITY' => [
             'ALL' => [],
@@ -16,7 +28,6 @@ class BannerCategory extends Model
 
     protected $fillable = [
         'id',
-        'title',
         'slug',
         'is_published'
     ];

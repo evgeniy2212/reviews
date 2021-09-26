@@ -2,14 +2,25 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryByReview extends Model
+class CategoryByReview extends Model implements TranslatableContract
 {
+    use Translatable;
+
+    public $translatedAttributes = [
+        'name'
+    ];
+
+    public $with = [
+        'translations',
+    ];
+
     protected $fillable = [
         'id',
         'review_category_id',
-        'name',
         'is_published'
     ];
 
@@ -24,9 +35,9 @@ class CategoryByReview extends Model
     public function getGroupsByCategory($id){
         $sorted = $this->whereId($id)
             ->first()
-            ->groups()
+//            ->groups()
             ->whereIsPublished(true)
-            ->get(['name', 'id']);
+            ->get();
         $sorted = $sorted->sort(function ($a, $b) {
             return strtolower($a->name) == GroupByReview::OTHER_GROUP_ALIAS ? -1 : 1;
         });
@@ -40,6 +51,7 @@ class CategoryByReview extends Model
 
     public function getCategoriesByReviewCategory($id = null){
         return $this->whereReviewCategoryId($id)
+            ->get()
             ->pluck('name', 'id');
     }
 }

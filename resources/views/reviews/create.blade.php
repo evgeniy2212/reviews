@@ -12,10 +12,15 @@
     @include('includes.modal.twentyoneYearAccept')
     @include('includes.modal.emptyReviewNotification')
     @include('includes.modal.errorBadWords')
+    @include('includes.modal.testReviewCreation')
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ route('save-review') }}" enctype="multipart/form-data" novalidate="" id="createReviewForm">
+    <form method="POST" action="{{ route('save-review') }}"
+          enctype="multipart/form-data"
+          novalidate=""
+          id="createReviewForm"
+          @guest class="testCreationReview" @endguest>
         @csrf
         <input type="hidden"
                name="review_category_id"
@@ -195,7 +200,7 @@
                                    name="user_sign"
                                    value="{{ \App\Models\User::NAME_SIGN }}"
                                    checked>
-                            <label for="name1">{{ auth()->user()->full_name }}</label>
+                            <label for="name1">{{ auth()->user() ? auth()->user()->full_name : __('service/index.default_nickname')}}</label>
                         </div>
                         <div class="col-6 col-sm-4">
                             <input type="radio"
@@ -219,19 +224,24 @@
                         <div class="col-md-2 mb-2 mb-md-0">
                             <button type="submit"
                                     class="createReviewButton loginButton submitReviewButton"
-                                    data-action="{{ route('save-review') }}">
+                                    data-action="{{ route('save-review') }}"
+                                    @guest disabled @endguest>
                                 Save
                             </button>
                         </div>
                         <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
                             <button type="submit"
                                     class="createReviewButton loginButton submitReviewButton"
-                                    data-action="{{ route('presaving-review') }}">
+                                    data-action="{{ route('presaving-review') }}"
+                                    @guest disabled @endguest>
                                 View and Save
                             </button>
                         </div>
                         <div class="col-md-2">
-                            <a role="button" href="{{ route('reviews', ['review_item' => $slug]) }}" class="createReviewButton" id="cancelButton">
+                            <a role="button"
+                               href="{{ route('reviews', ['review_item' => $slug]) }}"
+                               class="createReviewButton"
+                               id="cancelButton">
                                 Cancel
                             </a>
                         </div>

@@ -56,7 +56,8 @@ class Review extends Model
         'is_published',
         'is_communication_enable',
         'is_blocked',
-        'created_at'
+        'created_at',
+        'locale',
     ];
 
     public function category(){

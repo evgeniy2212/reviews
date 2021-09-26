@@ -15,12 +15,26 @@ class CreateReviewCategoriesTable extends Migration
     {
         Schema::create('review_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
             $table->string('slug')->unique();
             $table->boolean('is_published')->default(true);
             $table->boolean('enable_low_rating')->default(true);
 
             $table->timestamps();
+        });
+
+        Schema::create('review_category_translations', function(Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('review_category_id');
+            $table->string('title');
+            $table->string('locale')->index();
+
+            $table->unique(['review_category_id', 'locale']);
+
+            $table->foreign('review_category_id')
+                ->references('id')
+                ->on('review_categories')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -31,6 +45,7 @@ class CreateReviewCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('review_category_translations');
         Schema::dropIfExists('review_categories');
     }
 }

@@ -41,6 +41,7 @@
         </div>
         <div class="col-sm-3 mb-2 mb-sm-0">
             <select class="select"
+                    id="selectCategoryGood"
                     name="category_by_review_id"
                     required>
                 <option disabled {{ empty($review) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => 'category']) }}</option>
@@ -56,6 +57,7 @@
         </div>
         <div class="col-sm-3 mb-2 mb-sm-0">
             <select class="select"
+                    id="selectCountry"
                     name="country_id"
                     data-country="{{ old('country') }}"
                     required>

@@ -34,7 +34,7 @@ class ReviewController extends Controller
 
         $filter = request()->$filter_alias;
         $sort = request()->$sort_alias;
-        $user_id = auth()->user()->id;
+        $user_id = auth()->id();
 
         $reviews = ReviewService::getUserFilteredReviews($user_id, $filter, $sort);
         $filters = $this->reviewFilterRepository->getAllCategoryFilters();
@@ -76,7 +76,11 @@ class ReviewController extends Controller
 
     public function update(SaveReviewRequest $request, Review $review)
     {
-        $request->merge(['is_published' => $request->is_published ?? true]);
+        $request->merge(
+            [
+                'is_published' => $request->get('is_published', true),
+            ]
+        );
         $review->update($request->all());
         $review->characteristics()->sync($request->characteristics);
         if($request->has('img')){
