@@ -1,4 +1,7 @@
 (function($) {
+    $( document ).ready(function() {
+        sessionStorage.setItem('slider_enable', false);
+    });
     window.onload = function() {
         var startHomeHeight = 0;
         // var containerMainHeight = $('.main').outerHeight();

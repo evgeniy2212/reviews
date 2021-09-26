@@ -35,7 +35,7 @@ class CategoryByReview extends Model implements TranslatableContract
     public function getGroupsByCategory($id){
         $sorted = $this->whereId($id)
             ->first()
-            ->groups()
+//            ->groups()
             ->whereIsPublished(true)
             ->get();
         $sorted = $sorted->sort(function ($a, $b) {

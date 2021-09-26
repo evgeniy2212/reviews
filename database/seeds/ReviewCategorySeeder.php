@@ -33,7 +33,7 @@ class ReviewCategorySeeder extends Seeder
             ],
             [
                 'title' => [
-                    'en' => 'Product',
+                    'en' => 'Goods',
                     'ru' => 'Товарах',
                 ],
                 'slug' => \Illuminate\Support\Str::slug('goods'),

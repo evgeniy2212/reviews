@@ -43,7 +43,7 @@ class ReviewRepository extends CoreRepository {
             ->whereHas('category', function ($query) use($category) {
                 $query->where('slug', $category);
             })
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['comments'])
             ->orderBy('created_at', 'DESC')
             ->paginate($perPage);
@@ -66,7 +66,7 @@ class ReviewRepository extends CoreRepository {
                 $query->where('slug', $category);
             })
             ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['comments'])
             ->orderBy('created_at', 'DESC')
             ->paginate($perPage);
@@ -85,7 +85,7 @@ class ReviewRepository extends CoreRepository {
         $result = $this->startConditions()
             ->select($columns)
             ->whereUserId(auth()->user()->id)
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['user'])
             ->orderBy('created_at', 'DESC')
             ->paginate($perPage);
@@ -105,7 +105,7 @@ class ReviewRepository extends CoreRepository {
 
         $result = $this->startConditions()
             ->select($columns)
-            ->with(['characteristics:name'])
+            ->with(['characteristics'])
             ->with(['user'])
             ->whereHas('messages', function ($query) use($userId){
                 $query->where('from', $userId)
