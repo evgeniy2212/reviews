@@ -150,7 +150,6 @@
       });
     });
     $('#selectGroup').change(function () {
-      console.log('selectGroup');
       var selectedText = $("#selectGroup option:selected").text();
 
       if (selectedText.toLowerCase() == 'other') {

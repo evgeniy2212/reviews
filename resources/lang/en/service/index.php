@@ -87,4 +87,5 @@ return [
     'share' => 'Share',
     'go' => 'Go',
     'start' => 'Start',
+    'complain_message' => 'Click here to report any offensive language or outright lies used in the review.'
 ];

@@ -94,13 +94,14 @@
 /***/ (function(module, exports) {
 
 (function ($) {
+  $(document).ready(function () {
+    sessionStorage.setItem('slider_enable', false);
+  });
+
   window.onload = function () {
     var startHomeHeight = 0; // var containerMainHeight = $('.main').outerHeight();
 
     var containerMainHeight = $('.home-content-place').outerHeight();
-    console.log('containerMainHeight: ', containerMainHeight);
-    console.log('document.getElementById(audio): ', document.getElementById('audio')); // consol.log('slider: ', slider);
-    // var myAudio = $("#audio")[0];
     // myAudio.play();
 
     var loaded = sessionStorage.getItem('loaded');
