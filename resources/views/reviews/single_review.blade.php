@@ -180,7 +180,7 @@
                                class="otherButton" style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
                                id="complainButton-{{ $review->id }}"
                                data-review="{{ $review->id }}"
-                               data-tooltip="Click here to report any offensive language used in the review."
+                               data-tooltip="{{ __('service/index.complain_message') }}"
 {{--                               data-target="#complainModal">Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>--}}
                                data-target="#complainModal">Complain</a>
 {{--                        @endauth--}}
@@ -189,7 +189,7 @@
                            href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::localizeUrl('/register') }}"
                            class="otherButton"
                            style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
-                           data-tooltip="Click here to report any offensive language used in the review."
+                           data-tooltip="{{ __('service/index.complain_message') }}"
                            id="complainButton-{{ $review->id }}">Complain</a>
                     @endauth
                 </div>
