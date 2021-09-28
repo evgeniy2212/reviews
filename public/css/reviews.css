@@ -226,7 +226,7 @@ input[type="file"] {
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
 .checkbox-container {
-    height: 28vh;
+    /*height: 28vh;*/
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
