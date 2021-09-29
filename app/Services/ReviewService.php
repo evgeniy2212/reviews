@@ -83,7 +83,6 @@ class ReviewService {
                 $q->orderBy('created_at', 'DESC');
             })
                 ->get();
-
             if(!empty($sort)){
                 switch ($sort){
                     case ReviewFilter::SORT_BY_RATING:
@@ -108,6 +107,13 @@ class ReviewService {
                 ->whereLocale(app('laravellocalization')->getCurrentLocale())
                 ->when(!empty($filter), function($q) use ($filter){
                     $q->whereYear('created_at', $filter);
+                })
+                ->when(!empty($sort), function($q) use($sort_by, $sort){
+                    switch($sort){
+                        case ReviewFilter::SORT_BY_ALPHABET:
+                            $q->orderBy($sort_by);
+                            break;
+                    }
                 })
                 ->orderBy('created_at', 'DESC')
                 ->get();
