@@ -7,7 +7,7 @@
         // var containerMainHeight = $('.main').outerHeight();
         var containerMainHeight = $('.home-content-place').outerHeight();
         console.log('containerMainHeight: ', containerMainHeight);
-        console.log('document.getElementById(audio): ', document.getElementById('audio'));
+        // console.log('document.getElementById(audio): ', document.getElementById('audio'));
         // var myAudio = $("#audio")[0];
         // myAudio.play();
         var loaded = sessionStorage.getItem('loaded');
@@ -75,7 +75,7 @@
                         item.fadeTo( 250, 1 );
                         item.animate_Text();
                         if ($('.home').height() > $('.home-content-place').height()) {
-                            console.log('home-main-content down');
+                            // console.log('home-main-content down');
                             animateContent('down');
                         }
                     }, mainContentDelay);
@@ -109,9 +109,16 @@
                 let heightIndex = 0;
                 $('.home .home-point-title').each(function(index){
                     setTimeout(function(){
+                        // console.log('degree условие: ', $('.home-point').height(), ($('.home-point').height() * index + startHomeHeight + 20), index, );
                         if (($('.home-point').height() * index + startHomeHeight + 20) > containerMainHeight) {
+                            // console.log('degree outerHeight: ', $('.home-point').outerHeight());
                             let degree = ($('.home-point').outerHeight() * heightIndex) + startHomeHeight + 20;
-                            animateContent('down', (degree), 100);
+
+//                            let degree = ($('.home-point').outerHeight() * heightIndex) + 50;
+//                             console.log('degree: ', degree);
+                            if(degree > containerMainHeight){
+                                animateContent('down', (degree), 100);
+                            }
                             ++heightIndex;
                         }
                     }, 600 * index);
@@ -133,9 +140,31 @@
                 if ($('.home').height() > containerMainHeight) {
                     animateContent('up', );
                 }
-                console.log('Home points: ', $('.home-point'));
                 let delay = 0;
                 let textHeightDegree = startHomeHeight;
+                let textHeightBeforeDegree = 0;
+                let textHeightDifferenceDegree = 0;
+                let halfOfContainerMainHeight = 0;
+                let scrollContainerMainHeight = 0;
+                let scrollHeightDifferenceDegree = 0;
+                let scrollContainerMainDifferenceHeight = 0;
+                if(window.matchMedia('(max-width: 1601px)').matches){
+                    halfOfContainerMainHeight = Number(containerMainHeight/50);
+                    halfOfContainerMainHeight = Number(halfOfContainerMainHeight.toFixed(2));
+                    scrollContainerMainDifferenceHeight = Number(containerMainHeight/1.3);
+                    scrollContainerMainDifferenceHeight = Number(scrollContainerMainDifferenceHeight.toFixed(2));
+                    scrollContainerMainHeight = Number(containerMainHeight/1.4);
+                    scrollContainerMainHeight = Number(scrollContainerMainHeight.toFixed(2));
+                } else {
+                    halfOfContainerMainHeight = Number(containerMainHeight/3.45);
+                    halfOfContainerMainHeight = Number(halfOfContainerMainHeight.toFixed(2));
+                    scrollContainerMainDifferenceHeight = Number(containerMainHeight/1.5);
+                    scrollContainerMainDifferenceHeight = Number(scrollContainerMainDifferenceHeight.toFixed(2));
+                    scrollContainerMainHeight = Number(containerMainHeight/1.5);
+                    scrollContainerMainHeight = Number(scrollContainerMainHeight.toFixed(2));
+                }
+
+                // let textHeightDegree = 0;
                 let homePointIndex = 0;
                 $('.home-point-show').each(function(index) {
                     let item = $(this);
@@ -151,26 +180,23 @@
                             } else {
                                 textHeightDegree = (item.height()) + textHeightDegree + 50;
                             }
-                            animateContent('down', (textHeightDegree), 50)
-                            // if(index >= 10){
-                            //     // console.log('home-point-show down index >= 10');
-                            //     // console.log('item.outerHeight() + 70', item.outerHeight() + 70);
-                            //     animateContent('down', (textHeightDegree), 150)
-                            // } else if(index <=1){
-                            //
-                            // } else {
-                            //     // console.log('home-point-show down');
-                            //     // console.log('item.outerHeight() + 70: ', containerMainHeight + item.outerHeight() + 70);
-                            //     //todo home - main content it will be max down
-                            //     animateContent('down', (textHeightDegree), 150);
-                            // }
+                            if(window.matchMedia('(max-width: 768px)').matches){
+                                animateContent('down', (textHeightDegree), 50);
+                            } else {
+                                scrollHeightDifferenceDegree = textHeightDegree - scrollContainerMainDifferenceHeight;
+                                textHeightDifferenceDegree = textHeightDegree - scrollContainerMainHeight;
+                                if(scrollHeightDifferenceDegree > 0){
+                                    textHeightBeforeDegree = textHeightDifferenceDegree + halfOfContainerMainHeight;
+                                    animateContent('down', (textHeightBeforeDegree), 50)
+                                }
+                            }
                         }
                     }, delay);
                     delay = (item.text().length * 2) + delay;
                 });
                 setTimeout(function() {
                     if ($('.home').height() > containerMainHeight) {
-                        console.log('after home-point-show up');
+                        // console.log('after home-point-show up');
                         animateContent('up');
                     }
                 }, delay + 1000);
@@ -179,7 +205,7 @@
                         $("#instructionModal").modal('show');
                         sessionStorage.setItem('slider_enable', true);
                     // }
-                }, delay + 2000);
+                }, delay + 3000);
             }, 18000);
         // } else {
         //     $('.home *').show();

@@ -111,19 +111,19 @@
                 </nav>
                 <div class="header__form-wrap">
                     <div class="header__select-wrap">
-                        <select class="form-control select select-lang"
-                                id="selectLang"
-                                onchange="location = this.value;">
-                            @foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale)
-                                @if(App::getLocale() === $localeKey)
-                                    <option selected>{!! $locale['name'] !!}</option>
-                                @else
-                                    <option value="{{ LaravelLocalization::getLocalizedURL($localeKey, null, [], false) }}">{!! $locale['name'] !!}</option>
+{{--                        <select class="form-control select select-lang"--}}
+{{--                                id="selectLang"--}}
+{{--                                onchange="location = this.value;">--}}
+{{--                            @foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale)--}}
+{{--                                @if(App::getLocale() === $localeKey)--}}
+{{--                                    <option selected>{!! $locale['name'] !!}</option>--}}
+{{--                                @else--}}
+{{--                                    <option value="{{ LaravelLocalization::getLocalizedURL($localeKey, null, [], false) }}">{!! $locale['name'] !!}</option>--}}
 {{--                                    <a href="{{ LaravelLocalization::getLocalizedURL($locale, null, [], true) }}">--}}
 {{--                                        {{ $locale }}--}}
 {{--                                    </a>--}}
-                                @endif
-                            @endforeach
+{{--                                @endif--}}
+{{--                            @endforeach--}}
 {{--                            <option selected value="Bosanski">Bosanski</option>--}}
 {{--                            <option value="Català">Català</option>--}}
 {{--                            <option value="Česky">Česky</option>--}}
@@ -150,7 +150,7 @@
 {{--                            <option value="Svenska">Svenska</option>--}}
 {{--                            <option value="Ελληνικά">Ελληνικά</option>--}}
 {{--                            <option value="Български">Български</option>--}}
-                        </select>
+{{--                        </select>--}}
                     </div>
                     <form method="GET"
                           action="{{ route('search') }}"

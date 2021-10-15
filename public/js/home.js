@@ -102,6 +102,8 @@
     var startHomeHeight = 0; // var containerMainHeight = $('.main').outerHeight();
 
     var containerMainHeight = $('.home-content-place').outerHeight();
+    console.log('containerMainHeight: ', containerMainHeight); // console.log('document.getElementById(audio): ', document.getElementById('audio'));
+    // var myAudio = $("#audio")[0];
     // myAudio.play();
 
     var loaded = sessionStorage.getItem('loaded');
@@ -161,7 +163,7 @@
           item.animate_Text();
 
           if ($('.home').height() > $('.home-content-place').height()) {
-            console.log('home-main-content down');
+            // console.log('home-main-content down');
             animateContent('down');
           }
         }, mainContentDelay);
@@ -193,9 +195,16 @@
       var heightIndex = 0;
       $('.home .home-point-title').each(function (index) {
         setTimeout(function () {
+          // console.log('degree условие: ', $('.home-point').height(), ($('.home-point').height() * index + startHomeHeight + 20), index, );
           if ($('.home-point').height() * index + startHomeHeight + 20 > containerMainHeight) {
-            var degree = $('.home-point').outerHeight() * heightIndex + startHomeHeight + 20;
-            animateContent('down', degree, 100);
+            // console.log('degree outerHeight: ', $('.home-point').outerHeight());
+            var degree = $('.home-point').outerHeight() * heightIndex + startHomeHeight + 20; //                            let degree = ($('.home-point').outerHeight() * heightIndex) + 50;
+            //                             console.log('degree: ', degree);
+
+            if (degree > containerMainHeight) {
+              animateContent('down', degree, 100);
+            }
+
             ++heightIndex;
           }
         }, 600 * index);
@@ -212,9 +221,32 @@
         animateContent('up');
       }
 
-      console.log('Home points: ', $('.home-point'));
       var delay = 0;
       var textHeightDegree = startHomeHeight;
+      var textHeightBeforeDegree = 0;
+      var textHeightDifferenceDegree = 0;
+      var halfOfContainerMainHeight = 0;
+      var scrollContainerMainHeight = 0;
+      var scrollHeightDifferenceDegree = 0;
+      var scrollContainerMainDifferenceHeight = 0;
+
+      if (window.matchMedia('(max-width: 1601px)').matches) {
+        halfOfContainerMainHeight = Number(containerMainHeight / 50);
+        halfOfContainerMainHeight = Number(halfOfContainerMainHeight.toFixed(2));
+        scrollContainerMainDifferenceHeight = Number(containerMainHeight / 1.3);
+        scrollContainerMainDifferenceHeight = Number(scrollContainerMainDifferenceHeight.toFixed(2));
+        scrollContainerMainHeight = Number(containerMainHeight / 1.4);
+        scrollContainerMainHeight = Number(scrollContainerMainHeight.toFixed(2));
+      } else {
+        halfOfContainerMainHeight = Number(containerMainHeight / 3.45);
+        halfOfContainerMainHeight = Number(halfOfContainerMainHeight.toFixed(2));
+        scrollContainerMainDifferenceHeight = Number(containerMainHeight / 1.5);
+        scrollContainerMainDifferenceHeight = Number(scrollContainerMainDifferenceHeight.toFixed(2));
+        scrollContainerMainHeight = Number(containerMainHeight / 1.5);
+        scrollContainerMainHeight = Number(scrollContainerMainHeight.toFixed(2));
+      } // let textHeightDegree = 0;
+
+
       var homePointIndex = 0;
       $('.home-point-show').each(function (index) {
         var item = $(this);
@@ -232,25 +264,30 @@
               textHeightDegree = item.height() + textHeightDegree + 50;
             }
 
-            animateContent('down', textHeightDegree, 50); // if(index >= 10){
-            //     // console.log('home-point-show down index >= 10');
-            //     // console.log('item.outerHeight() + 70', item.outerHeight() + 70);
-            //     animateContent('down', (textHeightDegree), 150)
-            // } else if(index <=1){
-            //
-            // } else {
-            //     // console.log('home-point-show down');
-            //     // console.log('item.outerHeight() + 70: ', containerMainHeight + item.outerHeight() + 70);
-            //     //todo home - main content it will be max down
-            //     animateContent('down', (textHeightDegree), 150);
-            // }
+            if (window.matchMedia('(max-width: 768px)').matches) {
+              animateContent('down', textHeightDegree, 50);
+            } else {
+              scrollHeightDifferenceDegree = textHeightDegree - scrollContainerMainDifferenceHeight;
+              textHeightDifferenceDegree = textHeightDegree - scrollContainerMainHeight; // console.log('textHeightDifferenceDegree: ', textHeightDifferenceDegree);
+              // console.log('textHeightDegree ' + index + ' :', textHeightDegree);
+
+              if (scrollHeightDifferenceDegree > 0) {
+                // console.log('ANIMATE!!!!!!!!!');
+                textHeightBeforeDegree = textHeightDifferenceDegree + halfOfContainerMainHeight; // console.log('halfOfContainerMainHeight: ', halfOfContainerMainHeight);
+                // console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
+
+                animateContent('down', textHeightBeforeDegree, 50);
+              } // console.log('textHeightDifferenceDegree: ', textHeightDifferenceDegree);
+              // console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
+
+            }
           }
         }, delay);
         delay = item.text().length * 2 + delay;
       });
       setTimeout(function () {
         if ($('.home').height() > containerMainHeight) {
-          console.log('after home-point-show up');
+          // console.log('after home-point-show up');
           animateContent('up');
         }
       }, delay + 1000);
@@ -258,7 +295,7 @@
         // if(localStorage.getItem('hideAlert') == 'false'){
         $("#instructionModal").modal('show');
         sessionStorage.setItem('slider_enable', true); // }
-      }, delay + 2000);
+      }, delay + 3000);
     }, 18000); // } else {
     //     $('.home *').show();
     // }
