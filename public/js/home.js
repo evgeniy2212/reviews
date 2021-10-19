@@ -315,7 +315,7 @@
         // if(localStorage.getItem('hideAlert') == 'false'){
         $("#instructionModal").modal('show');
         sessionStorage.setItem('slider_enable', true); // }
-      }, delay + 3000);
+      }, delay + 2000);
     }, 18000); // } else {
     //     $('.home *').show();
     // }
