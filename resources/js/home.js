@@ -151,16 +151,16 @@
                 if(window.matchMedia('(max-width: 1601px)').matches){
                     halfOfContainerMainHeight = Number(containerMainHeight/50);
                     halfOfContainerMainHeight = Number(halfOfContainerMainHeight.toFixed(2));
-                    scrollContainerMainDifferenceHeight = Number(containerMainHeight/1.3);
+                    scrollContainerMainDifferenceHeight = Number(containerMainHeight/2);
                     scrollContainerMainDifferenceHeight = Number(scrollContainerMainDifferenceHeight.toFixed(2));
-                    scrollContainerMainHeight = Number(containerMainHeight/1.4);
+                    scrollContainerMainHeight = Number(containerMainHeight/1.2);
                     scrollContainerMainHeight = Number(scrollContainerMainHeight.toFixed(2));
                 } else {
                     halfOfContainerMainHeight = Number(containerMainHeight/3.45);
                     halfOfContainerMainHeight = Number(halfOfContainerMainHeight.toFixed(2));
                     scrollContainerMainDifferenceHeight = Number(containerMainHeight/1.5);
                     scrollContainerMainDifferenceHeight = Number(scrollContainerMainDifferenceHeight.toFixed(2));
-                    scrollContainerMainHeight = Number(containerMainHeight/1.5);
+                    scrollContainerMainHeight = Number(containerMainHeight/1.2);
                     scrollContainerMainHeight = Number(scrollContainerMainHeight.toFixed(2));
                 }
 
@@ -182,13 +182,38 @@
                             }
                             if(window.matchMedia('(max-width: 768px)').matches){
                                 animateContent('down', (textHeightDegree), 50);
+                            } else if(window.matchMedia('(max-width: 1601px)').matches) {
+                                scrollHeightDifferenceDegree = textHeightDegree - scrollContainerMainDifferenceHeight;
+                                textHeightDifferenceDegree = textHeightDegree - scrollContainerMainHeight + (8000/(6*index));
+                                // console.log('textHeightDifferenceDegree: ', textHeightDifferenceDegree);
+                                // console.log('textHeightDegree ' + index + ' :', textHeightDegree);
+                                textHeightBeforeDegree = textHeightDifferenceDegree + halfOfContainerMainHeight;
+                                console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
+                                if(scrollHeightDifferenceDegree > 0){
+                                    console.log('ANIMATE!!!!!!!!! + ' + index);
+                                    // textHeightBeforeDegree = textHeightDifferenceDegree + halfOfContainerMainHeight;
+                                    // console.log('halfOfContainerMainHeight: ', halfOfContainerMainHeight);
+                                    // console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
+                                    animateContent('down', (textHeightBeforeDegree), 10)
+                                }
+                                // console.log('textHeightDifferenceDegree: ', textHeightDifferenceDegree);
+                                // console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
                             } else {
                                 scrollHeightDifferenceDegree = textHeightDegree - scrollContainerMainDifferenceHeight;
-                                textHeightDifferenceDegree = textHeightDegree - scrollContainerMainHeight;
+                                textHeightDifferenceDegree = textHeightDegree - scrollContainerMainHeight + (8000/(6*index));
+                                // console.log('textHeightDifferenceDegree: ', textHeightDifferenceDegree);
+                                // console.log('textHeightDegree ' + index + ' :', textHeightDegree);
+                                textHeightBeforeDegree = textHeightDifferenceDegree + halfOfContainerMainHeight;
+                                console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
                                 if(scrollHeightDifferenceDegree > 0){
-                                    textHeightBeforeDegree = textHeightDifferenceDegree + halfOfContainerMainHeight;
-                                    animateContent('down', (textHeightBeforeDegree), 50)
+                                    console.log('ANIMATE!!!!!!!!! + ' + index);
+                                    // textHeightBeforeDegree = textHeightDifferenceDegree + halfOfContainerMainHeight;
+                                    // console.log('halfOfContainerMainHeight: ', halfOfContainerMainHeight);
+                                    // console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
+                                    animateContent('down', (textHeightBeforeDegree), 10)
                                 }
+                                // console.log('textHeightDifferenceDegree: ', textHeightDifferenceDegree);
+                                // console.log('textHeightBeforeDegree: ', textHeightBeforeDegree);
                             }
                         }
                     }, delay);
