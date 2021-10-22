@@ -288,6 +288,13 @@ input[type="file"] {
         height: auto;
     }
 }
+@media screen and (max-height: 800px) {
+    .review-content-place {
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
 .createReviewButton {
     max-height: 20px;
 }
