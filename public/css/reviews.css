@@ -306,7 +306,7 @@ input[type="file"] {
     }
     .create-review-name {
         padding-top: 5px;
-        padding-bottom:5px;
+        padding-bottom:0px;
     }
 }
 .createReviewButton {
