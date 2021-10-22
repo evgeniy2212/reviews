@@ -294,6 +294,20 @@ input[type="file"] {
         padding-top: 10px;
         padding-bottom: 10px;
     }
+    .footer {
+        height: 50px;
+    }
+
+    .review-info-container {
+        padding-bottom: 10px;
+    }
+    .review-content-place {
+        padding-top: 5px;
+    }
+    .create-review-name {
+        padding-top: 5px;
+        padding-bottom:5px;
+    }
 }
 .createReviewButton {
     max-height: 20px;
