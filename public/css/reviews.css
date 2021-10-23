@@ -288,27 +288,27 @@ input[type="file"] {
         height: auto;
     }
 }
-@media screen and (max-height: 800px) {
-    .review-content-place {
-        height: auto;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    footer.footer {
-        height: 45px;
-    }
+/*@media screen and (max-height: 800px) {*/
+/*    .review-content-place {*/
+/*        height: auto;*/
+/*        padding-top: 10px;*/
+/*        padding-bottom: 10px;*/
+/*    }*/
+/*    footer.footer {*/
+/*        height: 45px;*/
+/*    }*/
 
-    .review-info-container {
-        padding-bottom: 10px;
-    }
-    .review-content-place {
-        padding-top: 5px;
-    }
-    .create-review-name {
-        padding-top: 5px;
-        padding-bottom:0px;
-    }
-}
+/*    .review-info-container {*/
+/*        padding-bottom: 10px;*/
+/*    }*/
+/*    .review-content-place {*/
+/*        padding-top: 5px;*/
+/*    }*/
+/*    .create-review-name {*/
+/*        padding-top: 5px;*/
+/*        padding-bottom:0px;*/
+/*    }*/
+/*}*/
 .createReviewButton {
     max-height: 20px;
 }
