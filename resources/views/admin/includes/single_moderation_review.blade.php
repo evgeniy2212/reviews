@@ -90,9 +90,14 @@
                 @method('PATCH')
                 @csrf
                 @if($review->moderationReviews->where('pivot.is_new', 1)->count())
-                    <form method="POST" action="{{ route('admin.update_moderation_review', ['review' => $review->id]) }}" enctype="multipart/form-data" novalidate="" id="adminReviewForm{{ $review->id }}Block" style="width: 100%">
-                        @method('PATCH')
+                    <form method="POST"
+                          action="{{ route('admin.update_moderation_review', ['review' => $review->id]) }}"
+                          enctype="multipart/form-data"
+                          novalidate=""
+                          id="adminReviewForm{{ $review->id }}Block"
+                          style="width: 100%">
                         @csrf
+                        @method('PATCH')
                         <button type="submit"
                                     id="reviewPublishButton{{ $review->id }}"
                                     class="otherButton"
@@ -101,11 +106,16 @@
                             @lang('service/admin.moderation.update')
                         </button>
                     </form>
-                    <form method="POST" action="{{ route('admin.update_moderation_review', ['review' => $review->id]) }}" enctype="multipart/form-data" novalidate="" id="adminReviewForm{{ $review->id }}Unblock" style="width: 100%">
-                        @method('PATCH')
+                    <form method="POST"
+                          action="{{ route('admin.update_moderation_review', ['review' => $review->id]) }}"
+                          enctype="multipart/form-data"
+                          novalidate=""
+                          id="adminReviewForm{{ $review->id }}Unblock"
+                          style="width: 100%">
                         @csrf
+                        @method('PATCH')
                         <button type="submit"
-                                    id="reviewPublishButton{{ $review->id }}"
+                                    id="reviewPublishButton{{ $review->id }}Unblock"
                                     class="otherButton"
                                     name="update"
                                     value="0">
