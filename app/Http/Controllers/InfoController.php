@@ -8,6 +8,7 @@ use App\Mail\ShareMail;
 use App\Models\BadWord;
 use App\Notifications\GetInTouch;
 use App\Models\User;
+use App\Services\ServiceInfoService;
 use Illuminate\Support\Facades\Mail;
 
 class InfoController extends Controller
@@ -17,7 +18,9 @@ class InfoController extends Controller
     }
 
     public function privacyPolicy(){
-        return view('privacy_policy');
+        $content = ServiceInfoService::getInfoValueByName('privacy_policy');
+
+        return view('privacy_policy', compact('content'));
     }
 
     public function getInTouch(){

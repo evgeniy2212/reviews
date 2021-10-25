@@ -3,9 +3,7 @@
 @section('content')
     <div class="container">
         <div class="content-place">
-            <p>
-                {!! \App\Services\ServiceInfoService::getInfoValueByName('term_of_service') !!}
-            </p>
+            {!! nl2br(e(\App\Services\ServiceInfoService::getInfoValueByName('term_of_service'))) !!}
         </div>
     </div>
 @endsection

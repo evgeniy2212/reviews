@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="content-place">
-            {!! \App\Services\ServiceInfoService::getInfoValueByName('privacy_policy') !!}
+            {!! nl2br(e($content)) !!}
         </div>
     </div>
 @endsection
