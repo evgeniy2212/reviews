@@ -119,7 +119,7 @@
                         <span class="home-point-content home-point-show">
                             With a little help from Reviews4Results, you’ll never again forget to send congratulations on time! The process couldn’t be simpler — all you have to do is enter the name of the person being congratulated, as well as the date and type of congratulation. You’ll only need to do this once, and we’ll send you an automatic reminder via email at any of these intervals that you choose:
                         </span>
-                        <ul>
+                        <ul style="margin-bottom: 0.1rem">
                             <li class="home-point-content home-point-show home-list">1 week before</li>
                             <li class="home-point-content home-point-show home-list">3 days before</li>
                             <li class="home-point-content home-point-show home-list">1 day before</li>
@@ -156,9 +156,9 @@
                             Editing & Deleting Reviews.
                         </span>
                     <div>
-                            <span class="home-point-content home-point-show">
-                                Your submissions will remain on our website until you choose to correct or delete them. The editing process is easy and intuitive, putting you in full control of everything you write.
-                            </span>
+                        <span class="home-point-content home-point-show">
+                            Your submissions will remain on our website until you choose to correct or delete them. The editing process is easy and intuitive, putting you in full control of everything you write.
+                        </span>
                     </div>
                 </div>
                 <p class="home-point-content home-point-show">
