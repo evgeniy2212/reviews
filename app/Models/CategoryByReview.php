@@ -29,13 +29,14 @@ class CategoryByReview extends Model implements TranslatableContract
     }
 
     public function groups(){
-        return $this->hasMany(GroupByReview::class, 'category_id', 'id')->orderBy('name');
+        return $this->hasMany(GroupByReview::class, 'category_id', 'id')
+            ->orderByTranslation('name');
     }
 
     public function getGroupsByCategory($id){
         $sorted = $this->whereId($id)
             ->first()
-//            ->groups()
+            ->groups()
             ->whereIsPublished(true)
             ->get();
         $sorted = $sorted->sort(function ($a, $b) {
