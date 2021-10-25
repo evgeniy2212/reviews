@@ -28,7 +28,8 @@ class UserObserver
     public function updated(User $user)
     {
         if ($user->wasChanged('is_blocked_cnt') &&
-            $user->is_blocked_cnt >= User::MAX_BLOCKED_ATTEMPTS)
+            $user->is_blocked_cnt >= User::MAX_BLOCKED_ATTEMPTS
+            && !$user->is_admin)
         {
             $user->is_blocked = true;
             $user->saveWithoutEvents();
