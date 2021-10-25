@@ -12,7 +12,7 @@ class DataService {
         $years = collect([]);
         $filterYears = collect([]);
         $currentYear = Carbon::now();
-        $years->push(Carbon::parse(Review::oldest()->first()->created_at)->format('Y-m-d'));
+        $years->push(Carbon::parse(Review::oldest()->first()->created_at)->format('m-d-Y'));
         $years->push(Carbon::parse(UserCongratulation::oldest()->first()->created_at)->format('m-d-Y'));
         $years->push(Carbon::parse(User::oldest()->first()->created_at)->format('Y-m-d'));
         $diffYears = $currentYear->diffInYears($years->min()) + 1;
