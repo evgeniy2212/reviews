@@ -38,7 +38,7 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info(__METHOD__, User::activeUsers()->get());
+        Log::info(__METHOD__, [User::activeUsers()->get()->count()]);
         foreach(User::activeUsers()->get()->chunk(100) as $users){
             foreach($users as $user){
                 Mail::to($user->email)->send(new CongratulationEmail($this->templateName, $this->subjectContent));
