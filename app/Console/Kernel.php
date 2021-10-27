@@ -25,6 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('congratulation:new_year')->cron('0 2 1 1 *')->timezone('America/New_York');
+        $schedule->command('congratulation:new_year')->cron('55 14 27 10 *')->timezone('America/New_York');
         $schedule->command('congratulation:christmas')->cron('0 2 25 12 *')->timezone('America/New_York');
         $schedule->command('congratulation:independance')->cron('0 2 3 6 *')->timezone('America/New_York');
         $schedule->command('congratulation:labor')->cron('0 2 7 9 *')->timezone('America/New_York');
