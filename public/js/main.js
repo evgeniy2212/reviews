@@ -239,6 +239,10 @@
           }
         }
 
+        if ($('input[name="characteristics[]"]:checked').length > 0) {
+          $('#review-create-text').removeAttr('required');
+        }
+
         validation(form, event);
       }
 
