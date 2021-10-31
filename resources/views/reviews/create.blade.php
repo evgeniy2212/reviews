@@ -208,7 +208,7 @@
                                    id="name2"
                                    name="user_sign"
                                    value="{{ \App\Models\User::NICKNAME_SIGN }}"
-                                   @empty(auth()->user()->nickname) disabled @endempty>
+                                   @if(auth()->user() && !auth()->user()->nickname) disabled @endif>
                             <label for="name2">{{ empty(auth()->user()->nickname) ? __('service/index.review_nickname') : auth()->user()->nickname }}</label>
                         </div>
                         <div class="col-6 col-sm-4">
