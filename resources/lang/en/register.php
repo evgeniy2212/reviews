@@ -13,4 +13,9 @@ return [
     'password' => 'Password',
     'confirm_password' => 'Confirm password',
     'confirm_email' => 'Confirm Email',
+    'current_password' => 'Current Password',
+    'new_password' => 'New Password',
+    'create_account' => 'Create a new account',
+    'two_factor_auth' => 'Two-Factor Authentication',
+    'two_factor_code' => 'We have sent you an email which contains your two-factor login code. If you haven’t received it,',
 ];
