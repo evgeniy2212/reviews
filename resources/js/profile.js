@@ -246,8 +246,8 @@
         });
 
         $('#videoCongratulation').change(function() {
-            if(this.files[0].size > 100000000){
-                alert("The file must be less than 100 MB!");
+            if(this.files[0].size > 35000000){
+                alert("The file must be less than 35 MB!");
                 this.value = "";
                 let defaultDescription = $(this).data('defaultDescription');
                 $(this).parent().find('span').text(defaultDescription);
