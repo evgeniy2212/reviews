@@ -57,7 +57,7 @@
             <p>
                 <span class="single-review-holder">
                     @if($review->video)
-                        <video class="videoPreview" controls>
+                        <video class="videoPreview" style="object-fit: cover" controls>
                             <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                             {{--<source src="movie.ogg" type="video/ogg">--}}
                             Your browser does not support the video tag.
@@ -148,12 +148,17 @@
                                       style="overflow:hidden"></textarea>
                         </div>
                         <div class="col-12 col-md-4 comment-buttons">
-                            <button class="otherButton" id="addCommentButton-{{ $review->id }}">
-                                Add Comment
+                            <button class="otherButton"
+                                    id="addCommentButton-{{ $review->id }}"
+                                    data-close="{!! __('service/index.close') !!}"
+                                    data-show-comments="{!! __('service/index.reviews.show_comments') !!}">
+                                @lang('service/index.add_comment')
                             </button>
                             @if(auth()->user()->id !== $review->user_id && $review->is_communication_enable)
-                                <button class="otherButton" id="sendReviewMessageButton-{{ $review->id }}" data-tooltip="Send a private message to the original reviewer.">
-                                    Send mail
+                                <button class="otherButton"
+                                        id="sendReviewMessageButton-{{ $review->id }}"
+                                        data-tooltip="{!! __('service/index.send_private_message') !!}">
+                                    @lang('service/index.send_mail')
                                 </button>
                             @endauth
                         </div>
@@ -161,13 +166,17 @@
                 @else
                         <div class="review-textarea" id="review-for-guest" data-review-id="{{ $review->id }}">
                             <div class="col-md-9">
-                                <p style="color: #dc3545">Log in to your account and leave your comment!</p>
+                                <p style="color: #dc3545">@lang('service/message.log_into_account')</p>
                             </div>
                         </div>
                 @endauth
                 <div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
-                    <button class="otherButton" style="white-space: nowrap" id="commentButton-{{ $review->id }}" data-comments="{{ $review->comments->count() }}">
-                        Show Comments ({!! $review->comments->count() !!})
+                    <button class="otherButton" style="white-space: nowrap"
+                            id="commentButton-{{ $review->id }}"
+                            data-close="{!! __('service/index.close') !!}"
+                            data-show-comments="{!! __('service/index.reviews.show_comments') !!}"
+                            data-comments="{{ $review->comments->count() }}">
+                        @lang('service/index.reviews.show_comments') ({!! $review->comments->count() !!})
                     </button>
                 </div>
                 <div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
@@ -182,7 +191,7 @@
                                data-review="{{ $review->id }}"
                                data-tooltip="{{ __('service/index.complain_message') }}"
 {{--                               data-target="#complainModal">Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>--}}
-                               data-target="#complainModal">Complain</a>
+                               data-target="#complainModal">@lang('service/index.complain')</a>
 {{--                        @endauth--}}
                     @else
                         <a type="button"
@@ -190,7 +199,7 @@
                            class="otherButton"
                            style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
                            data-tooltip="{{ __('service/index.complain_message') }}"
-                           id="complainButton-{{ $review->id }}">Complain</a>
+                           id="complainButton-{{ $review->id }}">@lang('service/index.complain')</a>
                     @endauth
                 </div>
             </div>

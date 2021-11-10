@@ -61,7 +61,7 @@
                     <p>
                         <span class="single-review-holder">
                             @if($review->video)
-                                <video class="videoPreview" controls>
+                                <video class="videoPreview" style="object-fit: cover" controls>
                                 <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                                 {{--<source src="movie.ogg" type="video/ogg">--}}
                                 Your browser does not support the video tag.
@@ -99,8 +99,10 @@
                 <a data-toggle="modal"
                    type="button"
                    class="otherButton"
+                   data-close="{!! __('service/index.close') !!}"
+                   data-reply="{!! __('service/index.reply') !!}"
                    id="profileCommentButton-{{ $review->id }}">
-                    Reply
+                    @lang('service/index.reply')
                 </a>
             </div>
         </div>
@@ -166,7 +168,7 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="otherButton" id="addCommentButton-{{ $review->id }}">
-                        Add Comment
+                        {{ __('service/admin.add_item', ['item' => __('service/index.comment')]) }}
                     </button>
                 </div>
             </div>

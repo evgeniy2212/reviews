@@ -63,7 +63,7 @@
                     <p>
                         <span class="single-review-holder">
                             @if($review->video)
-                                    <video class="videoPreview" controls>
+                                    <video class="videoPreview" style="object-fit: cover" controls>
                                         <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
                                         {{--<source src="movie.ogg" type="video/ogg">--}}
                                         Your browser does not support the video tag.
@@ -101,12 +101,12 @@
                 @else
                     <a type="button"
                         href="{{ route('profile-reviews.edit', $review->id) }}">
-                        Edit
+                        @lang('service/index.edit')
                     </a>
                     <a data-toggle="modal"
                        type="button"
                        id="profileCommentButton-{{ $review->id }}">
-                        Reply
+                        @lang('service/index.reply')
                     </a>
                     <a data-toggle="modal"
                        type="button"
@@ -116,7 +116,7 @@
                        data-action="{{ route("profile-reviews.destroy", ":id") }}"
                        data-type="review"
                        data-target="#deleteReviewModal">
-                        Delete
+                        @lang('service/index.delete')
                     </a>
                 @endif
             </div>
@@ -199,7 +199,7 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <button class="otherButton" id="addCommentButton-{{ $review->id }}">
-                        Add Comment
+                        @lang('service/index.add_comment')
                     </button>
                 </div>
             </div>

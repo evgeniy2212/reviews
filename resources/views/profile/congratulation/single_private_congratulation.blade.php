@@ -27,7 +27,7 @@
                     <p>
                         <span class="single-review-holder">
                           @if($congratulation->video)
-                            <video class="videoPreview" controls>
+                            <video class="videoPreview" style="object-fit: cover" controls>
                                 <source src="{{ $congratulation->video->getVideoUrl() }}" type="video/mp4">
                                 {{--<source src="movie.ogg" type="video/ogg">--}}
                                 Your browser does not support the video tag.
@@ -66,7 +66,7 @@
                            data-url="{{ route('read-private-congratulation', [$congratulation->id]) }}"
                            data-review-id="{{ $congratulation->id }}"
                            id="profilePrivateCongratulationButton-{{ $congratulation->id }}">
-                            Show
+                            @lang('service/index.show')
                         </a>
                         <a data-toggle="modal"
                            type="button"
@@ -77,7 +77,7 @@
                            data-type="congratulation"
                            data-action="{{ route("delete-private-congratulations", [":is_owner", ":id"]) }}"
                            data-target="#deleteReviewModal">
-                            Delete
+                            @lang('service/index.delete')
                         </a>
                 </div>
             </div>
