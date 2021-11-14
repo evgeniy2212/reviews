@@ -33,7 +33,7 @@
                 <div class="review-content-place">
                     <div class="d-flex justify-content-center">
                         <span class="create-review-title">
-                            @lang(trans('service/index.edit_review_title', ['title' => $review->category->title]))
+                            @lang(trans('service/index.edit_review_title', ['title' => strtoupper(trim($review->category->title, 's'))]))
                         </span>
                     </div>
                     <div class="rating-container">
@@ -125,16 +125,16 @@
                                 <div class="form_review_toggle">
                                     <div class="form_review_description">
                                         <span>
-                                            Open for communication with reviewer
+                                            @lang('service/message.communication_reviewer')
                                         </span>
                                     </div>
                                     <div class="form_review_toggle-item item-1">
                                         <input id="fid-1" type="radio" name="is_communication_enable" value="1" {{ !$review->is_communication_enable ?: 'checked' }}>
-                                        <label for="fid-1">Yes</label>
+                                        <label for="fid-1">@lang('service/index.yes')</label>
                                     </div>
                                     <div class="form_review_toggle-item item-2">
                                         <input id="fid-2" type="radio" name="is_communication_enable" value="0" {{ $review->is_communication_enable ?: 'checked' }}>
-                                        <label for="fid-2">No</label>
+                                        <label for="fid-2">@lang('service/index.no')</label>
                                     </div>
                                 </div>
                                 <textarea name="review"
