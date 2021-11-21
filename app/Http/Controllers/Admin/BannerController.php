@@ -22,7 +22,9 @@ class BannerController extends Controller
         $bannerFilter = array_intersect_key(request()->all(), BannerCategory::FILTERS);
         $banners = BannerService::getAdminFilteredBanners($bannerFilter);
         $paginateParams = $bannerFilter;
-        $bannerCategories = BannerCategory::all()->pluck('title', 'id');
+        $bannerCategories = BannerCategory::all()->mapWithKeys(function($item, $key) {
+            return [$item->id => $item->title];
+        });
 
         return view('admin.banners', compact('banners', 'paginateParams', 'bannerCategories'));
     }

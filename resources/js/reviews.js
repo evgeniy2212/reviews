@@ -122,7 +122,9 @@
                 }
             });
             review.find('.review-textarea').toggle(750);
-            $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Show Comments (' + $(this).data('comments') + ')');
+            let closeButtonName = $(this).attr('data-close');
+            let showCommentsButtonName = $(this).attr('data-show-comments');
+            $(this).text().trim() !== closeButtonName ? $(this).text(closeButtonName) : $(this).text(showCommentsButtonName + ' (' + $(this).data('comments') + ')');
         });
 
         $('[id^="profileCommentButton"]').click(function(event) {
@@ -135,7 +137,9 @@
                 }
             });
             review.find('.review-textarea').toggle(750);
-            $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
+            let closeButtonName = $(this).attr('data-close');
+            let replyButtonName = $(this).attr('data-reply');
+            $(this).text().trim() !== closeButtonName ? $(this).text(closeButtonName) : $(this).text(replyButtonName);
         });
 
         $('[id^="complainButton"]').click(function(event) {
@@ -288,8 +292,8 @@
         }
 
         $('#video').change(function() {
-            if(this.files[0].size > 100000000){
-                alert("The file must be less than 100 MB!");
+            if(this.files[0].size > 35000000){
+                alert("The file must be less than 35 MB!");
                 this.value = "";
             };
         });
@@ -314,6 +318,29 @@
             modal.style.display = "block";
             modalImg.src = $(this).attr('data-full-size-src');
             captionText.innerHTML = this.alt;
+        });
+
+        $("#img").change(function (e){
+            $("#deletePhotoFlag").val('0');
+        });
+
+        $("#video").change(function (e){
+            $("#deleteVideoFlag").val('0');
+        });
+
+        $("#deleteImg").click(function (e){
+            // e.preventDefault();
+            $("#img").val();
+            let text = $("#img").data('text')
+            $("#img").parent().find('span').text(text)
+            $("#deletePhotoFlag").val('1');
+        });
+        $("#deleteVideo").click(function (e){
+            e.preventDefault();
+            $("#video").val();
+            let text = $("#video").data('text')
+            $("#video").parent().find('span').text(text)
+            $("#deleteVideoFlag").val('1');
         });
     });
 })(jQuery);

@@ -224,7 +224,9 @@
         }
       });
       review.find('.review-textarea').toggle(750);
-      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Show Comments (' + $(this).data('comments') + ')');
+      var closeButtonName = $(this).attr('data-close');
+      var showCommentsButtonName = $(this).attr('data-show-comments');
+      $(this).text().trim() !== closeButtonName ? $(this).text(closeButtonName) : $(this).text(showCommentsButtonName + ' (' + $(this).data('comments') + ')');
     });
     $('[id^="profileCommentButton"]').click(function (event) {
       var review = $(this).parent().parent().parent();
@@ -236,7 +238,9 @@
         }
       });
       review.find('.review-textarea').toggle(750);
-      $(this).text().trim() !== 'Close' ? $(this).text('Close') : $(this).text('Reply');
+      var closeButtonName = $(this).attr('data-close');
+      var replyButtonName = $(this).attr('data-reply');
+      $(this).text().trim() !== closeButtonName ? $(this).text(closeButtonName) : $(this).text(replyButtonName);
     });
     $('[id^="complainButton"]').click(function (event) {
       var reviewId = $(this).data('review');
@@ -402,8 +406,8 @@
     }
 
     $('#video').change(function () {
-      if (this.files[0].size > 100000000) {
-        alert("The file must be less than 100 MB!");
+      if (this.files[0].size > 35000000) {
+        alert("The file must be less than 35 MB!");
         this.value = "";
       }
 
@@ -426,6 +430,26 @@
       modal.style.display = "block";
       modalImg.src = $(this).attr('data-full-size-src');
       captionText.innerHTML = this.alt;
+    });
+    $("#img").change(function (e) {
+      $("#deletePhotoFlag").val('0');
+    });
+    $("#video").change(function (e) {
+      $("#deleteVideoFlag").val('0');
+    });
+    $("#deleteImg").click(function (e) {
+      // e.preventDefault();
+      $("#img").val();
+      var text = $("#img").data('text');
+      $("#img").parent().find('span').text(text);
+      $("#deletePhotoFlag").val('1');
+    });
+    $("#deleteVideo").click(function (e) {
+      e.preventDefault();
+      $("#video").val();
+      var text = $("#video").data('text');
+      $("#video").parent().find('span').text(text);
+      $("#deleteVideoFlag").val('1');
     });
   });
 })(jQuery);
