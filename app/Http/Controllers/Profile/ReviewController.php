@@ -76,11 +76,6 @@ class ReviewController extends Controller
 
     public function update(SaveReviewRequest $request, Review $review)
     {
-//        dd($review->image);
-//        if(!$request->get('deletePhotoFlag')){
-//            dd();
-//        }
-//        dd($request->all(), $request->get('deletePhotoFlag') == true, $request->get('deletePhotoFlag') == false);
         $request->merge(
             [
                 'is_published' => $request->get('is_published', true),
