@@ -478,6 +478,8 @@ body.mobile-nav-active #mobile-nav {
     }
 }
 
+
+
 .nav-gradient {
     background: -webkit-gradient(linear, left bottom, left top, color-stop(20%, #a0a0a0), color-stop(50%, #D4D5D5), color-stop(80%, #a0a0a0));
     background: -o-linear-gradient(bottom, #a0a0a0 20%, #D4D5D5 50%, #a0a0a0 80%);

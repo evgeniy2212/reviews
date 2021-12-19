@@ -102,6 +102,8 @@
     var startHomeHeight = 0; // var containerMainHeight = $('.main').outerHeight();
 
     var containerMainHeight = $('.home-content-place').outerHeight();
+    console.log('containerMainHeight: ', containerMainHeight);
+    console.log('document.getElementById(audio): ', document.getElementById('audio')); // var myAudio = $("#audio")[0];
     // myAudio.play();
 
     var loaded = sessionStorage.getItem('loaded');
@@ -326,7 +328,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /app/resources/js/home.js */"./resources/js/home.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\reviews.loc\resources\js\home.js */"./resources/js/home.js");
 
 
 /***/ })

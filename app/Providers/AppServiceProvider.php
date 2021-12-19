@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         if(config('app.env') === 'production') {
             \URL::forceScheme('https');
         }
-
+//        \URL::forceRootUrl('http://b88f-109-86-217-13.ngrok.io/');
         Review::observe(ReviewObserver::class);
         Comment::observe(CommentObserver::class);
         Message::observe(MessageObserver::class);
