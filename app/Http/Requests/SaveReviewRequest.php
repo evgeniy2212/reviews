@@ -33,7 +33,7 @@ class SaveReviewRequest extends FormRequest
             'category_by_review_id' => 'sometimes|required',
             'country_id' => 'sometimes|required',
             'city' => 'sometimes|required',
-            'video' => 'mimetypes:video/mp4'
+//            'video' => 'mimetypes:video/mp4'
         ];
     }
 }
