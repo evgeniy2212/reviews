@@ -101,6 +101,7 @@ class ReviewController extends Controller
         $reviewCategory = new ReviewCategory();
         $reviewCategory = $reviewCategory->whereSlug($slug)->first();
         $categories = ReviewService::getReviewCategoriesBySlug($slug);
+
         $positiveCharacteristics = $reviewCategory
             ->getCharacteristicsByCategorySlug($slug, true)
             ->chunk($this->half);
@@ -141,6 +142,7 @@ class ReviewController extends Controller
     }
 
     public function save(SaveReviewRequest $request) {
+        dd($request->all());
         if($request->has('category_slug')
             && $request->category_slug == 'person'
             && auth()->user()->isUserReviewAlreadyExist(
