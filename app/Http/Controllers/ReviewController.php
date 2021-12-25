@@ -142,7 +142,6 @@ class ReviewController extends Controller
     }
 
     public function save(SaveReviewRequest $request) {
-        dd($request->file('video')->getMimeType());
         if($request->has('category_slug')
             && $request->category_slug == 'person'
             && auth()->user()->isUserReviewAlreadyExist(
