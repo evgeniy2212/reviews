@@ -23,7 +23,6 @@ class SaveReviewRequest extends FormRequest
      */
     public function rules()
     {
-//        dd(__METHOD__, request()->all());
         return [
             'name' => 'required|regex:/^[\pL\s\-0-9]+$/u',
             'last_name' => 'sometimes|required|alpha',
@@ -33,7 +32,7 @@ class SaveReviewRequest extends FormRequest
             'category_by_review_id' => 'sometimes|required',
             'country_id' => 'sometimes|required',
             'city' => 'sometimes|required',
-//            'video' => 'mimetypes:video/mp4'
+            'video' => 'mimetypes:video/mp4,video/x-m4v'
         ];
     }
 }
