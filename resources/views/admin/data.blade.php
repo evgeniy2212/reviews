@@ -5,7 +5,7 @@
         <div class="adminFilters">
             <div class="adminFilterItem">
                 <div>
-                    Select year
+                    {{ __('service/index.select_item', ['item' => __('service/index.year')]) }}
                 </div>
                 <div>
                     <select class="select admin-data-filter-select"
@@ -28,21 +28,21 @@
             <table class="data-table" border="1">
                 <tr>
                     <th>{{ $currentFilter['year'] }}</th>
-                    <th colspan="2">Users</th>
-                    <th colspan="2">Persons</th>
-                    <th colspan="2">Companies</th>
-                    <th colspan="2">Goods</th>
-                    <th colspan="2">Vacations</th>
-                    <th colspan="2">Congratulations</th>
+                    <th colspan="2">@lang('service/admin.users')</th>
+                    <th colspan="2">@lang('service/admin.persons')</th>
+                    <th colspan="2">@lang('service/admin.companies')</th>
+                    <th colspan="2">@lang('service/admin.goods')</th>
+                    <th colspan="2">@lang('service/admin.vacations')</th>
+                    <th colspan="2">@lang('service/admin.congratulations')</th>
                 </tr>
                 <tr>
-                    <td>Month</td>
-                    <td>quantity</td><td>%</td>
-                    <td>quantity</td><td>%</td>
-                    <td>quantity</td><td>%</td>
-                    <td>quantity</td><td>%</td>
-                    <td>quantity</td><td>%</td>
-                    <td>quantity</td><td>%</td>
+                    <td>@lang('service/index.month')</td>
+                    <td>@lang('service/admin.quantity')</td><td>%</td>
+                    <td>@lang('service/admin.quantity')</td><td>%</td>
+                    <td>@lang('service/admin.quantity')</td><td>%</td>
+                    <td>@lang('service/admin.quantity')</td><td>%</td>
+                    <td>@lang('service/admin.quantity')</td><td>%</td>
+                    <td>@lang('service/admin.quantity')</td><td>%</td>
                 </tr>
                 @for($i=1;$i<=12;$i++)
                     <tr>

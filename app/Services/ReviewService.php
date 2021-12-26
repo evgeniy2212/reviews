@@ -378,12 +378,14 @@ class ReviewService {
      */
     public static function getReviewRangeByYearMonth($year, $month, $category){
         $category = ReviewCategory::whereSlug($category)->first();
-        $reviews = Review::whereYear('created_at', '<=', $year)
-            ->whereMonth('created_at', '<=', $month)
+
+        $test = Carbon::create($year, $month)->format('Y-m-d H:i:s');
+        $days = Carbon::parse($test)->daysInMonth;
+        $date = Carbon::create($year, $month, $days)->format('Y-m-d H:i:s');
+
+        return Review::where('created_at', '<=', $date)
             ->whereReviewCategoryId($category->id)
             ->get();
-
-        return $reviews;
     }
 
     /**
@@ -395,12 +397,10 @@ class ReviewService {
      */
     public static function getReviewByYearMonth($year, $month, $category){
         $category = ReviewCategory::whereSlug($category)->first();
-        $reviews = Review::whereYear('created_at', '=', $year)
+        return Review::whereYear('created_at', '=', $year)
             ->whereMonth('created_at', '=', $month)
             ->whereReviewCategoryId($category->id)
             ->get();
-
-        return $reviews;
     }
 
     /**
@@ -411,11 +411,9 @@ class ReviewService {
      */
     public static function getReviewRangeByYear($year, $category){
         $category = ReviewCategory::whereSlug($category)->first();
-        $reviews = Review::whereYear('created_at', '<=', $year)
+        return Review::whereYear('created_at', '<=', $year)
             ->whereReviewCategoryId($category->id)
             ->get();
-
-        return $reviews;
     }
 
     /**
@@ -426,10 +424,8 @@ class ReviewService {
      */
     public static function getReviewByYear($year, $category){
         $category = ReviewCategory::whereSlug($category)->first();
-        $reviews = Review::whereYear('created_at', '=', $year)
+        return Review::whereYear('created_at', '=', $year)
             ->whereReviewCategoryId($category->id)
             ->get();
-
-        return $reviews;
     }
 }
