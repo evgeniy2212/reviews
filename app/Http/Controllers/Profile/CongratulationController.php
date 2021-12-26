@@ -49,7 +49,7 @@ class CongratulationController extends Controller
 
         $filter = request()->$filter_alias;
         $sort = request()->$sort_alias;
-        $user_id = auth()->user()->id;
+        $user_id = auth()->id();
         $congratulations = UserCongratulationService::getUserFilteredCongratulations(null, true, $filter, $sort);
         $filters = (new ReviewFilterRepository())->getAllCategoryFilters();
         $paginateParams = [

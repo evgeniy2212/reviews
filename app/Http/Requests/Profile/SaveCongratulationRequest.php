@@ -30,11 +30,11 @@ class SaveCongratulationRequest extends FormRequest
             $rules = array_merge($rules, [
                 'name' => [
                     'required',
-                    Rule::exists('users', 'name'),
+                    Rule::exists('users', 'name')->where('is_admin', false),
                 ],
                 'second_name' => [
                     'required',
-                    Rule::exists('users', 'last_name'),
+                    Rule::exists('users', 'last_name')->where('is_admin', false),
                 ]
             ]);
         }
