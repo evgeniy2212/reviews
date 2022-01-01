@@ -1,6 +1,4 @@
 @component('mail::message')
-    <b>New Year’s Day</b>
-
     Happy New Year {{ \Carbon\Carbon::now()->year }}!
 
     May this year bring peace, health, and happiness, along with plenty of exciting
