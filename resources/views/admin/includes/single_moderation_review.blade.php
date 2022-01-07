@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="profile-single-review-item">
-        <div class="w-100 d-flex">
+        <div class="w-100 d-flex flex-wrap flex-md-nowrap justify-content-center">
             <div class="adminSingleReviewContent">
                 <div class="single-review-name">
                     <div>
@@ -52,7 +52,10 @@
                     </div>
                 </div>
                 <div class="profile-single-review-review">
-                    <span class="moderation-title">NEW GROUP NAME: {!! optional($review->category_group)->name !!}</span>
+                    <span class="moderation-title d-sm-flex align-items-center">
+                        <span class="moderation-text">NEW GROUP NAME:</span>
+                        <input id="moderationInput" class="form-control moderation-input" type="text" value="{!! optional($review->category_group)->name !!}" readonly>
+                    </span>
                     <p>
                         <span class="single-review-holder">
                           @if($review->video)
@@ -90,6 +93,23 @@
                 @method('PATCH')
                 @csrf
                 @if($review->moderationReviews->where('pivot.is_new', 1)->count())
+                    <form method="POST"
+                          action="{{ route('admin.update_moderation_review', ['review' => $review->id]) }}"
+                          enctype="multipart/form-data"
+                          novalidate=""
+                          id="adminReviewForm{{ $review->id }}Block"
+                          style="width: 100%">
+                        @csrf
+                        @method('PATCH')
+                        <button type="button"
+                                id="reviewEditBtn"
+                                class="otherButton"
+                                name="update"
+                                value="1">
+                            Edit
+                            {{--                            @lang('service/admin.moderation.update')--}}
+                        </button>
+                    </form>
                     <form method="POST"
                           action="{{ route('admin.update_moderation_review', ['review' => $review->id]) }}"
                           enctype="multipart/form-data"

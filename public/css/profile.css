@@ -179,6 +179,25 @@
         width: 100%;
     }
 }
+
+.moderation-title .moderation-text {
+    flex-shrink: 0;
+    width: auto;
+    margin-right: 5px;
+    padding-bottom: 0;
+}
+
+.moderation-input {
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 576px) {
+    .moderation-text {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}
+
 .profile-single-review-review, .profile-single-congratulation {
     display: -webkit-box;
     display: -ms-flexbox;

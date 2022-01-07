@@ -95,7 +95,10 @@
 
 (function ($) {
   $(document).ready(function () {
-    // admin navigation menu handler
+    $('#reviewEditBtn').on('click', function () {
+      !$('#moderationInput').attr('readonly') ? $('#moderationInput').attr('readonly', true) : $('#moderationInput').removeAttr('readonly');
+    }); // admin navigation menu handler
+
     $('.js_navigation-btn').on('click', function () {
       $('body').addClass('profile-navigation--active').addClass('no--scroll');
     });
