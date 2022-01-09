@@ -123,10 +123,11 @@
                     $('#review-create-text').removeClass('invalid-textarea');
                 }
 
-                if($("#selectGroup").is(":visible")){
+                if($("#new_group").is(":visible")){
                     if($("#selectGroup option:selected").text().toLowerCase() == 'other'){
                         if($('#new_group').val().length <= 0){
                             $('#new_group').addClass('invalid-input');
+                            event.preventDefault();
                         } else {
                             $('#new_group').removeClass('invalid-input');
                         }

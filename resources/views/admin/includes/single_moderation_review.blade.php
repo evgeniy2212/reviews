@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="profile-single-review-item">
-        <div class="w-100 d-flex">
+        <div class="w-100 d-flex flex-wrap flex-md-nowrap justify-content-center">
             <div class="adminSingleReviewContent">
                 <div class="single-review-name">
                     <div>
@@ -52,7 +52,17 @@
                     </div>
                 </div>
                 <div class="profile-single-review-review">
-                    <span class="moderation-title">NEW GROUP NAME: {!! optional($review->category_group)->name !!}</span>
+                    @if(!optional($review->category_group)->is_published)
+                        <span class="moderation-title d-sm-flex align-items-center mt-1">
+                            <span class="moderation-text">NEW GROUP NAME:</span>
+                            <input id="moderationInput{{ $review->id }}"
+                                   data-review-id="{{ $review->id }}"
+                                   class="form-control moderation-input"
+                                   type="text"
+                                   value="{!! optional($review->category_group)->name !!}"
+                                   readonly>
+                        </span>
+                    @endif
                     <p>
                         <span class="single-review-holder">
                           @if($review->video)
@@ -85,11 +95,16 @@
                     </p>
                 </div>
             </div>
-{{--            @dd($review->moderationReviews->where('pivot.is_new', 1)->count())--}}
             <div class="adminSingleReviewButton">
                 @method('PATCH')
                 @csrf
                 @if($review->moderationReviews->where('pivot.is_new', 1)->count())
+                    <button type="button"
+                            id="reviewEditBtn{{ $review->id }}"
+                            data-review-id="{{ $review->id }}"
+                            class="otherButton">
+                        @lang('service/index.edit')
+                    </button>
                     <form method="POST"
                           action="{{ route('admin.update_moderation_review', ['review' => $review->id]) }}"
                           enctype="multipart/form-data"
@@ -98,6 +113,10 @@
                           style="width: 100%">
                         @csrf
                         @method('PATCH')
+                        <input type="hidden"
+                               id="newGroupName{{ $review->id }}"
+                               name="new_name"
+                               value="">
                         <button type="submit"
                                     id="reviewPublishButton{{ $review->id }}"
                                     class="otherButton"

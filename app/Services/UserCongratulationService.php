@@ -44,6 +44,7 @@ class UserCongratulationService {
                 'locale' => app('laravellocalization')->getCurrentLocale()
             ]
         );
+//        dd(__METHOD__);
         if($request->is_private == true){
             $user = User::activeUsers()->where('name', $request->name)
                 ->where('last_name', $request->second_name)
@@ -115,8 +116,15 @@ class UserCongratulationService {
                 ]
             );
         }
+        if($request->get('deletePhotoFlag')){
+            ImageService::deleteImage($userCongratulation, 'congratulations');
+            ContentImage::where([
+                'content_id' => $userCongratulation->id,
+                'content_type' => UserCongratulation::class,
+            ])->delete();
+        }
         if($request->has('img')){
-            $imageInfo = ImageService::uploadImage($request, 'congratulations');
+            $imageInfo = ImageService::updateImage($request, $userCongratulation, 'congratulations');
             ContentImage::updateOrCreate(
                 [
                     'content_id' => $userCongratulation->id,
@@ -125,8 +133,11 @@ class UserCongratulationService {
                 $imageInfo
             );
         }
+        if($request->get('deleteVideoFlag')){
+            VideoService::deleteVideo($userCongratulation, 'congratulations');
+        }
         if($request->has('video')){
-            $videoInfo = VideoService::uploadVideo($request, 'congratulations');
+            $videoInfo = VideoService::updateVideo($request, $userCongratulation, 'congratulations');
             ContentVideo::updateOrCreate(
                 [
                     'content_id' => $userCongratulation->id,

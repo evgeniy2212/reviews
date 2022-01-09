@@ -34,10 +34,10 @@ class ImportantDateController extends Controller
             $filter_alias => request()->$filter_alias,
             $sort_alias => request()->$sort_alias,
         ];
-
         $importantDateTypes = UserImportantDateService::getImportantDateTypes();
 
-        return view('profile.important_date.index', compact('importantDates', 'importantDateTypes','filters', 'paginateParams'));
+        return view('profile.important_date.index',
+            compact('importantDates', 'importantDateTypes','filters', 'paginateParams'));
     }
 
     /**
