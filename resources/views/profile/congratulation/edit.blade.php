@@ -4,6 +4,14 @@
     <form method="POST" action="{{ route('profile-congratulations.update', $congratulation->id) }}" enctype="multipart/form-data" novalidate="" id="congratulationForm">
         @method('PATCH')
         @csrf
+        <input type="hidden"
+               name="deletePhotoFlag"
+               id="deletePhotoFlag"
+               value="0">
+        <input type="hidden"
+               name="deleteVideoFlag"
+               id="deleteVideoFlag"
+               value="0">
         <div class="congratulationTitle">
             <span>@lang('service/profile.congratulation.create.title')</span>
         </div>
@@ -69,12 +77,12 @@
                 <div class="d-flex justify-content-center w-100">
                     <div class="col-md-3">
                         <a type="button" id="imgDefaultCongratulationSave" class="otherButton">
-                            Save
+                            @lang('service/index.save')
                         </a>
                     </div>
                     <div class="col-md-3">
                         <a type="button" id="imgDefaultCongratulationClose" class="otherButton">
-                            Cancel
+                            @lang('service/index.cancel')
                         </a>
                     </div>
                 </div>
@@ -88,19 +96,35 @@
                              data-default-src="{{ empty($congratulation->image) ? asset('images/default_banner.png') : $congratulation->image->getResizeImageUrl('congratulations') }}"
                              alt="your image" />
                     </div>
+                    <button class="delete-button"
+                            type="button"
+                            id="deleteCongratImg"
+                            data-default-description="{{ __('service/profile.congratulation.create.add_image') }}"
+                            data-default-src="{{ asset('images/default_banner.png') }}">
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </div>
                 <div class="congratulationImagePreviewContainer">
-                    @if($congratulation->video)
-                        <video class="videoPreview" controls>
-                            <source src="{{ $congratulation->video->getVideoUrl() }}" type="video/mp4">
-                            {{--<source src="movie.ogg" type="video/ogg">--}}
-                            Your browser does not support the video tag.
-                        </video>
-                    @else
-                        <img src="{{ asset('storage/images/default_img_video.png') }}"
-                             alt="video"
-                             class="videoPreview">
-                    @endif
+                    <div class="videoContainer">
+                        @if($congratulation->video)
+                            <video class="videoPreview" style="object-fit: cover" controls>
+                                <source src="{{ $congratulation->video->getVideoUrl() }}" type="video/mp4">
+                                {{--<source src="movie.ogg" type="video/ogg">--}}
+                                Your browser does not support the video tag.
+                            </video>
+                        @else
+                            <img src="{{ asset('storage/images/default_img_video.png') }}"
+                                 alt="video"
+                                 class="videoPreview">
+                        @endif
+                    </div>
+                    <button class="delete-button"
+                            type="button"
+                            id="deleteCongratVideo"
+                            data-default-description="{{ __('service/profile.congratulation.create.add_video') }}"
+                            data-default-src="{{ asset('storage/images/default_img_video.png') }}">
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -138,12 +162,12 @@
         <div class="d-flex justify-content-center" style="width: 100%">
             <div class="col-md-3">
                 <button type="submit" id="congratulationButton" class="otherButton submitCongratulationButton">
-                    Publish
+                    @lang('service/index.publish')
                 </button>
             </div>
             <div class="col-md-3">
                 <a role="button" href="{{ route('profile-congratulations.create') }}" class="otherButton">
-                    Cancel
+                    @lang('service/index.cancel')
                 </a>
             </div>
         </div>

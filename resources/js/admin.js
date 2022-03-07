@@ -84,6 +84,20 @@
                 banner.find('#bannerImagePreview').show();
             }
         });
+        $('[id^="reviewEditBtn"]').on('click', function () {
+            $('[id^="moderationInput"]').attr('readonly', true);
+            let reviewId = $(this).data('review-id');
+            !$('#moderationInput' + reviewId).attr('readonly')
+                ? $('#moderationInput' + reviewId).attr('readonly', true)
+                : $('#moderationInput' + reviewId).removeAttr('readonly');
+        }); // admin navigation menu handler
+        $('[id^="moderationInput"]')
+            .focusout(function() {
+                if($(this).attr('readonly') !== 'readonly'){
+                    let reviewId = $(this).data('review-id');
+                    $('#newGroupName' + reviewId).val($(this).val());
+                }
+            });
     });
 
     function replaceQueryParam(param, newval, search) {

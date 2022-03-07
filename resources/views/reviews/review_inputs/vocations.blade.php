@@ -44,7 +44,7 @@
                     id="selectCategoryGood"
                     name="category_by_review_id"
                     required>
-                <option disabled {{ empty($review) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => 'category']) }}</option>
+                <option disabled {{ empty($review) ? 'selected' : '' }} value="">{{ trans('service/index.select_item', ['item' => __('service/index.category')]) }}</option>
                 @foreach($categories as $id => $category)
                     <option value="{{ $id }}" {{ (!empty($review) && ($review->getCategoryByReviewId() == $id)) ? 'selected' : '' }}>{!! $category !!}</option>
                 @endforeach
@@ -61,9 +61,9 @@
                     name="country_id"
                     data-country="{{ old('country') }}"
                     required>
-                <option {{ empty($review) ? 'selected' : '' }} disabled value="">{{ trans('service/index.select_item', ['item' => 'country']) }}</option>
+                <option {{ empty($review) ? 'selected' : '' }} disabled value="">{{ trans('service/index.select_item', ['item' => __('service/index.country')]) }}</option>
                 @foreach($countries as $id => $country)
-                    <option value="{{ $id }}" {{ (!empty($review) && ($review->country->id == $id)) ? 'selected' : '' }}>{!! $country !!}</option>
+                    <option value="{{ $id }}" {{ (!empty($review) && ($review->country_id == $id)) ? 'selected' : '' }}>{!! $country !!}</option>
                 @endforeach
             </select>
         </div>
