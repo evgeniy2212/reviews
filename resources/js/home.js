@@ -1,6 +1,57 @@
 (function($) {
     $( document ).ready(function() {
         sessionStorage.setItem('slider_enable', false);
+        $('.js-open-chat').on('click', function () {
+            $(this).addClass('is-hide');
+            $('.chat').addClass('is-active');
+        });
+        $('.js-close-chat').on('click', function () {
+            $('.js-open-chat').removeClass('is-hide');
+            $('.chat').removeClass('is-active');
+        });
+        $('.js-contacts').on('click', function () {
+            $('.chat__contacts').addClass('is-active');
+        });
+        $('.js-create-contact').on('click', function () {
+            $('.chat__create').addClass('is-active');
+        });
+        $('.js-chat-contact').on('click', function () {
+            $('.chat__settings').addClass('is-active');
+        });
+        $('.js-close-create').on('click', function () {
+            $(this).closest('.chat__create').removeClass('is-active');
+        });
+        $('.js-close-settings').on('click', function (e) {
+            e.stopPropagation();
+            $('.chat__contacts').removeClass('is-active');
+            $(this).closest('.chat__settings').removeClass('is-active');
+        });
+        $('.js-begin-chat').on('click', function () {
+           $(this).closest('.chat__settings').find('.chat__wrap').addClass('is-active');
+        });
+
+        $('.js-close-messages').on('click', function () {
+            $(this).closest('.chat__settings').find('.chat__wrap').removeClass('is-active');
+        });
+        $('.js-edit-chat').on('click', function () {
+           $('.chat__settings').find('.chat__edit').addClass('is-active');
+        });
+
+        $('.js-edit-chat').on('click', function () {
+            $('.chat__settings').find('.chat__edit').addClass('is-active');
+        });
+
+        $('.js-close-chat-delete').on('click', function () {
+            $(this).closest('.chat__delete').removeClass('is-active');
+        });
+
+        $('.js-open-delete').on('click', function () {
+            $('.chat__settings').find('.chat__delete').addClass('is-active');
+        });
+
+        $('.js-close-edit').on('click', function () {
+           $(this).closest('.chat__edit').removeClass('is-active');
+        });
     });
     window.onload = function() {
         var startHomeHeight = 0;

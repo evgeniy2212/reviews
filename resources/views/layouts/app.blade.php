@@ -36,6 +36,7 @@
         @yield('modal_forms')
     </main>
     @include('includes.footer')
+    @include('includes.chat')
 </div>
 <div id="imageModal" class="image-modal">
     <span class="closeImageModal">&times;</span>
