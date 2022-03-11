@@ -151,6 +151,7 @@
             <p class="chat__subtitle">Edit contact</p>
             <input class="form-control input" type="text" placeholder="Edit chat">
             <button class="chat__close js-close-edit" type="button">Edit</button>
+            <button class="chat__close js-close-edit" type="button">Close</button>
         </div>
         <div class="chat__delete">
             <p class="chat__subtitle">Delete contact</p>

@@ -1789,6 +1789,7 @@ button:disabled {
     visibility: hidden;
     overflow: hidden;
     transition: opacity .2s, visibility .2s;
+    z-index: 99;
 }
 
 .chat.is-active {
@@ -1983,10 +1984,12 @@ button:disabled {
     text-align-last: left;
 }
 
+.chat__edit .chat__close,
 .chat__delete .chat__close {
     min-width: 100px;
 }
 
+.chat__edit .chat__close:not(:last-of-type),
 .chat__delete .chat__close:not(:last-of-type) {
     margin-bottom: 10px;
 }
@@ -2193,7 +2196,7 @@ button:disabled {
     }
 
     .chat__window {
-        max-height: calc(100vh - 175px);
+        max-height: calc(100vh - 190px);
     }
 
     .chat__holder {
