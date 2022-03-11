@@ -105,7 +105,7 @@
       $('.chat').removeClass('is-active');
     });
     $('.js-contacts').on('click', function () {
-      $('.chat__contacts').addClass('is-active');
+      $('.chat__inner').addClass('is-active');
     });
     $('.js-create-contact').on('click', function () {
       $('.chat__create').addClass('is-active');
@@ -117,8 +117,8 @@
       $(this).closest('.chat__create').removeClass('is-active');
     });
     $('.js-close-settings').on('click', function (e) {
-      e.stopPropagation();
-      $('.chat__contacts').removeClass('is-active');
+      e.stopPropagation(); // $('.chat__inner').removeClass('is-active');
+
       $(this).closest('.chat__settings').removeClass('is-active');
     });
     $('.js-begin-chat').on('click', function () {
@@ -141,6 +141,9 @@
     });
     $('.js-close-edit').on('click', function () {
       $(this).closest('.chat__edit').removeClass('is-active');
+    });
+    $('.js-close-chat-contacts').on('click', function () {
+      $('.chat__inner').removeClass('is-active');
     });
   });
 

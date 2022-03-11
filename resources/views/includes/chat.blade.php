@@ -20,82 +20,85 @@
         </div>
     </div>
     <button class="chat__close js-close-chat" type="button">Close</button>
-    <div class="chat__contacts">
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Bill Green</span>
-            <span class="chat__status">ON Line</span>
-        </div>
-        <div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div>
-        <div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div>
-        <div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div>
-        <div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div>
-        <div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div>
-        <div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div><div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div>
-        <div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div><div class="chat__contact js-chat-contact">
-            <span class="chat__name">Nancy Lurence</span>
-            <span class="chat__status"></span>
-        </div>
-        <div class="chat__contact is-online js-chat-contact">
-            <span class="chat__name">Ed Lee</span>
-            <span class="chat__status">ON Line</span>
-        </div>
+    <div class="chat__inner">
+        <div class="chat__contacts">
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Bill Green</span>
+                <span class="chat__status">ON Line</span>
+            </div>
+            <div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div>
+            <div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div>
+            <div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div>
+            <div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div>
+            <div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div>
+            <div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div><div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div>
+            <div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div><div class="chat__contact js-chat-contact">
+                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__status"></span>
+            </div>
+            <div class="chat__contact is-online js-chat-contact">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">ON Line</span>
+            </div>
 
+        </div>
+        <button class="chat__close js-close-chat-contacts" type="button">Close</button>
     </div>
     <div class="chat__settings">
         <div class="chat__contact is-online">

@@ -1780,7 +1780,7 @@ button:disabled {
     right: 30px;
     bottom: 30px;
     width: 350px;
-    min-height: 400px;
+    height: 400px;
     padding: 5px;
     border: 3px double #2f5496;
     outline: 1px solid #2f5496;
@@ -1879,7 +1879,7 @@ button:disabled {
 .chat__wrap,
 .chat__create,
 .chat__settings,
-.chat__contacts{
+.chat__inner{
     position: absolute;
     top: 0;
     left: 0;
@@ -1896,13 +1896,20 @@ button:disabled {
 .chat__wrap.is-active,
 .chat__create.is-active,
 .chat__settings.is-active,
-.chat__contacts.is-active {
+.chat__inner.is-active {
     transform: translateX(0);
 }
 
+.chat__inner {
+    display: flex;
+    flex-direction: column;
+}
+
 .chat__contacts {
-    max-height: 100%;
+    max-height: calc(100% - 40px);
     overflow: auto;
+    margin-bottom: 10px;
+    flex-grow: 1;
 }
 
 .chat__contact {
@@ -1911,11 +1918,14 @@ button:disabled {
     justify-content: space-between;
     line-height: 1;
     color: #8d8d8d;
+    cursor: pointer;
 }
 
 .chats {
+    max-height: calc(100% - 133px);
     margin-top: 20px;
     margin-bottom: 20px;
+    overflow: auto;
 }
 
 .chat__contact:not(:last-child) {
@@ -1924,8 +1934,11 @@ button:disabled {
 
 .chats .chat__contact {
     padding-bottom: 10px;
-    margin-bottom: 10px;
     border-bottom: 1px solid #2f5496;
+}
+
+.chats .chat__contact:not(:last-child) {
+    margin-bottom: 10px;
 }
 
 .chats .chat__status {
@@ -2020,7 +2033,7 @@ button:disabled {
     flex-direction: column;
     justify-content: flex-end;
     flex-grow: 1;
-    max-height: calc(100% - 160px);
+    max-height: calc(100% - 170px);
     margin-bottom: 5px;
     padding: 5px;
     outline: 1px solid #2f5496;
@@ -2173,6 +2186,10 @@ button:disabled {
         right: 0;
         width: 100%;
         height: 100%;
+    }
+
+    .chat__contacts {
+        max-height: calc(100vh - 40px);
     }
 
     .chat__window {
