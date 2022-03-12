@@ -2,11 +2,9 @@
     $( document ).ready(function() {
         sessionStorage.setItem('slider_enable', false);
         $('.js-open-chat').on('click', function () {
-            $(this).addClass('is-hide');
-            $('.chat').addClass('is-active');
+            $('.chat').toggleClass('is-active');
         });
         $('.js-close-chat').on('click', function () {
-            $('.js-open-chat').removeClass('is-hide');
             $('.chat').removeClass('is-active');
         });
         $('.js-contacts').on('click', function () {
