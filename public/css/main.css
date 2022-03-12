@@ -2202,16 +2202,21 @@ button:disabled {
     }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1550px) {
     .chat__open {
         right: 16px;
     }
     .chat__wrapper {
         width: 235px;
-        transform: translateX(95%);
     }
     .chat__message {
         width: 90%;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .chat__wrapper {
+        transform: translateX(95%);
     }
 }
 
