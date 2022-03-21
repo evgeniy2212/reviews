@@ -54,6 +54,20 @@
         $('.js-close-chat-contacts').on('click', function () {
             $('.chat__inner').removeClass('is-active');
         });
+        $('.js-btn-emoji').on('click', function () {
+           $(this).closest('.chat__field-wrap').find('.chat__emoji-holder').toggleClass('is-show');
+        });
+        $('.js-show-btns').on('click', function () {
+           $(this).siblings().fadeIn();
+        });
+
+        $('.js-select-all').on('click', function () {
+            $(this).closest('.chat__buttons').siblings('.chat__window').find('input').prop('checked', true);
+            // $(this).closest('.chat__buttons').siblings('.chat__window').find('input').attr('checked', true);;
+        });
+        $('.js-delete-messages').on('click', function () {
+
+        });
     });
     window.onload = function() {
         var startHomeHeight = 0;

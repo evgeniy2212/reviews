@@ -6,18 +6,22 @@
             <div class="chat__contact js-chat-contact">
                 <span class="chat__name">Nancy Lurence</span>
                 <span class="chat__status">dasdasd</span>
+                <span class="chat__count">23</span>
             </div>
             <div class="chat__contact js-chat-contact">
                 <span class="chat__name">Nancy Lurence</span>
                 <span class="chat__status">asdsad</span>
+                <span class="chat__count">23</span>
             </div>
             <div class="chat__contact js-chat-contact">
                 <span class="chat__name">Nancy Lurence</span>
                 <span class="chat__status">asdsad</span>
+                <span class="chat__count">23</span>
             </div>
             <div class="chat__contact js-chat-contact">
                 <span class="chat__name">Nancy Lurence</span>
                 <span class="chat__status">asdsadasd</span>
+                <span class="chat__count">23</span>
             </div>
         </div>
         <button class="chat__close js-close-chat" type="button">Close</button>
@@ -118,30 +122,112 @@
                     <span class="chat__name">Ed Lee</span>
                     <span class="chat__status">Connected</span>
                 </div>
+                <div class="chat__buttons three__mod">
+                    <button class="chat__close js-show-btns" type="button">Edit</button>
+                    <button class="chat__close js-select-all" type="button" style="display: none;">Select all</button>
+                    <button class="chat__close js-delete-messages" type="button" style="display: none;">Delete</button>
+                </div>
                 <div class="chat__window">
                     <div class="chat__holder">
                         <div class="chat__message receiver">
+                            <div class="checkbox-item">
+                                <input type="checkbox"
+                                       class="custom-checkbox"
+                                        id="messageTest1">
+                                <label for="messageTest1"></label>
+                            </div>
                             <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
                             <p>Receiver message</p>
                         </div>
                         <div class="chat__message sender">
+                            <div class="checkbox-item">
+                                <input type="checkbox"
+                                       class="custom-checkbox"
+                                       id="messageTest2">
+                                <label for="messageTest2"></label>
+                            </div>
                             <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
                             <p>Receiver message</p>
                         </div>
                         <div class="chat__message receiver">
+                            <div class="checkbox-item">
+                                <input type="checkbox"
+                                       class="custom-checkbox"
+                                       id="messageTest3">
+                                <label for="messageTest3"></label>
+                            </div>
                             <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
                             <p>Receiver message</p>
                         </div>
                         <div class="chat__message receiver">
+                            <div class="checkbox-item">
+                                <input type="checkbox"
+                                       class="custom-checkbox"
+                                       id="messageTest4">
+                                <label for="messageTest4"></label>
+                            </div>
                             <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
                             <p>Receiver message</p>
                         </div>
                     </div>
                 </div>
-                <div class="chat__field">
-                    <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
-                    <textarea class="chat__textarea js-chat-textarea" placeholder="message"></textarea>
-                    <img class="chat__decor right__mod" src="images/message-decor.png" alt="#">
+                <div class="chat__field-wrap">
+                    <div class="chat__field">
+                        <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
+                        <textarea class="chat__textarea js-chat-textarea" placeholder="message"></textarea>
+                        <img class="chat__decor right__mod" src="images/message-decor.png" alt="#">
+                    </div>
+                    <button class="btn__emoji js-btn-emoji" type="button">&#128512;</button>
+                    <div class="chat__emoji-holder">
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">&#128512;</span>
+                    </div>
                 </div>
                 <div class="chat__buttons">
                     <button class="chat__close js-close-messages" type="button">Close</button>
