@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('test-chat', 'ChatController@testChat')->name('test_chat');
+
 Route::group(
     [
         'prefix' => \Mcamara\LaravelLocalization\Facades\LaravelLocalization::setLocale(),

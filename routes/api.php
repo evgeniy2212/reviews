@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,22 @@ use Illuminate\Http\Request;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+Route::group(
+    [
+        'prefix' => 'chat',
+        'as' => 'chat.',
+//        'middleware' => ['auth']
+    ], function() {
+    Route::get('/', 'ChatController@index')->name('index');
+    Route::get('/{user_id}', 'ChatController@getChat')->name('userChat');
+    Route::get('search/users/{query?}', 'ChatController@search')->name('search');
+    Route::get('search/unread_messages', 'ChatController@chatsWithUnreadMessages');
+
+    Route::group(['prefix' => 'messages', 'as' => 'messages.'], function() {
+        Route::get('/{id}', 'ChatController@getMessages')->name('index');
+        Route::post('/', 'ChatController@storeMessage')->name('save');
+        Route::post('leave', 'ChatController@leaveChat')->name('leave');
+        Route::post('enter', 'ChatController@enterChat')->name('enter');
+    });
+});
+
