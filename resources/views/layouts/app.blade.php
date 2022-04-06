@@ -34,6 +34,7 @@
         @include('includes.modal.successMessage')
         @include('includes.modal.addPostRedirect')
         @yield('modal_forms')
+        @include('includes.chat')
     </main>
     @include('includes.footer')
 </div>

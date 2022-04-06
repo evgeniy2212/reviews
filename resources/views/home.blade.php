@@ -169,7 +169,6 @@
                 </p>
             </div>
         </div>
-        @include('includes.chat')
     </div>
     <script src="{{ asset('js/home.js') }}"></script>
 @endsection
