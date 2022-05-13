@@ -9,16 +9,6 @@ use Illuminate\Validation\Rule;
 class CreateMessageRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize(): bool
-    {
-        return Gate::allows('frontend');
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -26,14 +16,13 @@ class CreateMessageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'photo'  => [
-                'sometimes',
-                'file',
-                'mimes:png,jpg,jpeg',
-            ],
             'message'   => [
                 'sometimes',
                 'string',
+            ],
+            'is_media' => [
+                'boolean',
+                'required'
             ],
             'chat_id' => [
                 'required',

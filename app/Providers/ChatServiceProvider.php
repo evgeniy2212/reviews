@@ -7,6 +7,7 @@ use App\Events\ChatList;
 use App\Events\ChatMessage;
 use App\Events\ChatMessageReadStatus;
 use App\Events\ClientUnreadMessages;
+use App\Mail\ChatContactApprovingEmail;
 use App\Models\Chat;
 use App\Models\ChatMessage as Message;
 use App\Models\MessageUser;
@@ -14,6 +15,10 @@ use App\Models\User;
 use App\Notifications\User\NewMessageNotification;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+
 //use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 //use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -60,9 +65,9 @@ class ChatServiceProvider
     }
 
     /**
-     * @param $id
+     * @param string $id
      */
-    public function deleteChat($id)
+    public function deleteChat(string $id)
     {
         Chat::findOrFail($id)->delete();
     }
@@ -141,13 +146,13 @@ class ChatServiceProvider
             $this->create();
             $this->attachUser(auth()->id());
             $this->attachUser($user->id);
-            $this->setUnreadMessage(
-                [
-                    'chat_id' => $this->chat->id,
-                    'user_id' => $user->id,
-                    'message_id' => null,
-                ]
-            );
+//            $this->setUnreadMessage(
+//                [
+//                    'chat_id' => $this->chat->id,
+//                    'user_id' => $user->id,
+//                    'message_id' => null,
+//                ]
+//            );
         }
 
         return $this->chat;
@@ -165,7 +170,7 @@ class ChatServiceProvider
         return Message::query()
             ->whereChatId($chat->id)
             ->latest()
-            ->paginate(config('app.pagination.default'));
+            ->paginate(10);
     }
 
     /**
@@ -218,15 +223,12 @@ class ChatServiceProvider
      */
     public function storeMessage(array $validated): Message
     {
-        $this->message = new Message();
-        $this->message->chat_id = $validated['chat_id'];
-        $this->message->user_id = auth()->id();
-        $this->message->message = $validated['message'] ?? '';
-        $this->message->save();
-
-        if (isset($validated['photo'])) {
-            $this->storeMessagePhoto($validated['photo']);
-        }
+        $this->message = Message::create([
+            'chat_id' => $validated['chat_id'],
+            'user_id' => auth()->id(),
+            'message' => Arr::get($validated, 'message', ''),
+            'is_media' => Arr::get($validated, 'is_media', false)
+        ]);
 
         $chat = Chat::with('chatUsers')
             ->find($validated['chat_id']);
@@ -239,9 +241,93 @@ class ChatServiceProvider
             }
         }
 
-        $this->notifiableUser->notify(new NewMessageNotification(auth()->user(), $chat->id));
-
         return $this->message;
+    }
+
+    public function checkContactExistingByEmail(string $email)
+    {
+        return auth()->user()
+            ->contacts()
+            ->firstWhere('email', $email);
+    }
+
+    /**
+     * Store user message
+     *
+     * @param array $validated
+     */
+    public function storeContact(array $validated)
+    {
+        $contact = User::firstWhere('email', $validated['email']);
+        $token = Str::random(32);
+        $url = route('chat-contact-approve', ['token' => $token]);
+        auth()->user()
+            ->contacts()
+            ->syncWithoutDetaching(
+                [
+                    $contact->id => [
+                        'name' => $validated['name'],
+                        'last_name' => $validated['last_name'],
+                        'contact_confirm' => 0,
+                        'token' => $token
+                    ]
+                ]
+            );
+
+        Mail::to($contact->email)
+            ->send(new ChatContactApprovingEmail(
+                $url,
+                auth()->user()->name,
+                $contact->name
+            ));
+    }
+
+    /**
+     * Store user message
+     *
+     * @param array $validated
+     */
+    public function updateContact(array $validated)
+    {
+        $contact = auth()->user()
+            ->contacts()
+            ->wherePivot('contact_id', $validated['contact_id'])
+            ->first();
+        $contact->pivot->name = $validated['name'];
+        $contact->pivot->last_name = $validated['last_name'];
+        $contact->pivot->save();
+
+        return $contact;
+    }
+
+    /**
+     * @param string $token
+     * @return void
+     */
+    public function approveContact(string $token)
+    {
+        $contact = User::whereHas('contacts', function($q) use($token){
+            return $q->where('token', $token);
+        })->firstOrFail();
+        $contactUser = $contact->contacts()
+            ->wherePivot('token', $token)
+            ->first();
+        $contactUser->pivot->contact_confirm = 1;
+        $contactUser->pivot->save();
+
+        auth()->user()
+            ->contacts()
+            ->syncWithoutDetaching(
+                [
+                    $contact->id => [
+                        'name' => $contact->name,
+                        'last_name' => $contact->last_name,
+                        'contact_confirm' => 1
+                    ]
+                ]
+            );
+
+        return $contact->full_name;
     }
 
     /**
@@ -280,6 +366,32 @@ class ChatServiceProvider
                 ChatMessageReadStatus::dispatch($chat->id, $chatUser->user_id);
             }
         }
+    }
+
+    /**
+     * @param array $messageIds
+     */
+    public function deleteMessages(array $messageIds = [])
+    {
+        Message::whereIn('id', $messageIds)
+            ->delete();
+    }
+
+    /**
+     * @param string $id
+     */
+    public function deleteContact(string $id)
+    {
+        auth()->user()
+            ->contacts()
+            ->detach($id);
+
+        auth()->user()
+            ->chats()
+            ->whereHas('users', function($q) use($id) {
+                $q->whereId($id);
+            })
+            ->delete();
     }
 
     /**

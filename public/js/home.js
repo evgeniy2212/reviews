@@ -152,6 +152,7 @@
     $('.js-select-all').on('click', function () {
       $(this).closest('.chat__buttons').siblings('.chat__window').find('input').prop('checked', true); // $(this).closest('.chat__buttons').siblings('.chat__window').find('input').attr('checked', true);;
     });
+    $('.js-delete-messages').on('click', function () {});
   });
 
   window.onload = function () {

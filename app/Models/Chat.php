@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Chat extends Model
 {
-    public $fillable = ['id'];
-    public $incrementing = false;
     protected $keyType = 'string';
 
     public function chatUsers(): HasMany
@@ -29,6 +27,31 @@ class Chat extends Model
 
     public function unreadMessages(): HasMany
     {
-        return $this->hasMany(MessageUser::class);
+        return $this->hasMany(MessageUser::class)
+            ->whereNotNull('message_id');
+    }
+
+    public function getUserUnreadMsgCntAttribute()
+    {
+        $lastReadMsgId = optional($this->unreadMessages()
+            ->whereUserId(auth()->id())
+            ->first())->message_id;
+        return optional($this->lastMessage)->id - $lastReadMsgId;
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'chat_users',
+            'chat_id',
+            'user_id');
+    }
+
+    public function getPartnerUserAttribute()
+    {
+        return $this->users()
+            ->whereNotIn('id', [auth()->id()])
+            ->first();
     }
 }

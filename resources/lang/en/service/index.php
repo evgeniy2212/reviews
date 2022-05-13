@@ -137,6 +137,7 @@ return [
     'upload_shortcut' => 'Upload shortcut',
     'go' => 'Go',
     'ok' => 'Ok',
+    'open' => 'Open',
     'show' => 'Show',
     'show_review' => 'Show Review',
     'start' => 'Start',

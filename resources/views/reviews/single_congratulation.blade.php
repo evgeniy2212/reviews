@@ -46,7 +46,17 @@
                       <img src="{{ asset('storage/images/default_img.png') }}"
                            alt=""
                           class="previewImage">
-                  @endif
+                  @endif<div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
+                @auth()
+                    <a type="button"
+                       href="{{ Request::url() === route('show-congratulation', [$review->id]) ? url()->previous() : route('show-congratulation', [$review->id]) }}"
+                       class="otherButton"
+                       style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
+                       id="showButton-{{ $review->id }}">
+                        {{ Request::url() === route('show-congratulation', [$review->id]) ? __('service/index.close') : __('service/index.open') }}
+                    </a>
+                @endauth
+            </div>
                 </span>
                 @if($review->category)
                     <span class="congratulation-category">{{ $review->category->title }}</span><br>

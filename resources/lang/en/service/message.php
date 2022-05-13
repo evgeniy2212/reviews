@@ -1,7 +1,9 @@
 <?php
 return [
     'mail.hi_this' => 'Hi, this is',
+    'mail.hi' => 'Hi, ',
     'mail.to_the' => 'GO to the',
+    'mail.agree' => 'Agree',
     'mail.regards' => 'With best regards',
     'log_into_account' => 'Log in to your account and leave your comment!',
     'communication_reviewer' => 'Open for communication with reviewer',

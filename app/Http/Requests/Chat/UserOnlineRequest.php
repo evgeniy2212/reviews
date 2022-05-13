@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
-class EnterRequest extends FormRequest
+class UserOnlineRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,9 +16,9 @@ class EnterRequest extends FormRequest
     public function rules()
     {
         return [
-            'chat_id' => [
+            'user_id' => [
                 'required',
-                Rule::exists('chats', 'id')
+                Rule::exists('users', 'id')
             ],
         ];
     }

@@ -14,7 +14,40 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('test-chat', 'ChatController@testChat')->name('test_chat');
+Route::get('test-chat', 'ChatController@testChat')
+    ->middleware(['auth'])
+    ->name('test_chat');
+
+Route::group(
+    [
+        'prefix' => 'api/chat',
+        'as' => 'chat.',
+        'middleware' => ['auth']
+    ], function() {
+    Route::get('/', 'ChatController@index')->name('index');
+    Route::get('user_chats/{user_id}', 'ChatController@getChat')->name('userChat');
+    Route::get('user_chats', 'ChatController@getChats')->name('userChats');
+    Route::get('user_contacts', 'ChatController@getContacts')->name('userContscta');
+    Route::get('search/users/{query?}', 'ChatController@search')->name('search');
+    Route::get('search/unread_messages', 'ChatController@chatsWithUnreadMessages');
+    Route::post('user/online', 'ChatController@online')->name('online');
+    Route::post('user/offline', 'ChatController@offline')->name('offline');
+    Route::post('contact', 'ChatController@storeContact')->name('storeContact');
+    Route::post('update_contact', 'ChatController@updateContact')->name('updateContact');
+    Route::post('delete_contact', 'ChatController@deleteContact')->name('deleteContact');
+    Route::post('delete_chat', 'ChatController@deleteChat')->name('deleteChat');
+
+    Route::group(['prefix' => 'messages', 'as' => 'messages.'], function() {
+        Route::get('/{id}', 'ChatController@getMessages')->name('index');
+        Route::post('/', 'ChatController@storeMessage')->name('save');
+        Route::post('leave', 'ChatController@leaveChat')->name('leave');
+        Route::post('enter', 'ChatController@enterChat')->name('enter');
+        Route::post('delete', 'ChatController@deleteChatMessages')->name('delete');
+    });
+});
+Route::get('chat_contact/{token}', 'ChatController@approveContact')
+    ->name('chat-contact-approve')
+    ->middleware('auth', 'verified');
 
 Route::group(
     [
@@ -102,6 +135,7 @@ Route::group(
         ], function(){
             Route::get('/{review_item}', 'ReviewController@index')->name('reviews');
             Route::get('/show/{review}', 'ReviewController@show')->name('show-review');
+            Route::get('/show_congratulation/{id}', 'ReviewController@showCongratulation')->name('show-congratulation');
             Route::get('/presaving-show/{review}', 'ReviewController@presavingShow')->name('presavingShow-review');
             Route::get('create/{review_item}', 'ReviewController@create')
                 ->name('create-review')

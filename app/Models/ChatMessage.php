@@ -8,10 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ChatMessage extends Model
 {
-    public $incrementing = false;
-    protected $fillable = ['chat_id', 'user_id', 'message'];
+    protected $fillable = ['chat_id', 'user_id', 'message', 'is_media'];
     protected $keyType = 'string';
-//    protected $with = ['media'];
 
     public function user(): BelongsTo
     {

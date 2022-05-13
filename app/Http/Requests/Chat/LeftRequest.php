@@ -9,16 +9,6 @@ use Illuminate\Validation\Rule;
 class LeftRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize(): bool
-    {
-        return Gate::allows('frontend');
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -31,8 +21,7 @@ class LeftRequest extends FormRequest
                 Rule::exists('chats', 'id')
             ],
             'message_id' => [
-                'required',
-                Rule::exists('messages', 'id')
+                Rule::exists('chat_messages', 'id')
             ],
         ];
     }
