@@ -537,7 +537,7 @@ html, body {
     -o-transition: opacity .3s, visibility .3s;
     transition: opacity .3s, visibility .3s;
     transform: translateY(70px);
-    z-index: 99;
+    z-index: 10;
 }
 @media screen and (max-width: 992px) {
     .profile-navigation {
@@ -580,7 +580,7 @@ html, body {
     .navigation-btn {
         display: block;
         position: fixed;
-        bottom: 12px;
+        bottom: 50px;
         right: 12px;
         width: 44px;
         height: 44px;
@@ -591,7 +591,7 @@ html, body {
         color: #fff;
         border-radius: 50%;
         background-color: #2f5496;
-        z-index: 98;
+        z-index: 1;
     }
     .navigation-btn:focus {
         outline: 0;
@@ -2350,11 +2350,6 @@ button:disabled {
     }
 }
 
-@media screen and (max-width: 1200px) {
-    .chat__wrapper{
-        /*transform: translateX(5%);*/
-    }
-}
 
 @media screen and (max-width: 1024px) {
 
@@ -2362,6 +2357,15 @@ button:disabled {
         left: auto;
         right: 0;
         transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+    .chat__wrapper {
+        position: absolute;
+        transform: initial;
+        z-index: 0;
     }
 }
 
