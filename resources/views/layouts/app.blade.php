@@ -9,6 +9,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" href="{{ asset('images/frame.png') }}" type="image/x-icon">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -34,14 +35,16 @@
         @include('includes.modal.successMessage')
         @include('includes.modal.addPostRedirect')
         @yield('modal_forms')
+        <div id="chatApp"></div>
     </main>
     @include('includes.footer')
 </div>
-<div id="imageModal" class="image-modal">
-    <span class="closeImageModal">&times;</span>
-    <img class="image-modal-content" id="img01">
-    <div id="caption"></div>
-</div>
+{{--<div id="chatApp"></div>--}}
+{{--<div id="imageModal" class="image-modal">--}}
+{{--    <span class="closeImageModal">&times;</span>--}}
+{{--    <img class="image-modal-content" id="img01">--}}
+{{--    <div id="caption"></div>--}}
+{{--</div>--}}
 @include('includes.share')
 @include('includes.modal.sliderBodyModal')
 @include('includes.modal.instructions')
