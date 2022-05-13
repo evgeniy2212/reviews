@@ -1,6 +1,8 @@
 <template>
-    <div class="chat__wrapper">
-        <div class="chat is-active" v-show="showChat">
+    <div class="chat__wrapper"
+         :style="showChat ? 'z-index: 1' : ''">
+        <div class="chat is-active"
+             v-show="showChat">
             <template>
                 <loader v-show="isLoadedMessages === true"
                         object="#2f5496"

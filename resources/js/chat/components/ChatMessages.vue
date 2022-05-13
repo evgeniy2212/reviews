@@ -261,4 +261,16 @@ export default {
 .is-online{
     color: #5dcf5d;
 }
+.help-block{
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    line-height: 1.1;
+    padding: 0 6px;
+}
+.chat__window{
+    position: relative;
+}
 </style>

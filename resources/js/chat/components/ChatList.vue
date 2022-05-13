@@ -42,13 +42,10 @@ export default {
                     var that = this;
                     this.chats.forEach(function(item){
                         const contact = that.contacts.find(contact => contact.id === item.partner_id);
-                        console.log('watch contacts: ', contact);
                         if(contact !== undefined){
                             item.status = contact.status;
                             item.contact.full_name = contact.full_name;
                             item.name = contact.full_name;
-                            // item['contact'] = contact;
-                            console.log('ITEM: ', item);
                         }
                     });
                 }
@@ -88,6 +85,7 @@ export default {
             this.$parent.backPath = 'chat__contact'
             this.$emit('setActive', 'chat__wrap')
             this.$emit('setCurrentChat', chatId)
+            this.chats.find(obj => obj.id === chatId).messageCount = 0;
         },
         deleteChat(contact_id){
             if(contact_id !== ''){

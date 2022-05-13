@@ -2077,6 +2077,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2295,14 +2297,11 @@ __webpack_require__.r(__webpack_exports__);
             var contact = that.contacts.find(function (contact) {
               return contact.id === item.partner_id;
             });
-            console.log('watch contacts: ', contact);
 
             if (contact !== undefined) {
               item.status = contact.status;
               item.contact.full_name = contact.full_name;
-              item.name = contact.full_name; // item['contact'] = contact;
-
-              console.log('ITEM: ', item);
+              item.name = contact.full_name;
             }
           });
         }
@@ -2342,6 +2341,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$parent.backPath = 'chat__contact';
       this.$emit('setActive', 'chat__wrap');
       this.$emit('setCurrentChat', chatId);
+      this.chats.find(function (obj) {
+        return obj.id === chatId;
+      }).messageCount = 0;
     },
     deleteChat: function deleteChat(contact_id) {
       if (contact_id !== '') {
@@ -2627,30 +2629,6 @@ __webpack_require__.r(__webpack_exports__);
         }, 300);
       }
     }
-  },
-  created: function created() {
-    console.log('this.currentChatId: ', this.currentChatId); // let _this = this;
-    // window.Echo.private('typing-1')
-    //     .listenForWhisper('typing', (e) => {
-    //         console.log('listenForWhisper: ', e);
-    //         if(e.user === _this.contact.id){
-    //             _this.typing = e.typing;
-    //         }
-    //         // this.user = e.user;
-    //         // this.typing = e.typing;
-    //
-    //         // remove is typing indicator after 0.9s
-    //         setTimeout(function() {
-    //             _this.typing = false
-    //         }, 900);
-    //     });
-  },
-  mounted: function mounted() {// console.log('chat_messages', this.chatId);
-    // window.Echo.channel('chat_' + this.chatId)
-    //     .listen('.chat_' +  + this.chatId, message => {
-    //         console.log('message: ', message.data);
-    //         this.messages.push(message.data.message.message);
-    //     });
   }
 });
 
@@ -7935,7 +7913,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.is-online[data-v-25d03604]{\n    color: #5dcf5d;\n}\n", ""]);
+exports.push([module.i, "\n.is-online[data-v-25d03604]{\n    color: #5dcf5d;\n}\n.help-block[data-v-25d03604]{\n    position: absolute;\n    bottom: 1px;\n    left: 0;\n    right: 0;\n    background: #fff;\n    line-height: 1.1;\n    padding: 0 6px;\n}\n.chat__window[data-v-25d03604]{\n    position: relative;\n}\n", ""]);
 
 // exports
 
@@ -46959,241 +46937,245 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "chat__wrapper" }, [
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showChat,
-            expression: "showChat"
-          }
-        ],
-        staticClass: "chat is-active"
-      },
-      [
-        [
-          _c("loader", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.isLoadedMessages === true,
-                expression: "isLoadedMessages === true"
-              }
-            ],
-            attrs: {
-              object: "#2f5496",
-              color1: "#ffffff",
-              color2: "#17fd3d",
-              size: "3",
-              speed: "1",
-              bg: "#343a40",
-              objectbg: "#999793",
-              opacity: "80",
-              disableScrolling: "false",
-              name: "spinning"
-            }
-          })
-        ],
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "chat__btn",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                return _vm.setActiveScreen("chat__inner")
-              }
-            }
-          },
-          [_vm._v("\n                Contacts\n            ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "chat__btn",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                return _vm.setActiveScreen("chat__create")
-              }
-            }
-          },
-          [_vm._v("\n                Create contact\n            ")]
-        ),
-        _vm._v(" "),
-        _c("chat-list", {
-          attrs: {
-            "delete-contact-id": _vm.deleteContact,
-            contacts: _vm.contacts
-          },
-          on: {
-            setActive: _vm.setActiveScreen,
-            setCurrentChat: _vm.setCurrentChat
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "chat__close",
-            attrs: { type: "button" },
-            on: { click: _vm.toggleChat }
-          },
-          [_vm._v("\n                Close\n            ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "chat__inner",
-            class: _vm.activeScreen === "chat__inner" ? "is-active" : ""
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "chat__contacts" },
-              _vm._l(_vm.contacts, function(contact) {
-                return _c(
-                  "div",
-                  {
-                    key: contact.id,
-                    staticClass: "chat__contact",
-                    class: contact.status === true ? "is-online" : "",
-                    on: {
-                      click: function($event) {
-                        _vm.setActiveScreen("chat__settings")
-                        _vm.setActiveContact(contact)
-                      }
-                    }
-                  },
-                  [
-                    _c("span", { staticClass: "chat__name" }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(contact.full_name) +
-                          "\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "chat__status",
-                        class: contact.status === 1 ? "is-online" : ""
-                      },
-                      [
-                        _vm._v(
-                          "\n                            " +
-                            _vm._s(
-                              contact.status === 1 ? "online" : "offline"
-                            ) +
-                            "\n                        "
-                        )
-                      ]
-                    )
-                  ]
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "chat__close",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.setActiveScreen("chat__contact")
-                  }
-                }
-              },
-              [_vm._v("\n                    Close\n                ")]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "chat__settings",
-            class:
-              _vm.activeScreen === "chat__settings" ||
-              _vm.activeScreen === "chat__edit" ||
-              _vm.activeScreen === "chat__wrap" ||
-              _vm.activeScreen === "chat__delete"
-                ? "is-active"
-                : ""
-          },
-          [
-            _c("chat-settings", {
-              attrs: {
-                contact: _vm.activeContact,
-                "new-message": _vm.newMessage,
-                screen: _vm.activeScreen,
-                "current-chat-id": _vm.currentChatId
-              },
-              on: { setActive: _vm.setActiveScreen }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("create-contact", {
+  return _c(
+    "div",
+    { staticClass: "chat__wrapper", style: _vm.showChat ? "z-index: 1" : "" },
+    [
+      _c(
+        "div",
+        {
           directives: [
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.activeScreen === "chat__create",
-              expression: "activeScreen === 'chat__create'"
+              value: _vm.showChat,
+              expression: "showChat"
             }
-          ]
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "chat__open",
-        attrs: { type: "button" },
-        on: { click: _vm.toggleChat }
-      },
-      [
-        _c("span", { staticClass: "chat__icon" }, [
-          _c(
-            "svg",
-            {
+          ],
+          staticClass: "chat is-active"
+        },
+        [
+          [
+            _c("loader", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.isLoadedMessages === true,
+                  expression: "isLoadedMessages === true"
+                }
+              ],
               attrs: {
-                xmlns: "http://www.w3.org/2000/svg",
-                "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                viewBox: "0 0 64 64",
-                "enable-background": "new 0 0 64 64",
-                "xml:space": "preserve"
+                object: "#2f5496",
+                color1: "#ffffff",
+                color2: "#17fd3d",
+                size: "3",
+                speed: "1",
+                bg: "#343a40",
+                objectbg: "#999793",
+                opacity: "80",
+                disableScrolling: "false",
+                name: "spinning"
+              }
+            })
+          ],
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "chat__btn",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.setActiveScreen("chat__inner")
+                }
               }
             },
-            [
-              _c("path", {
-                attrs: {
-                  d:
-                    "M32,3C15.4,3,0,16.2,0,30c0,7.8,6.3,14.7,13,19.3c-0.1,1.2-0.9,5.3-5.7,9.8c-0.7,0.7-0.2,1.8,0.8,1.7\n                        c8.6-1,15.5-5.8,16.7-6.7c1.4,0.3,4.6,0.8,7.2,0.8c16.6,0,32-11.2,32-25S48.6,3,32,3z"
+            [_vm._v("\n                Contacts\n            ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "chat__btn",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.setActiveScreen("chat__create")
                 }
-              })
+              }
+            },
+            [_vm._v("\n                Create contact\n            ")]
+          ),
+          _vm._v(" "),
+          _c("chat-list", {
+            attrs: {
+              "delete-contact-id": _vm.deleteContact,
+              contacts: _vm.contacts
+            },
+            on: {
+              setActive: _vm.setActiveScreen,
+              setCurrentChat: _vm.setCurrentChat
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "chat__close",
+              attrs: { type: "button" },
+              on: { click: _vm.toggleChat }
+            },
+            [_vm._v("\n                Close\n            ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "chat__inner",
+              class: _vm.activeScreen === "chat__inner" ? "is-active" : ""
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "chat__contacts" },
+                _vm._l(_vm.contacts, function(contact) {
+                  return _c(
+                    "div",
+                    {
+                      key: contact.id,
+                      staticClass: "chat__contact",
+                      class: contact.status === true ? "is-online" : "",
+                      on: {
+                        click: function($event) {
+                          _vm.setActiveScreen("chat__settings")
+                          _vm.setActiveContact(contact)
+                        }
+                      }
+                    },
+                    [
+                      _c("span", { staticClass: "chat__name" }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(contact.full_name) +
+                            "\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "chat__status",
+                          class: contact.status === 1 ? "is-online" : ""
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(
+                                contact.status === 1 ? "online" : "offline"
+                              ) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "chat__close",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.setActiveScreen("chat__contact")
+                    }
+                  }
+                },
+                [_vm._v("\n                    Close\n                ")]
+              )
             ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "chat__open-text" }, [_vm._v("Chat")])
-      ]
-    )
-  ])
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "chat__settings",
+              class:
+                _vm.activeScreen === "chat__settings" ||
+                _vm.activeScreen === "chat__edit" ||
+                _vm.activeScreen === "chat__wrap" ||
+                _vm.activeScreen === "chat__delete"
+                  ? "is-active"
+                  : ""
+            },
+            [
+              _c("chat-settings", {
+                attrs: {
+                  contact: _vm.activeContact,
+                  "new-message": _vm.newMessage,
+                  screen: _vm.activeScreen,
+                  "current-chat-id": _vm.currentChatId
+                },
+                on: { setActive: _vm.setActiveScreen }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("create-contact", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.activeScreen === "chat__create",
+                expression: "activeScreen === 'chat__create'"
+              }
+            ]
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "chat__open",
+          attrs: { type: "button" },
+          on: { click: _vm.toggleChat }
+        },
+        [
+          _c("span", { staticClass: "chat__icon" }, [
+            _c(
+              "svg",
+              {
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                  viewBox: "0 0 64 64",
+                  "enable-background": "new 0 0 64 64",
+                  "xml:space": "preserve"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    d:
+                      "M32,3C15.4,3,0,16.2,0,30c0,7.8,6.3,14.7,13,19.3c-0.1,1.2-0.9,5.3-5.7,9.8c-0.7,0.7-0.2,1.8,0.8,1.7\n                        c8.6-1,15.5-5.8,16.7-6.7c1.4,0.3,4.6,0.8,7.2,0.8c16.6,0,32-11.2,32-25S48.6,3,32,3z"
+                  }
+                })
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "chat__open-text" }, [_vm._v("Chat")])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61004,66 +60986,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-chat-scroll */ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js");
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue_ui_preloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-ui-preloader */ "./node_modules/vue-ui-preloader/src/components/index.js");
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // import Vue from 'vue'
-
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.prototype.baseUrl = window.Laravel.baseUrl;
-Vue.prototype.authId = window.Laravel.authId; // import { createApp } from 'vue';
-// import ChatTest from "./chat/components/ChatTest";
-
+Vue.prototype.authId = window.Laravel.authId;
 
 
 
 Vue.use(vue_ui_preloader__WEBPACK_IMPORTED_MODULE_2__["default"]);
-Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_1___default.a); // Vue.component('chat-messages', require('./chat/components/ChatMessages.vue'));
-// Vue.component('chat-form', require('./chat/components/ChatForm.vue'));
-// import ChatForm from "chat/components/ChatForm";
-// import ChatMessages from "chat/components/ChatMessages";
-// import ExampleComponent from "chat/components/ExampleComponent";
-// import PublicChatComponent from "chat/components/PublicChatComponent";
-// const app = createApp(App);
-// app.component('chat-form', ChatForm);
-// app.component('chat-messages', ChatMessages);
-// app.component('example-component', ExampleComponent);
-// app.component('public-chat', PublicChatComponent);
-
+Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_1___default.a);
 var app = new Vue({
   el: '#chatApp',
   render: function render(h) {
     return h(_chat_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
-}); // app.component('chat-test', ChatTest);
-// const app = new Vue({
-//     el: '#app',
-//
-//     data: {
-//         messages: []
-//     },
-//
-//     created() {
-//         this.fetchMessages();
-//     },
-//
-//     methods: {
-//         fetchMessages() {
-//             axios.get('/messages').then(response => {
-//                 this.messages = response.data;
-//             });
-//         },
-//
-//         addMessage(message) {
-//             this.messages.push(message);
-//
-//             axios.post('/messages', message).then(response => {
-//                 console.log(response.data);
-//             });
-//         }
-//     }
-//     mounted(){
-//         console.log('mounted');
-//     }
-// });
+});
 
 /***/ }),
 
@@ -61107,32 +61045,14 @@ window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
  */
 
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // console.log('bootstrap pusher', proces.env.PUSHER_APP_KEY);
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: '82b53cc0e6b66c4eec4e',
-//     cluster: 'eu',
-//     encrypted: 'a5585acdaadc2081fed0'
-// });
-
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: '82b53cc0e6b66c4eec4e',
   cluster: 'eu',
   forceTLS: true,
-  csrfToken: window.Laravel.csrfToken // headers: {
-  //     'X-CSRF-TOKEN': window.Laravel.csrfToken
-  // },
-  // auth: {
-  //     headers: {
-  //         'X-CSRF-TOKEN': window.Laravel.csrfToken
-  //     },
-  // }
-
-}); // window.Echo.connector.pusher.config.auth.headers['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
-// PUSHER_APP_ID=1350483
-// PUSHER_APP_KEY=82b53cc0e6b66c4eec4e
-// PUSHER_APP_SECRET=a5585acdaadc2081fed0
+  csrfToken: window.Laravel.csrfToken
+});
 
 /***/ }),
 

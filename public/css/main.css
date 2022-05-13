@@ -1812,6 +1812,7 @@ button:disabled {
     display: flex;
     align-items: center;
     padding: 0;
+    outline: none;
     color: #fff;
     border: 0;
     font-weight: 700;
