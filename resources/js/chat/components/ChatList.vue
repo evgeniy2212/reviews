@@ -62,7 +62,6 @@ export default {
             var that = this;
             return axios.get('/api/chat/user_chats')
                 .then(response => {
-                    console.log('getChats: ', response);
                     var that = this;
                     response.data.data.forEach(function(item){
                         that.chats.push({
@@ -96,10 +95,22 @@ export default {
                     this.chats.splice(indexOfObject, 1);
                 }
             }
-        }
+        },
+        listenUnreadMessagesChats(){
+            var that = this
+            window.Echo.channel('client_unread' + this.authId)
+                .listen('.client_unread' + this.authId, message => {
+                    console.log('listenUnreadMessagesChats: ', message.data, this.authId);
+                    let chat = that.chats.find(obj => obj.id == message.data);
+                    chat.messageCount = chat.messageCount + 1;
+                    // that.newMessage = message.data.message;
+                    // that.lastMessageId = message.data.message.message_id;
+                });
+        },
     },
     mounted() {
         this.getChats();
+        this.listenUnreadMessagesChats();
     }
 }
 </script>

@@ -59,10 +59,12 @@
                     <img class="chat__decor left__mod"
                          :src="baseUrl + '/images/message-decor.png'"
                          alt="#">
-                    <p v-html="(message.isImg === 1 || message.isImg === true) ? '' : message.body">
+                    <p v-if="message.isImg == 1 || message.isImg === true">
                         <img class="message__img"
-                             v-if="message.isImg === 1 || message.isImg === true"
+                             v-if="message.isImg == 1 || message.isImg === true"
                              :src="message.body">
+                    </p>
+                    <p v-else v-html="message.body">
                     </p>
                 </div>
 <!--                <infinite-loading @infinite="getMessages"></infinite-loading>-->
@@ -174,7 +176,7 @@ export default {
                     console.log('error: ', e);
                 });
         },
-        sendMessage(message, isImg = false, chatId = null){
+        sendMessage(message, isImg = false, chatId = null, showModal = false){
             const newMessage = {
                 id: new Date().toISOString(),
                 body: message,
@@ -184,6 +186,7 @@ export default {
             }
             this.messages.push(newMessage);
             this.storeMessage(newMessage, chatId);
+            this.$parent.showModal = showModal;
         },
         storeMessage(message, chatId = null){
             var that = this;
@@ -194,7 +197,9 @@ export default {
                     message: message.body
                 })
                 .then(function(response){
-                    that.$parent.linkSentSuccess = true;
+                    if(that.$parent.showModal){
+                        that.$parent.linkSentSuccess = true;
+                    }
                     console.log('response: ', response)
                 })
                 .catch(function(e) {
@@ -272,5 +277,9 @@ export default {
 }
 .chat__window{
     position: relative;
+}
+.message__img{
+    height: 85px;
+    width: auto;
 }
 </style>

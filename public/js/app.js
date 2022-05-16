@@ -2072,13 +2072,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2195,7 +2188,6 @@ __webpack_require__.r(__webpack_exports__);
       // });
     },
     stopListenChat: function stopListenChat() {
-      console.log('stopListenChat');
       window.Echo.channel('chat_' + this.currentChatId).stopListening('.chat_' + this.currentChatId);
     },
     leaveChat: function leaveChat() {
@@ -2319,7 +2311,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$parent.isLoadedMessages = true;
       var that = this;
       return axios.get('/api/chat/user_chats').then(function (response) {
-        console.log('getChats: ', response);
         var that = _this;
         response.data.data.forEach(function (item) {
           that.chats.push({
@@ -2355,10 +2346,24 @@ __webpack_require__.r(__webpack_exports__);
           this.chats.splice(indexOfObject, 1);
         }
       }
+    },
+    listenUnreadMessagesChats: function listenUnreadMessagesChats() {
+      var _this2 = this;
+
+      var that = this;
+      window.Echo.channel('client_unread' + this.authId).listen('.client_unread' + this.authId, function (message) {
+        console.log('listenUnreadMessagesChats: ', message.data, _this2.authId);
+        var chat = that.chats.find(function (obj) {
+          return obj.id == message.data;
+        });
+        chat.messageCount = chat.messageCount + 1; // that.newMessage = message.data.message;
+        // that.lastMessageId = message.data.message.message_id;
+      });
     }
   },
   mounted: function mounted() {
     this.getChats();
+    this.listenUnreadMessagesChats();
   }
 });
 
@@ -2376,6 +2381,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ChatTextarea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatTextarea */ "./resources/js/chat/components/ChatTextarea.vue");
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
 //
 //
 //
@@ -2549,6 +2556,7 @@ __webpack_require__.r(__webpack_exports__);
     sendMessage: function sendMessage(message) {
       var isImg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var chatId = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var showModal = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
       var newMessage = {
         id: new Date().toISOString(),
         body: message,
@@ -2558,6 +2566,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.messages.push(newMessage);
       this.storeMessage(newMessage, chatId);
+      this.$parent.showModal = showModal;
     },
     storeMessage: function storeMessage(message) {
       var chatId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -2567,7 +2576,10 @@ __webpack_require__.r(__webpack_exports__);
         is_media: message.isImg,
         message: message.body
       }).then(function (response) {
-        that.$parent.linkSentSuccess = true;
+        if (that.$parent.showModal) {
+          that.$parent.linkSentSuccess = true;
+        }
+
         console.log('response: ', response);
       })["catch"](function (e) {
         console.log('error: ', e);
@@ -2756,7 +2768,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       chatId: null,
       isLoadedMessages: false,
-      linkSentSuccess: false
+      linkSentSuccess: false,
+      showModal: false
     };
   },
   props: ['screen', 'currentChatId', 'newMessage', 'contact'],
@@ -2765,7 +2778,7 @@ __webpack_require__.r(__webpack_exports__);
     sendLink: function sendLink() {
       this.isLoadedMessages = true;
       var message = '<a href="' + window.location.href + '" target="_blank">Check Link</a>';
-      this.$refs.messageComponent.sendMessage(message, false, this.chatId);
+      this.$refs.messageComponent.sendMessage(message, false, this.chatId, true);
     },
     getChat: function getChat(contact) {
       var that = this;
@@ -2818,17 +2831,21 @@ __webpack_require__.r(__webpack_exports__);
       console.log('linkSentSuccess', newVal);
       this.isLoadedMessages = false;
 
-      if (newVal === true) {
-        $('.successMessageContent').remove();
-        $('#successMessageContent').text('Link sent successfully!');
-        $('#successMessageContent').removeAttr('hidden');
-        $('#successMessage').modal();
-      } else {
-        $('#errorMessageContent').text('Try sending the link again!');
-        $('#defaultErrorMessageContent').attr("hidden", true);
-        $('#errorMessageContent').removeAttr('hidden');
-        $('#errorMessage').modal();
+      if (this.showModal) {
+        if (newVal === true) {
+          $('.successMessageContent').remove();
+          $('#successMessageContent').text('Link sent successfully!');
+          $('#successMessageContent').removeAttr('hidden');
+          $('#successMessage').modal();
+        } else {
+          $('#errorMessageContent').text('Try sending the link again!');
+          $('#defaultErrorMessageContent').attr("hidden", true);
+          $('#errorMessageContent').removeAttr('hidden');
+          $('#errorMessage').modal();
+        }
       }
+
+      this.showModal = false;
     }
   }
 });
@@ -2952,6 +2969,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ChatTextarea",
   data: function data() {
@@ -2961,7 +2980,76 @@ __webpack_require__.r(__webpack_exports__);
       validMessage: true,
       emojis: [{
         id: 1,
-        src: this.baseUrl + '/images/positive_like.png'
+        src: this.baseUrl + '/images/emoji_1.png'
+      }, {
+        id: 2,
+        src: this.baseUrl + '/images/emoji_2.png'
+      }, {
+        id: 3,
+        src: this.baseUrl + '/images/emoji_3.png'
+      }, {
+        id: 4,
+        src: this.baseUrl + '/images/emoji_4.png'
+      }, {
+        id: 5,
+        src: this.baseUrl + '/images/emoji_5.png'
+      }, {
+        id: 6,
+        src: this.baseUrl + '/images/emoji_6.png'
+      }, {
+        id: 7,
+        src: this.baseUrl + '/images/emoji_7.png'
+      }, {
+        id: 8,
+        src: this.baseUrl + '/images/emoji_8.png'
+      }, {
+        id: 9,
+        src: this.baseUrl + '/images/emoji_9.png'
+      }, {
+        id: 10,
+        src: this.baseUrl + '/images/emoji_10.png'
+      }, {
+        id: 11,
+        src: this.baseUrl + '/images/emoji_11.png'
+      }, {
+        id: 12,
+        src: this.baseUrl + '/images/emoji_12.png'
+      }, {
+        id: 13,
+        src: this.baseUrl + '/images/emoji_13.png'
+      }, {
+        id: 14,
+        src: this.baseUrl + '/images/emoji_14.png'
+      }, {
+        id: 15,
+        src: this.baseUrl + '/images/emoji_15.png'
+      }, {
+        id: 16,
+        src: this.baseUrl + '/images/emoji_16.png'
+      }, {
+        id: 17,
+        src: this.baseUrl + '/images/emoji_17.png'
+      }, {
+        id: 18,
+        src: this.baseUrl + '/images/emoji_18.png'
+      }, {
+        id: 19,
+        src: this.baseUrl + '/images/emoji_19.png'
+      }, {
+        id: 20,
+        src: this.baseUrl + '/images/emoji_20.png'
+      }, {
+        id: 21,
+        src: this.baseUrl + '/images/emoji_21.png'
+      }, {
+        id: 22,
+        src: this.baseUrl + '/images/emoji_22.png'
+      }, {
+        id: 23,
+        src: this.baseUrl + '/images/emoji_23.png'
+      }, {
+        id: 24,
+        src: this.baseUrl + '/images/emoji_24.png'
       }]
     };
   },
@@ -7913,7 +8001,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.is-online[data-v-25d03604]{\n    color: #5dcf5d;\n}\n.help-block[data-v-25d03604]{\n    position: absolute;\n    bottom: 1px;\n    left: 0;\n    right: 0;\n    background: #fff;\n    line-height: 1.1;\n    padding: 0 6px;\n}\n.chat__window[data-v-25d03604]{\n    position: relative;\n}\n", ""]);
+exports.push([module.i, "\n.is-online[data-v-25d03604]{\n    color: #5dcf5d;\n}\n.help-block[data-v-25d03604]{\n    position: absolute;\n    bottom: 1px;\n    left: 0;\n    right: 0;\n    background: #fff;\n    line-height: 1.1;\n    padding: 0 6px;\n}\n.chat__window[data-v-25d03604]{\n    position: relative;\n}\n.message__img[data-v-25d03604]{\n    height: 85px;\n    width: auto;\n}\n", ""]);
 
 // exports
 
@@ -47454,26 +47542,16 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c(
-                    "p",
-                    {
-                      domProps: {
-                        innerHTML: _vm._s(
-                          message.isImg === 1 || message.isImg === true
-                            ? ""
-                            : message.body
-                        )
-                      }
-                    },
-                    [
-                      message.isImg === 1 || message.isImg === true
-                        ? _c("img", {
-                            staticClass: "message__img",
-                            attrs: { src: message.body }
-                          })
-                        : _vm._e()
-                    ]
-                  )
+                  message.isImg == 1 || message.isImg === true
+                    ? _c("p", [
+                        message.isImg == 1 || message.isImg === true
+                          ? _c("img", {
+                              staticClass: "message__img",
+                              attrs: { src: message.body }
+                            })
+                          : _vm._e()
+                      ])
+                    : _c("p", { domProps: { innerHTML: _vm._s(message.body) } })
                 ]
               )
             }),
@@ -47894,7 +47972,12 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("😀")]
+            [
+              _c("img", {
+                staticStyle: { width: "auto", height: "32px" },
+                attrs: { src: emoji.src }
+              })
+            ]
           )
         }),
         0

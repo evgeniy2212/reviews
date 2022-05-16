@@ -23,7 +23,9 @@
                  :class="showEmoji === true ? 'is-show' : ''">
                 <span class="chat__emoji"
                       v-for="emoji in emojis"
-                      @click="sendMessageImage(emoji.src)">&#128512;</span>
+                      @click="sendMessageImage(emoji.src)">
+                    <img :src="emoji.src" style="width: auto;height: 32px">
+                </span>
             </div>
         </div>
         <div class="chat__buttons">
@@ -51,7 +53,99 @@ export default {
             emojis: [
                 {
                     id: 1,
-                    src: this.baseUrl + '/images/positive_like.png'
+                    src: this.baseUrl + '/images/emoji_1.png'
+                },
+                {
+                    id: 2,
+                    src: this.baseUrl + '/images/emoji_2.png'
+                },
+                {
+                    id: 3,
+                    src: this.baseUrl + '/images/emoji_3.png'
+                },
+                {
+                    id: 4,
+                    src: this.baseUrl + '/images/emoji_4.png'
+                },
+                {
+                    id: 5,
+                    src: this.baseUrl + '/images/emoji_5.png'
+                },
+                {
+                    id: 6,
+                    src: this.baseUrl + '/images/emoji_6.png'
+                },
+                {
+                    id: 7,
+                    src: this.baseUrl + '/images/emoji_7.png'
+                },
+                {
+                    id: 8,
+                    src: this.baseUrl + '/images/emoji_8.png'
+                },
+                {
+                    id: 9,
+                    src: this.baseUrl + '/images/emoji_9.png'
+                },
+                {
+                    id: 10,
+                    src: this.baseUrl + '/images/emoji_10.png'
+                },
+                {
+                    id: 11,
+                    src: this.baseUrl + '/images/emoji_11.png'
+                },
+                {
+                    id: 12,
+                    src: this.baseUrl + '/images/emoji_12.png'
+                },
+                {
+                    id: 13,
+                    src: this.baseUrl + '/images/emoji_13.png'
+                },
+                {
+                    id: 14,
+                    src: this.baseUrl + '/images/emoji_14.png'
+                },
+                {
+                    id: 15,
+                    src: this.baseUrl + '/images/emoji_15.png'
+                },
+                {
+                    id: 16,
+                    src: this.baseUrl + '/images/emoji_16.png'
+                },
+                {
+                    id: 17,
+                    src: this.baseUrl + '/images/emoji_17.png'
+                },
+                {
+                    id: 18,
+                    src: this.baseUrl + '/images/emoji_18.png'
+                },
+                {
+                    id: 19,
+                    src: this.baseUrl + '/images/emoji_19.png'
+                },
+                {
+                    id: 20,
+                    src: this.baseUrl + '/images/emoji_20.png'
+                },
+                {
+                    id: 21,
+                    src: this.baseUrl + '/images/emoji_21.png'
+                },
+                {
+                    id: 22,
+                    src: this.baseUrl + '/images/emoji_22.png'
+                },
+                {
+                    id: 23,
+                    src: this.baseUrl + '/images/emoji_23.png'
+                },
+                {
+                    id: 24,
+                    src: this.baseUrl + '/images/emoji_24.png'
                 }
             ]
         }

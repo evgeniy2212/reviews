@@ -32,18 +32,18 @@ class ClientUnreadMessages implements ShouldBroadcastNow
 
     public function broadcastOn()
     {
-        return 'client_' . $this->client_id;
+        return 'client_unread' . $this->client_id;
     }
 
     public function broadcastAs()
     {
-        return 'client_' . $this->client_id;
+        return 'client_unread' . $this->client_id;
     }
 
     public function broadcastWith()
     {
         return [
-            'data' => json_encode($this->chat_id),
+            'data' => $this->chat_id,
         ];
     }
 }

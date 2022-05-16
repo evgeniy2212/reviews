@@ -154,13 +154,6 @@
             <span class="chat__open-text">Chat</span>
         </button>
     </div>
-
-<!--    <div id="imageModal" class="image-modal">-->
-<!--        <span class="closeImageModal">&times;</span>-->
-<!--        <img class="image-modal-content" id="img01">-->
-<!--        <div id="caption"></div>-->
-<!--    </div>-->
-<!--    <chat-test></chat-test>-->
 </template>
 
 <script>
@@ -276,7 +269,6 @@ export default {
                 // });
         },
         stopListenChat(){
-            console.log('stopListenChat');
             window.Echo.channel('chat_' + this.currentChatId)
                 .stopListening('.chat_' + this.currentChatId);
         },

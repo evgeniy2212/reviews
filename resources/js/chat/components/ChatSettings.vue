@@ -110,7 +110,8 @@ export default {
         return{
             chatId: null,
             isLoadedMessages: false,
-            linkSentSuccess: false
+            linkSentSuccess: false,
+            showModal: false
         }
     },
     props: [
@@ -127,7 +128,7 @@ export default {
         sendLink(){
             this.isLoadedMessages = true;
             let message = '<a href="' + window.location.href + '" target="_blank">Check Link</a>';
-            this.$refs.messageComponent.sendMessage(message, false, this.chatId);
+            this.$refs.messageComponent.sendMessage(message, false, this.chatId, true);
         },
         getChat(contact){
             var that = this;
@@ -177,17 +178,20 @@ export default {
         linkSentSuccess(newVal){
             console.log('linkSentSuccess', newVal);
             this.isLoadedMessages = false;
-            if(newVal === true){
-                $('.successMessageContent').remove();
-                $('#successMessageContent').text('Link sent successfully!');
-                $('#successMessageContent').removeAttr('hidden');
-                $('#successMessage').modal();
-            } else {
-                $('#errorMessageContent').text('Try sending the link again!');
-                $('#defaultErrorMessageContent').attr("hidden",true);
-                $('#errorMessageContent').removeAttr('hidden');
-                $('#errorMessage').modal();
+            if(this.showModal){
+                if(newVal === true){
+                    $('.successMessageContent').remove();
+                    $('#successMessageContent').text('Link sent successfully!');
+                    $('#successMessageContent').removeAttr('hidden');
+                    $('#successMessage').modal();
+                } else {
+                    $('#errorMessageContent').text('Try sending the link again!');
+                    $('#defaultErrorMessageContent').attr("hidden",true);
+                    $('#errorMessageContent').removeAttr('hidden');
+                    $('#errorMessage').modal();
+                }
             }
+            this.showModal = false;
         }
     },
 }
