@@ -2381,6 +2381,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ChatTextarea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatTextarea */ "./resources/js/chat/components/ChatTextarea.vue");
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
 //
 //
 //
@@ -2531,8 +2545,11 @@ __webpack_require__.r(__webpack_exports__);
         var that = _this2;
 
         if (response.data.data.length > 0) {
+          var _this2$messages;
+
+          var result = [];
           response.data.data.forEach(function (item) {
-            that.messages.push({
+            result.push({
               id: item.message_id,
               body: item.message,
               sender: item.is_sender,
@@ -2541,13 +2558,16 @@ __webpack_require__.r(__webpack_exports__);
             });
           });
 
+          (_this2$messages = _this2.messages).unshift.apply(_this2$messages, _toConsumableArray(result.reverse()));
+
           var lastMessage = _this2.messages.slice(-1);
 
           _this2.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
-          console.log('this.$parent.$parent.lastMessageId: ', _this2.$parent.$parent.lastMessageId);
-          that.isLoadedMessages = false; // $state.loaded();
+          that.isLoadedMessages = false;
+          $state.loaded();
         } else {
-          that.isLoadedMessages = false; // $state.loaded();
+          that.isLoadedMessages = false;
+          $state.complete();
         }
       })["catch"](function (e) {
         console.log('error: ', e);
@@ -47388,9 +47408,9 @@ var render = function() {
           },
           [
             _vm._v(
-              "\n                " +
+              "\n            " +
                 _vm._s(_vm.contact.status === 1 ? "online" : "offline") +
-                "\n            "
+                "\n        "
             )
           ]
         )
@@ -47406,9 +47426,9 @@ var render = function() {
           },
           [
             _vm._v(
-              "\n                " +
+              "\n            " +
                 _vm._s(_vm.showControlButtons === true ? "Close" : "Edit") +
-                "\n            "
+                "\n        "
             )
           ]
         ),
@@ -47428,7 +47448,7 @@ var render = function() {
             attrs: { type: "button" },
             on: { click: _vm.selectAll }
           },
-          [_vm._v("\n                Select all\n            ")]
+          [_vm._v("\n            Select all\n        ")]
         ),
         _vm._v(" "),
         _c(
@@ -47446,7 +47466,7 @@ var render = function() {
             attrs: { type: "button" },
             on: { click: _vm.deleteSelected }
           },
-          [_vm._v("\n                Delete\n            ")]
+          [_vm._v("\n            Delete\n        ")]
         )
       ]),
       _vm._v(" "),
@@ -47492,70 +47512,79 @@ var render = function() {
               ],
               staticClass: "chat__holder"
             },
-            _vm._l(_vm.messages, function(message, $index) {
-              return _c(
-                "div",
-                {
-                  key: $index,
-                  staticClass: "chat__message",
-                  class: message.sender === true ? "sender" : "receiver"
-                },
-                [
-                  _c("div", { staticClass: "checkbox-item" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.showControlButtons,
-                          expression: "showControlButtons"
+            [
+              _c("infinite-loading", {
+                attrs: { direction: "top", distance: 20 },
+                on: { infinite: _vm.getMessages }
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.messages, function(message, $index) {
+                return _c(
+                  "div",
+                  {
+                    key: $index,
+                    staticClass: "chat__message",
+                    class: message.sender === true ? "sender" : "receiver"
+                  },
+                  [
+                    _c("div", { staticClass: "checkbox-item" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showControlButtons,
+                            expression: "showControlButtons"
+                          }
+                        ],
+                        staticClass: "custom-checkbox",
+                        attrs: { type: "checkbox", id: message.id },
+                        domProps: { checked: message.checked },
+                        on: {
+                          click: function($event) {
+                            return _vm.checkMessage(message.id)
+                          }
                         }
-                      ],
-                      staticClass: "custom-checkbox",
-                      attrs: { type: "checkbox", id: message.id },
-                      domProps: { checked: message.checked },
-                      on: {
-                        click: function($event) {
-                          return _vm.checkMessage(message.id)
-                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.showControlButtons,
+                            expression: "showControlButtons"
+                          }
+                        ],
+                        attrs: { for: message.id }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "chat__decor left__mod",
+                      attrs: {
+                        src: _vm.baseUrl + "/images/message-decor.png",
+                        alt: "#"
                       }
                     }),
                     _vm._v(" "),
-                    _c("label", {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.showControlButtons,
-                          expression: "showControlButtons"
-                        }
-                      ],
-                      attrs: { for: message.id }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "chat__decor left__mod",
-                    attrs: {
-                      src: _vm.baseUrl + "/images/message-decor.png",
-                      alt: "#"
-                    }
-                  }),
-                  _vm._v(" "),
-                  message.isImg == 1 || message.isImg === true
-                    ? _c("p", [
-                        message.isImg == 1 || message.isImg === true
-                          ? _c("img", {
-                              staticClass: "message__img",
-                              attrs: { src: message.body }
-                            })
-                          : _vm._e()
-                      ])
-                    : _c("p", { domProps: { innerHTML: _vm._s(message.body) } })
-                ]
-              )
-            }),
-            0
+                    message.isImg == 1 || message.isImg === true
+                      ? _c("p", [
+                          message.isImg == 1 || message.isImg === true
+                            ? _c("img", {
+                                staticClass: "message__img",
+                                attrs: { src: message.body }
+                              })
+                            : _vm._e()
+                        ])
+                      : _c("p", {
+                          domProps: { innerHTML: _vm._s(message.body) }
+                        })
+                  ]
+                )
+              })
+            ],
+            2
           ),
           _vm._v(" "),
           _c(
@@ -47574,9 +47603,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\n            " +
                   _vm._s(this.contact.full_name) +
-                  " is typing...\n            "
+                  " is typing...\n        "
               )
             ]
           )

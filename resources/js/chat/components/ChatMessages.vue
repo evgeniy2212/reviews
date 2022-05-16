@@ -43,6 +43,9 @@
                 </loader>
             </template>
             <div class="chat__holder" v-chat-scroll="{always: false, smooth: true}">
+                <infinite-loading @infinite="getMessages"
+                                  direction="top"
+                                  :distance="20"></infinite-loading>
                 <div class="chat__message"
                      :class="message.sender === true ? 'sender' : 'receiver'"
                      v-for="(message, $index) in messages" :key="$index">
@@ -67,7 +70,6 @@
                     <p v-else v-html="message.body">
                     </p>
                 </div>
-<!--                <infinite-loading @infinite="getMessages"></infinite-loading>-->
             </div>
             <span v-show="typing"
                   class="help-block"
@@ -153,8 +155,9 @@ export default {
                     console.log('getMessages: ', response.data);
                     var that = this;
                     if(response.data.data.length > 0){
+                        let result = [];
                         response.data.data.forEach(function(item){
-                            that.messages.push({
+                            result.push({
                                 id: item.message_id,
                                 body: item.message,
                                 sender: item.is_sender,
@@ -162,14 +165,14 @@ export default {
                                 checked: false
                             });
                         })
+                        this.messages.unshift(...result.reverse());
                         let lastMessage = this.messages.slice(-1);
                         this.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
-                        console.log('this.$parent.$parent.lastMessageId: ', this.$parent.$parent.lastMessageId);
                         that.isLoadedMessages = false;
-                        // $state.loaded();
+                        $state.loaded();
                     } else {
                         that.isLoadedMessages = false;
-                        // $state.loaded();
+                        $state.complete();
                     }
                 })
                 .catch(function(e) {
