@@ -78,9 +78,9 @@
                 </div>
                 <div class="chat__field-wrap">
                     <div class="chat__field">
-                        <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
+                        <img class="chat__decor left__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
                         <textarea class="chat__textarea js-chat-textarea" placeholder="message"></textarea>
-                        <img class="chat__decor right__mod" src="images/message-decor.png" alt="#">
+                        <img class="chat__decor right__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
                     </div>
                     <button class="btn__emoji js-btn-emoji" type="button">&#128512;</button>
                     <div class="chat__emoji-holder">
