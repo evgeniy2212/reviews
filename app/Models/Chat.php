@@ -31,11 +31,18 @@ class Chat extends Model
             ->whereNotNull('message_id');
     }
 
+    public function getUserUnreadMsgValueByUserId(string $userId = null)
+    {
+        return optional($this->unreadMessages()
+                ->whereUserId($userId ?? auth()->id())
+                ->first())->message_id;
+    }
+
     public function getUserUnreadMsgCntAttribute()
     {
         $lastReadMsgId = optional($this->unreadMessages()
             ->whereUserId(auth()->id())
-            ->first())->message_id;
+            ->first())->message_id ?? optional($this->lastMessage)->id;
         return optional($this->lastMessage)->id - $lastReadMsgId;
     }
 

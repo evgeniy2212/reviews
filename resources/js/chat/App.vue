@@ -70,76 +70,8 @@
                                :new-message="newMessage"
                                :screen="activeScreen"
                                :current-chat-id="currentChatId"></chat-settings>
-<!--                <div class="chat__contact is-online">-->
-<!--                    <span class="chat__name">Ed Lee</span>-->
-<!--                    <span class="chat__status">ON Line</span>-->
-<!--                </div>-->
-<!--                <div class="chat__row">-->
-<!--                    <button class="chat__close" type="button">Send link</button>-->
-<!--                    <button class="chat__close js-edit-chat"-->
-<!--                            @click="setActiveScreen('chat__edit')"-->
-<!--                            type="button">-->
-<!--                        Edit contact-->
-<!--                    </button>-->
-<!--                    <button class="chat__close js-begin-chat"-->
-<!--                            @click="setActiveScreen('chat__wrap')"-->
-<!--                            type="button">-->
-<!--                        Open chat-->
-<!--                    </button>-->
-<!--                    <button class="chat__close js-open-delete"-->
-<!--                            @click="setActiveScreen('chat__delete')"-->
-<!--                            type="button">-->
-<!--                        Delete contact-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <button class="chat__close"-->
-<!--                        @click="setActiveScreen('chat__inner')"-->
-<!--                        type="button">-->
-<!--                    Close-->
-<!--                </button>-->
-<!--                <chat-messages v-show="activeScreen === 'chat__wrap'"-->
-<!--                               :new-message="newMessage"-->
-<!--                               :screen="activeScreen"-->
-<!--                               :chat-id="currentChatId"></chat-messages>-->
-<!--                <div class="chat__edit"-->
-<!--                     :class="activeScreen === 'chat__edit' ? 'is-active' : ''">-->
-<!--                    <p class="chat__subtitle">Edit contact</p>-->
-<!--                    <input class="form-control input" type="text" placeholder="Edit chat">-->
-<!--                    <button class="chat__close js-close-edit" type="button">Edit</button>-->
-<!--                    <button class="chat__close js-close-edit" type="button">Close</button>-->
-<!--                </div>-->
-<!--                <div class="chat__delete">-->
-<!--                    <p class="chat__subtitle">Delete contact</p>-->
-<!--                    <input class="form-control input" type="text" placeholder="Edit chat">-->
-<!--                    <button class="chat__close" type="button">Delete</button>-->
-<!--                    <button class="chat__close js-close-chat-delete"-->
-<!--                            @click="setActiveScreen('chat__wrap')"-->
-<!--                            type="button">-->
-<!--                        Close-->
-<!--                    </button>-->
-<!--                </div>-->
             </div>
             <create-contact v-show="activeScreen === 'chat__create'"></create-contact>
-<!--            <div class="chat__create"-->
-<!--                 :class="activeScreen === 'chat__create' ? 'is-active' : ''">-->
-<!--                <div class="chat__inputs">-->
-<!--                    <input class="chat__input" type="text" placeholder="First Name">-->
-<!--                    <input class="chat__input" type="text" placeholder="Last Name">-->
-<!--                    <input class="chat__input" type="email" placeholder="Email">-->
-<!--                </div>-->
-<!--                <div class="chat__buttons">-->
-<!--                    <button class="chat__close"-->
-<!--                            @click="createContact"-->
-<!--                            type="button">-->
-<!--                        Invite-->
-<!--                    </button>-->
-<!--                    <button class="chat__close"-->
-<!--                            @click="setActiveScreen('')"-->
-<!--                            type="button">-->
-<!--                        Close-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
         </div>
         <button class="chat__open"
                 @click="toggleChat"

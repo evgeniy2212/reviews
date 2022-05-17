@@ -35,16 +35,14 @@
         @include('includes.modal.successMessage')
         @include('includes.modal.addPostRedirect')
         @yield('modal_forms')
-        <div id="chatApp"></div>
+        @auth()
+            <div id="chatApp"></div>
+        @else
+            @include('includes.chat')
+        @endauth
     </main>
     @include('includes.footer')
 </div>
-{{--<div id="chatApp"></div>--}}
-{{--<div id="imageModal" class="image-modal">--}}
-{{--    <span class="closeImageModal">&times;</span>--}}
-{{--    <img class="image-modal-content" id="img01">--}}
-{{--    <div id="caption"></div>--}}
-{{--</div>--}}
 @include('includes.share')
 @include('includes.modal.sliderBodyModal')
 @include('includes.modal.instructions')

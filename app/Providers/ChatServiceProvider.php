@@ -235,6 +235,14 @@ class ChatServiceProvider
         foreach ($chat->chatUsers as $chatUser) {
             if ($chatUser->user_id != auth()->id()) {
                 $this->notifiableUser = User::find($chatUser->user_id);
+                if(
+                    $chat->getUserUnreadMsgValueByUserId($this->notifiableUser) === null
+                ){
+                    $lastMsg = $this->message->id > 1 ? $this->message->id - 1 : 1;
+                    MessageUser::whereChatId($chat->id)
+                        ->whereUserId($this->notifiableUser->id)
+                        ->update(['message_id' => $lastMsg]);
+                }
                 ChatMessage::dispatch($chat->id, $this->message);
                 ChatList::dispatch($chatUser->user_id, $this->message);
                 ClientUnreadMessages::dispatch($chat->id, $chatUser->user_id);
@@ -337,17 +345,15 @@ class ChatServiceProvider
      */
     public function setUnreadMessage(array $validated): MessageUser
     {
-        return MessageUser::updateOrCreate(
-            [
-                'chat_id' => $validated['chat_id'],
-                'user_id' => empty($validated['user_id'])
+        $messageUser = MessageUser::whereChatId($validated['chat_id'])
+            ->whereUserId(
+                empty($validated['user_id'])
                     ? auth()->id()
-                    : $validated['user_id']
-            ],
-            [
-                'message_id' => $validated['message_id']
-            ]
-        );
+                    : Arr::get($validated, 'user_id')
+            )->first();
+        $messageUser->update(['message_id' => $validated['message_id']]);
+
+        return $messageUser;
     }
 
     /**
@@ -355,9 +361,13 @@ class ChatServiceProvider
      */
     public function deleteUnreadStatusMessage(array $validated)
     {
-        MessageUser::whereUserId(auth()->id())
-            ->whereChatId($validated['chat_id'])
-            ->delete();
+        MessageUser::whereChatId($validated['chat_id'])
+            ->whereUserId(
+                empty($validated['user_id'])
+                    ? auth()->id()
+                    : Arr::get($validated, 'user_id')
+            )
+            ->update(['message_id' => null]);
 
         $chat = Chat::with('chatUsers')
             ->find($validated['chat_id']);

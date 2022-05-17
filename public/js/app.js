@@ -2004,74 +2004,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -47099,7 +47031,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n                Contacts\n            ")]
+            [_vm._v("\n            Contacts\n        ")]
           ),
           _vm._v(" "),
           _c(
@@ -47113,7 +47045,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n                Create contact\n            ")]
+            [_vm._v("\n            Create contact\n        ")]
           ),
           _vm._v(" "),
           _c("chat-list", {
@@ -47134,7 +47066,7 @@ var render = function() {
               attrs: { type: "button" },
               on: { click: _vm.toggleChat }
             },
-            [_vm._v("\n                Close\n            ")]
+            [_vm._v("\n            Close\n        ")]
           ),
           _vm._v(" "),
           _c(
@@ -47164,9 +47096,9 @@ var render = function() {
                     [
                       _c("span", { staticClass: "chat__name" }, [
                         _vm._v(
-                          "\n                            " +
+                          "\n                        " +
                             _vm._s(contact.full_name) +
-                            "\n                        "
+                            "\n                    "
                         )
                       ]),
                       _vm._v(" "),
@@ -47178,11 +47110,11 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                            " +
+                            "\n                        " +
                               _vm._s(
                                 contact.status === 1 ? "online" : "offline"
                               ) +
-                              "\n                        "
+                              "\n                    "
                           )
                         ]
                       )
@@ -47203,7 +47135,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                    Close\n                ")]
+                [_vm._v("\n                Close\n            ")]
               )
             ]
           ),
@@ -47272,7 +47204,7 @@ var render = function() {
                 _c("path", {
                   attrs: {
                     d:
-                      "M32,3C15.4,3,0,16.2,0,30c0,7.8,6.3,14.7,13,19.3c-0.1,1.2-0.9,5.3-5.7,9.8c-0.7,0.7-0.2,1.8,0.8,1.7\n                        c8.6-1,15.5-5.8,16.7-6.7c1.4,0.3,4.6,0.8,7.2,0.8c16.6,0,32-11.2,32-25S48.6,3,32,3z"
+                      "M32,3C15.4,3,0,16.2,0,30c0,7.8,6.3,14.7,13,19.3c-0.1,1.2-0.9,5.3-5.7,9.8c-0.7,0.7-0.2,1.8,0.8,1.7\n                    c8.6-1,15.5-5.8,16.7-6.7c1.4,0.3,4.6,0.8,7.2,0.8c16.6,0,32-11.2,32-25S48.6,3,32,3z"
                   }
                 })
               ]
@@ -61108,12 +61040,77 @@ Vue.prototype.authId = window.Laravel.authId;
 
 Vue.use(vue_ui_preloader__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_1___default.a);
-var app = new Vue({
-  el: '#chatApp',
-  render: function render(h) {
-    return h(_chat_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  }
-});
+
+if (window.Laravel.authId.length > 0) {
+  console.log('auth: ', window.Laravel.authId.length > 0);
+  var app = new Vue({
+    el: '#chatApp',
+    render: function render(h) {
+      return h(_chat_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    }
+  });
+} else {
+  $(document).ready(function () {
+    sessionStorage.setItem('slider_enable', false);
+    $('.js-open-chat').on('click', function () {
+      $('.chat').toggleClass('is-active');
+    });
+    $('.js-close-chat').on('click', function () {
+      $('.chat').removeClass('is-active');
+    });
+    $('.js-contacts').on('click', function () {
+      $('.chat__inner').addClass('is-active');
+    });
+    $('.js-create-contact').on('click', function () {
+      $('.chat__create').addClass('is-active');
+    });
+    $('.js-chat-contact').on('click', function () {
+      $('.chat__settings').addClass('is-active');
+    });
+    $('.js-close-create').on('click', function () {
+      $(this).closest('.chat__create').removeClass('is-active');
+    });
+    $('.js-close-settings').on('click', function (e) {
+      e.stopPropagation(); // $('.chat__inner').removeClass('is-active');
+
+      $(this).closest('.chat__settings').removeClass('is-active');
+    });
+    $('.js-begin-chat').on('click', function () {
+      $(this).closest('.chat__settings').find('.chat__wrap').addClass('is-active');
+    });
+    $('.js-close-messages').on('click', function () {
+      $(this).closest('.chat__settings').find('.chat__wrap').removeClass('is-active');
+    });
+    $('.js-edit-chat').on('click', function () {
+      $('.chat__settings').find('.chat__edit').addClass('is-active');
+    });
+    $('.js-edit-chat').on('click', function () {
+      $('.chat__settings').find('.chat__edit').addClass('is-active');
+    });
+    $('.js-close-chat-delete').on('click', function () {
+      $(this).closest('.chat__delete').removeClass('is-active');
+    });
+    $('.js-open-delete').on('click', function () {
+      $('.chat__settings').find('.chat__delete').addClass('is-active');
+    });
+    $('.js-close-edit').on('click', function () {
+      $(this).closest('.chat__edit').removeClass('is-active');
+    });
+    $('.js-close-chat-contacts').on('click', function () {
+      $('.chat__inner').removeClass('is-active');
+    });
+    $('.js-btn-emoji').on('click', function () {
+      $(this).closest('.chat__field-wrap').find('.chat__emoji-holder').toggleClass('is-show');
+    });
+    $('.js-show-btns').on('click', function () {
+      $(this).siblings().fadeIn();
+    });
+    $('.js-select-all').on('click', function () {
+      $(this).closest('.chat__buttons').siblings('.chat__window').find('input').prop('checked', true); // $(this).closest('.chat__buttons').siblings('.chat__window').find('input').attr('checked', true);;
+    });
+    $('.js-delete-messages').on('click', function () {});
+  });
+}
 
 /***/ }),
 

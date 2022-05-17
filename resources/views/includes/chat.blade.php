@@ -3,25 +3,19 @@
         <button class="chat__btn js-contacts" type="button">Contacts</button>
         <button class="chat__btn js-create-contact" type="button">Create contact</button>
         <div class="chats">
-            <div class="chat__contact js-chat-contact">
+            <div class="chat__contact is-online js-begin-chat">
                 <span class="chat__name">Nancy Lurence</span>
-                <span class="chat__status">dasdasd</span>
-                <span class="chat__count">23</span>
+                <span class="chat__status">online</span>
+                <span class="chat__count">5</span>
             </div>
-            <div class="chat__contact js-chat-contact">
-                <span class="chat__name">Nancy Lurence</span>
-                <span class="chat__status">asdsad</span>
-                <span class="chat__count">23</span>
+            <div class="chat__contact is-online js-begin-chat">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">online</span>
+                <span class="chat__count">25</span>
             </div>
-            <div class="chat__contact js-chat-contact">
-                <span class="chat__name">Nancy Lurence</span>
-                <span class="chat__status">asdsad</span>
-                <span class="chat__count">23</span>
-            </div>
-            <div class="chat__contact js-chat-contact">
-                <span class="chat__name">Nancy Lurence</span>
-                <span class="chat__status">asdsadasd</span>
-                <span class="chat__count">23</span>
+            <div class="chat__contact js-begin-chat">
+                <span class="chat__name">Bill Green</span>
+                <span class="chat__status">offline</span>
             </div>
         </div>
         <button class="chat__close js-close-chat" type="button">Close</button>
@@ -29,79 +23,18 @@
             <div class="chat__contacts">
                 <div class="chat__contact is-online js-chat-contact">
                     <span class="chat__name">Bill Green</span>
-                    <span class="chat__status">ON Line</span>
+                    <span class="chat__status">online</span>
                 </div>
-                <div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div>
-                <div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div>
-                <div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div>
-                <div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div>
-                <div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div>
-                <div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div><div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div>
-                <div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div><div class="chat__contact js-chat-contact">
-                    <span class="chat__name">Nancy Lurence</span>
-                    <span class="chat__status"></span>
-                </div>
-                <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">ON Line</span>
-                </div>
-
+                @for($i=1;$i<=10;$i++)
+                    <div class="chat__contact js-chat-contact">
+                        <span class="chat__name">Nancy Lurence</span>
+                        <span class="chat__status">offline</span>
+                    </div>
+                    <div class="chat__contact is-online js-chat-contact">
+                        <span class="chat__name">Ed Lee</span>
+                        <span class="chat__status">online</span>
+                    </div>
+                @endfor
             </div>
             <button class="chat__close js-close-chat-contacts" type="button">Close</button>
         </div>
@@ -129,46 +62,18 @@
                 </div>
                 <div class="chat__window">
                     <div class="chat__holder">
-                        <div class="chat__message receiver">
-                            <div class="checkbox-item">
-                                <input type="checkbox"
-                                       class="custom-checkbox"
-                                        id="messageTest1">
-                                <label for="messageTest1"></label>
+                        @for($i=1;$i<=4;$i++)
+                            <div class="chat__message receiver">
+                                <div class="checkbox-item">
+                                    <input type="checkbox"
+                                           class="custom-checkbox"
+                                           id="messageTest1">
+                                    <label for="messageTest1"></label>
+                                </div>
+                                <img class="chat__decor left__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
+                                <p>Receiver message</p>
                             </div>
-                            <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
-                            <p>Receiver message</p>
-                        </div>
-                        <div class="chat__message sender">
-                            <div class="checkbox-item">
-                                <input type="checkbox"
-                                       class="custom-checkbox"
-                                       id="messageTest2">
-                                <label for="messageTest2"></label>
-                            </div>
-                            <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
-                            <p>Receiver message</p>
-                        </div>
-                        <div class="chat__message receiver">
-                            <div class="checkbox-item">
-                                <input type="checkbox"
-                                       class="custom-checkbox"
-                                       id="messageTest3">
-                                <label for="messageTest3"></label>
-                            </div>
-                            <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
-                            <p>Receiver message</p>
-                        </div>
-                        <div class="chat__message receiver">
-                            <div class="checkbox-item">
-                                <input type="checkbox"
-                                       class="custom-checkbox"
-                                       id="messageTest4">
-                                <label for="messageTest4"></label>
-                            </div>
-                            <img class="chat__decor left__mod" src="images/message-decor.png" alt="#">
-                            <p>Receiver message</p>
-                        </div>
+                        @endfor
                     </div>
                 </div>
                 <div class="chat__field-wrap">
@@ -179,54 +84,12 @@
                     </div>
                     <button class="btn__emoji js-btn-emoji" type="button">&#128512;</button>
                     <div class="chat__emoji-holder">
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
-                        <span class="chat__emoji">&#128512;</span>
+                        <span class="chat__emoji">
+                            @for($i=1;$i<=24;$i++)
+                                <img src="{{ asset('/images/emoji_' . $i . '.png') }}"
+                                     style="width: auto;height: 32px">
+                            @endfor
+                        </span>
                     </div>
                 </div>
                 <div class="chat__buttons">
@@ -237,14 +100,34 @@
             <div class="chat__edit">
                 <p class="chat__subtitle">Edit contact</p>
                 <input class="form-control input" type="text" placeholder="Edit chat">
-                <button class="chat__close js-close-edit" type="button">Edit</button>
-                <button class="chat__close js-close-edit" type="button">Close</button>
+                <div class="chat__buttons">
+                    <button class="chat__close"
+                            style="margin-bottom: 0px"
+                            type="submit">
+                        Edit
+                    </button>
+                    <button class="chat__close js-close-edit"
+                            style="margin-bottom: 0px"
+                            type="button">
+                        Close
+                    </button>
+                </div>
             </div>
             <div class="chat__delete">
                 <p class="chat__subtitle">Delete contact</p>
                 <input class="form-control input" type="text" placeholder="Edit chat">
-                <button class="chat__close" type="button">Delete</button>
-                <button class="chat__close js-close-chat-delete" type="button">Close</button>
+                <div class="chat__buttons">
+                    <button class="chat__close"
+                            style="margin-bottom: 0px"
+                            type="submit">
+                        Delete
+                    </button>
+                    <button class="chat__close js-close-chat-delete"
+                            style="margin-bottom: 0px"
+                            type="button">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
         <div class="chat__create">
