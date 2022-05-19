@@ -67,9 +67,6 @@ class ChatController extends Controller
      */
     public function getChats(): AnonymousResourceCollection
     {
-        Log::info(__METHOD__, []);
-        Log::info(__METHOD__, [auth()->user()]);
-        Log::info(__METHOD__ . ' ACTIVE CHATS: ', [auth()->user()->chats]);
         return ChatResource::collection(
             auth()->user()->chats
         );
@@ -81,9 +78,6 @@ class ChatController extends Controller
      */
     public function getContacts(): AnonymousResourceCollection
     {
-        Log::info(__METHOD__, []);
-        Log::info(__METHOD__, [auth()->user()]);
-        Log::info(__METHOD__ . ' ACTIVE CONTACTS: ', [auth()->user()->active_contacts]);
         return UserContactsResource::collection(
             auth()->user()->active_contacts
         );
