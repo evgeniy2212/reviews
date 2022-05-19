@@ -78,6 +78,7 @@ class ChatController extends Controller
      */
     public function getContacts(): AnonymousResourceCollection
     {
+        Log::info(__METHOD__, []);
         Log::info(__METHOD__, [auth()->user()]);
         Log::info(__METHOD__ . ' ACTIVE CONTACTS: ', [auth()->user()->active_contacts]);
         return UserContactsResource::collection(
