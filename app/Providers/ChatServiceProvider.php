@@ -315,11 +315,9 @@ class ChatServiceProvider
      */
     public function approveContact(string $token)
     {
-        Log::info(__METHOD__, [$token]);
         $contact = User::whereHas('contacts', function($q) use($token){
             return $q->where('token', $token);
         })->firstOrFail();
-        Log::info(__METHOD__ . ' Contact: ', [$contact]);
         $contactUser = $contact->contacts()
             ->wherePivot('token', $token)
             ->first();

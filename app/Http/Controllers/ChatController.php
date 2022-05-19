@@ -21,6 +21,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class ChatController extends Controller
 {
@@ -77,6 +78,7 @@ class ChatController extends Controller
      */
     public function getContacts(): AnonymousResourceCollection
     {
+        Log::info(__METHOD__, [auth()->user(), auth()->user()->active_contacts]);
         return UserContactsResource::collection(
             auth()->user()->active_contacts
         );
