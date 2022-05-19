@@ -35,7 +35,7 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '82b53cc0e6b66c4eec4e',
+    key: 'b5a58a703a2d25f8395e',
     cluster: 'eu',
     forceTLS: true,
     csrfToken: window.Laravel.csrfToken,
