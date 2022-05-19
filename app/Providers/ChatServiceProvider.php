@@ -345,13 +345,12 @@ class ChatServiceProvider
      */
     public function setUnreadMessage(array $validated): MessageUser
     {
-        $messageUser = MessageUser::whereChatId($validated['chat_id'])
-            ->whereUserId(
-                empty($validated['user_id'])
-                    ? auth()->id()
-                    : Arr::get($validated, 'user_id')
-            )->first();
-        $messageUser->update(['message_id' => $validated['message_id']]);
+        $messageUser = MessageUser::firstOrCreate([
+            'chat_id' => $validated['chat_id'],
+            'user_id' => auth()->id()
+        ]);
+        $messageUser->message_id = $validated['message_id'];
+        $messageUser->save();
 
         return $messageUser;
     }

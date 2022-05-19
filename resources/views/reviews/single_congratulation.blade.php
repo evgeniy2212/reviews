@@ -24,17 +24,17 @@
         <div class="single-review-review">
             <p>
                 <span class="single-review-holder">
-                  @if($review->video)
-                      <video class="videoPreview" style="object-fit: cover" controls>
-                          <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
-                          <source src="movie.ogg" type="video/ogg">
-                          Your browser does not support the video tag.
-                      </video>
-                  @else
-                      <img src="{{ asset('storage/images/default_img_video.png') }}"
-                           alt="photo"
-                           class="videoPreview">
-                  @endif
+                    @if($review->video)
+                        <video class="videoPreview" style="object-fit: cover" controls>
+                            <source src="{{ $review->video->getVideoUrl() }}" type="video/mp4">
+                            <source src="movie.ogg" type="video/ogg">
+                            Your browser does not support the video tag.
+                        </video>
+                    @else
+                        <img src="{{ asset('storage/images/default_img_video.png') }}"
+                             alt="photo"
+                             class="videoPreview">
+                   @endif
                   @if($review->image)
                       <img src="{{ $review->image->getResizeImageUrl('congratulations') }}"
                            alt=""
@@ -46,23 +46,26 @@
                       <img src="{{ asset('storage/images/default_img.png') }}"
                            alt=""
                           class="previewImage">
-                  @endif<div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
-                @auth()
-                    <a type="button"
-                       href="{{ Request::url() === route('show-congratulation', [$review->id]) ? url()->previous() : route('show-congratulation', [$review->id]) }}"
-                       class="otherButton"
-                       style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
-                       id="showButton-{{ $review->id }}">
-                        {{ Request::url() === route('show-congratulation', [$review->id]) ? __('service/index.close') : __('service/index.open') }}
-                    </a>
-                @endauth
-            </div>
-                </span>
+                  @endif
+            </span>
                 @if($review->category)
                     <span class="congratulation-category">{{ $review->category->title }}</span><br>
                 @endif
                     {!! $review->body !!}
             </p>
+            <div class="w-100">
+                <div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
+                    @auth()
+                        <a type="button"
+                           href="{{ Request::url() === route('show-congratulation', [$review->id]) ? url()->previous() : route('show-congratulation', [$review->id]) }}"
+                           class="otherButton"
+                           style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
+                           id="showButton-{{ $review->id }}">
+                            {{ Request::url() === route('show-congratulation', [$review->id]) ? __('service/index.close') : __('service/index.open') }}
+                        </a>
+                    @endauth
+                </div>
+            </div>
         </div>
     </div>
 </div>
