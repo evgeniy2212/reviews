@@ -21,7 +21,6 @@ class PersonalInfoController extends Controller
     }
 
     public function index(){
-        Log::info(__METHOD__, [auth()->user()->active_contacts]);
         $user_info = $this->profileRepository->getProfileInfo();
         $countries = (new Country())->getCountriesContainRegions();
 
