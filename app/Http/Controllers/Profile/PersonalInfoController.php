@@ -6,6 +6,7 @@ use App\Http\Requests\Profile\PersonalInfoRequest;
 use App\Models\Country;
 use App\Http\Repositories\ProfileRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class PersonalInfoController extends Controller
 {
@@ -20,6 +21,7 @@ class PersonalInfoController extends Controller
     }
 
     public function index(){
+        Log::info(__METHOD__);
         $user_info = $this->profileRepository->getProfileInfo();
         $countries = (new Country())->getCountriesContainRegions();
 
