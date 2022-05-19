@@ -1,6 +1,6 @@
 <template>
     <div class="chat__wrapper"
-         :style="showChat ? 'z-index: 1' : ''">
+         :style="showChat ? 'z-index: 7' : ''">
         <div class="chat is-active"
              v-show="showChat">
             <template>

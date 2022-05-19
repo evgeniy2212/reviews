@@ -21,6 +21,7 @@ if(window.Laravel.authId.length > 0){
         sessionStorage.setItem('slider_enable', false);
         $('.js-open-chat').on('click', function () {
             $('.chat').toggleClass('is-active');
+            $('.chat__wrapper').toggleClass('is-active');
         });
         $('.js-close-chat').on('click', function () {
             $('.chat').removeClass('is-active');
@@ -43,11 +44,11 @@ if(window.Laravel.authId.length > 0){
             $(this).closest('.chat__settings').removeClass('is-active');
         });
         $('.js-begin-chat').on('click', function () {
-            $(this).closest('.chat__settings').find('.chat__wrap').addClass('is-active');
+            $(this).closest('.chat').find('.chat__wrap').addClass('is-active');
         });
 
         $('.js-close-messages').on('click', function () {
-            $(this).closest('.chat__settings').find('.chat__wrap').removeClass('is-active');
+            $(this).closest('.chat').find('.chat__wrap').removeClass('is-active');
         });
         $('.js-edit-chat').on('click', function () {
             $('.chat__settings').find('.chat__edit').addClass('is-active');

@@ -50,53 +50,6 @@
                 <button class="chat__close js-open-delete" type="button">Delete contact</button>
             </div>
             <button class="chat__close js-close-settings" type="button">Close</button>
-            <div class="chat__wrap">
-                <div class="chat__contact is-online">
-                    <span class="chat__name">Ed Lee</span>
-                    <span class="chat__status">Connected</span>
-                </div>
-                <div class="chat__buttons three__mod">
-                    <button class="chat__close js-show-btns" type="button">Edit</button>
-                    <button class="chat__close js-select-all" type="button" style="display: none;">Select all</button>
-                    <button class="chat__close js-delete-messages" type="button" style="display: none;">Delete</button>
-                </div>
-                <div class="chat__window">
-                    <div class="chat__holder">
-                        @for($i=1;$i<=4;$i++)
-                            <div class="chat__message receiver">
-                                <div class="checkbox-item">
-                                    <input type="checkbox"
-                                           class="custom-checkbox"
-                                           id="messageTest1">
-                                    <label for="messageTest1"></label>
-                                </div>
-                                <img class="chat__decor left__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
-                                <p>Receiver message</p>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-                <div class="chat__field-wrap">
-                    <div class="chat__field">
-                        <img class="chat__decor left__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
-                        <textarea class="chat__textarea js-chat-textarea" placeholder="message"></textarea>
-                        <img class="chat__decor right__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
-                    </div>
-                    <button class="btn__emoji js-btn-emoji" type="button">&#128512;</button>
-                    <div class="chat__emoji-holder">
-                        <span class="chat__emoji">
-                            @for($i=1;$i<=24;$i++)
-                                <img src="{{ asset('/images/emoji_' . $i . '.png') }}"
-                                     style="width: auto;height: 32px">
-                            @endfor
-                        </span>
-                    </div>
-                </div>
-                <div class="chat__buttons">
-                    <button class="chat__close js-close-messages" type="button">Close</button>
-                    <button class="chat__close" type="button">Send</button>
-                </div>
-            </div>
             <div class="chat__edit">
                 <p class="chat__subtitle">Edit contact</p>
                 <input class="form-control input" type="text" placeholder="Edit chat">
@@ -139,6 +92,53 @@
             <div class="chat__buttons">
                 <button class="chat__close" type="button">Invite</button>
                 <button class="chat__close js-close-create" type="button">Close</button>
+            </div>
+        </div>
+        <div class="chat__wrap">
+            <div class="chat__contact is-online">
+                <span class="chat__name">Ed Lee</span>
+                <span class="chat__status">Connected</span>
+            </div>
+            <div class="chat__buttons three__mod">
+                <button class="chat__close js-show-btns" type="button">Edit</button>
+                <button class="chat__close js-select-all" type="button" style="display: none;">Select all</button>
+                <button class="chat__close js-delete-messages" type="button" style="display: none;">Delete</button>
+            </div>
+            <div class="chat__window">
+                <div class="chat__holder">
+                    @for($i=1;$i<=4;$i++)
+                        <div class="chat__message receiver">
+                            <div class="checkbox-item">
+                                <input type="checkbox"
+                                       class="custom-checkbox"
+                                       id="messageTest1">
+                                <label for="messageTest1"></label>
+                            </div>
+                            <img class="chat__decor left__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
+                            <p>Receiver message</p>
+                        </div>
+                    @endfor
+                </div>
+            </div>
+            <div class="chat__field-wrap">
+                <div class="chat__field">
+                    <img class="chat__decor left__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
+                    <textarea class="chat__textarea js-chat-textarea" placeholder="message"></textarea>
+                    <img class="chat__decor right__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
+                </div>
+                <button class="btn__emoji js-btn-emoji" type="button">&#128512;</button>
+                <div class="chat__emoji-holder">
+                        <span class="chat__emoji">
+                            @for($i=1;$i<=24;$i++)
+                                <img src="{{ asset('/images/emoji_' . $i . '.png') }}"
+                                     style="width: auto;height: 32px">
+                            @endfor
+                        </span>
+                </div>
+            </div>
+            <div class="chat__buttons">
+                <button class="chat__close js-close-messages" type="button">Close</button>
+                <button class="chat__close" type="button">Send</button>
             </div>
         </div>
     </div>
