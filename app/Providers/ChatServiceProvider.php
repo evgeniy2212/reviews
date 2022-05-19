@@ -16,6 +16,7 @@ use App\Notifications\User\NewMessageNotification;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -314,9 +315,11 @@ class ChatServiceProvider
      */
     public function approveContact(string $token)
     {
+        Log::info(__METHOD__, [$token]);
         $contact = User::whereHas('contacts', function($q) use($token){
             return $q->where('token', $token);
         })->firstOrFail();
+        Log::info(__METHOD__ . ' Contact: ', [$contact]);
         $contactUser = $contact->contacts()
             ->wherePivot('token', $token)
             ->first();
