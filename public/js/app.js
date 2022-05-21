@@ -2121,9 +2121,10 @@ __webpack_require__.r(__webpack_exports__);
       window.Echo.channel('chat_' + this.currentChatId).stopListening('.chat_' + this.currentChatId);
     },
     leaveChat: function leaveChat() {
+      var chatId = this.currentChatId;
       this.currentChatId = '';
       return axios.post('/api/chat/messages/leave', {
-        chat_id: this.currentChatId,
+        chat_id: chatId,
         message_id: this.lastMessageId
       })["catch"](function (e) {
         console.log('error: ', e);

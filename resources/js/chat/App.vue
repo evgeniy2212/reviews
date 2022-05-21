@@ -203,10 +203,11 @@ export default {
                 .stopListening('.chat_' + this.currentChatId);
         },
         leaveChat(){
+            const chatId = this.currentChatId
             this.currentChatId = '';
             return axios.post('/api/chat/messages/leave',
                 {
-                    chat_id: this.currentChatId,
+                    chat_id: chatId,
                     message_id: this.lastMessageId
                 })
                 .catch(function(e) {
