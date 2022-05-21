@@ -51,6 +51,7 @@ class CreateChatMessagesTable extends Migration
         });
 
         Schema::create('message_users', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('chat_id')->unsigned();
             $table->bigInteger('message_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
@@ -59,10 +60,6 @@ class CreateChatMessagesTable extends Migration
             $table->foreign('chat_id')
                 ->references('id')
                 ->on('chats')
-                ->onDelete('cascade');
-            $table->foreign('message_id')
-                ->references('id')
-                ->on('chat_messages')
                 ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')
