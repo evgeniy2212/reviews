@@ -2054,11 +2054,9 @@ __webpack_require__.r(__webpack_exports__);
       this.activeScreen = className;
     },
     setActiveContact: function setActiveContact(contact) {
-      console.log('setActiveContact: ', contact);
       this.activeContact = contact;
     },
     setCurrentChat: function setCurrentChat(chatId) {
-      console.log('setCurrentChat: ', chatId);
       this.currentChatId = chatId;
       this.enterChat(chatId);
       this.listenChat();
@@ -2123,7 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
       window.Echo.channel('chat_' + this.currentChatId).stopListening('.chat_' + this.currentChatId);
     },
     leaveChat: function leaveChat() {
-      console.log('leaveChat lastMessageId: ', this.lastMessageId);
+      this.currentChatId = '';
       return axios.post('/api/chat/messages/leave', {
         chat_id: this.currentChatId,
         message_id: this.lastMessageId
@@ -2280,11 +2278,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     listenUnreadMessagesChats: function listenUnreadMessagesChats() {
-      var _this2 = this;
-
       var that = this;
       window.Echo.channel('client_unread' + this.authId).listen('.client_unread' + this.authId, function (message) {
-        console.log('listenUnreadMessagesChats: ', message.data, _this2.authId);
         var chat = that.chats.find(function (obj) {
           return obj.id == message.data;
         });
@@ -2408,6 +2403,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2427,7 +2423,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       deleteMessageIds: [],
       deleteMessagePositions: [],
       typing: false,
-      timer: {}
+      timer: {},
+      distance: -10
     };
   },
   provide: function provide() {
@@ -2438,8 +2435,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   watch: {
     chatId: function chatId(newVal) {
+      this.isLoadedMessages = true;
       this.messagesmessages = [];
       this.currentChatId = newVal;
+      this.pageId = 0;
+      this.messages = [];
       this.getMessages();
 
       var _this = this;
@@ -2468,16 +2468,58 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   methods: {
-    getMessages: function getMessages($state) {
+    getMessages: function getMessages() {
       var _this2 = this;
 
+      if (this.chatId !== '') {
+        console.log('getMessages FIRST: ', this.chatId);
+        this.pageId = this.pageId + 1;
+        var that = this;
+        return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId).then(function (response) {
+          if (response.data.data.length > 0) {
+            var _this2$messages;
+
+            var result = [];
+            response.data.data.forEach(function (item) {
+              result.push({
+                id: item.message_id,
+                body: item.message,
+                sender: item.is_sender,
+                isImg: item.is_media,
+                checked: false
+              });
+            });
+
+            (_this2$messages = _this2.messages).unshift.apply(_this2$messages, _toConsumableArray(result.reverse()));
+
+            var lastMessage = _this2.messages.slice(-1);
+
+            _this2.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
+            that.isLoadedMessages = false;
+            that.distance = 1;
+          } else {
+            that.isLoadedMessages = false;
+          }
+        })["catch"](function (e) {
+          console.log('error: ', e);
+        });
+      } else {
+        console.log('getMessages FIRST: ', this.chatId);
+        this.isLoadedMessages = false;
+        this.distance = -10;
+      }
+    },
+    infiniteHandler: function infiniteHandler($state) {
+      var _this3 = this;
+
+      console.log('infiniteHandler FIRST: ', this.chatId);
       this.pageId = this.pageId + 1;
+      var that = this;
       return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId).then(function (response) {
-        console.log('getMessages: ', response.data);
-        var that = _this2;
+        console.log('infiniteHandler: ', response.data);
 
         if (response.data.data.length > 0) {
-          var _this2$messages;
+          var _this3$messages;
 
           var result = [];
           response.data.data.forEach(function (item) {
@@ -2490,11 +2532,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             });
           });
 
-          (_this2$messages = _this2.messages).unshift.apply(_this2$messages, _toConsumableArray(result.reverse()));
+          (_this3$messages = _this3.messages).unshift.apply(_this3$messages, _toConsumableArray(result.reverse()));
 
-          var lastMessage = _this2.messages.slice(-1);
+          var lastMessage = _this3.messages.slice(-1);
 
-          _this2.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
+          _this3.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
           that.isLoadedMessages = false;
           $state.loaded();
         } else {
@@ -47515,8 +47557,12 @@ var render = function() {
             },
             [
               _c("infinite-loading", {
-                attrs: { direction: "top", distance: 20 },
-                on: { infinite: _vm.getMessages }
+                attrs: {
+                  identifier: _vm.chatId,
+                  direction: "top",
+                  distance: _vm.distance
+                },
+                on: { infinite: _vm.infiniteHandler }
               }),
               _vm._v(" "),
               _vm._l(_vm.messages, function(message, $index) {

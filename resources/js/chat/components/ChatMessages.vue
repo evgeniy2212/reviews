@@ -43,9 +43,10 @@
                 </loader>
             </template>
             <div class="chat__holder" v-chat-scroll="{always: false, smooth: true}">
-                <infinite-loading @infinite="getMessages"
+                <infinite-loading @infinite="infiniteHandler"
+                                  :identifier="chatId"
                                   direction="top"
-                                  :distance="20"></infinite-loading>
+                                  :distance="distance"></infinite-loading>
                 <div class="chat__message"
                      :class="message.sender === true ? 'sender' : 'receiver'"
                      v-for="(message, $index) in messages" :key="$index">
@@ -107,7 +108,8 @@ export default {
             deleteMessageIds: [],
             deleteMessagePositions: [],
             typing: false,
-            timer: {}
+            timer: {},
+            distance: -10
         }
     },
     provide() {
@@ -118,8 +120,11 @@ export default {
     },
     watch: {
         chatId(newVal){
+            this.isLoadedMessages = true;
             this.messagesmessages = []
             this.currentChatId = newVal;
+            this.pageId = 0;
+            this.messages = [];
             this.getMessages();
             let _this = this;
             window.Echo.private('typing-' + this.currentChatId)
@@ -147,37 +152,74 @@ export default {
         }
     },
     methods: {
-        getMessages($state)
+        getMessages()
         {
-            this.pageId = this.pageId + 1;
-            return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId)
-                .then(response => {
-                    console.log('getMessages: ', response.data);
-                    var that = this;
-                    if(response.data.data.length > 0){
-                        let result = [];
-                        response.data.data.forEach(function(item){
-                            result.push({
-                                id: item.message_id,
-                                body: item.message,
-                                sender: item.is_sender,
-                                isImg: item.is_media,
-                                checked: false
-                            });
-                        })
-                        this.messages.unshift(...result.reverse());
-                        let lastMessage = this.messages.slice(-1);
-                        this.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
-                        that.isLoadedMessages = false;
-                        $state.loaded();
-                    } else {
-                        that.isLoadedMessages = false;
-                        $state.complete();
-                    }
-                })
-                .catch(function(e) {
-                    console.log('error: ', e);
-                });
+            if(this.chatId !== ''){
+                console.log('getMessages FIRST: ', this.chatId);
+                this.pageId = this.pageId + 1;
+                var that = this;
+                return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId)
+                    .then(response => {
+                        if(response.data.data.length > 0){
+                            let result = [];
+                            response.data.data.forEach(function(item){
+                                result.push({
+                                    id: item.message_id,
+                                    body: item.message,
+                                    sender: item.is_sender,
+                                    isImg: item.is_media,
+                                    checked: false
+                                });
+                            })
+                            this.messages.unshift(...result.reverse());
+                            let lastMessage = this.messages.slice(-1);
+                            this.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
+                            that.isLoadedMessages = false;
+                            that.distance = 1;
+                        } else {
+                            that.isLoadedMessages = false;
+                        }
+                    })
+                    .catch(function(e) {
+                        console.log('error: ', e);
+                    });
+            } else {
+                console.log('getMessages FIRST: ', this.chatId);
+                this.isLoadedMessages = false;
+                this.distance = -10;
+            }
+        },
+        infiniteHandler($state) {
+                console.log('infiniteHandler FIRST: ', this.chatId);
+                this.pageId = this.pageId + 1;
+                var that = this;
+                return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId)
+                    .then(response => {
+                        console.log('infiniteHandler: ', response.data);
+                        if(response.data.data.length > 0){
+                            let result = [];
+                            response.data.data.forEach(function(item){
+                                result.push({
+                                    id: item.message_id,
+                                    body: item.message,
+                                    sender: item.is_sender,
+                                    isImg: item.is_media,
+                                    checked: false
+                                });
+                            })
+                            this.messages.unshift(...result.reverse());
+                            let lastMessage = this.messages.slice(-1);
+                            this.$parent.$parent.lastMessageId = lastMessage.length ? lastMessage[0].id : '';
+                            that.isLoadedMessages = false;
+                            $state.loaded();
+                        } else {
+                            that.isLoadedMessages = false;
+                            $state.complete();
+                        }
+                    })
+                    .catch(function(e) {
+                        console.log('error: ', e);
+                    });
         },
         sendMessage(message, isImg = false, chatId = null, showModal = false){
             const newMessage = {

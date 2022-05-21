@@ -140,11 +140,9 @@ export default {
             this.activeScreen = className;
         },
         setActiveContact(contact){
-            console.log('setActiveContact: ', contact);
             this.activeContact = contact;
         },
         setCurrentChat(chatId){
-            console.log('setCurrentChat: ', chatId);
             this.currentChatId = chatId;
             this.enterChat(chatId)
             this.listenChat();
@@ -205,7 +203,7 @@ export default {
                 .stopListening('.chat_' + this.currentChatId);
         },
         leaveChat(){
-            console.log('leaveChat lastMessageId: ', this.lastMessageId);
+            this.currentChatId = '';
             return axios.post('/api/chat/messages/leave',
                 {
                     chat_id: this.currentChatId,

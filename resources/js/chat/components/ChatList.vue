@@ -100,7 +100,6 @@ export default {
             var that = this
             window.Echo.channel('client_unread' + this.authId)
                 .listen('.client_unread' + this.authId, message => {
-                    console.log('listenUnreadMessagesChats: ', message.data, this.authId);
                     let chat = that.chats.find(obj => obj.id == message.data);
                     chat.messageCount = chat.messageCount + 1;
                     // that.newMessage = message.data.message;
