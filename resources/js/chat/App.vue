@@ -30,6 +30,7 @@
             <chat-list @setActive="setActiveScreen"
                        @setCurrentChat="setCurrentChat"
                        :delete-contact-id="deleteContact"
+                       :new-chat-id="newChat"
                        :contacts="contacts"></chat-list>
             <button class="chat__close"
                     @click="toggleChat"
@@ -49,6 +50,11 @@
                         </span>
                         <span class="chat__status" :class="contact.status === 1 ? 'is-online' : ''">
                             {{ contact.status === 1 ? 'online' : 'offline' }}
+                        </span>
+                    </div>
+                    <div v-if="contacts.length <= 0">
+                        <span>
+                            Empty contacts.
                         </span>
                     </div>
                 </div>
@@ -129,6 +135,7 @@ export default {
             isLoadedMessages: false,
             backPath: '',
             deleteContact: '',
+            newChat: ''
         }
     },
     methods: {

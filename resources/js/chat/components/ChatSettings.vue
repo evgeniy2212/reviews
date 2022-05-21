@@ -135,6 +135,7 @@ export default {
             return axios.get('/api/chat/user_chats/' + contact.id)
                 .then(response => {
                     that.chatId = response.data.data.id;
+                    that.$parent.newChat = that.chatId;
                 })
                 .catch(function(e) {
                     console.log('error: ', e);

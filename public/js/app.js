@@ -2004,6 +2004,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2042,7 +2048,8 @@ __webpack_require__.r(__webpack_exports__);
       lastMessageId: '',
       isLoadedMessages: false,
       backPath: '',
-      deleteContact: ''
+      deleteContact: '',
+      newChat: ''
     };
   },
   methods: {
@@ -2210,7 +2217,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   inject: ['setActiveContact'],
-  props: ['contacts', 'deleteContactId'],
+  props: ['contacts', 'deleteContactId', 'newChatId'],
   watch: {
     contacts: {
       handler: function handler(val, oldVal) {
@@ -2233,6 +2240,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteContactId: function deleteContactId(newVal) {
       this.deleteChat(newVal);
+    },
+    newChatId: function newChatId(newVal) {
+      this.getChats();
     }
   },
   methods: {
@@ -2284,8 +2294,7 @@ __webpack_require__.r(__webpack_exports__);
         var chat = that.chats.find(function (obj) {
           return obj.id == message.data;
         });
-        chat.messageCount = chat.messageCount + 1; // that.newMessage = message.data.message;
-        // that.lastMessageId = message.data.message.message_id;
+        chat.messageCount = chat.messageCount + 1;
       });
     }
   },
@@ -2779,6 +2788,7 @@ __webpack_require__.r(__webpack_exports__);
       var that = this;
       return axios.get('/api/chat/user_chats/' + contact.id).then(function (response) {
         that.chatId = response.data.data.id;
+        that.$parent.newChat = that.chatId;
       })["catch"](function (e) {
         console.log('error: ', e);
       });
@@ -47163,6 +47173,7 @@ var render = function() {
           _c("chat-list", {
             attrs: {
               "delete-contact-id": _vm.deleteContact,
+              "new-chat-id": _vm.newChat,
               contacts: _vm.contacts
             },
             on: {
@@ -47191,49 +47202,61 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "chat__contacts" },
-                _vm._l(_vm.contacts, function(contact) {
-                  return _c(
-                    "div",
-                    {
-                      key: contact.id,
-                      staticClass: "chat__contact",
-                      class: contact.status === true ? "is-online" : "",
-                      on: {
-                        click: function($event) {
-                          _vm.setActiveScreen("chat__settings")
-                          _vm.setActiveContact(contact)
+                [
+                  _vm._l(_vm.contacts, function(contact) {
+                    return _c(
+                      "div",
+                      {
+                        key: contact.id,
+                        staticClass: "chat__contact",
+                        class: contact.status === true ? "is-online" : "",
+                        on: {
+                          click: function($event) {
+                            _vm.setActiveScreen("chat__settings")
+                            _vm.setActiveContact(contact)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("span", { staticClass: "chat__name" }, [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(contact.full_name) +
-                            "\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          staticClass: "chat__status",
-                          class: contact.status === 1 ? "is-online" : ""
-                        },
-                        [
+                      },
+                      [
+                        _c("span", { staticClass: "chat__name" }, [
                           _vm._v(
                             "\n                        " +
-                              _vm._s(
-                                contact.status === 1 ? "online" : "offline"
-                              ) +
+                              _vm._s(contact.full_name) +
                               "\n                    "
                           )
-                        ]
-                      )
-                    ]
-                  )
-                }),
-                0
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "chat__status",
+                            class: contact.status === 1 ? "is-online" : ""
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(
+                                  contact.status === 1 ? "online" : "offline"
+                                ) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm.contacts.length <= 0
+                    ? _c("div", [
+                        _c("span", [
+                          _vm._v(
+                            "\n                        Empty contacts.\n                    "
+                          )
+                        ])
+                      ])
+                    : _vm._e()
+                ],
+                2
               ),
               _vm._v(" "),
               _c(

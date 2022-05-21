@@ -33,7 +33,8 @@ export default {
     ],
     props: [
         'contacts',
-        'deleteContactId'
+        'deleteContactId',
+        'newChatId'
     ],
     watch: {
         contacts: {
@@ -54,6 +55,9 @@ export default {
         },
         deleteContactId(newVal){
             this.deleteChat(newVal);
+        },
+        newChatId(newVal){
+            this.getChats();
         }
     },
     methods: {
@@ -102,8 +106,6 @@ export default {
                 .listen('.client_unread' + this.authId, message => {
                     let chat = that.chats.find(obj => obj.id == message.data);
                     chat.messageCount = chat.messageCount + 1;
-                    // that.newMessage = message.data.message;
-                    // that.lastMessageId = message.data.message.message_id;
                 });
         },
     },
