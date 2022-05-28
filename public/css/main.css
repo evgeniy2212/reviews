@@ -1828,6 +1828,10 @@ button:disabled {
     transform: translateX(-50%);
 }
 
+button:focus {
+    outline: none;
+}
+
 .chat__open-text {
     padding: 0 20px;
     border-bottom-right-radius: 50px;
@@ -1887,6 +1891,10 @@ button:disabled {
 
 .chat__row .chat__close:focus {
     outline: 1px solid #2f5496;
+}
+
+.chat__wrap .chat__close {
+    font-size: 11px;
 }
 
 .chat__delete,

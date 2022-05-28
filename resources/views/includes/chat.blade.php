@@ -111,8 +111,8 @@
                             <div class="checkbox-item">
                                 <input type="checkbox"
                                        class="custom-checkbox"
-                                       id="messageTest1">
-                                <label for="messageTest1"></label>
+                                       id="messageTest{{$i}}">
+                                <label for="messageTest{{$i}}"></label>
                             </div>
                             <img class="chat__decor left__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
                             <p>Receiver message</p>
