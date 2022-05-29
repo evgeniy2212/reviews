@@ -14,7 +14,15 @@
                     type="button">
                 {{ showControlButtons === true ? 'Close' : 'Edit' }}
             </button>
-            <button class="chat__close"
+            <button v-if="isSelectedAll"
+                    class="chat__close"
+                    v-show="showControlButtons"
+                    @click="unselectAll"
+                    type="button">
+                Unselect all
+            </button>
+            <button v-else
+                    class="chat__close"
                     v-show="showControlButtons"
                     @click="selectAll"
                     type="button">
@@ -103,6 +111,7 @@ export default {
             messages: [],
             pageId: 0,
             currentChatId: '',
+            isSelectedAll: false,
             isLoadedMessages: true,
             showControlButtons: false,
             deleteMessageIds: [],
@@ -273,6 +282,13 @@ export default {
             this.messages.forEach(function(item){
                 item.checked = true;
             });
+            this.isSelectedAll = true;
+        },
+        unselectAll(){
+            this.messages.forEach(function(item){
+                item.checked = false;
+            });
+            this.isSelectedAll = false;
         },
         deleteSelected() {
             var that = this;
@@ -326,5 +342,11 @@ export default {
 .message__img{
     height: 85px;
     width: auto;
+}
+.sender{
+    background-color: #c0daeda6;
+}
+.receiver{
+    background-color: #edd992b3;
 }
 </style>

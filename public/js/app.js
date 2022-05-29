@@ -2414,6 +2414,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2428,6 +2436,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       messages: [],
       pageId: 0,
       currentChatId: '',
+      isSelectedAll: false,
       isLoadedMessages: true,
       showControlButtons: false,
       deleteMessageIds: [],
@@ -2612,6 +2621,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.messages.forEach(function (item) {
         item.checked = true;
       });
+      this.isSelectedAll = true;
+    },
+    unselectAll: function unselectAll() {
+      this.messages.forEach(function (item) {
+        item.checked = false;
+      });
+      this.isSelectedAll = false;
     },
     deleteSelected: function deleteSelected() {
       var that = this;
@@ -2932,6 +2948,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -8018,7 +8035,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.is-online[data-v-25d03604]{\n    color: #5dcf5d;\n}\n.help-block[data-v-25d03604]{\n    position: absolute;\n    bottom: 1px;\n    left: 0;\n    right: 0;\n    background: #fff;\n    line-height: 1.1;\n    padding: 0 6px;\n}\n.chat__window[data-v-25d03604]{\n    position: relative;\n}\n.message__img[data-v-25d03604]{\n    height: 85px;\n    width: auto;\n}\n", ""]);
+exports.push([module.i, "\n.is-online[data-v-25d03604]{\n    color: #5dcf5d;\n}\n.help-block[data-v-25d03604]{\n    position: absolute;\n    bottom: 1px;\n    left: 0;\n    right: 0;\n    background: #fff;\n    line-height: 1.1;\n    padding: 0 6px;\n}\n.chat__window[data-v-25d03604]{\n    position: relative;\n}\n.message__img[data-v-25d03604]{\n    height: 85px;\n    width: auto;\n}\n.sender[data-v-25d03604]{\n    background-color: #c0daeda6;\n}\n.receiver[data-v-25d03604]{\n    background-color: #edd992b3;\n}\n", ""]);
 
 // exports
 
@@ -47500,23 +47517,41 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            directives: [
+        _vm.isSelectedAll
+          ? _c(
+              "button",
               {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.showControlButtons,
-                expression: "showControlButtons"
-              }
-            ],
-            staticClass: "chat__close",
-            attrs: { type: "button" },
-            on: { click: _vm.selectAll }
-          },
-          [_vm._v("\n            Select all\n        ")]
-        ),
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showControlButtons,
+                    expression: "showControlButtons"
+                  }
+                ],
+                staticClass: "chat__close",
+                attrs: { type: "button" },
+                on: { click: _vm.unselectAll }
+              },
+              [_vm._v("\n            Unselect all\n        ")]
+            )
+          : _c(
+              "button",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showControlButtons,
+                    expression: "showControlButtons"
+                  }
+                ],
+                staticClass: "chat__close",
+                attrs: { type: "button" },
+                on: { click: _vm.selectAll }
+              },
+              [_vm._v("\n            Select all\n        ")]
+            ),
         _vm._v(" "),
         _c(
           "button",
@@ -48045,15 +48080,11 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn__emoji",
-          attrs: { type: "button" },
-          on: { click: _vm.toggleEmoji }
-        },
-        [_vm._v("😀")]
-      ),
+      _c("input", {
+        staticClass: "btn__emoji",
+        attrs: { type: "image", src: _vm.baseUrl + "/images/emoji_1.png" },
+        on: { click: _vm.toggleEmoji }
+      }),
       _vm._v(" "),
       _c(
         "div",

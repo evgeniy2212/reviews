@@ -16,9 +16,10 @@
                      :src="baseUrl + '/images/message-decor.png'"
                      alt="#">
             </div>
-            <button class="btn__emoji"
-                    @click="toggleEmoji"
-                    type="button">&#128512;</button>
+            <input class="btn__emoji"
+                   type="image"
+                   :src="baseUrl + '/images/emoji_1.png'"
+                   @click="toggleEmoji" />
             <div class="chat__emoji-holder"
                  :class="showEmoji === true ? 'is-show' : ''">
                 <span class="chat__emoji"
