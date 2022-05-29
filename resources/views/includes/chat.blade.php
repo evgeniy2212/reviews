@@ -126,7 +126,9 @@
                     <textarea class="chat__textarea js-chat-textarea" placeholder="message"></textarea>
                     <img class="chat__decor right__mod" src="{{ asset('images/message-decor.png') }}" alt="#">
                 </div>
-                <button class="btn__emoji js-btn-emoji" type="button">&#128512;</button>
+                <input class="btn__emoji js-btn-emoji"
+                       type="image"
+                       src="{{ asset('/images/emoji_1.png') }}"/>
                 <div class="chat__emoji-holder">
                         <span class="chat__emoji">
                             @for($i=1;$i<=24;$i++)
