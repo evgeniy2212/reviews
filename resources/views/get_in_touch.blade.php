@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <form method="POST" action="{{ route('send-touch-info') }}" enctype="multipart/form-data" novalidate="" id="sendTouchInfo">
+    <form method="POST" action="{{ route('send-touch-info') }}"
+          enctype="multipart/form-data"
+          novalidate=""
+          id="sendTouchInfo">
         @csrf
         <div class="container">
                 <div class="get-in-touch-content-place">
@@ -35,7 +38,7 @@
                         </div>
                     </div>
                     <div class="touch-info-message-header">
-                        <span>Get In Touch</span>
+                        <span>@lang('service/index.get_in_touch')</span>
                     </div>
                     <div class="d-md-flex justify-content-md-around">
                         <div class="touch-input-container">
@@ -65,6 +68,7 @@
                                 <input id="email"
                                        type="email"
                                        class="form-control input"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                        name="email"
                                        value="{{ old('email') }}"
                                        required
@@ -79,7 +83,8 @@
                             </div>
                             <div>
                                 <input id="phone"
-                                       type="text"
+                                       type="tel"
+                                       pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                                        class="form-control input"
                                        name="phone"
                                        required
@@ -99,7 +104,7 @@
                     <div class="create-review-buttons">
                         <div class="col-md-2">
                             <button type="submit" class="createReviewButton loginButton submitTouchInfoButton">
-                                Send
+                                @lang('service/index.save')
                             </button>
                         </div>
                     </div>

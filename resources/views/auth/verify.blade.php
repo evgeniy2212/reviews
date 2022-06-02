@@ -8,18 +8,16 @@
                 <div>
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+                            {{ __('auth.fresh_verify_link') }}
                         </div>
                     @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}<br>
-                    {{ __('If you did not receive the email, click "Request Another."') }}.
+                        {!! __('auth.check_verify_link') !!}
                 </div>
                 <div class="form-group verifyRegisterControl">
                     <div class="col-md-3">
                         <form method="POST" action="{{ route('verification.resend') }}">
                             @csrf
-                            <button type="submit" class="loginButton">{{ __('Request another') }}</button>
+                            <button type="submit" class="loginButton">{{ __('auth.request_another') }}</button>
                         </form>
                     </div>
                     <div class="col-md-3">
