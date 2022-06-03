@@ -38,6 +38,6 @@ class IndependenceDayMail extends Command
      */
     public function handle()
     {
-        dispatch(new SendEmailJob('independance_day', __('service/mail.subject.independance_day')));
+        dispatch(new SendEmailJob('independence_day', __('service/mail.subject.independance_day')));
     }
 }
