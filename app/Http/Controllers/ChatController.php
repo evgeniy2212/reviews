@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Jorenvh\Share\Share;
 
 class ChatController extends Controller
 {
@@ -66,6 +67,21 @@ class ChatController extends Controller
         return ChatResource::collection(
             auth()->user()->chats
         );
+    }
+
+    /**
+     * @param Share $share
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSharedLinks(Request $request, Share $share)
+    {
+        $links = $share->page($request->url, env('APP_NAME'))
+            ->facebook()
+            ->twitter()
+            ->telegram()
+            ->getRawLinks();
+
+        return response()->json($links);
     }
 
     /**

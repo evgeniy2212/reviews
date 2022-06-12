@@ -51,6 +51,12 @@ export default {
             message: '',
             showEmoji: false,
             validMessage: true,
+            shareLinks:
+                {
+                    facebook: '',
+                    twitter: '',
+                    telegram: ''
+                },
             emojis: [
                 {
                     id: 1,
@@ -189,10 +195,25 @@ export default {
             this.setActiveScreen(this.back)
             this.leaveChat()
             this.stopListenChat()
-        }
+        },
+        getSharedLinks()
+        {
+            var that = this;
+            return axios.get('/api/chat/shared_links', {
+                params: { url: window.location.href }
+            })
+                .then(response => {
+                    that.shareLinks.facebook = response.data.facebook;
+                    that.shareLinks.twitter = response.data.twitter;
+                    that.shareLinks.telegram = response.data.telegram;
+                })
+                .catch(function(e) {
+                    console.log('error: ', e);
+                });
+        },
     },
     mounted() {
-        console.log(this.validMessage && this.message.length > 0);
+        this.getSharedLinks();
     }
 }
 </script>

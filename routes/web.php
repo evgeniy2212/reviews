@@ -23,6 +23,7 @@ Route::group(
     Route::get('/', 'ChatController@index')->name('index');
     Route::get('user_chats/{user_id}', 'ChatController@getChat')->name('userChat');
     Route::get('user_chats', 'ChatController@getChats')->name('userChats');
+    Route::get('shared_links', 'ChatController@getSharedLinks')->name('shareLinks');
     Route::get('user_contacts', 'ChatController@getContacts')->name('userContscta');
     Route::get('search/users/{query?}', 'ChatController@search')->name('search');
     Route::get('search/unread_messages', 'ChatController@chatsWithUnreadMessages');

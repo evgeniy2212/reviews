@@ -2491,7 +2491,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this2 = this;
 
       if (this.chatId !== '') {
-        console.log('getMessages FIRST: ', this.chatId);
         this.pageId = this.pageId + 1;
         var that = this;
         return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId).then(function (response) {
@@ -2531,12 +2530,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     infiniteHandler: function infiniteHandler($state) {
       var _this3 = this;
 
-      console.log('infiniteHandler FIRST: ', this.chatId);
       this.pageId = this.pageId + 1;
       var that = this;
       return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId).then(function (response) {
-        console.log('infiniteHandler: ', response.data);
-
         if (response.data.data.length > 0) {
           var _this3$messages;
 
@@ -3000,6 +2996,11 @@ __webpack_require__.r(__webpack_exports__);
       message: '',
       showEmoji: false,
       validMessage: true,
+      shareLinks: {
+        facebook: '',
+        twitter: '',
+        telegram: ''
+      },
       emojis: [{
         id: 1,
         src: this.baseUrl + '/images/emoji_1.png'
@@ -3107,10 +3108,24 @@ __webpack_require__.r(__webpack_exports__);
       this.setActiveScreen(this.back);
       this.leaveChat();
       this.stopListenChat();
+    },
+    getSharedLinks: function getSharedLinks() {
+      var that = this;
+      return axios.get('/api/chat/shared_links', {
+        params: {
+          url: window.location.href
+        }
+      }).then(function (response) {
+        that.shareLinks.facebook = response.data.facebook;
+        that.shareLinks.twitter = response.data.twitter;
+        that.shareLinks.telegram = response.data.telegram;
+      })["catch"](function (e) {
+        console.log('error: ', e);
+      });
     }
   },
   mounted: function mounted() {
-    console.log(this.validMessage && this.message.length > 0);
+    this.getSharedLinks();
   }
 });
 

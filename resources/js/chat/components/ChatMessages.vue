@@ -164,7 +164,6 @@ export default {
         getMessages()
         {
             if(this.chatId !== ''){
-                console.log('getMessages FIRST: ', this.chatId);
                 this.pageId = this.pageId + 1;
                 var that = this;
                 return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId)
@@ -199,12 +198,10 @@ export default {
             }
         },
         infiniteHandler($state) {
-                console.log('infiniteHandler FIRST: ', this.chatId);
                 this.pageId = this.pageId + 1;
                 var that = this;
                 return axios.get('/api/chat/messages/' + this.chatId + '?page=' + this.pageId)
                     .then(response => {
-                        console.log('infiniteHandler: ', response.data);
                         if(response.data.data.length > 0){
                             let result = [];
                             response.data.data.forEach(function(item){

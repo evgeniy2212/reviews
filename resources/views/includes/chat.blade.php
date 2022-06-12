@@ -4,43 +4,33 @@
         <button class="chat__btn js-create-contact" type="button">Create contact</button>
         <div class="chats">
             <div class="chat__contact is-online js-begin-chat">
-                <span class="chat__name">Nancy Lurence</span>
+                <span class="chat__name">Demo User 1</span>
                 <span class="chat__status">online</span>
                 <span class="chat__count">5</span>
             </div>
-            <div class="chat__contact is-online js-begin-chat">
-                <span class="chat__name">Ed Lee</span>
-                <span class="chat__status">online</span>
-                <span class="chat__count">25</span>
-            </div>
             <div class="chat__contact js-begin-chat">
-                <span class="chat__name">Bill Green</span>
+                <span class="chat__name">Demo User 2</span>
                 <span class="chat__status">offline</span>
+                <span class="chat__count">2</span>
             </div>
         </div>
         <button class="chat__close js-close-chat" type="button">Close</button>
         <div class="chat__inner">
             <div class="chat__contacts">
                 <div class="chat__contact is-online js-chat-contact">
-                    <span class="chat__name">Bill Green</span>
+                    <span class="chat__name">Demo User 1</span>
                     <span class="chat__status">online</span>
                 </div>
-                @for($i=1;$i<=10;$i++)
-                    <div class="chat__contact js-chat-contact">
-                        <span class="chat__name">Nancy Lurence</span>
-                        <span class="chat__status">offline</span>
-                    </div>
-                    <div class="chat__contact is-online js-chat-contact">
-                        <span class="chat__name">Ed Lee</span>
-                        <span class="chat__status">online</span>
-                    </div>
-                @endfor
+                <div class="chat__contacts js-chat-contact">
+                    <span class="chat__name">Demo User 2</span>
+                    <span class="chat__status">offline</span>
+                </div>
             </div>
             <button class="chat__close js-close-chat-contacts" type="button">Close</button>
         </div>
         <div class="chat__settings">
             <div class="chat__contact is-online">
-                <span class="chat__name">Ed Lee</span>
+                <span class="chat__name">Demo User 1</span>
                 <span class="chat__status">ON Line</span>
             </div>
             <div class="chat__row">
@@ -96,7 +86,7 @@
         </div>
         <div class="chat__wrap">
             <div class="chat__contact is-online">
-                <span class="chat__name">Ed Lee</span>
+                <span class="chat__name">Demo User 1</span>
                 <span class="chat__status">Connected</span>
             </div>
             <div class="chat__buttons three__mod">
