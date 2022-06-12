@@ -1,7 +1,14 @@
 @extends('profile.index')
 
+@section('modal_forms')
+    @include('includes.modal.errorBadWords')
+@endsection
+
 @section('profile_review_content')
-    <form method="POST" action="{{ route('profile-congratulations.store') }}" enctype="multipart/form-data" novalidate="" id="congratulationForm">
+    <form method="POST" action="{{ route('profile-congratulations.store') }}"
+          enctype="multipart/form-data"
+          novalidate=""
+          id="congratulationForm">
         @csrf
         <div class="congratulationTitle">
             <span>@lang('service/profile.congratulation.create.title')</span>
@@ -14,9 +21,10 @@
         </div>
         <div class="create-congratulation-media">
             <div class="congratulationContentContainer">
-                <textarea name="body"
+              <textarea name="body"
                           class="form-control"
                           type="text"
+                          id="review-create-text"
                           required
                           placeholder="@lang('service/index.review_text_placeholder')"></textarea>
                 <div class="congratulationContentUpload">
@@ -68,12 +76,12 @@
                 <div class="d-flex justify-content-center" style="width: 100%">
                     <div class="col-md-3">
                         <a type="button" id="imgDefaultCongratulationSave" class="otherButton">
-                            Save
+                            @lang('service/index.save')
                         </a>
                     </div>
                     <div class="col-md-3">
                         <a type="button" id="imgDefaultCongratulationClose" class="otherButton">
-                            Cancel
+                            @lang('service/index.cancel')
                         </a>
                     </div>
                 </div>
@@ -130,12 +138,12 @@
         <div class="d-sm-flex justify-content-center mb-3 mb-md-0" style="width: 100%">
             <div class="col-md-3 mb-2 mb-sm-0">
                 <button type="submit" id="congratulationButton" class="otherButton submitCongratulationButton">
-                    Publish
+                    @lang('service/index.publish')
                 </button>
             </div>
             <div class="col-md-3">
                 <a role="button" href="{{ route('profile-congratulations.create') }}" class="otherButton">
-                    Cancel
+                    @lang('service/index.cancel')
                 </a>
             </div>
         </div>

@@ -57,7 +57,10 @@
                         </span>
                     </p>
                 </div>
-                <div class="profile-single-congratulation-button">
+                <div class="profile-single-congratulation-button {{ !$congratulation->is_blocked ?: 'profile-single-review-blocked' }}">
+                    @if($congratulation->is_blocked)
+                        <span>Congratulation blocked due to complaints.</span>
+                    @else
                         <a type="button"
                            href="{{ route('profile-congratulations.edit', $congratulation->id) }}">
                             @lang('service/index.edit')
@@ -73,10 +76,11 @@
                            data-target="#deleteReviewModal">
                             @lang('service/index.delete')
                         </a>
-                    @if($congratulation->is_private)
-                        <span style="text-shadow: 0px 0px 4px #ff0000;color: #5800008f;width: 100%">
-                            PRIVATE
-                        </span>
+                        @if($congratulation->is_private)
+                            <span style="text-shadow: 0px 0px 4px #ff0000;color: #5800008f;width: 100%">
+                                PRIVATE
+                            </span>
+                        @endif
                     @endif
                 </div>
             </div>

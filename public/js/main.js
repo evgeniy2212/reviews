@@ -184,6 +184,13 @@
         });
       }
     });
+    $(".submitCongratulationButton").click(function (event) {
+      var form = $("#congratulationForm").length > 0 ? $("#congratulationForm") : $("#congratulationForm");
+      var action = $(this).data('action');
+      form.attr('action', action);
+      isExistBadWords = form.find('mark').length ? true : false;
+      validation(form, event);
+    });
     $(".submitReviewButton").click(function (event) {
       var form = $("#createReviewForm").length > 0 ? $("#createReviewForm") : $("#editReviewForm");
       var action = $(this).data('action');

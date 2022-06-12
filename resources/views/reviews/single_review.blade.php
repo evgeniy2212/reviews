@@ -181,18 +181,15 @@
                 </div>
                 <div class="col-md-5 offset-md-7 col-lg-4 offset-lg-8">
                     @auth()
-{{--                        @if(auth()->user()->id !== $review->user_id)--}}
-                            <a type="button"
-                               href=""
-{{--                               {{ auth()->user()->complains->contains($review->id) ? 'disabled' : '' }}--}}
-                               data-toggle="modal"
-                               class="otherButton" style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
-                               id="complainButton-{{ $review->id }}"
-                               data-review="{{ $review->id }}"
-                               data-tooltip="{{ __('service/index.complain_message') }}"
-{{--                               data-target="#complainModal">Complain{{ auth()->user()->complains->contains($review->id) ? ' in process' : '' }}</a>--}}
-                               data-target="#complainModal">@lang('service/index.complain')</a>
-{{--                        @endauth--}}
+                        <a type="button"
+                           href=""
+                           data-toggle="modal"
+                           class="otherButton" style="white-space: nowrap; margin-top: 10px; text-decoration: none; color: #1b1e21;"
+                           id="complainButton-{{ $review->id }}"
+                           data-review-model-id="{{ $review->id }}"
+                           data-review-model-type="{{ get_class($review) }}"
+                           data-tooltip="{{ __('service/index.complain_message') }}"
+                           data-target="#complainModal">@lang('service/index.complain')</a>
                     @else
                         <a type="button"
                            href="{{ \Mcamara\LaravelLocalization\Facades\LaravelLocalization::localizeUrl('/register') }}"

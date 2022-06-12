@@ -21,7 +21,6 @@ class PersonalInfoController extends Controller
     }
 
     public function index(){
-        Log::info(__METHOD__, [env('PUSHER_APP_ID'), env('PUSHER_APP_KEY'), env('PUSHER_APP_SECRET'), env('PUSHER_APP_CLUSTER')]);
         $user_info = $this->profileRepository->getProfileInfo();
         $countries = (new Country())->getCountriesContainRegions();
 

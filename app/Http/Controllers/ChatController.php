@@ -45,10 +45,6 @@ class ChatController extends Controller
         return ChatResource::collection($this->provider->getUserChats());
     }
 
-    public function testChat(){
-        return view('test_chat_vue');
-    }
-
     /**
      * get Chat by user id
      * @param string $id
