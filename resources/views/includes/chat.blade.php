@@ -128,9 +128,13 @@
                         </span>
                 </div>
             </div>
-            <div class="chat__buttons">
-                <button class="chat__close js-close-messages" type="button">Close</button>
+            <div class="chat__buttons six__mod">
+                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Send</button>
+                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Close</button>
+                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Send</button>
+                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Close</button>
                 <button class="chat__close" type="button">Send</button>
+                <button class="chat__close js-close-messages" type="button">Close</button>
             </div>
         </div>
     </div>

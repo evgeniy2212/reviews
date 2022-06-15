@@ -165,7 +165,7 @@
                                            autocomplete="nickname">
                                 </div>
                             </div>
-                            <div class="d-flex mb-2 mb-md-0">
+                            <div class="d-flex mb-2 mb-md-0 mt-2">
                                 <span>
                                     Using this name will allow you to remain anonymous. Your email address will not be visible in your published review.
                                 </span>

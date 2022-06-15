@@ -1889,6 +1889,19 @@ button:focus {
     margin: 0 auto;
 }
 
+.chat__close[data-tooltip]::after {
+    top: -60px;
+    left: 0;
+    right: 0;
+    width: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .chat__close[data-tooltip]::after {
+        display: none;
+    }
+}
+
 .chat__row .chat__close:focus {
     outline: 1px solid #2f5496;
 }
@@ -2042,12 +2055,26 @@ button:focus {
 }
 
 .chat__buttons {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: minmax(0, 1fr) 8px minmax(0, 1fr);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-column-gap: 8px;
 }
 
+.chat__buttons.six__mod {
+    -ms-grid-columns: (minmax(0, 1fr))[3];
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-row-gap: 8px;
+    position: relative;
+}
+
+.chat__buttons [data-tooltip] {
+    position: static;
+}
+
 .chat__buttons.three__mod {
+    -ms-grid-columns: (minmax(0, 1fr))[3];
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-bottom: 6px;
 }
