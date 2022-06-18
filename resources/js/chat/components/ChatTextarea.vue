@@ -29,10 +29,31 @@
                 </span>
             </div>
         </div>
-        <div class="chat__buttons">
-            <button class="chat__close js-close-messages"
+        <div class="chat__buttons six__mod">
+            <a data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+               class="chat__close"
+               :href="this.shareLinks.twitter"
+               target="_blank"
+               type="button">Twitter</a>
+            <a data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+               class="chat__close"
+               style="text-decoration: none"
+               :href="this.shareLinks.facebook"
+               target="_blank"
+               type="button">Facebook</a>
+            <a data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+               class="chat__close"
+               style="text-decoration: none"
+               :href="this.shareLinks.telegram"
+               target="_blank"
+               type="button">Telegram</a>
+            <button class="chat__close"
                     @click="leaveCurrentChat"
                     type="button">Close</button>
+            <button class="chat__close"
+                    data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+                    @click="sendLink"
+                    type="button">Send Link</button>
             <button class="chat__close"
                     :disabled="!validMessage || this.message.length === 0"
                     @click="sendMessageItem(message)"
@@ -182,6 +203,10 @@ export default {
             this.sendMessage(message, false);
             this.message = '';
         },
+        sendLink(){
+            let message = '<a href="' + window.location.href + '" target="_blank">Check Link</a>';
+            this.sendMessage(message, false);
+        },
         sendMessageImage(src){
             this.sendMessage(src, true);
             this.message = '';
@@ -221,5 +246,14 @@ export default {
 <style scoped>
 .invalid__message{
     border: 1px solid #ff6c6c;
+}
+a {
+    text-decoration: none;
+}
+a:link, a:visited {
+    color: #1b1e21;
+}
+a:hover {
+    color: #1b1e21;
 }
 </style>

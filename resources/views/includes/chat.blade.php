@@ -129,12 +129,22 @@
                 </div>
             </div>
             <div class="chat__buttons six__mod">
-                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Send</button>
-                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Close</button>
-                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Send</button>
-                <button data-tooltip="Click here to report any offensive language or outright lies used in the review." class="chat__close" type="button">Close</button>
-                <button class="chat__close" type="button">Send</button>
-                <button class="chat__close js-close-messages" type="button">Close</button>
+                <button data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+                        class="chat__close"
+                        type="button">Twitter</button>
+                <button data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+                        class="chat__close"
+                        type="button">Facebook</button>
+                <button data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+                        class="chat__close"
+                        type="button">Telegram</button>
+                <button class="chat__close"
+                        type="button">Send</button>
+                <button class="chat__close"
+                        data-tooltip="First of all need to select а necessary review by clicking &quot;Open&quot; button"
+                        type="button">Send Link</button>
+                <button class="chat__close js-close-messages"
+                        type="button">Close</button>
             </div>
         </div>
     </div>

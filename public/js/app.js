@@ -2989,6 +2989,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ChatTextarea",
   data: function data() {
@@ -3092,6 +3113,10 @@ __webpack_require__.r(__webpack_exports__);
     sendMessageItem: function sendMessageItem(message) {
       this.sendMessage(message, false);
       this.message = '';
+    },
+    sendLink: function sendLink() {
+      var message = '<a href="' + window.location.href + '" target="_blank">Check Link</a>';
+      this.sendMessage(message, false);
     },
     sendMessageImage: function sendMessageImage(src) {
       this.sendMessage(src, true);
@@ -8088,7 +8113,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.invalid__message[data-v-0b73761c]{\n    border: 1px solid #ff6c6c;\n}\n", ""]);
+exports.push([module.i, "\n.invalid__message[data-v-0b73761c]{\n    border: 1px solid #ff6c6c;\n}\na[data-v-0b73761c] {\n    text-decoration: none;\n}\na[data-v-0b73761c]:link, a[data-v-0b73761c]:visited {\n    color: #1b1e21;\n}\na[data-v-0b73761c]:hover {\n    color: #1b1e21;\n}\n", ""]);
 
 // exports
 
@@ -48130,15 +48155,76 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "chat__buttons" }, [
+    _c("div", { staticClass: "chat__buttons six__mod" }, [
+      _c(
+        "a",
+        {
+          staticClass: "chat__close",
+          attrs: {
+            "data-tooltip":
+              'First of all need to select а necessary review by clicking "Open" button',
+            href: this.shareLinks.twitter,
+            target: "_blank",
+            type: "button"
+          }
+        },
+        [_vm._v("Twitter")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "chat__close",
+          staticStyle: { "text-decoration": "none" },
+          attrs: {
+            "data-tooltip":
+              'First of all need to select а necessary review by clicking "Open" button',
+            href: this.shareLinks.facebook,
+            target: "_blank",
+            type: "button"
+          }
+        },
+        [_vm._v("Facebook")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "chat__close",
+          staticStyle: { "text-decoration": "none" },
+          attrs: {
+            "data-tooltip":
+              'First of all need to select а necessary review by clicking "Open" button',
+            href: this.shareLinks.telegram,
+            target: "_blank",
+            type: "button"
+          }
+        },
+        [_vm._v("Telegram")]
+      ),
+      _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "chat__close js-close-messages",
+          staticClass: "chat__close",
           attrs: { type: "button" },
           on: { click: _vm.leaveCurrentChat }
         },
         [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "chat__close",
+          attrs: {
+            "data-tooltip":
+              'First of all need to select а necessary review by clicking "Open" button',
+            type: "button"
+          },
+          on: { click: _vm.sendLink }
+        },
+        [_vm._v("Send Link")]
       ),
       _vm._v(" "),
       _c(
