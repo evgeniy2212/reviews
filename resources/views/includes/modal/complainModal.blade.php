@@ -6,7 +6,8 @@
                 <form action="{{ route('complain_review') }}"
                       id="complainForm"
                       method="POST">
-                    <input type="hidden" name="review_id" value="1">
+                    <input type="hidden" name="model_id" value="1">
+                    <input type="hidden" name="model_type" value="{{ \App\Models\Review::class }}">
                     @csrf
                     <div class="d-flex justify-content-center">
                         <div class="col-md-10">
@@ -20,12 +21,12 @@
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="col-md-3">
                             <button class="otherButton" type="submit">
-                                Send
+                                @lang('service/index.send')
                             </button>
                         </div>
                         <div class="col-md-3">
                             <button class="otherButton" type="button" data-dismiss="modal">
-                                Cancel
+                                @lang('service/index.cancel')
                             </button>
                         </div>
                     </div>
