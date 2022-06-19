@@ -8,8 +8,7 @@
                     <a class="admin-complain {{ (array_key_exists('is_new', $paginateParams) && $paginateParams['is_new'] === '1')
                                             ? 'active'
                                             : ''}}"
-                       name="is_new"
-                       value="1">NEW ({!! $newReviewsCnt !!})</a>
+                       href="{{ route('admin.moderations.index', ['is_new' => 1]) }}">@lang('service/index.new') ({!! $newReviewsCnt !!})</a>
                 </div>
             </div>
             <div class="adminFilterItem">
@@ -17,8 +16,7 @@
                     <a class="admin-complain {{ (array_key_exists('is_new', $paginateParams) && $paginateParams['is_new'] === '0')
                                             ? 'active'
                                             : ''}}"
-                       name="is_new"
-                       value="0">PROCESSED ({!! $processedReviewsCnt !!})</a>
+                       href="{{ route('admin.moderations.index', ['is_new' => 0]) }}">@lang('service/index.processed') ({!! $processedReviewsCnt !!})</a>
                 </div>
             </div>
             <div class="adminFilterItem">
@@ -26,15 +24,14 @@
                     <a class="admin-complain {{ ((array_key_exists('is_new', $paginateParams) && $paginateParams['is_new'] === 'NULL') || !array_key_exists('is_new', $paginateParams))
                                             ? 'active'
                                             : ''}}"
-                       name="is_new"
-                       value="NULL">ALL ({!! $allReviewsCnt !!})</a>
+                       href="{{ route('admin.moderations.index', ['is_new' => null]) }}">@lang('service/index.all') ({!! $allReviewsCnt !!})</a>
                 </div>
             </div>
         </div>
         @forelse($reviews as $review)
             @include('admin.includes.single_moderation_review')
         @empty
-            <span>Complains is EMPTY.</span>
+            <span>@lang('service/admin.empty_complains')</span>
         @endforelse
         @if($reviews->total() > $reviews->count())
             <div class="pagination-container">
