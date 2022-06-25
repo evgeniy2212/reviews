@@ -65,6 +65,26 @@
                         @lang('service/index.play_video')
                     </a>
                 </div>
+                <div class="col-md-3 instruction-preview">
+                    <div class="previewInstructionImage"
+                         style="height: 121px;
+                             background-position: center top;
+                             {{--background-image: url('{{ asset('storage/images/default_images/instructions/test_video_preview.jpg') }}'); --}}
+                             background: grey;
+                             background-size: 177px 100px;">
+                        <span>{{ __('service/index.tutorial_part', ['number' => 4]) }}</span>
+                    </div>
+                    {{--                    <img src="{{ asset('storage/images/default_images/instructions/test_video_preview.jpg') }}"--}}
+                    {{--                         alt=""--}}
+                    {{--                         class="previewInstructionImage">--}}
+                    <a class="otherButton"
+                       type="button"
+                       target="_blank"
+                       href="#"
+                       id="instruction-video2">
+                        @lang('service/index.play_video')
+                    </a>
+                </div>
             </div>
             <div class="instruction-control">
                 <div class="col-md-4">
