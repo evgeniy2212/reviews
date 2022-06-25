@@ -3009,7 +3009,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ChatTextarea",
   data: function data() {
@@ -48133,23 +48132,15 @@ var render = function() {
           class: _vm.showEmoji === true ? "is-show" : ""
         },
         _vm._l(_vm.emojis, function(emoji) {
-          return _c(
-            "span",
-            {
-              staticClass: "chat__emoji",
-              on: {
-                click: function($event) {
-                  return _vm.sendMessageImage(emoji.src)
-                }
+          return _c("img", {
+            staticClass: "chat__emoji",
+            attrs: { src: emoji.src },
+            on: {
+              click: function($event) {
+                return _vm.sendMessageImage(emoji.src)
               }
-            },
-            [
-              _c("img", {
-                staticStyle: { width: "auto", height: "32px" },
-                attrs: { src: emoji.src }
-              })
-            ]
-          )
+            }
+          })
         }),
         0
       )

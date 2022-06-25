@@ -22,11 +22,10 @@
                    @click="toggleEmoji" />
             <div class="chat__emoji-holder"
                  :class="showEmoji === true ? 'is-show' : ''">
-                <span class="chat__emoji"
-                      v-for="emoji in emojis"
-                      @click="sendMessageImage(emoji.src)">
-                    <img :src="emoji.src" style="width: auto;height: 32px">
-                </span>
+                <img class="chat__emoji"
+                     v-for="emoji in emojis"
+                     @click="sendMessageImage(emoji.src)"
+                    :src="emoji.src">
             </div>
         </div>
         <div class="chat__buttons six__mod">
