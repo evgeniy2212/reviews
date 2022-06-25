@@ -65,7 +65,7 @@
                         @lang('service/index.play_video')
                     </a>
                 </div>
-                <div class="col-md-3 instruction-preview">
+                <div class="instruction-preview">
                     <div class="previewInstructionImage"
                          style="height: 121px;
                              background-position: center top;
