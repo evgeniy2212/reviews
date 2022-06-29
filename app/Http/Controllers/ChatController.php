@@ -75,7 +75,7 @@ class ChatController extends Controller
      */
     public function getSharedLinks(Request $request, Share $share)
     {
-        $links = $share->page($request->url)
+        $links = $share->page($request->url, env('APP_NAME'))
             ->facebook()
             ->twitter()
             ->telegram()
