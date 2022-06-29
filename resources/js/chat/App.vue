@@ -141,16 +141,19 @@ export default {
     methods: {
         toggleChat(){
             this.showChat = !this.showChat;
+            localStorage.showChat = this.showChat;
         },
         setActiveScreen(className){
-            console.log('setActiveScreen: ', className);
             this.activeScreen = className;
+            localStorage.activeScreen = className;
         },
         setActiveContact(contact){
             this.activeContact = contact;
+            localStorage.activeContact = contact;
         },
         setCurrentChat(chatId){
             this.currentChatId = chatId;
+            localStorage.currentChatId = chatId;
             this.enterChat(chatId)
             this.listenChat();
         },
@@ -238,6 +241,7 @@ export default {
                         });
                         console.log('that.contacts: ', that.contacts);
                     })
+                    that.setLocalStorageSettings();
                 })
                 .catch(function(e) {
                     console.log('error: ', e);
@@ -250,12 +254,29 @@ export default {
         },
         updateContact(contact){
             this.contacts.find(item => item.id === contact.id).full_name = contact.full_name;
+        },
+        setLocalStorageSettings(){
+            if(localStorage.activeScreen !== undefined)
+            {
+                this.setActiveScreen(localStorage.activeScreen);
+            }
+            if(localStorage.activeContact !== undefined)
+            {
+                this.setActiveContact(localStorage.activeContact);
+            }
+            if(localStorage.currentChatId !== undefined)
+            {
+                this.setCurrentChat(localStorage.currentChatId);
+            }
+            if(localStorage.showChat !== undefined)
+            {
+                this.showChat = localStorage.showChat == 'true' ? true :false;
+            }
         }
     },
     mounted() {
         this.listenContacts();
         this.getContacts();
-        // this.setOnline();
     }
 }
 </script>

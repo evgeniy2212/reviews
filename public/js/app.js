@@ -2055,16 +2055,19 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     toggleChat: function toggleChat() {
       this.showChat = !this.showChat;
+      localStorage.showChat = this.showChat;
     },
     setActiveScreen: function setActiveScreen(className) {
-      console.log('setActiveScreen: ', className);
       this.activeScreen = className;
+      localStorage.activeScreen = className;
     },
     setActiveContact: function setActiveContact(contact) {
       this.activeContact = contact;
+      localStorage.activeContact = contact;
     },
     setCurrentChat: function setCurrentChat(chatId) {
       this.currentChatId = chatId;
+      localStorage.currentChatId = chatId;
       this.enterChat(chatId);
       this.listenChat();
     },
@@ -2155,6 +2158,7 @@ __webpack_require__.r(__webpack_exports__);
           });
           console.log('that.contacts: ', that.contacts);
         });
+        that.setLocalStorageSettings();
       })["catch"](function (e) {
         console.log('error: ', e);
       });
@@ -2168,11 +2172,28 @@ __webpack_require__.r(__webpack_exports__);
       this.contacts.find(function (item) {
         return item.id === contact.id;
       }).full_name = contact.full_name;
+    },
+    setLocalStorageSettings: function setLocalStorageSettings() {
+      if (localStorage.activeScreen !== undefined) {
+        this.setActiveScreen(localStorage.activeScreen);
+      }
+
+      if (localStorage.activeContact !== undefined) {
+        this.setActiveContact(localStorage.activeContact);
+      }
+
+      if (localStorage.currentChatId !== undefined) {
+        this.setCurrentChat(localStorage.currentChatId);
+      }
+
+      if (localStorage.showChat !== undefined) {
+        this.showChat = localStorage.showChat == 'true' ? true : false;
+      }
     }
   },
   mounted: function mounted() {
     this.listenContacts();
-    this.getContacts(); // this.setOnline();
+    this.getContacts();
   }
 });
 
