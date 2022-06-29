@@ -11,6 +11,7 @@
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:image" content="{{ asset('images/frame.png') }}" />
     <meta name="twitter:image" content="{{ asset('images/frame.png') }}" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:description" content="{{ __('service/index.header.tagline') }}" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
