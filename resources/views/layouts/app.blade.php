@@ -10,8 +10,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ config('app.name', 'Laravel') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:image" content="{{ asset('images/test.png') }}" />
-    <meta name="twitter:image" content="{{ asset('images/test.png') }}" />
+    <meta property="og:image" content="{{ asset('images/test_1.png') }}" />
+    <meta name="twitter:image" content="{{ asset('images/test_1.png') }}" />
     <meta name="twitter:card" content="summary" />
     <meta property="og:description" content="{{ __('service/index.header.tagline') }}" />
 
