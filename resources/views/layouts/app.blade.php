@@ -7,13 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ config('app.name', 'Laravel') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:image" content="{{ asset('images/test.png') }}" />
-    <meta property="og:image:width" content="1200"/>
-    <meta property="og:image:height" content="630"/>
     <meta name="twitter:image" content="{{ asset('images/test.png') }}" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta property="og:description" content="{{ __('service/index.header.tagline') }}" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
