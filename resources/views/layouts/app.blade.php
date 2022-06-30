@@ -11,9 +11,9 @@
     <meta property="og:site_name" content="{{ config('app.name', 'Laravel') }}" />
     <meta property="og:title" content="{{ config('app.name', 'Laravel') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:image" content="{{ asset('images/test_1.png') }}" />
+    <meta property="og:image" content="{{ asset('images/frame_500_500.png') }}" />
     <meta property="og:description" content="{{ __('service/index.header.tagline') }}" />
-    <meta name="twitter:image" content="{{ asset('images/test_1.png') }}" />
+    <meta name="twitter:image" content="{{ asset('images/frame_500_500.png') }}" />
     <meta name="twitter:card" content="summary" />
     <meta property="twitter:title" content="{{ config('app.name', 'Laravel') }}" />
     <meta property="twitter:description" content="{{ __('service/index.header.tagline') }}" />
