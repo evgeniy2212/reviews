@@ -149,7 +149,7 @@ export default {
         },
         setActiveContact(contact){
             this.activeContact = contact;
-            localStorage.activeContact = contact;
+            localStorage.activeContact = JSON.stringify(this.activeContact);
         },
         setCurrentChat(chatId){
             this.currentChatId = chatId;
@@ -262,7 +262,8 @@ export default {
             }
             if(localStorage.activeContact !== undefined)
             {
-                this.setActiveContact(localStorage.activeContact);
+                const contact = JSON.parse(localStorage.activeContact);
+                this.setActiveContact(contact);
             }
             if(localStorage.currentChatId !== undefined)
             {

@@ -2063,7 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     setActiveContact: function setActiveContact(contact) {
       this.activeContact = contact;
-      localStorage.activeContact = contact;
+      localStorage.activeContact = JSON.stringify(this.activeContact);
     },
     setCurrentChat: function setCurrentChat(chatId) {
       this.currentChatId = chatId;
@@ -2179,7 +2179,8 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (localStorage.activeContact !== undefined) {
-        this.setActiveContact(localStorage.activeContact);
+        var contact = JSON.parse(localStorage.activeContact);
+        this.setActiveContact(contact);
       }
 
       if (localStorage.currentChatId !== undefined) {
