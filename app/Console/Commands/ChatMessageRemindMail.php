@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Jobs\SendChatMessageRemindsJob;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class ChatMessageRemindMail extends Command
 {
@@ -38,6 +40,7 @@ class ChatMessageRemindMail extends Command
      */
     public function handle()
     {
-        dispatch(new SendChatMessageRemindsJob());
+        Log::info(__METHOD__, [Carbon::now()->format('d-m-Y H:i:s')]);
+//        dispatch(new SendChatMessageRemindsJob());
     }
 }
