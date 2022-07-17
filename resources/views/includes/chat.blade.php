@@ -157,3 +157,11 @@
         <span class="chat__open-text">Chat</span>
     </button>
 </div>
+<script>
+    $(document).ready(function() {
+        localStorage.activeScreen = undefined;
+        localStorage.activeContact = undefined;
+        localStorage.currentChatId = undefined;
+        localStorage.showChat = undefined;
+    });
+</script>
