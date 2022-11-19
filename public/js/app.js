@@ -47841,26 +47841,33 @@ var render = function() {
         })
       ],
       _vm._v(" "),
-      _c("div", { staticClass: "chat__contact is-online" }, [
-        _c("span", { staticClass: "chat__name" }, [
-          _vm._v(_vm._s(_vm.contact.full_name))
-        ]),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "chat__status",
-            class: _vm.contact.status === 1 ? "is-online" : ""
-          },
-          [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.contact.status === 1 ? "online" : "offline") +
-                "\n            "
-            )
-          ]
-        )
-      ]),
+      _c(
+        "div",
+        {
+          staticClass: "chat__contact",
+          class: _vm.contact.status === 1 ? "is-online" : ""
+        },
+        [
+          _c("span", { staticClass: "chat__name" }, [
+            _vm._v(_vm._s(_vm.contact.full_name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "chat__status",
+              class: _vm.contact.status === 1 ? "is-online" : ""
+            },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.contact.status === 1 ? "online" : "offline") +
+                  "\n            "
+              )
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "chat__row" }, [
         _c(
