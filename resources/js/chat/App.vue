@@ -187,6 +187,11 @@ export default {
                     if (this.contacts.length > 0 && this.contacts.some(e => e.id === user.id)) {
                         console.log('JOINING');
                         this.contacts.find(item => item.id === user.id).status = 1;
+                        if(this.activeContact.id === user.id)
+                        {
+                            this.activeContact.status = 1;
+                        }
+
                     }
                 })
                 .leaving((user) => {
@@ -197,6 +202,10 @@ export default {
                     if (this.contacts.length > 0 && this.contacts.some(e => e.id === user.id)) {
                         console.log('LEAVING');
                         this.contacts.find(item => item.id === user.id).status = 0;
+                        if(this.activeContact.id === user.id)
+                        {
+                            this.activeContact.status = 0;
+                        }
                     }
                 });
                 // .listen('UserOnlineStatus', (e) => {

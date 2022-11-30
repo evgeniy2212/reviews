@@ -2103,6 +2103,10 @@ __webpack_require__.r(__webpack_exports__);
           _this.contacts.find(function (item) {
             return item.id === user.id;
           }).status = 1;
+
+          if (_this.activeContact.id === user.id) {
+            _this.activeContact.status = 1;
+          }
         }
       }).leaving(function (user) {
         console.log('CHAT: leaving', user);
@@ -2117,6 +2121,10 @@ __webpack_require__.r(__webpack_exports__);
           _this.contacts.find(function (item) {
             return item.id === user.id;
           }).status = 0;
+
+          if (_this.activeContact.id === user.id) {
+            _this.activeContact.status = 0;
+          }
         }
       }); // .listen('UserOnlineStatus', (e) => {
       //     console.log('CHAT: UserOnline: ', e);
