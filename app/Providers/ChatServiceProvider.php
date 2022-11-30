@@ -237,7 +237,9 @@ class ChatServiceProvider
             if ($chatUser->user_id != auth()->id()) {
                 $this->notifiableUser = User::find($chatUser->user_id);
                 if(
-                    $chat->getUserUnreadMsgValueByUserId($this->notifiableUser) === null
+                    $chat->getUserUnreadMsgValueByUserId(
+                        optional($this->notifiableUser)->id
+                    ) === null
                 ){
                     $lastMsg = $this->message->id > 1 ? $this->message->id - 1 : 1;
                     MessageUser::whereChatId($chat->id)
