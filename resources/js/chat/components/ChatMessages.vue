@@ -1,7 +1,8 @@
 <template>
     <div class="chat__wrap"
          :class="screen === 'chat__wrap' ? 'is-active' : ''">
-        <div class="chat__contact is-online">
+        <div class="chat__contact"
+             :class="contact.status === 1 ? 'is-online': ''">
             <span class="chat__name">{{ contact.full_name }}</span>
             <span class="chat__status"
                   :class="contact.status === 1 ? 'is-online': ''">
