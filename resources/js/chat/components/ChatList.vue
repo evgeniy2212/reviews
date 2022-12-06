@@ -68,14 +68,21 @@ export default {
                 .then(response => {
                     var that = this;
                     response.data.data.forEach(function(item){
-                        that.chats.push({
-                            id: item.id,
-                            contact: item.contact,
-                            partner_id: item.partnerUser.id,
-                            name: item.partnerName + ' ' + item.partnerLastName,
-                            messageCount: item.unreadMessagesCount,
-                            status: item.partnerUser.chat_status
-                        });
+                        let agreePushChatItem = true;
+                        if(that.chats.length > 0)
+                        {
+                            agreePushChatItem = that.chats.find(obj => obj.partner_id == item.partnerUser.id) === undefined;
+                        }
+                        if(agreePushChatItem === true){
+                            that.chats.push({
+                                id: item.id,
+                                contact: item.contact,
+                                partner_id: item.partnerUser.id,
+                                name: item.partnerName + ' ' + item.partnerLastName,
+                                messageCount: item.unreadMessagesCount,
+                                status: item.partnerUser.chat_status
+                            });
+                        }
                     })
                     that.$parent.isLoadedMessages = false;
                 })

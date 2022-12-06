@@ -2290,14 +2290,24 @@ __webpack_require__.r(__webpack_exports__);
       return axios.get('/api/chat/user_chats').then(function (response) {
         var that = _this;
         response.data.data.forEach(function (item) {
-          that.chats.push({
-            id: item.id,
-            contact: item.contact,
-            partner_id: item.partnerUser.id,
-            name: item.partnerName + ' ' + item.partnerLastName,
-            messageCount: item.unreadMessagesCount,
-            status: item.partnerUser.chat_status
-          });
+          var agreePushChatItem = true;
+
+          if (that.chats.length > 0) {
+            agreePushChatItem = that.chats.find(function (obj) {
+              return obj.partner_id == item.partnerUser.id;
+            }) === undefined;
+          }
+
+          if (agreePushChatItem === true) {
+            that.chats.push({
+              id: item.id,
+              contact: item.contact,
+              partner_id: item.partnerUser.id,
+              name: item.partnerName + ' ' + item.partnerLastName,
+              messageCount: item.unreadMessagesCount,
+              status: item.partnerUser.chat_status
+            });
+          }
         });
         that.$parent.isLoadedMessages = false;
       })["catch"](function (e) {
