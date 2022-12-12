@@ -55,7 +55,10 @@
                 <infinite-loading @infinite="infiniteHandler"
                                   :identifier="chatId"
                                   direction="top"
-                                  :distance="distance"></infinite-loading>
+                                  :distance="distance">
+                    <div slot="no-more"></div>
+                    <div slot="no-results"></div>
+                </infinite-loading>
                 <div class="chat__message"
                      :class="message.sender === true ? 'sender' : 'receiver'"
                      v-for="(message, $index) in messages" :key="$index">

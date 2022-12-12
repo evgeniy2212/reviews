@@ -2469,6 +2469,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47720,14 +47723,25 @@ var render = function() {
               staticClass: "chat__holder"
             },
             [
-              _c("infinite-loading", {
-                attrs: {
-                  identifier: _vm.chatId,
-                  direction: "top",
-                  distance: _vm.distance
+              _c(
+                "infinite-loading",
+                {
+                  attrs: {
+                    identifier: _vm.chatId,
+                    direction: "top",
+                    distance: _vm.distance
+                  },
+                  on: { infinite: _vm.infiniteHandler }
                 },
-                on: { infinite: _vm.infiniteHandler }
-              }),
+                [
+                  _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }),
+                  _vm._v(" "),
+                  _c("div", {
+                    attrs: { slot: "no-results" },
+                    slot: "no-results"
+                  })
+                ]
+              ),
               _vm._v(" "),
               _vm._l(_vm.messages, function(message, $index) {
                 return _c(
