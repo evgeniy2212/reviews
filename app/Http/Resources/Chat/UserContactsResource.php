@@ -18,12 +18,14 @@ class UserContactsResource extends JsonResource
     {
         return [
             'id'         => $this->id,
-            'name'       => $this->pivot->name,
-            'last_name'  => $this->pivot->last_name,
-            'full_name'  => $this->pivot->name . ' ' . $this->pivot->last_name,
+            'name'       => optional($this->pivot)->name,
+            'last_name'  => optional($this->pivot)->last_name,
+            'full_name'  => optional($this->pivot)->name . ' ' . optional($this->pivot)->last_name,
             'email'      => $this->email,
             'status'     => $this->chat_status,
-            'chatId'     => optional($this->chats->first())->id
+            'chatId'     => optional(
+                optional($this->chats)->first()
+            )->id
         ];
     }
 }

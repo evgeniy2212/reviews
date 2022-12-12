@@ -8,6 +8,7 @@ use App\Http\Requests\Chat\CreateMessageRequest;
 use App\Http\Requests\Chat\EnterRequest;
 use App\Http\Requests\Chat\LeftRequest;
 use App\Http\Requests\Chat\SearchRequest;
+use App\Http\Requests\Chat\SendContactMailRequest;
 use App\Http\Requests\Chat\StoreContactRequest;
 use App\Http\Requests\Chat\UpdateContactRequest;
 use App\Http\Requests\Chat\UserOnlineRequest;
@@ -107,7 +108,9 @@ class ChatController extends Controller
             return response()->json(
                 [
                     'success' => false,
-                    'message' => 'You already have such a contact or have already sent a request to add a contact before.'
+                    'message' => 'You already have such a contact or have already sent a request to add a contact before.',
+                    'email' => $contact->email,
+                    'url' => route('chat.contactMailSendAgain')
                 ]
             );
         }
@@ -117,9 +120,39 @@ class ChatController extends Controller
         return response()->json(
             [
                 'success' => true,
-                'message' => 'Your invitation has been sent. After it is accepted, you will see a new name in your chat contacts and will be able to exchange texts at any time convenient for you.'
+                'message' => 'Your invitation has been sent. After it is accepted, you will see a new name in your chat contacts and will be able to exchange texts at any time convenient for you.',
+                'email'   => $contact->email,
+                'url' => route('chat.contactMailSendAgain')
             ]
         );
+    }
+
+    /**
+     * @param SendContactMailRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendContactAgain(SendContactMailRequest $request)
+    {
+        $contact = $this->provider
+            ->checkContactExistingByEmail(
+                $request->get('email')
+            );
+        if(!$contact){
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Try to create a contact again, you do not have a contact with this email.'
+                ]
+            );
+        }
+        $this->provider->storeContact(
+            $request->validated(),
+            $contact->pivot->token
+        );
+
+        return redirect()->route('profile-info')
+            ->withSuccess(["'Your invitation has been sent. After it is accepted, you will see a new name in your chat contacts and will be able to exchange texts at any time convenient for you.'"]);
     }
 
     /**

@@ -259,31 +259,36 @@ class ChatServiceProvider
     {
         return auth()->user()
             ->contacts()
+            ->withPivot('token')
             ->firstWhere('email', $email);
     }
 
     /**
-     * Store user message
-     *
      * @param array $validated
+     * @param $token
+     * @return void
      */
-    public function storeContact(array $validated)
+    public function storeContact(array $validated, $token = null)
     {
         $contact = User::firstWhere('email', $validated['email']);
-        $token = Str::random(32);
-        $url = route('chat-contact-approve', ['token' => $token]);
-        auth()->user()
-            ->contacts()
-            ->syncWithoutDetaching(
-                [
-                    $contact->id => [
-                        'name' => $validated['name'],
-                        'last_name' => $validated['last_name'],
-                        'contact_confirm' => 0,
-                        'token' => $token
+
+        if(! $token){
+            $token = Str::random(32);
+            auth()->user()
+                ->contacts()
+                ->syncWithoutDetaching(
+                    [
+                        $contact->id => [
+                            'name' => $validated['name'],
+                            'last_name' => $validated['last_name'],
+                            'contact_confirm' => 0,
+                            'token' => $token
+                        ]
                     ]
-                ]
-            );
+                );
+        }
+
+        $url = route('chat-contact-approve', ['token' => $token]);
 
         Mail::to($contact->email)
             ->send(new ChatContactApprovingEmail(

@@ -85,7 +85,6 @@ export default {
             const areTrue = Object.values(this.validity).every(
                 value => value === 'valid'
             );
-            console.log('areTrue: ', areTrue);
             if(!areTrue){
                 alert('Please check form')
                 return
@@ -99,10 +98,18 @@ export default {
                     email: this.email
                 })
                 .then(function(response){
+                    console.log('then!!!');
                     that.isLoadedMessages = false;
                     if(response.data.success === false){
                         $('#errorMessageContent').text(response.data.message);
                         $('#defaultErrorMessageContent').attr("hidden",true);
+
+                        $('#actionButtonText').text('Send again');
+                        $('#actionButtonContainer').removeAttr('hidden');
+                        $("#actionModelForm").attr('action', response.data.url);
+                        $("#actionModelFormValue").attr('name', 'email');
+                        $("#actionModelFormValue").attr('value', response.data.email);
+
                         $('#errorMessageContent').removeAttr('hidden');
                         $('#errorMessage').modal();
                     } else {
@@ -114,6 +121,7 @@ export default {
                     console.log('response: ', response.data.message)
                 })
                 .catch(function(e) {
+                    console.log('catch!!!');
                     console.log('response: ', e.response.data.errors);
                     let errorMessage = '';
                     const errors = e.response.data.errors;
@@ -124,6 +132,13 @@ export default {
                     $('#errorMessageContent').text(errorMessage);
                     $('#defaultErrorMessageContent').attr("hidden",true);
                     $('#errorMessageContent').removeAttr('hidden');
+
+                    $('#actionButtonText').text('Send again');
+                    $('#actionButtonContainer').removeAttr('hidden');
+                    $("#actionModelForm").attr('action', response.data.url);
+                    $("#actionModelFormValue").attr('name', 'email');
+                    $("#actionModelFormValue").attr('value', response.data.email);
+
                     $('#errorMessage').modal();
                     console.log(errorMessage);
                 });

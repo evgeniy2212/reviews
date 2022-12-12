@@ -30,6 +30,7 @@ Route::group(
     Route::post('user/online', 'ChatController@online')->name('online');
     Route::post('user/offline', 'ChatController@offline')->name('offline');
     Route::post('contact', 'ChatController@storeContact')->name('storeContact');
+    Route::post('contact_mail_send_again', 'ChatController@sendContactAgain')->name('contactMailSendAgain');
     Route::post('update_contact', 'ChatController@updateContact')->name('updateContact');
     Route::post('delete_contact', 'ChatController@deleteContact')->name('deleteContact');
     Route::post('delete_chat', 'ChatController@deleteChat')->name('deleteChat');

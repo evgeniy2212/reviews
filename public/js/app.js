@@ -3308,7 +3308,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var areTrue = Object.values(this.validity).every(function (value) {
         return value === 'valid';
       });
-      console.log('areTrue: ', areTrue);
 
       if (!areTrue) {
         alert('Please check form');
@@ -3322,11 +3321,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         last_name: this.last_name,
         email: this.email
       }).then(function (response) {
+        console.log('then!!!');
         that.isLoadedMessages = false;
 
         if (response.data.success === false) {
           $('#errorMessageContent').text(response.data.message);
           $('#defaultErrorMessageContent').attr("hidden", true);
+          $('#actionButtonText').text('Send again');
+          $('#actionButtonContainer').removeAttr('hidden');
+          $("#actionModelForm").attr('action', response.data.url);
+          $("#actionModelFormValue").attr('name', 'email');
+          $("#actionModelFormValue").attr('value', response.data.email);
           $('#errorMessageContent').removeAttr('hidden');
           $('#errorMessage').modal();
         } else {
@@ -3338,6 +3343,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         console.log('response: ', response.data.message);
       })["catch"](function (e) {
+        console.log('catch!!!');
         console.log('response: ', e.response.data.errors);
         var errorMessage = '';
         var errors = e.response.data.errors;
@@ -3354,6 +3360,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         $('#errorMessageContent').text(errorMessage);
         $('#defaultErrorMessageContent').attr("hidden", true);
         $('#errorMessageContent').removeAttr('hidden');
+        $('#actionButtonText').text('Send again');
+        $('#actionButtonContainer').removeAttr('hidden');
+        $("#actionModelForm").attr('action', response.data.url);
+        $("#actionModelFormValue").attr('name', 'email');
+        $("#actionModelFormValue").attr('value', response.data.email);
         $('#errorMessage').modal();
         console.log(errorMessage);
       });

@@ -13,6 +13,24 @@
                         @lang('service/index.cancel')
                     </button>
                 </div>
+                <div class="col-md-3"
+                     id="actionButtonContainer"
+                     hidden>
+                    <form action="{{ route("profile-reviews.update", ":id") }}"
+                          id="actionModelForm"
+                          method="post">
+                        <input type="hidden"
+                               id="actionModelFormValue"
+                               name=""
+                               value="">
+                        {{ csrf_field() }}
+                        <button class="otherButton"
+                                type="submit"
+                                id="actionButtonText">
+                            @lang('service/index.cancel')
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
