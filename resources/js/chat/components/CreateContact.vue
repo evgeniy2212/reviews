@@ -98,7 +98,6 @@ export default {
                     email: this.email
                 })
                 .then(function(response){
-                    console.log('then!!!');
                     that.isLoadedMessages = false;
                     if(response.data.success === false){
                         $('#errorMessageContent').text(response.data.message);
@@ -121,26 +120,26 @@ export default {
                     console.log('response: ', response.data.message)
                 })
                 .catch(function(e) {
-                    console.log('catch!!!');
-                    console.log('response: ', e.response.data.errors);
                     let errorMessage = '';
                     const errors = e.response.data.errors;
                     for (const [key, value] of Object.entries(errors)) {
                         errorMessage += `${value}` + '\n';
                     }
+                    console.log('errorMessage: ', errorMessage);
                     that.isLoadedMessages = false;
                     $('#errorMessageContent').text(errorMessage);
                     $('#defaultErrorMessageContent').attr("hidden",true);
                     $('#errorMessageContent').removeAttr('hidden');
 
-                    $('#actionButtonText').text('Send again');
-                    $('#actionButtonContainer').removeAttr('hidden');
-                    $("#actionModelForm").attr('action', response.data.url);
-                    $("#actionModelFormValue").attr('name', 'email');
-                    $("#actionModelFormValue").attr('value', response.data.email);
+                    if(e.response.data.url !== undefined){
+                        $('#actionButtonText').text('Send again');
+                        $('#actionButtonContainer').removeAttr('hidden');
+                        $("#actionModelForm").attr('action', e.response.data.url);
+                        $("#actionModelFormValue").attr('name', 'email');
+                        $("#actionModelFormValue").attr('value', e.response.data.email);
+                    }
 
                     $('#errorMessage').modal();
-                    console.log(errorMessage);
                 });
 
             this.name = '',

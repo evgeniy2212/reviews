@@ -3321,7 +3321,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         last_name: this.last_name,
         email: this.email
       }).then(function (response) {
-        console.log('then!!!');
         that.isLoadedMessages = false;
 
         if (response.data.success === false) {
@@ -3343,8 +3342,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         console.log('response: ', response.data.message);
       })["catch"](function (e) {
-        console.log('catch!!!');
-        console.log('response: ', e.response.data.errors);
         var errorMessage = '';
         var errors = e.response.data.errors;
 
@@ -3356,17 +3353,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           errorMessage += "".concat(value) + '\n';
         }
 
+        console.log('errorMessage: ', errorMessage);
         that.isLoadedMessages = false;
         $('#errorMessageContent').text(errorMessage);
         $('#defaultErrorMessageContent').attr("hidden", true);
         $('#errorMessageContent').removeAttr('hidden');
-        $('#actionButtonText').text('Send again');
-        $('#actionButtonContainer').removeAttr('hidden');
-        $("#actionModelForm").attr('action', response.data.url);
-        $("#actionModelFormValue").attr('name', 'email');
-        $("#actionModelFormValue").attr('value', response.data.email);
+
+        if (e.response.data.url !== undefined) {
+          $('#actionButtonText').text('Send again');
+          $('#actionButtonContainer').removeAttr('hidden');
+          $("#actionModelForm").attr('action', e.response.data.url);
+          $("#actionModelFormValue").attr('name', 'email');
+          $("#actionModelFormValue").attr('value', e.response.data.email);
+        }
+
         $('#errorMessage').modal();
-        console.log(errorMessage);
       });
       this.name = '', this.last_name = '', this.email = '';
     }
