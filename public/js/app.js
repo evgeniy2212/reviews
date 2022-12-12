@@ -3329,11 +3329,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (response.data.success === false) {
           $('#errorMessageContent').text(response.data.message);
           $('#defaultErrorMessageContent').attr("hidden", true);
-          $('#actionButtonText').text('Send again');
-          $('#actionButtonContainer').removeAttr('hidden');
-          $("#actionModelForm").attr('action', response.data.url);
-          $("#actionModelFormValue").attr('name', 'email');
-          $("#actionModelFormValue").attr('value', response.data.email);
+
+          if (response.data.url !== undefined) {
+            $('#actionButtonText').text('Send again');
+            $('#actionButtonContainer').removeAttr('hidden');
+            $("#actionModelForm").attr('action', response.data.url);
+            $("#actionModelFormValue").attr('name', 'email');
+            $("#actionModelFormValue").attr('value', response.data.email);
+          }
+
           $('#errorMessageContent').removeAttr('hidden');
           $('#errorMessage').modal();
         } else {
