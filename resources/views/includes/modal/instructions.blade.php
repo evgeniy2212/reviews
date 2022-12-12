@@ -20,7 +20,7 @@
                     <a class="otherButton"
                        type="button"
                        target="_blank"
-                       href="https://www.youtube.com/watch?v=RJR-VMf_kYA"
+                       href="https://youtu.be/6idGzI4PXXo"
                        id="instruction-video2">
                         @lang('service/index.play_video')
                     </a>
@@ -29,7 +29,7 @@
                     <div class="previewInstructionImage"
                          style="height: 121px;
                              background-position: center top;
-                             background-image: url('{{ asset('storage/images/default_images/instructions/test_video_preview.jpg') }}');
+                             background-image: url('{{ asset('storage/images/default_images/instructions/tutorial_2.png') }}');
                              background: grey;
                              background-size: 177px 100px;">
                         <span>{{ __('service/index.tutorial_part', ['number' => 2]) }}</span>
@@ -40,7 +40,7 @@
                     <a class="otherButton"
                        type="button"
                        target="_blank"
-                       href="#"
+                       href="https://youtu.be/kL2X2OchTGM"
                        id="instruction-video2">
                         @lang('service/index.play_video')
                     </a>
@@ -49,7 +49,7 @@
                     <div class="previewInstructionImage"
                          style="height: 121px;
                              background-position: center top;
-                             {{--background-image: url('{{ asset('storage/images/default_images/instructions/test_video_preview.jpg') }}'); --}}
+                             background-image: url('{{ asset('storage/images/default_images/instructions/tutorial_3.png') }}');
                              background: grey;
                              background-size: 177px 100px;">
                         <span>{{ __('service/index.tutorial_part', ['number' => 3]) }}</span>
@@ -60,7 +60,7 @@
                     <a class="otherButton"
                        type="button"
                        target="_blank"
-                       href="#"
+                       href="https://youtu.be/S26_duZtNPg"
                        id="instruction-video2">
                         @lang('service/index.play_video')
                     </a>
@@ -69,7 +69,7 @@
                     <div class="previewInstructionImage"
                          style="height: 121px;
                              background-position: center top;
-                             {{--background-image: url('{{ asset('storage/images/default_images/instructions/test_video_preview.jpg') }}'); --}}
+                             background-image: url('{{ asset('storage/images/default_images/instructions/tutorial_4.png') }}');
                              background: grey;
                              background-size: 177px 100px;">
                         <span>{{ __('service/index.tutorial_part', ['number' => 4]) }}</span>
@@ -80,7 +80,7 @@
                     <a class="otherButton"
                        type="button"
                        target="_blank"
-                       href="#"
+                       href="https://youtu.be/PjLaAeVixIE"
                        id="instruction-video2">
                         @lang('service/index.play_video')
                     </a>
