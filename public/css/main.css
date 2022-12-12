@@ -1297,10 +1297,10 @@ button:disabled {
 .errorModalDialog .modal-content{
     padding: 10px;
     color: red;
-    /*border: 3px double red;*/
-    border: 1px solid red;
-    /*outline: 1px solid red;*/
-    /*outline-offset: -4px;*/
+    border: 3px double red;
+    /*border: 1px solid red;*/
+    outline: 1px solid red;
+    outline-offset: -4px;
     border-radius: 1px;
 }
 .verifyRegisterControl {
