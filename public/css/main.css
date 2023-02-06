@@ -1425,7 +1425,9 @@ button:disabled {
 .previewInstructionImage {
     width: 177px;
     height: 100px;
-    border: 1px groove #4a92f8;
+    border: 1px double #2f5496;
+    outline: 3px solid #2f5496;
+    outline-offset: -5px;
     background-repeat: no-repeat;
     display: -webkit-box;
     display: -ms-flexbox;
