@@ -9,6 +9,11 @@
 
 @section('script_section')
     <script src="http://lonekorean.github.io/highlight-within-textarea/jquery.highlight-within-textarea.js"></script>
+    @if(auth()->user()->is_admin)
+        <script src="{{ asset('js/admin.js') }}"></script>
+    @endif
+    <script src="{{ asset('js/profile.js') }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @endsection
 
 @section('content')
@@ -138,13 +143,4 @@
 
 @section('modal_forms')
     @include('includes.modal.confirmDeleteReview')
-@endsection
-
-@section('script_section')
-    @if(auth()->user()->is_admin)
-        <script src="{{ asset('js/admin.js') }}"></script>
-    @endif
-    <script src="{{ asset('js/profile.js') }}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-{{--    <script src="{{ asset('js/BsMultiSelect.js') }}"></script>--}}
 @endsection
