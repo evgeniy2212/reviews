@@ -221,7 +221,6 @@ class UserCongratulationService {
             }
         })
         ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
-            ->with(['characteristics'])
             ->with(['image'])
             ->latest()
             ->paginate($perPage);
