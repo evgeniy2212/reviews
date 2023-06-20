@@ -201,4 +201,41 @@ class UserCongratulationService {
         return $sort;
     }
 
+    public static function getAdminFilteredCongratulations($filters = [], $search = '', $perPage = 10) {
+        $reviewFilters = self::getFilterMethod($filters);
+        $result = UserCongratulation::when(!empty($reviewFilters), function($q) use ($reviewFilters){
+            foreach ($reviewFilters as $filter) {
+                $key = array_key_first($filter);
+                if(!empty($filter)){
+                    switch ($key){
+                        case 'from':
+                            $q->where('created_at', '>=', Carbon::parse($filter['from'])->toDateString());
+                            break;
+                        case 'to':
+                            $q->whereDate('created_at', '<=', Carbon::parse($filter['to'])->toDateString());
+                            break;
+                        default:
+                            $q->where($key, $filter[$key]);
+                    }
+                }
+            }
+        })
+        ->where(DB::raw('CONCAT_WS(" ", name, second_name)'), 'like', "%{$search}%")
+            ->with(['characteristics'])
+            ->with(['image'])
+            ->latest()
+            ->paginate($perPage);
+
+        return $result;
+    }
+
+    protected static function getFilterMethod($filters = []){
+        $result = [];
+        foreach($filters as $key => $filter){
+            $result[] = UserCongratulation::ADMIN_FILTERS[$key][$filters[$key]] ?? [$key => $filter];
+        }
+
+        return $result;
+    }
+
 }

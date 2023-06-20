@@ -12,6 +12,24 @@ use Illuminate\Http\Request;
 class UserCongratulationController extends Controller
 {
     /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        $congratulationFilter = array_intersect_key(request()->all(), UserCongratulation::ADMIN_FILTERS);
+        $congratulations = UserCongratulationService::getAdminFilteredCongratulations($congratulationFilter);
+        $paginateParams = $congratulationFilter;
+
+        return view(
+            'admin.congratulations',
+            compact(
+                'congratulations',
+                'paginateParams')
+        );
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -39,6 +57,14 @@ class UserCongratulationController extends Controller
         $congratulation = UserCongratulation::findOrFail($id);
         $congratulation->update($request->all());
 
-        return redirect()->back()->withSuccess([__('service/admin.review_updated_successfully')]);
+        return redirect()->back()->withSuccess([__('service/admin.congratulation_updated_successfully')]);
+    }
+
+    public function search(Request $request) {
+        $congratulationFilter = array_intersect_key(request()->all(), UserCongratulation::ADMIN_FILTERS);
+        $congratulations = UserCongratulationService::getAdminFilteredCongratulations($congratulationFilter, $request->search);
+        $paginateParams = array_merge($congratulationFilter, ['search' => $request->search]);
+
+        return view('admin.congratulations', compact('congratulations', 'paginateParams'));
     }
 }

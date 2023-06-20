@@ -21,6 +21,16 @@ class UserCongratulation extends Model
         ],
     ];
 
+    const ADMIN_FILTERS = [
+        'activity' => [
+            'all' => [],
+            'holded' => ['is_published' => false],
+            'unholded' => ['is_published' => true],
+        ],
+        'from' => [],
+        'to' => []
+    ];
+
     /**
      * The attributes that aren't mass assignable.
      *

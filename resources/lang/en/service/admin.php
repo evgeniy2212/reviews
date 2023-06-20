@@ -48,6 +48,7 @@ return [
     'max_banners_published' => 'The maximum number (:count) of banners has already been published',
     'user_updated_successfully' => 'User :name updated successfully!',
     'review_updated_successfully' => 'Review updated successfully!',
+    'congratulation_updated_successfully' => 'Congratulation updated successfully!',
     'logo_saved_successfully' => 'Logo saved successfully!',
     'logo_delete_successfully' => 'Logo delete successfully!',
     'logo_delete_error' => 'Logo delete error!',

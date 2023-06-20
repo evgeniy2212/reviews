@@ -111,7 +111,7 @@ Route::group(
             Route::resource('/users', 'UserController')->only('index', 'update');
             Route::resource('/reviews', 'ReviewController')->only('index', 'update');
             Route::resource('/users_reviews', 'UserReviewController')->only('show', 'update');
-            Route::resource('/user_congratulations', 'UserCongratulationController')->only('show', 'update');
+            Route::resource('/user_congratulations', 'UserCongratulationController')->only('show', 'update', 'index');
             Route::resource('/complains', 'ComplainController')->only('index', 'update');
             Route::resource('/moderations', 'ReviewModerationController')->only('index');
             Route::resource('/data', 'DataController')->only('index');
@@ -119,6 +119,7 @@ Route::group(
             Route::patch('/moderation-review/{review}', 'ReviewModerationController@updateModerationReview')->name('update_moderation_review');
             Route::get('search-user', 'UserController@search')->name('searchUsers');
             Route::get('search-review', 'ReviewController@search')->name('searchReviews');
+            Route::get('search-congratulation', 'UserCongratulationController@search')->name('searchUserCongratulations');
             Route::get('/info_page/{info_page}', 'InfoPageController@index')->name('info_page');
             Route::post('/info_page', 'InfoPageController@store')->name('save_info_page');
             Route::get('create-review-logo/{review}', 'LogoController@createLogo')->name('create_review_logo');
