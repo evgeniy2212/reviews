@@ -41,7 +41,7 @@
                                      class="videoPreview">
                             @endif
                             @if($congratulation->image)
-                                <img src="{{ $congratulation->image->getResizeImageUrl() }}"
+                                <img src="{{ $congratulation->image->getResizeImageUrl('congratulations') }}"
                                      alt=""
                                      data-full-size-src="{{ $congratulation->image->getImageUrl() }}"
                                      class="reviewImage previewImage"
