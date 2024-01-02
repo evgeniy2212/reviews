@@ -100,8 +100,15 @@
         e.preventDefault();
         $('#testReviewCreation').modal('show');
       }
-    }); // Rating stars options
+    });
+    $('.draftCreationReview *').on('click', function (e) {
+      if (e.target.id !== 'cancelButton') {
+        e.preventDefault();
+        $('#draftReviewCreation').modal('show');
+      }
+    });
 
+    // Rating stars options
     var options = {
       max_value: 5,
       step_size: 1,
@@ -111,12 +118,11 @@
       cursor: 'default',
       readonly: false,
       change_ofnce: false // Determines if the rating can only be set once
-
     };
+
     $(".rating").rate(options);
     $(".rating").click(function (event) {
       var currentRating = $(this).find('#rating').val();
-
       if (currentRating <= 2 && !$('#submitFormAccept').data('enableLowRating')) {
         $('#submitFormAccept').val(0);
       } else {
@@ -135,7 +141,6 @@
         var wasReactionTypeCnt = sessionStorage.getItem('wasReviewTypeCnt' + reactionType + reviewId);
         var label = $("label[for='" + this.id + "']");
         var reviewLikes = Number.parseInt(label.text());
-
         if (wasReaction !== 'true') {
           reviewLikes++;
           label.text(reviewLikes);
@@ -152,7 +157,6 @@
             sessionStorage.setItem('wasReviewTypeCnt' + reactionType + reviewId, reviewLikes);
           }
         }
-
         if (reviewLikes - wasReactionTypeCnt !== 0) {
           var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
           $.ajax({
@@ -165,7 +169,8 @@
               id: reviewId,
               user_reaction_increase: userReactionIncreased
             },
-            success: function success(data) {// console.log(data);
+            success: function success(data) {
+              // console.log(data);
             }
           });
         }
@@ -180,7 +185,6 @@
       var wasReactionTypeCnt = sessionStorage.getItem('wasReactionTypeCnt' + reactionType + commentId);
       var label = $("label[for='" + this.id + "']");
       var commentLikes = Number.parseInt(label.text());
-
       if (wasReaction !== 'true') {
         commentLikes++;
         label.text(commentLikes);
@@ -197,7 +201,6 @@
           sessionStorage.setItem('wasReactionTypeCnt' + reactionType + commentId, commentLikes);
         }
       }
-
       if (commentLikes - wasReactionTypeCnt !== 0) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
@@ -263,7 +266,6 @@
       review.find('.review-textarea').toggle(500);
       var is_open = $(this).text().trim() !== 'Close';
       is_open ? $(this).text('Close') : $(this).text('Reply');
-
       if (is_open) {
         review_content.animate({
           height: "50%"
@@ -273,7 +275,6 @@
           height: "100%"
         }, 500);
       }
-
       $(this).closest('.single-review').removeClass('unread-profile-messages');
       var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
       var reviewId = $(this).attr('data-review-id');
@@ -291,7 +292,6 @@
       review.find('button').prop('disabled', true);
       var text = review.find('textarea').val();
       var reviewId = review.data("reviewId");
-
       if (text.trim()) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
@@ -339,7 +339,6 @@
       review.find('button').prop('disabled', true);
       var text = review.find('textarea').val();
       var reviewId = review.data("reviewId");
-
       if (text.trim()) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
@@ -365,7 +364,6 @@
       review.find('button').prop('disabled', true);
       var text = review.find('textarea').val();
       var reviewId = review.data("reviewId");
-
       if (text.trim()) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
@@ -400,26 +398,24 @@
       str = replaceQueryParam('page', 1, str);
       window.location = window.location.pathname + str;
     });
-
     function replaceQueryParam(param, newval, search) {
       var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
       var query = search.replace(regex, "$1").replace(/&$/, '');
       return (query.length > 2 ? query + "&" : "?") + (newval ? param + "=" + newval : '');
     }
-
     $('#video').change(function () {
       if (this.files[0].size > 35000000) {
         alert("The file must be less than 35 MB!");
         this.value = "";
       }
-
       ;
     });
     $('input[type="file"]').change(function (e) {
       var fileName = e.target.files[0].name;
       $(this).parent().find('span').text(fileName);
-    }); // Get the modal
+    });
 
+    // Get the modal
     var modal = document.getElementById("imageModal");
     $(".closeImageModal").click(function (event) {
       modal.style.display = "none";

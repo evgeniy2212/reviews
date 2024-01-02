@@ -27,7 +27,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer(['includes.header'], function (View $view) {
             $view->with([
-                'reviewCategories' => ReviewCategory::all(),
+                'reviewCategories' => ReviewCategory::query()->orderBy('id')->get(),
             ]);
         });
     }

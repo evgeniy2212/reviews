@@ -99,11 +99,12 @@
   var isCheckedYearsOld = true;
   var isExistBadWords = false;
   var isSubmitFormAccept = true;
-  var isCheckedCountryRegion = true; // console.log('loaded: ', sessionStorage.getItem('loaded'));
+  var isCheckedCountryRegion = true;
+
+  // console.log('loaded: ', sessionStorage.getItem('loaded'));
   // if(sessionStorage.getItem('loaded') === 'true') {
   //     $('.home').show();
   // }
-
   setTimeout(function () {
     $('.close').click();
   }, 3000);
@@ -118,7 +119,6 @@
     });
     $(".submitRegisterButton").click(function (event) {
       var form = $("#registerForm");
-
       if ($('#selectRegion option:selected').val() == 'Select') {
         $('#selectRegion').addClass('invalid-selector');
         isCheckedCountryRegion = false;
@@ -126,7 +126,6 @@
         isCheckedCountryRegion = true;
         $('#selectRegion').removeClass("invalid-selector");
       }
-
       if ($('#selectCountry option:selected').val() == 'Select') {
         $('#selectCountry').addClass('invalid-selector');
         isCheckedCountryRegion = false;
@@ -134,11 +133,10 @@
         isCheckedCountryRegion = true;
         $('#selectCountry').removeClass("invalid-selector");
       }
-
       isCheckedTermOfCondition = $('#confirmTermOfConditions').is(':checked');
-      isCheckedTermOfCondition ? $('#confirmTermOfConditions').removeClass('invalid-checkbox') : $('#confirmTermOfConditions').addClass('invalid-checkbox'); // isCheckedYearsOld = $('#confirmYearsOld').is(':checked')
+      isCheckedTermOfCondition ? $('#confirmTermOfConditions').removeClass('invalid-checkbox') : $('#confirmTermOfConditions').addClass('invalid-checkbox');
+      // isCheckedYearsOld = $('#confirmYearsOld').is(':checked')
       // isCheckedYearsOld ? $('#confirmYearsOld').removeClass('invalid-checkbox') : $('#confirmYearsOld').addClass('invalid-checkbox');
-
       validation(form, event);
     });
     $('#selectCategoryGood').change(function () {
@@ -151,7 +149,6 @@
     });
     $('#selectGroup').change(function () {
       var selectedText = $("#selectGroup option:selected").text();
-
       if (selectedText.toLowerCase() == 'other') {
         var textReviewHeight = $('.text-review-creating-container').parent().height();
         var groupCreatingHeight = $('.new-group-creating-container').height();
@@ -197,7 +194,6 @@
       form.attr('action', action);
       isExistBadWords = form.find('mark').length ? true : false;
       isSubmitFormAccept = $('#submitFormAccept').val() > 0 ? true : false;
-
       if (!isSubmitFormAccept) {
         $('#acceptFormModal').modal('show');
         event.preventDefault();
@@ -207,25 +203,21 @@
         } else {
           $('#selectRegion').removeClass("invalid-selector");
         }
-
         if ($('#selectCountry option:selected').val() == '') {
           $('#selectCountry').addClass('invalid-selector');
         } else {
           $('#selectCountry').removeClass("invalid-selector");
         }
-
         if ($('#selectCategoryGood option:selected').val() == '') {
           $('#selectCategoryGood').addClass('invalid-selector');
         } else {
           $('#selectCategoryGood').removeClass("invalid-selector");
         }
-
         if ($('#selectGroup option:selected').val() == '') {
           $('#selectGroup').addClass('invalid-selector');
         } else {
           $('#selectGroup').removeClass("invalid-selector");
         }
-
         if (typeof $('#review-create-text').val() !== 'undefined' && $('#review-create-text').val().length <= 1 && $('input:checkbox:checked').length <= 0) {
           $('#review-create-text').addClass('invalid-textarea');
           $('#emptyReviewNotificationModal').modal('show');
@@ -233,7 +225,6 @@
         } else {
           $('#review-create-text').removeClass('invalid-textarea');
         }
-
         if ($("#new_group").is(":visible")) {
           if ($("#selectGroup option:selected").text().toLowerCase() == 'other') {
             if ($('#new_group').val().length <= 0) {
@@ -246,14 +237,11 @@
             $('#new_group').removeClass('invalid-input');
           }
         }
-
         if ($('input[name="characteristics[]"]:checked').length > 0) {
           $('#review-create-text').removeAttr('required');
         }
-
         validation(form, event);
       }
-
       if ($('#createReviewForm #video, #editReviewForm #video').prop('files')[0] && form.hasClass('valid-form')) {
         $('.custom-file-upload, .delete-button').hide();
         $('#inTurnFadingTextG').show();
@@ -266,8 +254,9 @@
     $(".submitTouchInfoButton").click(function (event) {
       var form = $("#sendTouchInfo");
       validation(form, event);
-    }); //Choosing region after country
+    });
 
+    //Choosing region after country
     $('#selectCountry').change(function () {
       $.ajax({
         url: "/ajax/regions/" + this.value,
@@ -275,15 +264,15 @@
         success: function success(data) {
           $('#registerLabel').text(data[0].region_naming);
           $('#selectRegion').empty();
-
           for (var k in data) {
             $('#selectRegion').prepend('<option value="' + data[k].id + '">' + data[k].region + '</option>');
           }
         }
       });
       $('#selectRegion').removeAttr("disabled");
-    }); //Choosing region after country
+    });
 
+    //Choosing region after country
     $('#selectCategoryGood').change(function () {
       $.ajax({
         url: "/ajax/groups/" + this.value,
@@ -292,7 +281,6 @@
           console.log('data: ', data);
           $('#selectGroup').empty();
           var length = data.length - 1;
-
           for (var k in data) {
             $('#selectGroup').prepend('<option value="' + data[k].id + '"' + (length == k ? "selected" : "") + ' >' + data[k].name + '</option>');
           }
@@ -319,8 +307,9 @@
       $('#password-rules').show();
     }).blur(function () {
       $('#password-rules').hide();
-    }); // console.log($('#selectCountry').attr('data-country'));
+    });
 
+    // console.log($('#selectCountry').attr('data-country'));
     if ($('#selectCountry') !== null && $('#selectCountry').length && $('#selectCountry').attr('data-country').length) {
       $.ajax({
         url: "/ajax/regions/" + $('#selectCountry').attr('data-country'),
@@ -328,32 +317,27 @@
         success: function success(data) {
           $('#registerLabel').text(data[0].region_naming);
           $('#selectRegion').empty();
-
           for (var k in data) {
             $('#selectRegion').prepend('<option value="' + data[k].id + '">' + data[k].region + '</option>');
           }
-
           $('#selectCountry option[value=' + $('#selectCountry').attr('data-country') + ']').prop('selected', true);
           $('#selectRegion').removeAttr("disabled");
           $('#selectRegion option[value=' + $('#selectRegion').attr('data-region') + ']').prop('selected', true);
         }
       });
     }
-
     $('.shortcut').click(function (event) {
       var instructionTitle = $(this).parent();
       var showList = instructionTitle.find('ol');
-      event.preventDefault(); // hide all span
-
+      event.preventDefault();
+      // hide all span
       $('#shortcutInstructionModal li ol').not(showList).slideUp(500, 'swing');
-
       if (showList.is(":visible")) {
         $('#shortcutInstructionModal .shortcut').not($(this)).removeClass('disabled');
       } else {
         $('#shortcutInstructionModal .shortcut').not($(this)).addClass('disabled');
-      } // here is what I want to do
-
-
+      }
+      // here is what I want to do
       showList.slideToggle(750, 'swing');
       $(this).removeClass('disabled');
     });
@@ -387,7 +371,6 @@
     $('#review-text').blur(function () {
       badWordsUpdate($('#review-text'));
     });
-
     if ($("#review-create-text, #review-text, #new_group").length) {
       var badWords = [];
       $.ajax({
@@ -407,7 +390,6 @@
         }
       });
     }
-
     $('[id^="slider_body"]').click(function (event) {
       var data = $(this).data('body');
       $('#sliderBodyModalContent span').html(data);
@@ -430,40 +412,32 @@
       }
     });
   });
-
   function getBadWords(data) {
     return new RegExp('[\\s]' + data.join('[\\s]|[\\s]') + '[\\s]', 'gi');
   }
-
   var validation = function validation(form, event) {
     var allPassRulesCnt = $('#password-rules').find("[type='checkbox']").length;
     var checkedPassRulesCnt = $('#password-rules').find("[type='checkbox']:checked").length;
     var isCheckPassInvalid = allPassRulesCnt != checkedPassRulesCnt;
-
     if (isCheckPassInvalid) {
       $('#password, #new-password').addClass('invalid-input');
     } else {
       $('#password, #new-password').removeClass('invalid-input');
     }
-
     if (isExistBadWords) {
       // alert('Your review contain Bad Words! You must delete Bad Words!');
       $('#errorBadWords').modal('show');
     }
-
     form.addClass('valid-form');
-
     if (form[0].checkValidity() === false || isCheckPassInvalid || !isCheckedTermOfCondition || !isCheckedYearsOld || isExistBadWords || !isCheckedCountryRegion || !isSubmitFormAccept) {
       form.removeClass('valid-form');
       event.preventDefault();
       event.stopPropagation();
     }
-
     form.addClass('was-validated');
   };
+
   /*Actual validation function*/
-
-
   function ValidatePassword() {
     /*Array of rules and the information target*/
     var rules = [{
@@ -478,41 +452,33 @@
     }, {
       Pattern: "[!@@#$%^&*]",
       Target: "Symbols"
-    }]; //Just grab the password once
+    }];
 
+    //Just grab the password once
     var password = $(this).val();
     /*Length Check, add and remove class could be chained*/
-
     /*I've left them seperate here so you can see what is going on */
-
     /*Note the Ternary operators ? : to select the classes*/
-
     $("#Length").prop('checked', password.length > 7 ? true : false);
-
     for (var i = 0; i < rules.length; i++) {
       $("#" + rules[i].Target).prop('checked', new RegExp(rules[i].Pattern).test(password) ? true : false);
     }
-
     var allPassRulesCnt = $('#password-rules').find("[type='checkbox']").length;
     var checkedPassRulesCnt = $('#password-rules').find("[type='checkbox']:checked").length;
     var isCheckPassInvalid = allPassRulesCnt != checkedPassRulesCnt;
-
     if (isCheckPassInvalid) {
       $('#password, #new-password').addClass('invalid-input');
     } else {
       $('#password, #new-password').removeClass('invalid-input');
     }
   }
-
   function badWordsUpdate(input) {
     var review = input.val();
     var length = review.length;
-
     if (length == 0 && review[0] != ' ') {
       review = input.val(' ' + review);
       input.highlightWithinTextarea('update');
     }
-
     if (length > 0 && review[length - 1] != ' ') {
       input.val(review + ' ');
       input.highlightWithinTextarea('update');

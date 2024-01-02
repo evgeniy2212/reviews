@@ -148,7 +148,9 @@
       });
       $(this).parent().find('[id^="saveCommentButton"]').hide();
       $(this).parent().find('[id^="cancelSaveCommentButton"]').hide();
-    }); // $('#confirmReviewButton').click(function(){
+    });
+
+    // $('#confirmReviewButton').click(function(){
     //     console.log('confirmReviewButton');
     //     console.log($('[id^="ReviewForm"]'));
     //     $('[id^="ReviewForm"]').submit();
@@ -164,30 +166,25 @@
     });
     $("#bannerButton").click(function (event) {
       var form = $("#bannerForm");
-
       if ($('#bannerCategory option:selected').val() == '') {
         $('#bannerCategory').addClass('invalid-selector');
       } else {
         $('#bannerCategory').removeClass("invalid-selector");
       }
-
       if ($('#imgBanner').val() == '') {
         $('.bannerFileUpload').addClass('invalid-selector');
       } else {
         $('.bannerFileUpload').removeClass("invalid-selector");
       }
-
       validation(form, event);
     });
     $("#congratulationButton").click(function (event) {
       var form = $("#congratulationForm");
-
       if ($('#selectRegion option:selected').val() == '') {
         $('#selectRegion').addClass('invalid-selector');
       } else {
         $('#selectRegion').removeClass("invalid-selector");
       }
-
       if ($('#selectCongratulationStatus option:selected').val() == '') {
         $('#selectCongratulationStatus').animate({
           borderColor: "#de1529"
@@ -205,12 +202,10 @@
         $('#selectCongratulationStatus').removeClass("invalid-selector");
         $('#name').removeClass("invalid-selector");
         $('#second_name').removeClass("invalid-selector");
-
         if ($('#selectCongratulationStatus option:selected').val() == '1') {
           var url = $('#selectCongratulationStatus').data('baseUrl');
           var name = $('#name').val();
           var last_name = $('#second_name').val();
-
           if (url !== '', name !== '' && last_name !== '') {
             $.ajax({
               url: url + "/profile/ajax/check-user?name=" + name + '&last_name=' + last_name,
@@ -229,27 +224,22 @@
           }
         }
       }
-
       if ($('#selectCountry optioSn:selected').val() == '') {
         $('#selectCountry').addClass('invalid-selector');
       } else {
         $('#selectCountry').removeClass("invalid-selector");
       }
-
       if ($('#selectCategoryCongrats option:selected').val() == '' || $('#selectCategoryCongrats option:selected').val() == 'Select') {
         $('#selectCategoryCongrats').addClass('invalid-selector');
       } else {
         $('#selectCategoryCongrats').removeClass("invalid-selector");
       }
-
       validation(form, event);
-
       if ($('#congratulationForm #videoCongratulation').prop('files')[0] && form.hasClass('valid-form')) {
         $('.create-congratulation-image').hide();
         $('#inTurnFadingTextG').show();
       }
     });
-
     if ($(window).width() >= 860) {
       $('[id^="profilePrivateCongratulationButton"]').click(function (event) {
         var congratulation = $(this).parent().parent().parent().parent().parent();
@@ -257,7 +247,6 @@
         var url = $(this).attr('data-url');
         var is_open = $(this).text().trim() !== 'Close';
         is_open ? $(this).text('Close') : $(this).text('Show');
-
         if (is_open) {
           congratulation.css({
             'overflow': 'visible'
@@ -308,7 +297,6 @@
         var is_open = $(this).text().trim() !== 'Close';
         var height = $(this).closest('.single-congratulation-private').find('.congratulation-text').height();
         is_open ? $(this).text('Close') : $(this).text('Show');
-
         if (is_open) {
           $.ajax({
             url: url,
@@ -318,10 +306,10 @@
               console.log('data: ', data);
             }
           });
-          congratulation.removeClass('unread-single-congratulation-private'); // $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').animate({
+          congratulation.removeClass('unread-single-congratulation-private');
+          // $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').animate({
           //     height: height,
           // }, 300 );
-
           if ($(this).closest('.single-congratulation-private').find('.congratulation-text').height() >= '35') {
             $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').css('height', "".concat(height, "px"));
           }
@@ -329,13 +317,13 @@
           // $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').animate({
           //     height: '130px',
           // }, 300 );
+
           if ($(this).closest('.single-congratulation-private').find('.congratulation-text').height() >= '35') {
             $(this).closest('.single-congratulation-private').find('.congratulation-text-wrap').css('height', '35px');
           }
         }
       });
     }
-
     $('#imgCongratulation').change(function () {
       readImageURL(this);
     });
@@ -363,13 +351,11 @@
       $('.congratulationContentContainer').css('display', 'flex');
       $('.congratulationDefaultImagesContainer').hide();
       var src = '';
-
       if ($('#imgCongratulation').data('src') === '') {
         src = $('#blah').data('defaultSrc');
       } else {
         src = $('#imgCongratulation').data('src');
       }
-
       $('#blah').attr('src', src);
       $('#blah').data('src', src);
     });
@@ -393,10 +379,11 @@
       $('#blah').attr('src', $('#blah').data('src'));
     });
     $('.congratulationDefaultImagePreview').click(function () {
-      var $this = $(this); // Clear formatting
+      var $this = $(this);
+      // Clear formatting
+      $('.congratulationDefaultImagePreview').removeClass('congratulationHighlight');
 
-      $('.congratulationDefaultImagePreview').removeClass('congratulationHighlight'); // Highlight with coloured border
-
+      // Highlight with coloured border
       $this.addClass('congratulationHighlight');
       var src = $(this).find('img').attr('src');
       $('#blah').attr('src', src);
@@ -408,19 +395,16 @@
     });
     $("#importantDateButton").click(function (event) {
       var form = $("#importantDateForm");
-
       if ($('#importantDateType option:selected').val() == '') {
         $('#importantDateType').addClass('invalid-selector');
       } else {
         $('#importantDateType').removeClass("invalid-selector");
       }
-
       if ($('[name^="important_date_reminds"]:checkbox:checked').length == 0) {
         $('#selectBox select').addClass('invalid-selector');
       } else {
         $('#selectBox select').removeClass("invalid-selector");
       }
-
       validation(form, event);
     });
     $('.checkImportantDate').change(function () {
@@ -435,7 +419,6 @@
       $(".profile-single-important-date input[type=checkbox]:checked").each(function () {
         deleteImportants.push($(this).val());
       });
-
       if (deleteImportants.length > 0) {
         $.ajax({
           type: "POST",
@@ -455,7 +438,6 @@
     var expanded = false;
     $("#selectBox").click(function (event) {
       var checkboxes = document.getElementById("checkboxes");
-
       if (!expanded) {
         checkboxes.style.display = "flex";
         expanded = true;
@@ -471,17 +453,14 @@
       expanded = false;
     });
   });
-
   function readImageURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
-
       reader.onload = function (e) {
         $('#blah').attr('src', e.target.result);
         $('#blah').data('src', e.target.result);
         $('#imgCongratulation').data('src', e.target.result);
       };
-
       reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
   }
@@ -491,23 +470,18 @@
     $source[0].src = URL.createObjectURL(input.files[0]);
     $source.parent()[0].load();
   }
-
   function setModalData(name) {
     $("#reviewName").text(name);
   }
-
   var validation = function validation(form, event) {
     form.addClass('valid-form');
-
     if (form[0].checkValidity() === false) {
       form.removeClass('valid-form');
       event.preventDefault();
       event.stopPropagation();
     }
-
     form.addClass('was-validated');
   };
-
   $('[id^="profileComplaintButton"]').click(function (event) {
     var review = $(this).parent().parent();
     var complains = review.find('.complain');

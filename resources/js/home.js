@@ -26,7 +26,7 @@
                         $(this).delay(150 * i).fadeTo( 100, 1 );
                         $(this).delay(100 * i).not(".menu-active a").fadeTo( 100, 0 );
                     });
-                }, 1250 * i);
+                }, 1750 * i);
             }
             setTimeout(function(){
                 $('.nav-gradient').removeClass('');
@@ -36,10 +36,10 @@
                         $(this).delay(150 * i).fadeTo( 100, 1 );
                     });
                 }
-            }, 4000);
+            }, 5300);
             setTimeout(function(){
                 $('.navigate li a').removeClass('first-menu-showing');
-            }, 22500);
+            }, 24000);
 
             // setTimeout(function(){
             //     $('.home .home-main-content').fadeTo( 1000, 1 );
@@ -59,7 +59,7 @@
                             .fadeTo( 150, 1 );
                     }, 21500 * index);
                 });
-            }, 4000);
+            }, 5700);
 
             setTimeout(function(){
                 let mainContentDelay = 0;
@@ -78,7 +78,7 @@
                     }, mainContentDelay);
                     mainContentDelay = (item.text().length * 3) + mainContentDelay;
                 });
-            }, 5250);
+            }, 6950);
 
             setTimeout(function(){
                 startHomeHeight = $('.home').height();
@@ -94,13 +94,13 @@
                     }, 250 * (index + 1));
                 });
                 // animateContent('up');
-            }, 7000);
+            }, 8700);
             setTimeout(function() {
                 if ($('.home').height() > containerMainHeight) {
                     animateContent('up', ($('.home-point').height() + 50), 100);
                 }
                 // }
-            }, 10300);
+            }, 12000);
             setTimeout(function(){
                 // var startHomePointTitle = $( ".home-point img" ).first().position().top;
                 let heightIndex = 0;
@@ -131,7 +131,7 @@
                             .fadeTo( 175, 1 );
                     }
                 });
-            }, 10500);
+            }, 12200);
 
             setTimeout(function(){
                 if ($('.home').height() > containerMainHeight) {
@@ -183,7 +183,7 @@
                         sessionStorage.setItem('slider_enable', true);
                     // }
                 }, delay + 2000);
-            }, 18000);
+            }, 19700);
         // } else {
         //     $('.home *').show();
         // }

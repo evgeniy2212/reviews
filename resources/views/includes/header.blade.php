@@ -204,7 +204,7 @@
                     <li @if(str_contains(url()->current(), $review_category->slug) || str_contains(url()->full(), 'category=' . $review_category->slug))
                         class="menu-active"@endif>
                         <a href="{{ route('reviews', $review_category->slug) }}">
-                            @lang(trans('service/index.review_naming', ['name' => $review_category->title]))
+                            {!! ucfirst($review_category->title) !!}
                         </a>
                     </li>
                 @endforeach

@@ -168,4 +168,8 @@ return [
     'filter.unholded' => 'Unholded',
     'filter.published' => 'Published',
     'filter.unpublished' => 'Unpublished',
+    'gender' => 'Gender',
+    'association' => 'Association',
+    'league' => 'League',
+    'position' => 'Position',
 ];

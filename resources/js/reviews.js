@@ -6,6 +6,12 @@
                 $('#testReviewCreation').modal('show');
             }
         });
+        $('.draftCreationReview *').on('click', function (e){
+            if(e.target.id !== 'cancelButton'){
+                e.preventDefault();
+                $('#draftReviewCreation').modal('show');
+            }
+        });
 
         // Rating stars options
         var options = {

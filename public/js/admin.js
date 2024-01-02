@@ -148,7 +148,6 @@
     $('select[id^="bannerType"]').change(function () {
       var bannerId = $(this).data('bannerId');
       var banner = $('#banner-' + bannerId);
-
       if ($(this).val() == window.banner_types.text) {
         banner.find('#bannerImagePreview').hide();
         banner.find('#title').hide();
@@ -168,7 +167,6 @@
       var reviewId = $(this).data('review-id');
       !$('#moderationInput' + reviewId).attr('readonly') ? $('#moderationInput' + reviewId).attr('readonly', true) : $('#moderationInput' + reviewId).removeAttr('readonly');
     }); // admin navigation menu handler
-
     $('[id^="moderationInput"]').focusout(function () {
       if ($(this).attr('readonly') !== 'readonly') {
         var reviewId = $(this).data('review-id');
@@ -176,7 +174,6 @@
       }
     });
   });
-
   function replaceQueryParam(param, newval, search) {
     var regex = new RegExp("([?;&])" + param + "[^&;]*[;&]?");
     var query = search.replace(regex, "$1").replace(/&$/, '');

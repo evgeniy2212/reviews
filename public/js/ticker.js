@@ -94,7 +94,8 @@
 /***/ (function(module, exports) {
 
 (function ($) {
-  window.onload = function () {// var loaded = sessionStorage.getItem('loaded');
+  window.onload = function () {
+    // var loaded = sessionStorage.getItem('loaded');
     // console.log('ticker Loaded: ', sessionStorage.getItem('loaded'));
     // sessionStorage.setItem('loaded', true);
     // if(loaded !== 'true') {

@@ -47,12 +47,40 @@ class ReviewCategorySeeder extends Seeder
                 'slug' => \Illuminate\Support\Str::slug('vocations'),
                 'is_published' => true,
             ],
+            [
+                'title' => [
+                    'en' => 'Sport Teams',
+                    'ru' => 'Sport Teams',
+                ],
+                'slug' => \Illuminate\Support\Str::slug('sport teams'),
+                'is_published' => true,
+                'is_draft' => true,
+            ],
+            [
+                'title' => [
+                    'en' => 'Entertainment',
+                    'ru' => 'Entertainment',
+                ],
+                'slug' => \Illuminate\Support\Str::slug('entertainment'),
+                'is_published' => true,
+                'is_draft' => true,
+            ],
+            [
+                'title' => [
+                    'en' => 'Election',
+                    'ru' => 'Election',
+                ],
+                'slug' => \Illuminate\Support\Str::slug('election'),
+                'is_published' => true,
+                'is_draft' => true,
+            ],
         ];
 
         foreach($categories as $category){
             $data = [
                 'is_published' => $category['is_published'],
                 'enable_low_rating' => Arr::get($category, 'enable_low_rating', true),
+                'is_draft' => Arr::get($category, 'is_draft', false)
             ];
             foreach(app('laravellocalization')->getSupportedLocales() as $localeKey => $locale){
                 $data[$localeKey] = [

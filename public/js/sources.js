@@ -108,18 +108,16 @@
     d.support.rgba && (c += "," + (a && b ? parseFloat(a[3] + e * (b[3] - a[3])) : 1));
     return c + ")";
   }
-
   function f(a) {
     var b;
     return (b = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})/.exec(a)) ? [parseInt(b[1], 16), parseInt(b[2], 16), parseInt(b[3], 16), 1] : (b = /#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/.exec(a)) ? [17 * parseInt(b[1], 16), 17 * parseInt(b[2], 16), 17 * parseInt(b[3], 16), 1] : (b = /rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(a)) ? [parseInt(b[1]), parseInt(b[2]), parseInt(b[3]), 1] : (b = /rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9\.]*)\s*\)/.exec(a)) ? [parseInt(b[1], 10), parseInt(b[2], 10), parseInt(b[3], 10), parseFloat(b[4])] : l[a];
   }
-
   d.extend(!0, d, {
     support: {
       rgba: function () {
         var a = d("script:first"),
-            b = a.css("color"),
-            e = !1;
+          b = a.css("color"),
+          e = !1;
         if (/^rgba/.test(b)) e = !0;else try {
           e = b != a.css("color", "rgba(0, 0, 0, 0.5)").css("color"), a.css("color", b);
         } catch (c) {}
@@ -135,9 +133,8 @@
       },
       set: function set(a) {
         var c = a.elem.style,
-            g = f(d(a.elem).css(b)),
-            m = f(a.end);
-
+          g = f(d(a.elem).css(b)),
+          m = f(a.end);
         a.run = function (a) {
           c[b] = h(g, m, a);
         };
@@ -147,13 +144,12 @@
   d.Tween.propHooks.borderColor = {
     set: function set(a) {
       var b = a.elem.style,
-          e = [],
-          c = k.slice(2, 6);
+        e = [],
+        c = k.slice(2, 6);
       d.each(c, function (b, c) {
         e[c] = f(d(a.elem).css(c));
       });
       var g = f(a.end);
-
       a.run = function (a) {
         d.each(c, function (d, c) {
           b[c] = h(e[c], g, a);

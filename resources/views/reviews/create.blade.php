@@ -13,6 +13,7 @@
     @include('includes.modal.emptyReviewNotification')
     @include('includes.modal.errorBadWords')
     @include('includes.modal.testReviewCreation')
+    @include('includes.modal.draftReviewCreation')
 @endsection
 
 @section('content')
@@ -20,7 +21,14 @@
           enctype="multipart/form-data"
           novalidate=""
           id="createReviewForm"
-          @guest class="testCreationReview" @endguest>
+          @guest
+              class="testCreationReview"
+        @else
+            @if($reviewCategory->is_draft)
+                class="draftCreationReview"
+            @endif
+        @endguest
+    >
         @csrf
         <input type="hidden"
                name="review_category_id"
@@ -99,7 +107,7 @@
                             </span>
                             <div class="checkbox-container">
                                 @foreach($positiveCharacteristics as $characteristics)
-                                    <div class="col-md-6 checkbox-items">
+                                    <div class="col-md-6 checkbox-items pr-0 pl-0">
                                         @foreach($characteristics as $characteristic)
                                             <div class="checkbox-item">
                                                 <input type="checkbox"
@@ -176,7 +184,7 @@
                             </span>
                             <div class="checkbox-container">
                                 @foreach($negativeCharacteristics as $characteristics)
-                                    <div class="col-md-6 checkbox-items">
+                                    <div class="col-md-6 checkbox-items pr-0 pl-0">
                                         @foreach($characteristics as $characteristic)
                                             <div class="checkbox-item">
                                                 <input type="checkbox"
