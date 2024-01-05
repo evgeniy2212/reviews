@@ -35,42 +35,73 @@
 <div class="col-12 col-lg-7">
     <div class="d-flex align-items-center flex-grow-1 flex-wrap flex-lg-nowrap">
         <!-- Category -->
-        <div class="flex-grow-1 mb-2 mb-sm-0" style="white-space: nowrap;">
+        <div>
             <span class="create-review-label">
                 {!! __(__('service/index.select_item', ['item' => 'position'])) !!}
             </span>
+        </div>
+        <div class="col-md-2 mb-2 mb-md-0">
             <select class="select required"
                     id="position"
                     name="position"
-                    disabled
                     required>
-                <option selected value="{{ empty($review) ? '' : $review->position }}">{{ empty($review) ? trans('service/index.position', ['item' => 'position']) : $review->position }}</option>
+                <option selected value="{{ empty($review) ? '' : $review->position }}">{{ empty($review) ? ucfirst(__('service/index.position')) : $review->position }}</option>
+                <option>President</option>
+                <option>Vice President</option>
+                <option>Senators</option>
+                <option>Representatives</option>
+                <option>Governors</option>
+                <option>State Legislators</option>
+                <option>Mayors</option>
+                <option>City Council Members</option>
+                <option>County Commissioners</option>
+                <option>School Board Members</option>
+                <option>Judges</option>
+                <option>Sheriffs</option>
+                <option>District Attorneys (DAs)</option>
+                <option>State Attorneys General</option>
+                <option>Secretaries of State</option>
+                <option>Treasurers</option>
+                <option>Auditors or Comptrollers</option>
+                <option>State Insurance Commissioners</option>
+                <option>Public Service Commissioners</option>
+                <option>Coroners or Medical Examiners</option>
+                <option>Soil and Water Conservation District Supervisors</option>
+                <option>City and County Clerks</option>
             </select>
         </div>
-        <div class="flex-grow-1 mb-2 mb-sm-0" style="white-space: nowrap;">
+        <div>
             <span class="create-review-label">
                 {!! __(__('service/index.select_item', ['item' => 'status'])) !!}
             </span>
+        </div>
+        <div class="col-md-2 mb-2 mb-md-0">
             <select class="select required"
                     id="status"
                     name="status"
-                    disabled
                     required>
-                <option selected value="{{ empty($review) ? '' : $review->status }}">{{ empty($review) ? trans('service/index.status', ['item' => 'status']) : $review->status }}</option>
+                <option selected value="{{ empty($review) ? '' : $review->status }}">{{ empty($review) ? ucfirst(__('service/index.status')) : $review->status }}</option>
+                <option>Candidat</option>
+                <option>Elected</option>
             </select>
         </div>
 
         <!-- Year -->
-        <div class="flex-grow-1 mb-2 mb-sm-0" style="white-space: nowrap;">
+        <div>
             <span class="create-review-label">
                 {!! __(__('service/index.select_item', ['item' => 'year'])) !!}
             </span>
+        </div>
+        <div class="col-md-2 mb-2 mb-md-0">
             <select class="select required"
                     id="year"
                     name="year"
-                    disabled
                     required>
-                <option selected value="{{ empty($review) ? '' : $review->year }}">{{ empty($review) ? trans('service/index.year', ['item' => 'year']) : $review->year }}</option>
+                <option selected value="{{ empty($review) ? '' : $review->year }}">{{ empty($review) ? ucfirst(__('service/index.year')) : $review->year }}</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
             </select>
         </div>
     </div>
