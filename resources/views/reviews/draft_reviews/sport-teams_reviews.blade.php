@@ -43,7 +43,7 @@
                 <div class="single-review-user-name">
                     <i>Brain W.</i>
                     <div>
-                        <img src="{{ asset('storage/images/default_images/congratulations/congratulation_1.png') }}" height="25px" width="20px"/>
+                        <img src="{{ asset('images/default_images/congratulations/congratulation_1.png') }}" height="25px" width="20px"/>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                 <div class="single-review-user-name">
                     <i>Mike H.</i>
                     <div>
-                        <img src="{{ asset('storage/images/default_images/congratulations/congratulation_1.png') }}" height="25px" width="20px"/>
+                        <img src="{{ asset('images/default_images/congratulations/congratulation_1.png') }}" height="25px" width="20px"/>
                     </div>
                 </div>
             </div>
