@@ -93,11 +93,13 @@
                         @endif
                     </div>
                 @else
-                    <div class="d-flex justify-content-center exist-review-title">
+                    @if(! in_array($slug, ['sport-teams', 'election', 'entertainment']))
+                        <div class="d-flex justify-content-center exist-review-title">
                             <span>
                                 @lang('service/index.reviews.empty_search_result')
                             </span>
-                    </div>
+                        </div>
+                    @endif
                 @endif
                 @forelse($reviews as $review)
                     @if(class_basename($review) != 'Review')
@@ -108,6 +110,9 @@
                 @empty
 
                 @endforelse
+                @if(in_array($slug, ['sport-teams', 'election', 'entertainment']))
+                    @include('reviews/draft_reviews.' . $slug . '_reviews')
+                @endif
                 @if($reviews->total() > $reviews->count())
                       <div class="pagination-container">
                               {{ $reviews->appends($paginateParams)->links() }}
