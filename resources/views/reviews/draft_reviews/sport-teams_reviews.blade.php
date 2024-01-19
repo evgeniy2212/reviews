@@ -88,7 +88,7 @@
         <span class="single-review-info__date">12-11-2023</span>
         <div class="review-stars">
             @for($i=1;$i < 6; $i++)
-                @if($i <= 2)
+                @if($i <= 5)
                     &#9733;
                 @else
                     &#9734;
